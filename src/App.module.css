@@ -1,0 +1,11 @@
+.App {
+    font-family: 'DM Sans';
+    background-color: #f8f8f8;
+    min-height: 100vh;
+}
+
+.verticalLine {
+    border-left: 1px solid grey;
+    height: 30px;
+    margin: 0 10px;
+}

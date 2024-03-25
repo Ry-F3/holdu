@@ -1,10 +1,11 @@
 import React from 'react';
 import { Navbar, Container, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import logo from '../assets/logo.png';
+import styles from '../App.module.css';
 
 const NavBar = () => {
   return (
-    <Navbar bg="white" fixed="light">
+    <Navbar bg="white" fixed="light" className="border-bottom">
       <Container className="d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center">
           <Navbar.Brand>
@@ -33,7 +34,7 @@ const NavBar = () => {
           <div>
             <p className="mb-0 mr-2">Tagline for the app</p> {/* Tagline */}
           </div>
-          <div style={{ borderLeft: '1px solid grey', height: '30px', margin: '0 10px' }}></div> {/* Vertical line */}
+          <div className={styles.verticalLine}></div> {/* Vertical line */}
           <Nav.Link>
             <div className="mr-1">
               <span>Join now</span>
