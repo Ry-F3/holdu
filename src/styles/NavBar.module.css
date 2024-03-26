@@ -1,0 +1,33 @@
+.Active div span {
+    color: black;
+}
+
+.customButton {
+    border-color: #fc7fb6 !important;
+    background-color: #fc7fb6 !important;
+
+    color: white !important;
+
+
+}
+
+
+/* Increase specificity to override Bootstrap styles */
+Button {
+    border-color: #fc7fb6 !important;
+    background-color: white !important;
+    color: #fc7fb6 !important;
+    box-shadow: none !important;
+    text-decoration: underline white !important;
+
+}
+
+
+Button:hover {
+    border-color: #fc7fb6 !important;
+    background-color: #fc7fb6 !important;
+    box-shadow: none !important;
+    color: white !important;
+    text-decoration: underline #fc7fb6 !important;
+    transition: 0.2s;
+}

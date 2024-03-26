@@ -9,16 +9,20 @@ import {
 } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import styles from "../App.module.css";
+import nav from "../styles/NavBar.module.css";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <Navbar bg="white" fixed="light" className="border-bottom">
       <Container className="d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center">
-          <Navbar.Brand>
-            <img src={logo} alt="logo" height="40" className="mr-2" />
-            <span>holdu</span>
-          </Navbar.Brand>
+          <NavLink to="/">
+            <Navbar.Brand>
+              <img src={logo} alt="logo" height="40" className="mr-2" />
+              <span>holdu</span>
+            </Navbar.Brand>
+          </NavLink>
         </div>
 
         <Nav className="d-flex align-items-center">
@@ -45,18 +49,20 @@ const NavBar = () => {
             <p className="mb-0 mr-2">Tagline for the app</p> {/* Tagline */}
           </div>
           <div className={styles.verticalLine}></div> {/* Vertical line */}
-          <Nav.Link>
-            <div className="mr-1">
+          <NavLink activeClassName={nav.Active} to="/signup">
+            <div className="mr-2">
               <span>Join now</span>
             </div>
-          </Nav.Link>
-          <Nav.Link>
-            <div className="mr-1 d-flex flex-column align-items-center">
-              <Button variant="outline-primary" className="rounded">
-                Sign In
-              </Button>
+          </NavLink>
+          <NavLink to="/signin">
+            <div className="mr-1 d-flex flex-column align-items-center rounded">
+              <NavLink to="/signin">
+                <div className="mr-1 d-flex flex-column align-items-center rounded">
+                  <Button >Sign In</Button>
+                </div>
+              </NavLink>
             </div>
-          </Nav.Link>
+          </NavLink>
         </Nav>
       </Container>
     </Navbar>
