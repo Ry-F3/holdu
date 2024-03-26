@@ -4,6 +4,10 @@
     min-height: 100vh;
 }
 
+.Main {
+    padding-top: 80px;
+}
+
 .verticalLine {
     border-left: 1px solid grey;
     height: 30px;
