@@ -12,7 +12,24 @@ import styles from "../App.module.css";
 import nav from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 
+import { useCurrentUser } from "../contexts/CurrentUserContext";
+
 const NavBar = () => {
+  const currentUser = useCurrentUser();
+  const loggedInIcons = <>{currentUser?.username}</>
+  const loggedOutIcons = (
+    <>
+      <NavLink activeClassName={nav.Active} to="/signup" className="mr-2">
+        <span>Join now</span>
+      </NavLink>
+      <NavLink to="/signin">
+        <div className="mr-1 d-flex flex-column align-items-center rounded">
+          <Button>Sign In</Button>
+        </div>
+      </NavLink>
+    </>
+  );
+
   return (
     <Navbar bg="white" fixed="light" className="border-bottom">
       <Container className="d-flex align-items-center justify-content-between">
@@ -26,12 +43,6 @@ const NavBar = () => {
         </div>
 
         <Nav className="d-flex align-items-center">
-          {/* <Nav.Link>
-            <div className="d-flex flex-column align-items-center">
-              <i className="fa-solid fa-briefcase"></i>
-              <span>Jobs</span>
-            </div>
-          </Nav.Link> */}
           <div className="d-flex align-items-center mr-3">
             <Form className="ml-1 d-flex">
               <FormControl
@@ -41,7 +52,7 @@ const NavBar = () => {
                 aria-label="Search"
               />
               <Button variant="white" className="btn-transparent">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <i className="fa-solid fa-magnifying-glass"></i>
               </Button>
             </Form>
           </div>
@@ -49,20 +60,7 @@ const NavBar = () => {
             <p className="mb-0 mr-2">Tagline for the app</p> {/* Tagline */}
           </div>
           <div className={styles.verticalLine}></div> {/* Vertical line */}
-          <NavLink activeClassName={nav.Active} to="/signup">
-            <div className="mr-2">
-              <span>Join now</span>
-            </div>
-          </NavLink>
-          <NavLink to="/signin">
-            <div className="mr-1 d-flex flex-column align-items-center rounded">
-              <NavLink to="/signin">
-                <div className="mr-1 d-flex flex-column align-items-center rounded">
-                  <Button >Sign In</Button>
-                </div>
-              </NavLink>
-            </div>
-          </NavLink>
+          {currentUser ? loggedInIcons : loggedOutIcons }
         </Nav>
       </Container>
     </Navbar>

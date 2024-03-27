@@ -1,14 +1,13 @@
 .Active div span {
     color: black;
+    text-decoration: underline black;
+
 }
 
 .customButton {
     border-color: #fc7fb6 !important;
     background-color: #fc7fb6 !important;
-
     color: white !important;
-
-
 }
 
 
@@ -19,7 +18,6 @@ Button {
     color: #fc7fb6 !important;
     box-shadow: none !important;
     text-decoration: underline white !important;
-
 }
 
 

@@ -4,12 +4,52 @@
     min-height: 100vh;
 }
 
+.Content {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #dadadf;
+}
+
 .Main {
-    padding-top: 80px;
+    padding-top: 20px;
+
+}
+
+* {
+    box-sizing: border-box;
 }
 
 .verticalLine {
     border-left: 1px solid grey;
     height: 30px;
     margin: 0 10px;
+}
+
+.FillerImage {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* scrollbar */
+*::-webkit-scrollbar {
+    width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
