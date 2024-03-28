@@ -100,7 +100,7 @@ const ProfileTypeChoiceForm = () => {
     }
   
     try {
-      const { data } = await axiosReq.put(`/profiles/${id}`, formData);
+      const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
       setCurrentUser((currentUser) => ({
         ...currentUser,
         profile_image: data.image,
@@ -161,8 +161,8 @@ const ProfileTypeChoiceForm = () => {
           <option value="" default hidden>
             What are you looking for?
           </option>
-          <option value="Employee">Looking for work!</option>
-          <option value="Employer">Looking to hire!</option>
+          <option value="employee">Looking for work!</option>
+          <option value="employer">Looking to hire!</option>
         </Form.Control>
         {errors?.profileType && (
           <Alert variant="warning">

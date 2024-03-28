@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Navbar,
   Container,
@@ -34,12 +34,10 @@ const NavBar = () => {
     }
   };
 
-  useEffect(() => {
-    // Redirect to profile edit form if user is logged in and profile type is not Employee, Employer, or Admin
-    if (currentUser && !['Employee', 'Employer', 'Admin'].includes(currentUser.profile_type)) {
-      history.push(`/profiles/${currentUser.profile_id}`);
-    }
-  }, [currentUser, history]);
+  // Redirect to profile edit form if user is logged in
+  if (currentUser) {
+    history.push(`/signupform/${currentUser.profile_id}/`);
+  }
 
   const loggedInIcons = (
     <>

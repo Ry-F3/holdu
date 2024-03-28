@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -11,7 +11,9 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+
   const history = useHistory();
+  const { id } = useParams();
 
   const handleMount = async () => {
     try {
@@ -25,6 +27,33 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     handleMount();
   }, []);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch profile data using the ID from the URL
+        const profileResponse = await axiosRes.get(`/profiles/${currentUser.profile_id}/`);
+        const profileData = profileResponse.data;
+
+        console.log("Fetched profile data:", profileData);
+        
+        // Check if profile data indicates signup is not completed
+        if (!profileData.is_signup_completed) {
+          console.log("Signup not completed. Redirecting...");
+          // Redirect to profile form if signup is not completed
+          history.push(`/profiles/${currentUser.profile_id}`);
+        } else {
+          console.log("Signup completed. Setting current user. Redirect home.")
+          history.push(`/`);
+        }
+      } catch (err) {
+        console.log("Error fetching profile data:", err);
+      } 
+    };
+
+    fetchData();
+  }, [id, history, currentUser]);
 
   useMemo(() => {
     axiosReq.interceptors.request.use(
@@ -68,10 +97,14 @@ export const CurrentUserProvider = ({ children }) => {
     );
   }, [history]);
 
+  useEffect(() => {
+    console.log("Current User:", currentUser);
+  }, [currentUser]);
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <SetCurrentUserContext.Provider value={setCurrentUser}>
-        {children}
+      {children}
       </SetCurrentUserContext.Provider>
     </CurrentUserContext.Provider>
   );
