@@ -14,6 +14,7 @@ import { NavLink } from "react-router-dom";
 
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import axios from "axios";
+import Avatar from "./Avatar";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -31,17 +32,17 @@ const setCurrentUser = useSetCurrentUser();
   const loggedInIcons = (
     <>
       <Nav.Link to={`/profiles/${currentUser?.profile_id}`}>
-        <div className="d-flex flex-column align-items-center">
-          {/* <i className="fas fa-sign-out"></i> */}
+        <div className="d-flex align-items-center">
+     
 
-          <img src={currentUser?.profile_image} alt="profile" />
+          <Avatar src={currentUser?.profile_image} height={40}/>
           <span>{currentUser?.username}</span>
         </div>
       </Nav.Link>
-      {/* {currentUser?.username} */}
+  
       <Nav.Link onClick={handleSignOut}>
-        <div className="d-flex flex-column align-items-center">
-          <i className="fas fa-sign-out"></i>
+        <div className="d-flex align-items-center">
+          <i className="fas fa-sign-out mr-2"></i>
           <span>Sign out</span>
         </div>
       </Nav.Link>
