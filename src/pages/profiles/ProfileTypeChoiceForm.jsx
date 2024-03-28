@@ -15,7 +15,7 @@ import {
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
-const ProfileEditForm = () => {
+const ProfileTypeChoiceForm = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
@@ -39,14 +39,13 @@ const ProfileEditForm = () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, content, image, profile_type } = data; // Use profile_type instead of profile_type_display
-          
+          const { name, content, image, profile_type } = data; 
           if (isMounted) { // Check if the component is still mounted before updating state
             setProfileData({ 
               name, 
               content, 
               image, 
-              profileType: profile_type, // Set profileType using profile_type
+              profile_type,
             });
           }
         } catch (err) {
@@ -231,4 +230,4 @@ const ProfileEditForm = () => {
   );
 };
 
-export default ProfileEditForm;
+export default ProfileTypeChoiceForm;
