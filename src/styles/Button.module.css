@@ -7,6 +7,14 @@
     text-decoration: underline #fc7fb6 !important;
 }
 
+.customProfileButton {
+    border-color: #fc7fb6 !important;
+    background-color: white !important;
+    box-shadow: none !important;
+    color: #fc7fb6 !important;
+    text-decoration: underline white !important;
+}
+
 .Button {
     font-size: 0.8rem;
     align-self: center;
@@ -24,17 +32,7 @@
     cursor: pointer;
 }
 
-.Button:hover:active {
-    background-color: #2142b2 !important;
-}
 
-.Button:active {
-    background-color: #2142b2 !important;
-}
-
-.Button:focus {
-    background-color: #2142b2;
-}
 
 .Wide {
     padding: 10px 50px;

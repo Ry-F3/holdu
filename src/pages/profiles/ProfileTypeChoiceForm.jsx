@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
@@ -8,13 +7,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-
 import { axiosReq } from "../../api/axiosDefaults";
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
-
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
@@ -29,18 +26,29 @@ const ProfileEditForm = () => {
     name: "",
     content: "",
     image: "",
+    profile_type: "", // Added profileType state
   });
-  const { name, content, image } = profileData;
 
+  const { name, content, image, profile_type } = profileData;
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
+    let isMounted = true; // Flag to track if the component is mounted
+    
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, content, image } = data;
-          setProfileData({ name, content, image });
+          const { name, content, image, profile_type } = data; // Use profile_type instead of profile_type_display
+          
+          if (isMounted) { // Check if the component is still mounted before updating state
+            setProfileData({ 
+              name, 
+              content, 
+              image, 
+              profileType: profile_type, // Set profileType using profile_type
+            });
+          }
         } catch (err) {
           console.log(err);
           history.push("/");
@@ -49,36 +57,58 @@ const ProfileEditForm = () => {
         history.push("/");
       }
     };
-
+  
     handleMount();
+  
+    // Cleanup function to set isMounted to false when the component unmounts
+    return () => {
+      isMounted = false;
+    };
   }, [currentUser, history, id]);
 
   const handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log(`Handling change for ${name} with value ${value}`);
     setProfileData({
       ...profileData,
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
   };
-
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("Form submitted");
+    // Reset errors state
+    setErrors({});
+    // Check if name, content, and profileType are filled in or selected
+    if (!name || !content || !profile_type) {
+      // Set errors if any of the fields are empty
+      setErrors({
+        general: "Please fill in all fields to continue.",
+      });
+      console.log("Validation failed: One or more fields are empty");
+      return;
+    }
+  
     const formData = new FormData();
     formData.append("name", name);
     formData.append("content", content);
-
+    formData.append("profile_type", profile_type); // Include profile type in form data
+    console.log(`Submitting form data with profile type: ${profile_type}`);
+  
     if (imageFile?.current?.files[0]) {
       formData.append("image", imageFile?.current?.files[0]);
     }
-
+  
     try {
-      const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
+      const { data } = await axiosReq.put(`/profiles/${id}`, formData);
       setCurrentUser((currentUser) => ({
         ...currentUser,
         profile_image: data.image,
       }));
       history.goBack();
     } catch (err) {
-      console.log(err);
+      console.log("Error submitting form:", err);
       setErrors(err.response?.data);
     }
   };
@@ -86,29 +116,68 @@ const ProfileEditForm = () => {
   const textFields = (
     <>
       <Form.Group>
-        <Form.Label>Bio</Form.Label>
+        <Form.Label>Please fill in the form to continue</Form.Label>
+        <Form.Control
+          type="text"
+          value={name}
+          onChange={handleChange}
+          name="name"
+          placeholder="Enter your name ..."
+        />
+        {errors?.name && (
+          <Alert variant="warning">
+            {errors.name.map((message, idx) => (
+              <span key={idx}>{message}</span>
+            ))}
+          </Alert>
+        )}
+      </Form.Group>
+
+      <Form.Group>
+        {/* <Form.Label>Bio</Form.Label> */}
         <Form.Control
           as="textarea"
           value={content}
           onChange={handleChange}
           name="content"
+          placeholder="Tell us about yourself? ..."
           rows={7}
         />
+        {errors?.content && (
+          <Alert variant="warning">
+            {errors.content.map((message, idx) => (
+              <span key={idx}>{message}</span>
+            ))}
+          </Alert>
+        )}
       </Form.Group>
 
-      {errors?.content?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
+      <Form.Group>
+        {/* <Form.Label>Profile Type</Form.Label> */}
+        <Form.Control
+          as="select"
+          value={profile_type}
+          onChange={handleChange}
+          name="profile_type">
+          <option value="" default hidden>
+            What are you looking for?
+          </option>
+          <option value="Employee">Looking for work!</option>
+          <option value="Employer">Looking to hire!</option>
+        </Form.Control>
+        {errors?.profileType && (
+          <Alert variant="warning">
+            {errors.profile_type.map((message, idx) => (
+              <span key={idx}>{message}</span>
+            ))}
+          </Alert>
+        )}
+      </Form.Group>
+
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
-        onClick={() => history.goBack()}
-      >
-        cancel
-      </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        save
+        className={`${btnStyles.customButton} ${btnStyles.Bright}  ${btnStyles.Wide}`}
+        type="submit">
+        Save
       </Button>
     </>
   );
@@ -116,7 +185,7 @@ const ProfileEditForm = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
+        <Col className="py-1 p-0 p-md-2 text-center mt-1" md={7} lg={6}>
           <Container className={appStyles.Content}>
             <Form.Group>
               {image && (
@@ -130,10 +199,10 @@ const ProfileEditForm = () => {
                 </Alert>
               ))}
               <div>
+                <div className="mb-3">{currentUser?.username}</div>
                 <Form.Label
-                  className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
-                  htmlFor="image-upload"
-                >
+                  className={`${btnStyles.customProfileButton} ${btnStyles.Bright} btn my-auto`}
+                  htmlFor="image-upload">
                   Change the image
                 </Form.Label>
               </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Navbar,
   Container,
@@ -10,15 +10,20 @@ import {
 import logo from "../assets/logo.png";
 import styles from "../App.module.css";
 import nav from "../styles/NavBar.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
-import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
 import axios from "axios";
 import Avatar from "./Avatar";
 
+
 const NavBar = () => {
   const currentUser = useCurrentUser();
-const setCurrentUser = useSetCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+  const history = useHistory(); // Get the history object
 
   const handleSignOut = async () => {
     try {
@@ -29,17 +34,22 @@ const setCurrentUser = useSetCurrentUser();
     }
   };
 
+  useEffect(() => {
+    // Redirect to profile edit form if user is logged in and profile type is not Employee, Employer, or Admin
+    if (currentUser && !['Employee', 'Employer', 'Admin'].includes(currentUser.profile_type)) {
+      history.push(`/profiles/${currentUser.profile_id}`);
+    }
+  }, [currentUser, history]);
+
   const loggedInIcons = (
     <>
       <Nav.Link to={`/profiles/${currentUser?.profile_id}`}>
         <div className="d-flex align-items-center">
-     
-
-          <Avatar src={currentUser?.profile_image} height={40}/>
+          <Avatar src={currentUser?.profile_image} height={40} />
           <span>{currentUser?.username}</span>
         </div>
       </Nav.Link>
-  
+
       <Nav.Link onClick={handleSignOut}>
         <div className="d-flex align-items-center">
           <i className="fas fa-sign-out mr-2"></i>
