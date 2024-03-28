@@ -16,7 +16,7 @@ import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
-  const loggedInIcons = <>{currentUser?.username}</>
+  const loggedInIcons = <>{currentUser?.username}</>;
   const loggedOutIcons = (
     <>
       <NavLink activeClassName={nav.Active} to="/signup" className="mr-2">
@@ -60,7 +60,7 @@ const NavBar = () => {
             <p className="mb-0 mr-2">Tagline for the app</p> {/* Tagline */}
           </div>
           <div className={styles.verticalLine}></div> {/* Vertical line */}
-          {currentUser ? loggedInIcons : loggedOutIcons }
+          {currentUser ? loggedInIcons : loggedOutIcons}
         </Nav>
       </Container>
     </Navbar>
