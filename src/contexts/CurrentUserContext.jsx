@@ -11,6 +11,7 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [isSignupCompleted, setIsSignupCompleted] = useState(false);
 
   const history = useHistory();
   const { id } = useParams();
@@ -42,18 +43,41 @@ export const CurrentUserProvider = ({ children }) => {
         if (!profileData.is_signup_completed) {
           console.log("Signup not completed. Redirecting...");
           // Redirect to profile form if signup is not completed
-          history.push(`/profiles/${currentUser.profile_id}`);
+          history.push(`/profiles/${currentUser.profile_id}/`);
+          setIsSignupCompleted(false);
+          console.log("Is signup completed?", isSignupCompleted);
         } else {
-          console.log("Signup completed. Setting current user. Redirect home.")
-          history.push(`/`);
+          console.log("Signup completed. Setting current user. Redirecting home.");
+          setIsSignupCompleted(true);
         }
       } catch (err) {
         console.log("Error fetching profile data:", err);
       } 
     };
 
-    fetchData();
-  }, [id, history, currentUser]);
+    if (!isSignupCompleted) {
+      fetchData();
+    }
+  }, [id, history, currentUser, isSignupCompleted]);
+
+ 
+  // Post home if signup is completed
+  useEffect(() => {
+    if (isSignupCompleted) {
+      console.log("Is signup completed?", isSignupCompleted);
+      history.push(`/`);
+    }
+  }, [isSignupCompleted, history]);
+
+
+   useEffect(() => {
+    // Redirect to profile edit form if user is logged in
+    // And isSignupCompleted = false
+    if (currentUser && !isSignupCompleted) {
+      history.push(`/signupform/${currentUser.profile_id}/`);
+      console.log("push");
+    }
+  }, [currentUser, history, isSignupCompleted]);
 
   useMemo(() => {
     axiosReq.interceptors.request.use(

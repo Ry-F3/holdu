@@ -10,7 +10,8 @@ import {
 import logo from "../assets/logo.png";
 import styles from "../App.module.css";
 import nav from "../styles/NavBar.module.css";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useProfileData } from "../contexts/ProfileContext";
 
 import {
   useCurrentUser,
@@ -19,11 +20,11 @@ import {
 import axios from "axios";
 import Avatar from "./Avatar";
 
-
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-  const history = useHistory(); // Get the history object
+  const profileData = useProfileData();
+ 
 
   const handleSignOut = async () => {
     try {
@@ -34,10 +35,7 @@ const NavBar = () => {
     }
   };
 
-  // Redirect to profile edit form if user is logged in
-  if (currentUser) {
-    history.push(`/signupform/${currentUser.profile_id}/`);
-  }
+
 
   const loggedInIcons = (
     <>
@@ -56,6 +54,77 @@ const NavBar = () => {
       </Nav.Link>
     </>
   );
+
+  // const loggedInEmployeeIcons = (
+  //   <>
+  //     <Nav.Link>
+  //       <div className="d-flex flex-column align-items-center">
+  //         <i className="fa-solid fa-house"></i>
+  //         <span>Home</span>
+  //       </div>
+  //     </Nav.Link>
+  //     <Nav.Link>
+  //       <div className="d-flex flex-column align-items-center">
+  //         <i className="fa-solid fa-user-group"></i>
+  //         <span>Connect</span>
+  //       </div>
+  //     </Nav.Link>
+  //     <Nav.Link>
+  //       <div className="d-flex flex-column align-items-center">
+  //         <i className="fa-solid fa-message"></i>
+  //         <span>Chats</span>
+  //       </div>
+  //     </Nav.Link>
+  //     <Nav.Link>
+  //       <div className="d-flex flex-column align-items-center">
+  //         <i className="fa-solid fa-briefcase"></i>
+  //         <span>Jobs</span>
+  //       </div>
+  //     </Nav.Link>
+  //     <Nav.Link>
+  //       <div className="d-flex flex-column align-items-center">
+  //         <i className="fa-solid fa-bell"></i>
+  //         <span>Notifications</span>
+  //       </div>
+  //     </Nav.Link>
+  //   </>
+  // );
+
+  // const loggedInEmployerIcons = (
+  //   <>
+  //     <Nav.Link>
+  //       <div className="d-flex flex-column align-items-center">
+  //         <i className="fa-solid fa-house"></i>
+  //         <span>Home</span>
+  //       </div>
+  //     </Nav.Link>
+  //     <Nav.Link>
+  //       <div className="d-flex flex-column align-items-center">
+  //         <i className="fa-solid fa-user-group"></i>
+  //         <span>Connect</span>
+  //       </div>
+  //     </Nav.Link>
+  //     <Nav.Link>
+  //       <div className="d-flex flex-column align-items-center">
+  //         <i className="fa-solid fa-message"></i>
+  //         <span>Chats</span>
+  //       </div>
+  //     </Nav.Link>
+  //     <Nav.Link>
+  //       <div className="d-flex flex-column align-items-center">
+  //         <i className="fa-solid fa-briefcase"></i>
+  //         <span>Jobs</span>
+  //       </div>
+  //     </Nav.Link>
+  //     {/* <Nav.Link>
+  //       <div className="d-flex flex-column align-items-center">
+  //         <i className="fa-solid fa-bell"></i>
+  //         <span>Notifications</span>
+  //       </div>
+  //     </Nav.Link> */}
+  //   </>
+  // );
+
   const loggedOutIcons = (
     <>
       <NavLink activeClassName={nav.Active} to="/signup" className="mr-2">
@@ -72,14 +141,24 @@ const NavBar = () => {
   return (
     <Navbar bg="white" fixed="light" className="border-bottom">
       <Container className="d-flex align-items-center justify-content-between">
-        <div className="d-flex align-items-center">
-          <NavLink to="/">
+        {profileData && profileData.is_signup_completed ? (
+          <NavLink
+            to={"/"}
+            className="d-flex align-items-center pointer"
+            >
             <Navbar.Brand>
               <img src={logo} alt="logo" height="40" className="mr-2" />
               <span>holdu</span>
             </Navbar.Brand>
           </NavLink>
-        </div>
+        ) : (
+          <Navbar.Brand
+            
+            className="d-flex align-items-center pointer">
+            <img src={logo} alt="logo" height="40" className="mr-2" />
+            <span>holdu</span>
+          </Navbar.Brand>
+        )}
 
         <Nav className="d-flex align-items-center">
           <div className="d-flex align-items-center mr-3">
@@ -95,8 +174,11 @@ const NavBar = () => {
               </Button>
             </Form>
           </div>
+          <div className="d-flex">
+            {/* {currentUser.isEmployer ? loggedInEmployerIcons : loggedInEmployeeIcons} */}
+          </div>
           <div>
-            <p className="mb-0 mr-2">Tagline for the app</p> {/* Tagline */}
+            <p className="mb-0 mr-2">Tagline</p> {/* Tagline */}
           </div>
           <div className={styles.verticalLine}></div> {/* Vertical line */}
           {currentUser ? loggedInIcons : loggedOutIcons}
