@@ -29,3 +29,34 @@ Button:hover {
     text-decoration: underline #fc7fb6 !important;
     transition: 0.2s;
 }
+
+.NavText {
+    font-size: 12px;
+}
+
+.Pointer {
+    cursor: pointer;
+}
+
+.NavHeight {
+    height: 60px;
+}
+
+.spinner {
+    width: 25px;
+    height: 25px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #fc7fb6;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

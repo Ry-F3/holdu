@@ -1,11 +1,15 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import Spinner from '../components/Spinner';
 
 // Create a ProfileContext
 const ProfileContext = createContext();
+const SetProfileContext = createContext();
 
 // Custom hook to consume the ProfileContext
 export const useProfileData = () => useContext(ProfileContext);
+export const useSetProfileData = () => useContext(SetProfileContext); // Custom hook for setting profile data
+
 
 export const ProfileProvider = ({ children }) => {
   const [profileData, setProfileData] = useState(null);
@@ -51,12 +55,14 @@ export const ProfileProvider = ({ children }) => {
 
   if (loading) {
     // Optionally, you can render a loading indicator while fetching data
-    return <div>Loading...</div>;
+    return <Spinner/>;
   }
 
   return (
     <ProfileContext.Provider value={profileData}>
-      {children}
+      <SetProfileContext.Provider value={setProfileData}> {/* Provide the setProfileData function */}
+        {children}
+      </SetProfileContext.Provider>
     </ProfileContext.Provider>
   );
 };

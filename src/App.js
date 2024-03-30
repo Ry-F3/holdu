@@ -22,6 +22,10 @@ function App() {
             path="/profiles/:id"
             render={() => <ProfileTypeChoiceForm />}
           />
+          <Route exact path="/connect" render={() => <h1>Connect</h1>} />
+          <Route exact path="/chats" render={() => <h1>Chats</h1>} />
+          <Route exact path="/jobs" render={() => <h1>Jobs</h1>} />
+          <Route exact path="/notifications" render={() => <h1>Notifications</h1>} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

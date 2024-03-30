@@ -16,8 +16,10 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import { useSetProfileData } from "../../contexts/ProfileContext";
 
 function SignInForm() {
+  const setProfileData = useSetProfileData();
   const setCurrentUser = useSetCurrentUser();
 
   const [signInData, setSignInData] = useState({
@@ -33,6 +35,7 @@ function SignInForm() {
     event.preventDefault();
     try {
       const {data} = await axios.post("/dj-rest-auth/login/", signInData);
+      setProfileData(data.user)
       setCurrentUser(data.user)
       history.push("/");
     } catch (err) {
