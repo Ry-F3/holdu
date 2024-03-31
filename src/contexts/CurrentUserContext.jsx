@@ -32,7 +32,8 @@ export const CurrentUserProvider = ({ children }) => {
         // Increment login count
         const newCount = prevCount + 1;
         // Reset login count to 0 for new users
-        if (!data || !data.is_signup_completed) {
+        if (!data) {
+          console.log("data count", data)
           return 0;
         }
         return newCount;

@@ -181,7 +181,7 @@ const NavBar = () => {
           <span className={nav.NavText}>Chats</span>
         </div>
       </NavLink>
-      <NavLink to="/jobs" className={`${nav.Pointer} mr-3 text-muted`}>
+      <NavLink to="/jobs/post" className={`${nav.Pointer} mr-3 text-muted`}>
         <div className="d-flex flex-column align-items-center">
           <i className="fa-solid fa-briefcase mt-2"></i>
           <span className={nav.NavText}>Jobs</span>
@@ -223,17 +223,20 @@ const NavBar = () => {
           ) : (
             <>
               {/* Check if currentUser exists and if the user has completed signup */}
-              {currentUser && profileData && profileData.is_signup_completed ? (
-                // If the user has completed signup, render icons based on profile type
-                profileData.profile_type === "employer" ? (
-                  loggedInEmployerIcons
-                ) : (
-                  loggedInEmployeeIcons
-                )
-              ) : (
-                // If currentUser doesn't exist or signup is not completed, render nothing
-                <Spinner />
-              )}
+              {console.log("currentUser Nav:", currentUser)}
+              {console.log("profileData Nav:", profileData)}
+              {/* {console.log("Sign up Nav:", profileData.is_signup_completed)} */}
+              {currentUser && profileData 
+                ? // If the user has completed signup, render icons based on profile type
+                  profileData.profile_type === "employer"
+                  ? loggedInEmployerIcons 
+                  : loggedInEmployeeIcons
+                : // If currentUser doesn't exist or signup is not completed, render nothing
+                  console.log(
+                    "Rendering nothing..."
+                  )
+                  // <>{/* Render appropriate message or action */}</>
+              }
             </>
           )}
           <div className={`${styles.verticalLine} mr-3`}></div>

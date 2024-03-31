@@ -1,0 +1,20 @@
+.triangleGradient {
+    position: relative;
+}
+
+.triangleGradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 100px 100px 0;
+    border-color: transparent #fc7fb6 transparent transparent;
+}
+
+h1 {
+    font-size: 26px;
+    font-weight: 800;
+}

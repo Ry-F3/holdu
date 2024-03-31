@@ -42,6 +42,10 @@ Button:hover {
     height: 60px;
 }
 
+Nav.Link {
+    text-decoration: none;
+}
+
 .spinner {
     width: 25px;
     height: 25px;

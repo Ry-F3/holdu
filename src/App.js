@@ -6,6 +6,8 @@ import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import ProfileTypeChoiceForm from "./pages/profiles/ProfileTypeChoiceForm";
+import JobsPostPage from "./pages/jobs/JobsPostPage.jsx";
+import JobsCreateForm from "./pages/jobs/JobsCreateForm.jsx";
 
 
 function App() {
@@ -24,7 +26,8 @@ function App() {
           />
           <Route exact path="/connect" render={() => <h1>Connect</h1>} />
           <Route exact path="/chats" render={() => <h1>Chats</h1>} />
-          <Route exact path="/jobs" render={() => <h1>Jobs</h1>} />
+          <Route exact path="/jobs/post" render={() => <JobsCreateForm/>} />
+          <Route exact path="/jobs/post/:id" render={() => <JobsPostPage/>} />
           <Route exact path="/notifications" render={() => <h1>Notifications</h1>} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>

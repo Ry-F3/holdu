@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import Spinner from '../components/Spinner';
+// import Spinner from '../components/Spinner';
 
 // Create a ProfileContext
 const ProfileContext = createContext();
@@ -14,7 +14,7 @@ export const useSetProfileData = () => useContext(SetProfileContext); // Custom 
 export const ProfileProvider = ({ children }) => {
   const [profileData, setProfileData] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -22,10 +22,10 @@ export const ProfileProvider = ({ children }) => {
         // Fetch current user data
         const { data } = await axios.get('/dj-rest-auth/user/');
         setCurrentUser(data);
-        setLoading(false);
+       
       } catch (error) {
         console.error('Error fetching current user data:', error);
-        setLoading(false);
+        
       }
     };
 
@@ -51,12 +51,7 @@ export const ProfileProvider = ({ children }) => {
     if (currentUser) {
       fetchProfileData();
     }
-  }, [currentUser]); // Make sure to include currentUser as a dependency
-
-  if (loading) {
-    // Optionally, you can render a loading indicator while fetching data
-    return <Spinner/>;
-  }
+  }, [currentUser]); 
 
   return (
     <ProfileContext.Provider value={profileData}>
