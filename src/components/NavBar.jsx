@@ -7,9 +7,11 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
-import logo from "../assets/logo.png";
+
 import styles from "../App.module.css";
 import nav from "../styles/NavBar.module.css";
+import LoggedInEmployeeIcons from "./LoggedInEmployeeIcons";
+import LoggedInEmployerIcons from "./LoggedInEmployerIcons";
 import { NavLink } from "react-router-dom";
 import { useProfileData } from "../contexts/ProfileContext";
 import Spinner from "../components/Spinner";
@@ -22,6 +24,8 @@ import {
 import axios from "axios";
 import Avatar from "./Avatar";
 import { useHistory } from "react-router-dom";
+import LoggedInLogo from "./LoggedInLogo";
+import LoggedOutLogo from "./LoggedOutLogo";
 
 const NavBar = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,8 +43,12 @@ const NavBar = () => {
     if (profileData) {
       // If profileData exists, set isLoading to false
       setIsLoading(false);
+      console.log("profileData 42: ", profileData.profile_type);
+      console.log(JSON.stringify(profileData));
     }
   }, [profileData, setIsLoading]);
+
+  console.log(JSON.stringify(profileData));
 
   const handleSignOut = async () => {
     try {
@@ -56,39 +64,6 @@ const NavBar = () => {
     }
   };
 
-  const handleClick = () => {
-    if (profileData && profileData.is_signup_completed) {
-      console.log("true");
-      console.log("isSignupCompleted =", profileData.is_signup_completed);
-    } else {
-      console.log("isSignupCompleted =", profileData.is_signup_completed);
-      console.log("false");
-    }
-  };
-
-  const loggedInLogo = (
-    <>
-      {profileData && profileData.is_signup_completed ? (
-        <NavLink
-          to={"/"}
-          className="d-flex align-items-center pointer"
-          onClick={handleClick}>
-          <Navbar.Brand>
-            <img src={logo} alt="logo" height="40" className="mr-2" />
-            <span>holdu</span>
-          </Navbar.Brand>
-        </NavLink>
-      ) : (
-        <Navbar.Brand
-          onClick={handleClick}
-          className="d-flex align-items-center pointer">
-          <img src={logo} alt="logo" height="40" className="mr-2" />
-          <span>holdu</span>
-        </Navbar.Brand>
-      )}
-    </>
-  );
-
   const loggedOutIcons = (
     <>
       <NavLink activeClassName={nav.Active} to="/signup" className="mr-2">
@@ -98,17 +73,6 @@ const NavBar = () => {
         <div className="mr-1 d-flex flex-column align-items-center rounded">
           <Button>Sign In</Button>
         </div>
-      </NavLink>
-    </>
-  );
-
-  const loggedOutLogo = (
-    <>
-      <NavLink to={"/"} className="d-flex align-items-center pointer">
-        <Navbar.Brand>
-          <img src={logo} alt="logo" height="40" className="mr-2" />
-          <span>holdu</span>
-        </Navbar.Brand>
       </NavLink>
     </>
   );
@@ -131,71 +95,6 @@ const NavBar = () => {
     </>
   );
 
-  const loggedInEmployeeIcons = (
-    <>
-      <NavLink to="/" className={`${nav.Pointer} mr-3 text-muted`}>
-        <div className="d-flex flex-column align-items-center">
-          <i className="fa-solid fa-house mt-2"></i>
-          <span className={nav.NavText}>Home</span>
-        </div>
-      </NavLink>
-      <NavLink to="/connect" className={`${nav.Pointer} mr-3 text-muted`}>
-        <div className="d-flex flex-column align-items-center">
-          <i className="fa-solid fa-user-group mt-2"></i>
-          <span className={nav.NavText}>Connect</span>
-        </div>
-      </NavLink>
-      <NavLink to="/chats" className={`${nav.Pointer} mr-3 text-muted`}>
-        <div className="d-flex flex-column align-items-center">
-          <i className="fa-solid fa-message mt-2"></i>
-          <span className={nav.NavText}>Chats</span>
-        </div>
-      </NavLink>
-
-      <NavLink to="/notifications" className={`${nav.Pointer} mr-3 text-muted`}>
-        <div className="d-flex flex-column align-items-center">
-          <i className="fa-solid fa-bell mt-2"></i>
-          <span className={nav.NavText}>Notifications</span>
-        </div>
-      </NavLink>
-    </>
-  );
-
-  const loggedInEmployerIcons = (
-    <>
-      <NavLink to="/" className={`${nav.Pointer} mr-3 text-muted`}>
-        <div className="d-flex flex-column align-items-center">
-          <i className="fa-solid fa-house mt-2"></i>
-          <span className={nav.NavText}>Home</span>
-        </div>
-      </NavLink>
-      <NavLink to="/connect" className={`${nav.Pointer} mr-3 text-muted`}>
-        <div className="d-flex flex-column align-items-center">
-          <i className="fa-solid fa-user-group mt-2"></i>
-          <span className={nav.NavText}>Connect</span>
-        </div>
-      </NavLink>
-      <NavLink to="/chats" className={`${nav.Pointer} mr-3 text-muted`}>
-        <div className="d-flex flex-column align-items-center">
-          <i className="fa-solid fa-message mt-2"></i>
-          <span className={nav.NavText}>Chats</span>
-        </div>
-      </NavLink>
-      <NavLink to="/jobs/post" className={`${nav.Pointer} mr-3 text-muted`}>
-        <div className="d-flex flex-column align-items-center">
-          <i className="fa-solid fa-briefcase mt-2"></i>
-          <span className={nav.NavText}>Jobs</span>
-        </div>
-      </NavLink>
-      <NavLink to="/notifications" className={`${nav.Pointer} mr-3 text-muted`}>
-        <div className="d-flex flex-column align-items-center">
-          <i className="fa-solid fa-bell mt-2"></i>
-          <span className={nav.NavText}>Notifications</span>
-        </div>
-      </NavLink>
-    </>
-  );
-
   return (
     <Navbar
       bg="white"
@@ -203,7 +102,7 @@ const NavBar = () => {
       className={`border-bottom ${nav.NavHeight}`}>
       <Container className="d-flex align-items-center justify-content-between">
         {/* Render loading indicator only if isLoading is true */}
-        {currentUser ? loggedInLogo : loggedOutLogo}
+        {currentUser ? <LoggedInLogo /> : <LoggedOutLogo />}
         <Nav className="d-flex align-items-center">
           <div className="d-flex align-items-center mr-5">
             <Form className="ml-1 d-flex">
@@ -222,25 +121,29 @@ const NavBar = () => {
             <Spinner />
           ) : (
             <>
-              {/* Check if currentUser exists and if the user has completed signup */}
-              {console.log("currentUser Nav:", currentUser)}
-              {console.log("profileData Nav:", profileData)}
-              {/* {console.log("Sign up Nav:", profileData.is_signup_completed)} */}
-              {currentUser && profileData 
-                ? // If the user has completed signup, render icons based on profile type
-                  profileData.profile_type === "employer"
-                  ? loggedInEmployerIcons 
-                  : loggedInEmployeeIcons
-                : // If currentUser doesn't exist or signup is not completed, render nothing
-                  console.log(
-                    "Rendering nothing..."
+              {
+                currentUser &&
+                profileData &&
+                profileData.is_signup_completed ? (
+                  // If the user has completed signup, render icons based on profile type
+                  profileData.profile_type === "employer" ? (
+                    <LoggedInEmployerIcons />
+                  ) : (
+                    <LoggedInEmployeeIcons />
                   )
-                  // <>{/* Render appropriate message or action */}</>
+                ) : (
+                  // If currentUser doesn't exist or signup is not completed, render nothing
+                  console.log("Rendering nothing...")
+                )
+               
               }
+
+              {/* Conditional rendering of div */}
+              {currentUser && profileData && profileData.is_signup_completed ? (
+                <div className={`${styles.verticalLine} mr-3`}></div>
+              ) : null}
             </>
           )}
-          <div className={`${styles.verticalLine} mr-3`}></div>
-          {/* Vertical line */}
           <div>
             <p className="mb-0 mr-2">Tagline</p> {/* Tagline */}
           </div>

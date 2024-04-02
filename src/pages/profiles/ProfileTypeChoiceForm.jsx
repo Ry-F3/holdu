@@ -14,15 +14,17 @@ import {
 } from "../../contexts/CurrentUserContext";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import { useSetProfileData } from "../../contexts/ProfileContext";
 
 const ProfileTypeChoiceForm = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const setProfileData = useSetProfileData();
   const { id } = useParams();
   const history = useHistory();
   const imageFile = useRef();
 
-  const [profileData, setProfileData] = useState({
+  const [profileData, setProfileDataState] = useState({
     name: "",
     content: "",
     image: "",
@@ -41,7 +43,7 @@ const ProfileTypeChoiceForm = () => {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
           const { name, content, image, profile_type } = data; 
           if (isMounted) { // Check if the component is still mounted before updating state
-            setProfileData({ 
+            setProfileDataState({ 
               name, 
               content, 
               image, 
@@ -68,7 +70,7 @@ const ProfileTypeChoiceForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     console.log(`Handling change for ${name} with value ${value}`);
-    setProfileData({
+    setProfileDataState({
       ...profileData,
       [name]: value,
     });
@@ -105,7 +107,8 @@ const ProfileTypeChoiceForm = () => {
         ...currentUser,
         profile_image: data.image,
       }));
-      history.goBack();
+      setProfileData(data);
+      history.push("/");
     } catch (err) {
       console.log("Error submitting form:", err);
       setErrors(err.response?.data);
@@ -211,7 +214,7 @@ const ProfileTypeChoiceForm = () => {
                 accept="image/*"
                 onChange={(e) => {
                   if (e.target.files.length) {
-                    setProfileData({
+                    setProfileDataState({
                       ...profileData,
                       image: URL.createObjectURL(e.target.files[0]),
                     });

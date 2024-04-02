@@ -10,11 +10,11 @@ import { ProfileProvider } from "./contexts/ProfileContext";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <ProfileProvider>
-        <CurrentUserProvider>
+      <CurrentUserProvider>
+        <ProfileProvider>
           <App />
-        </CurrentUserProvider>
-      </ProfileProvider>
+        </ProfileProvider>
+      </CurrentUserProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

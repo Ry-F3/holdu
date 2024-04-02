@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-// import Spinner from '../components/Spinner';
+import React, { createContext, useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { useCurrentUser } from "./CurrentUserContext";
 
 // Create a ProfileContext
 const ProfileContext = createContext();
@@ -10,39 +10,22 @@ const SetProfileContext = createContext();
 export const useProfileData = () => useContext(ProfileContext);
 export const useSetProfileData = () => useContext(SetProfileContext); // Custom hook for setting profile data
 
-
 export const ProfileProvider = ({ children }) => {
   const [profileData, setProfileData] = useState(null);
-  const [currentUser, setCurrentUser] = useState(null);
-  // const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        // Fetch current user data
-        const { data } = await axios.get('/dj-rest-auth/user/');
-        setCurrentUser(data);
-       
-      } catch (error) {
-        console.error('Error fetching current user data:', error);
-        
-      }
-    };
-
-    // Call the fetchUserData function
-    fetchUserData();
-  }, []);
+  const currentUser = useCurrentUser();
 
   useEffect(() => {
     const fetchProfileData = async () => {
       if (currentUser) {
         try {
           // Fetch profile data using the current user's profile ID
-          const { data } = await axios.get(`/profiles/${currentUser.profile_id}/`);
+          const { data } = await axios.get(
+            `/profiles/${currentUser.profile_id}/`
+          );
           setProfileData(data);
-          console.log('Profile Data Context:', data); // Log profile data here
+          console.log("Profile Data Context:", data); // Log profile data here
         } catch (error) {
-          console.error('Error fetching profile data:', error);
+          console.error("Error fetching profile data:", error);
         }
       }
     };
@@ -51,11 +34,12 @@ export const ProfileProvider = ({ children }) => {
     if (currentUser) {
       fetchProfileData();
     }
-  }, [currentUser]); 
+  }, [currentUser]);
 
   return (
     <ProfileContext.Provider value={profileData}>
-      <SetProfileContext.Provider value={setProfileData}> {/* Provide the setProfileData function */}
+      <SetProfileContext.Provider value={setProfileData}>
+        {" "}
         {children}
       </SetProfileContext.Provider>
     </ProfileContext.Provider>
