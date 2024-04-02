@@ -26,7 +26,7 @@ export const CurrentUserProvider = ({ children }) => {
   const [isSignupCompleted, setIsSignupCompleted] = useState(false);
   const [redirected, setRedirected] = useState(false);
 
-  // Prevent users be posted to ProfileTypeForm Page when 'is_signup_completed'
+  // Prevent users from being posted to ProfileTypeForm Page when 'is_signup_completed'
   const [loginCount, setLoginCount] = useState(() => {
     // Retrieve login count from localStorage on component mount
     const storedLoginCount = localStorage.getItem("loginCount");

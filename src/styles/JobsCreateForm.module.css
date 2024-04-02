@@ -18,3 +18,17 @@ h1 {
     font-size: 26px;
     font-weight: 800;
 }
+
+.defaultImage {
+    width: 50vw;
+
+
+}
+
+.customUl {
+    text-align: left;
+}
+
+.minHeightContent {
+    min-height: 60vh;
+}
