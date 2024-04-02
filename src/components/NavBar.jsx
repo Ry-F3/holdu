@@ -43,12 +43,8 @@ const NavBar = () => {
     if (profileData) {
       // If profileData exists, set isLoading to false
       setIsLoading(false);
-      console.log("profileData 42: ", profileData.profile_type);
-      console.log(JSON.stringify(profileData));
     }
   }, [profileData, setIsLoading]);
-
-  console.log(JSON.stringify(profileData));
 
   const handleSignOut = async () => {
     try {
@@ -121,22 +117,17 @@ const NavBar = () => {
             <Spinner />
           ) : (
             <>
-              {
-                currentUser &&
-                profileData &&
-                profileData.is_signup_completed ? (
-                  // If the user has completed signup, render icons based on profile type
-                  profileData.profile_type === "employer" ? (
-                    <LoggedInEmployerIcons />
-                  ) : (
-                    <LoggedInEmployeeIcons />
-                  )
+              {currentUser && profileData && profileData.is_signup_completed ? (
+                // If the user has completed signup, render icons based on profile type
+                profileData.profile_type === "employer" ? (
+                  <LoggedInEmployerIcons />
                 ) : (
-                  // If currentUser doesn't exist or signup is not completed, render nothing
-                  console.log("Rendering nothing...")
+                  <LoggedInEmployeeIcons />
                 )
-               
-              }
+              ) : (
+                // If currentUser doesn't exist or signup is not completed, render nothing
+                console.log("Rendering nothing...")
+              )}
 
               {/* Conditional rendering of div */}
               {currentUser && profileData && profileData.is_signup_completed ? (

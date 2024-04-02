@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import appStyles from "../../App.module.css";
 
 function JobsPostPage() {
-  // Add your logic here
+
 
 
   return (

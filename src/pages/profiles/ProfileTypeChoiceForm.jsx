@@ -69,7 +69,7 @@ const ProfileTypeChoiceForm = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(`Handling change for ${name} with value ${value}`);
+  
     setProfileDataState({
       ...profileData,
       [name]: value,
@@ -78,30 +78,34 @@ const ProfileTypeChoiceForm = () => {
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Form submitted");
-    // Reset errors state
-    setErrors({});
-    // Check if name, content, and profileType are filled in or selected
-    if (!name || !content || !profile_type) {
-      // Set errors if any of the fields are empty
-      setErrors({
-        general: "Please fill in all fields to continue.",
-      });
-      console.log("Validation failed: One or more fields are empty");
-      return;
-    }
-  
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("content", content);
-    formData.append("profile_type", profile_type); // Include profile type in form data
-    console.log(`Submitting form data with profile type: ${profile_type}`);
-  
-    if (imageFile?.current?.files[0]) {
-      formData.append("image", imageFile?.current?.files[0]);
-    }
+    
   
     try {
+      // Reset errors state
+      setErrors({});
+  
+      // Check if name, content, and profileType are filled in or selected
+      if (!name || !content || !profile_type || profile_type === "") {
+        // Set errors if any of the fields are empty
+        setErrors({
+          name: name ? [] : ["Name is required"],
+          content: content ? [] : ["Content is required"],
+          profile_type: !profile_type || profile_type === "" ? ["Profile type is required"] : [],
+        });
+        
+        return;
+      }
+  
+      // If all fields are filled, proceed with form submission
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("content", content);
+      formData.append("profile_type", profile_type); // Include profile type in form data
+  
+      if (imageFile?.current?.files[0]) {
+        formData.append("image", imageFile?.current?.files[0]);
+      }
+  
       const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
       setCurrentUser((currentUser) => ({
         ...currentUser,
@@ -110,8 +114,14 @@ const ProfileTypeChoiceForm = () => {
       setProfileData(data);
       history.push("/");
     } catch (err) {
-      console.log("Error submitting form:", err);
-      setErrors(err.response?.data);
+
+      if (err.response && err.response.data) {
+     
+        setErrors(err.response.data);
+      } else {
+       
+        setErrors({ general: "An error occurred while submitting the form" });
+      }
     }
   };
 
@@ -127,7 +137,7 @@ const ProfileTypeChoiceForm = () => {
           placeholder="Enter your name ..."
         />
         {errors?.name && (
-          <Alert variant="warning">
+          <Alert variant="warning mb-3 mt-3">
             {errors.name.map((message, idx) => (
               <span key={idx}>{message}</span>
             ))}
@@ -146,7 +156,7 @@ const ProfileTypeChoiceForm = () => {
           rows={7}
         />
         {errors?.content && (
-          <Alert variant="warning">
+          <Alert variant="warning mb-3 mt-3">
             {errors.content.map((message, idx) => (
               <span key={idx}>{message}</span>
             ))}
@@ -167,8 +177,8 @@ const ProfileTypeChoiceForm = () => {
           <option value="employee">Looking for work!</option>
           <option value="employer">Looking to hire!</option>
         </Form.Control>
-        {errors?.profileType && (
-          <Alert variant="warning">
+        {errors?.profile_type && (
+          <Alert variant="warning mb-3 mt-3">
             {errors.profile_type.map((message, idx) => (
               <span key={idx}>{message}</span>
             ))}

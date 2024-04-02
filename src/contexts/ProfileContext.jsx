@@ -23,7 +23,7 @@ export const ProfileProvider = ({ children }) => {
             `/profiles/${currentUser.profile_id}/`
           );
           setProfileData(data);
-          console.log("Profile Data Context:", data); // Log profile data here
+          
         } catch (error) {
           console.error("Error fetching profile data:", error);
         }

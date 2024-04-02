@@ -3,18 +3,30 @@ import axios from "axios";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useHistory, useParams } from "react-router-dom";
 
+
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
-export const SetLoginCountContext = createContext(); // New context for login count
 
 export const useCurrentUser = () => useContext(CurrentUserContext);
 export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
+
+export const SetLoginCountContext = createContext(); // context for login count
 export const useSetLoginCount = () => useContext(SetLoginCountContext); // Hook for login count
+
+// Create a ProfileContext
+const ProfileContext = createContext();
+// const SetProfileContext = createContext();
+
+// Custom hook to consume the ProfileContext
+export const useProfileData = () => useContext(ProfileContext);
+
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isSignupCompleted, setIsSignupCompleted] = useState(false);
   const [redirected, setRedirected] = useState(false);
+
+  // Prevent users be posted to ProfileTypeForm Page when 'is_signup_completed'
   const [loginCount, setLoginCount] = useState(() => {
     // Retrieve login count from localStorage on component mount
     const storedLoginCount = localStorage.getItem("loginCount");
@@ -26,23 +38,30 @@ export const CurrentUserProvider = ({ children }) => {
 
   const handleMount = async () => {
     try {
-      const { data } = await axiosRes.get("dj-rest-auth/user/");
-      setCurrentUser(data);
-      setLoginCount((prevCount) => {
-        // Increment login count
-        const newCount = prevCount + 1;
-        // Reset login count to 0 for new users
-        if (!data) {
-          console.log("data count", data)
-          return 0;
-        }
-        return newCount;
-      });
+      const { data: userData } = await axiosRes.get("dj-rest-auth/user/");
+      setCurrentUser(userData);
+
+      const profileId = userData.profile_id;
+
+      // Set profile data using profileId
+      const profileResponse = await axiosRes.get(`/profiles/${profileId}/`);
+      const profileData = profileResponse.data;
+      console.log("Profile data:", profileData);
+
+      // Check if user data is available and if the signup is completed
+      if (profileData && profileData.is_signup_completed) {
+        console.log("Incrementing login count");
+        setLoginCount((prevCount) => prevCount + 1);
+      } else {
+        console.log("Resetting login count to 0 for new or incomplete users");
+        setLoginCount(0);
+      }
     } catch (err) {
-      console.log(err);
+      console.log("Error fetching user data:", err);
     }
   };
 
+  // eslint-disable-next-line
   useEffect(() => {
     handleMount();
   }, []);
@@ -56,26 +75,22 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (currentUser) { // Check if currentUser exists
+        if (currentUser) {
+          // Check if currentUser exists
           // Fetch profile data using the ID from the URL
           const profileResponse = await axiosRes.get(
             `/profiles/${currentUser.profile_id}/`
           );
           const profileData = profileResponse.data;
-  
-          console.log("Fetched profile data:", profileData);
-  
+          // console.log(profileData)
+
           // Check if profile data indicates signup is not completed
           if (!profileData.is_signup_completed) {
-            console.log("Signup not completed. Redirecting...");
             // Redirect to profile form if signup is not completed
             history.push(`/profiles/${currentUser.profile_id}/`);
             setIsSignupCompleted(false);
             console.log("Is signup completed?", isSignupCompleted);
           } else {
-            console.log(
-              "Signup completed. Setting current user. Redirecting home."
-            );
             setIsSignupCompleted(true);
             history.push(`/`);
           }
@@ -93,7 +108,6 @@ export const CurrentUserProvider = ({ children }) => {
   // Post home if signup is completed i.e when user has completed ProfileTypeChoiceForm
   useEffect(() => {
     if (isSignupCompleted) {
-      console.log("Is signup completed?", isSignupCompleted);
       history.push(`/`);
     }
   }, [isSignupCompleted, history]);
@@ -103,7 +117,6 @@ export const CurrentUserProvider = ({ children }) => {
     if (loginCount < 1 && currentUser && !isSignupCompleted && !redirected) {
       history.push(`/signupform/${currentUser.profile_id}/`);
       setRedirected(true); // Set redirected to true to prevent subsequent redirects
-      console.log("push");
     }
   }, [currentUser, isSignupCompleted, redirected, history, loginCount]);
 
@@ -157,7 +170,6 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     console.log("Current User:", currentUser);
   }, [currentUser]);
-
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
