@@ -54,6 +54,7 @@ const NavBar = () => {
       setCurrentUser(null);
       setIsLoading(false);
       // Redirect to home page after signing out
+      console.log("Redirecting to home page...");
       history.push("/");
     } catch (err) {
       console.log(err);

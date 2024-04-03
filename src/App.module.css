@@ -22,7 +22,6 @@
 }
 
 
-
 .verticalLine {
     border-left: 1px solid grey;
     height: 30px;
@@ -38,6 +37,10 @@
 
 input[type="file"] {
     display: none;
+}
+
+.myPointer {
+    cursor: pointer;
 }
 
 /* scrollbar */
