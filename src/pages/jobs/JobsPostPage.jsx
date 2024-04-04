@@ -10,7 +10,7 @@ import JobsPost from "./JobsPost";
 function JobsPostPage() {
   const { id } = useParams();
   const [jobsPost, setJobsPost] = useState({ results: [] });
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +52,6 @@ function JobsPostPage() {
             closing_date={jobsPost.closing_date}
             created_at={jobsPost.created_at}
 
-          // Pass other necessary props as needed
         />
         {/* <Container className={appStyles.Content}>Comments</Container> */}
       </Col>

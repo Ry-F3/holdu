@@ -43,7 +43,7 @@ const JobsPost = (props) => {
 
   const is_owner = currentUser && currentUser.username === owner_username;
   return (
-    <Card className={styles.JobsPost}>
+    <Card className={`${styles.JobsPost} mb-3`}>
       <Card.Body className="d-flex justify-content-between align-items-center border-bottom rounded mb-2">
         <div>
           {image && (
@@ -57,7 +57,7 @@ const JobsPost = (props) => {
             </div>
           )}
         </div>
-        {/* Move the span to the right */}
+       
         <span>{updated_at}</span>
       </Card.Body>
       <Card.Body>

@@ -8,15 +8,31 @@ import SignInForm from "./pages/auth/SignInForm";
 import ProfileTypeChoiceForm from "./pages/profiles/ProfileTypeChoiceForm";
 import JobsPostPage from "./pages/jobs/JobsPostPage.jsx";
 import JobsCreateForm from "./pages/jobs/JobsCreateForm.jsx";
-
+import JobsHomePage from "./pages/jobs/JobsHomePage.jsx";
+import { useCurrentUser } from "./contexts/CurrentUserContext.jsx";
+import { useProfileData } from "./contexts/ProfileContext.jsx";
 
 function App() {
+  const currentUser = useCurrentUser();
+  const profileData = useProfileData(); // Invoke useProfileData to fetch profile data
+  const profile_id = currentUser?.id || ""; // Check if profileData is available
+
+  console.log("currentUser app:", currentUser);
+  console.log("profileData app:", profileData);
+  console.log("profile_id app:", profile_id);
+
   return (
     <div className={styles.App}>
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
-          <Route exact path="/" render={() => <h1>Home page</h1>} />
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <JobsHomePage message="No results found. Adjust the search keyword" filter={`employer_profile__owner__username=${profile_id}`}  />
+            )}
+          />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route
@@ -26,9 +42,13 @@ function App() {
           />
           <Route exact path="/connect" render={() => <h1>Connect</h1>} />
           <Route exact path="/chats" render={() => <h1>Chats</h1>} />
-          <Route exact path="/jobs/post" render={() => <JobsCreateForm/>} />
-          <Route exact path="/jobs/post/:id" render={() => <JobsPostPage/>} />
-          <Route exact path="/notifications" render={() => <h1>Notifications</h1>} />
+          <Route exact path="/jobs/post" render={() => <JobsCreateForm />} />
+          <Route exact path="/jobs/post/:id" render={() => <JobsPostPage />} />
+          <Route
+            exact
+            path="/notifications"
+            render={() => <h1>Notifications</h1>}
+          />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
