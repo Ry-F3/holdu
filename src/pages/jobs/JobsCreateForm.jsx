@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useProfileData } from "../../contexts/ProfileContext";
-// import Image from "react-bootstrap/Image";
+
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -17,11 +17,22 @@ import { axiosReq } from "../../api/axiosDefaults";
 import dataImage from "../../assets/dataImage.png";
 import Asset from "../../components/Asset";
 import Spinner from "../../components/Spinner";
-import { useHistory } from "react-router-dom";
+import JobAdListItem from "../../components/JobAdListItem";
+import DummyBoxes from "../../components/DummyBoxes";
 
 function JobsCreateForm() {
-  const [errors, setErrors] = useState({});
+  const [setErrors] = useState({});
   const [loading, setLoading] = useState(true);
+  const [editMode, setEditMode] = useState(false); // State to track edit mode
+  const [editListingId, setEditListingId] = useState(null); // State to store the ID of the listing being edited
+  const [editFormData, setEditFormData] = useState({
+    title: "",
+    description: "",
+    location: "",
+    salary: "",
+    closing_date: "",
+  });
+  const { title, description, location, salary, closing_date } = editFormData;
 
   const [recentAds, setRecentAds] = useState([]);
   const [formData, setFormData] = useState({
@@ -30,8 +41,15 @@ function JobsCreateForm() {
     location: "",
     salary: "",
     closing_date: "",
+    created_at: "",
   });
-  const { title, description, location, salary, closing_date } = formData;
+  const {
+    title: newTitle,
+    description: newDescription,
+    location: newLocation,
+    salary: newSalary,
+    closing_date: newClosingDate,
+  } = formData;
 
   const currentUser = useCurrentUser();
   const profileData = useProfileData();
@@ -76,19 +94,52 @@ function JobsCreateForm() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Function to handle edit button click
+  const handleEdit = (listingId) => {
+    const listingToEdit = recentAds.results.find(
+      (ad) => ad.job_listing_id === listingId
+    );
+    if (listingToEdit) {
+      // Set edit mode to true
+      setEditMode(true);
+      // Set the ID of the listing being edited
+      setEditListingId(listingId);
+      // Populate the editFormData with the information of the listing being edited
+      setEditFormData({
+        title: listingToEdit.title,
+        description: listingToEdit.description,
+        location: listingToEdit.location,
+        salary: listingToEdit.salary,
+        closing_date: listingToEdit.closing_date,
+      });
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
+    const data = new FormData();
 
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("location", location);
-    formData.append("salary", salary);
-    formData.append("closing_date", closing_date);
-    formData.append("applicants", null);
+    data.append("title", editMode ? editFormData.title : newTitle);
+    data.append(
+      "description",
+      editMode ? editFormData.description : newDescription
+    );
+    data.append("location", editMode ? editFormData.location : newLocation);
+    data.append("salary", editMode ? editFormData.salary : newSalary);
+    data.append(
+      "closing_date",
+      editMode ? editFormData.closing_date : newClosingDate
+    );
+    data.append("applicants", null);
 
     try {
-      await axiosReq.post("/jobs/post/", formData);
+      if (editMode) {
+        // Send a request to edit the job listing
+        await axiosReq.put(`/jobs/post/${editListingId}/`, data);
+      } else {
+        // Send a request to create a new job listing
+        await axiosReq.post("/jobs/post/", data);
+      }
       window.location.reload();
     } catch (err) {
       console.log(err);
@@ -104,7 +155,7 @@ function JobsCreateForm() {
       // Send a request to delete the job listing from the database
       await axiosReq.delete(`/jobs/post/${jobListingId}/`);
       console.log("Job listing deleted successfully.");
-  
+
       // Remove the job listing from the UI only if the deletion was successful
       setRecentAds((prevAds) => ({
         ...prevAds,
@@ -117,18 +168,42 @@ function JobsCreateForm() {
     }
   };
 
-  const handleChange = (event) => {
-    // Declare handleChange as a function
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
+  // Function to handle cancel button click
+  const handleCancel = () => {
+    // Reset edit mode and editFormData
+    setEditMode(false);
+    setEditListingId(null);
+    setEditFormData({
+      title: "",
+      description: "",
+      location: "",
+      salary: "",
+      closing_date: "",
     });
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (editMode) {
+      // Update editFormData when in edit mode
+      setEditFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    } else {
+      // Update formData when not in edit mode
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const textFields = (
     <div>
       <h1 className="text-center mt-2 p-2 mb-5">
-        Post <i className="far fa-address-card"></i> <br /> Job Advert{" "}
+        {editMode ? "Edit" : "Post"} <i className="far fa-address-card"></i>{" "}
+        <br /> Job Advert{" "}
       </h1>
 
       <Form.Group className="pr-1 pl-1" controlId="formTitle">
@@ -136,7 +211,7 @@ function JobsCreateForm() {
         <Form.Control
           name="title"
           type="text"
-          value={title}
+          value={editMode ? title : newTitle}
           placeholder="Job title"
           onChange={handleChange}
           required
@@ -148,7 +223,7 @@ function JobsCreateForm() {
         <Form.Control
           name="description"
           as="textarea"
-          value={description}
+          value={editMode ? description : newDescription}
           placeholder="Job description"
           onChange={handleChange}
           required
@@ -159,7 +234,7 @@ function JobsCreateForm() {
         <Form.Label className="d-none">Location:</Form.Label>
         <Form.Control
           type="text"
-          value={location}
+          value={editMode ? location : newLocation}
           placeholder="Location"
           onChange={handleChange}
           name="location"
@@ -171,7 +246,7 @@ function JobsCreateForm() {
         <Form.Label className="d-none">Salary:</Form.Label>
         <Form.Control
           type="number"
-          value={salary}
+          value={editMode ? salary : newSalary}
           placeholder="Salary"
           onChange={handleChange}
           name="salary"
@@ -182,16 +257,19 @@ function JobsCreateForm() {
         <Form.Label className="">Closing Date:</Form.Label>
         <Form.Control
           type="datetime-local"
-          value={closing_date}
+          value={editMode ? closing_date : newClosingDate}
           onChange={handleChange}
           name="closing_date"
           required
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+      <Button type="submit">{editMode ? "Edit Ad" : "Post Ad"}</Button>
+      {editMode && (
+        <Button className="ml-2" onClick={handleCancel}>
+          Cancel
+        </Button>
+      )}
     </div>
   );
 
@@ -200,6 +278,7 @@ function JobsCreateForm() {
       <Row>
         <Col md={12} lg={8} className="py-2 p-md-2">
           <Container
+            style={{ backgroundColor: "transparent", border: "none" }}
             className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}>
             <Form.Group className="align-items-center`">
               {loading ? (
@@ -208,7 +287,6 @@ function JobsCreateForm() {
                 </div>
               ) : (
                 <Container className="">
-                  {console.log("Recent Ads:", recentAds)} {/* Log recentAds */}
                   {recentAds.results &&
                   recentAds.results.some(
                     (ad) =>
@@ -216,18 +294,34 @@ function JobsCreateForm() {
                       currentUser.username
                   ) ? (
                     <>
-                      <h2 className="mr-5 mb-2 mt-3 p-2">
-                        {profileData.name}'s recent listings:
-                      </h2>
-                      {/* Conditionally render the "View More" button */}
-                      {recentAds.results.length > 4 && (
-                        <Button
-                          className="btn btn-primary mb-2 mt-1 ml-2"
-                          onClick={() => {}}>
-                          View More
-                        </Button>
-                      )}
-                      <ul className={`list-unstyled   p-2 `}>
+                      <div className="d-flex justify-content-between bg-white p-3 rounded border align-items-center mb-3">
+                        <div className="d-flex align-items-center">
+                          {/* Add user's image */}
+                          <img
+                            src={profileData.image}
+                            alt="User"
+                            className="mr-2"
+                            style={{
+                              width: "50px",
+                              height: "50px",
+                              borderRadius: "50%",
+                            }}
+                          />
+                          {/* Heading */}
+                          <h2 className="mb-0 mr-2 small">
+                            {profileData.name}'s recent listings:
+                          </h2>
+                        </div>
+                        {/* Conditionally render the "View More" button */}
+                        {recentAds.results.length > 4 && (
+                          <Button
+                            className="btn btn-primary"
+                            onClick={() => {}}>
+                            View More
+                          </Button>
+                        )}
+                      </div>
+                      <ul className={`list-unstyled p-2 `}>
                         {recentAds.results
                           .slice(0, 4)
                           .filter(
@@ -236,124 +330,17 @@ function JobsCreateForm() {
                               currentUser.username
                           )
                           .map((ad, index) => (
-                            <li
-                              key={ad.job_listing_id}
-                              className="py-3 mb-3 rounded bg-light p-3 position-relative">
-                              <div className="d-flex justify-content-between align-items-center">
-                                <div>
-                                  <h3 className="mb-1">{ad.title} </h3>
-                                  <div className="d-flex align-items-center">
-                                    <p className="mb-0 mr-3 small">
-                                      {ad.location}{" "}
-                                      <i className="fas fa-map-marker-alt text-muted"></i>
-                                    </p>
-
-                                    <p className="mb-0 small mr-2">
-                                      £{ad.salary}/hr
-                                    </p>
-                                  </div>
-                                </div>
-                                <div>
-                                  <div className="position-relative">
-                                    <div
-                                      className={`${appStyles.myPointer} d-flex align-items-center justify-content-end`}>
-                                      <Button
-                                        className="mb-5 d-flex align-items-center justify-content-center"
-                                        onClick={() =>
-                                          handleDelete(ad.job_listing_id)
-                                        }>
-                                        <i className="fas fa-times"></i>
-                                      </Button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div>
-                                <p className="mb-1 mb-2 small">
-                                  Job Description: {ad.description}
-                                </p>
-                                <div className="d-flex align-items-center">
-                                  <p
-                                    className="mb-0 mt-1 small"
-                                    style={{
-                                      width: "200px",
-                                      height: "28px",
-                                      backgroundColor: "#f0f0f0",
-                                      borderRadius: "5px",
-                                      padding: "4px",
-                                      paddingLeft: "16px",
-                                    }}>
-                                    Closing Date: {ad.closing_date}
-                                  </p>
-                                  <p
-                                    className={`${appStyles.myPointer} mb-0 mr-5 ml-3`}
-                                    onClick={() => {}}>
-                                    <i className="fa-regular fa-pen-to-square"></i>
-                                  </p>
-
-                                  <span className="mr-1">Aplicants:</span>
-                                  <span className="badge bg-secondary text-white">
-                                    {ad.applicants ? ad.applicants.length : 0}
-                                  </span>
-                                </div>
-                              </div>
-                              <div className="position-relative mr-5">
-                                {/* Font Awesome icons for delete and edit */}
-                              </div>
-                            </li>
+                            <JobAdListItem
+                              key={index}
+                              ad={ad}
+                              handleEdit={handleEdit}
+                              handleDelete={handleDelete}
+                            />
                           ))}
                         {/* Add dummy boxes for remaining listings */}
                         {[...Array(4 - recentAds.results.length)].map(
                           (_, index) => (
-                            <li
-                              key={`dummy-${index}`}
-                              className=" py-3 mb-3 rounded bg-light p-2">
-                              <div className="d-flex justify-content-between align-items-center">
-                                <div className="d-flex flex-column">
-                                  <div
-                                    className="mb-1 small"
-                                    style={{
-                                      width: "200px",
-                                      height: "16px",
-                                      backgroundColor: "#f0f0f0",
-                                      borderRadius: "5px",
-                                    }}></div>
-                                  <div
-                                    className="mb-1 small"
-                                    style={{
-                                      width: "150px",
-                                      height: "16px",
-                                      backgroundColor: "#f0f0f0",
-                                      borderRadius: "5px",
-                                    }}></div>
-                                  <div
-                                    className="mb-1 small"
-                                    style={{
-                                      width: "100px",
-                                      height: "16px",
-                                      backgroundColor: "#f0f0f0",
-                                      borderRadius: "5px",
-                                    }}></div>
-                                  <div
-                                    className="mb-1 small"
-                                    style={{
-                                      width: "130px",
-                                      height: "16px",
-                                      backgroundColor: "#f0f0f0",
-                                      borderRadius: "5px",
-                                    }}></div>
-                                  <div
-                                    className="small"
-                                    style={{
-                                      width: "180px",
-                                      height: "16px",
-                                      backgroundColor: "#f0f0f0",
-                                      borderRadius: "5px",
-                                    }}></div>
-                                </div>
-                              </div>
-                            </li>
+                            <DummyBoxes key={`dummy-${index}`} widths={[200, 150, 100, 120, 130, 150, 180, 190]} />
                           )
                         )}
                       </ul>
@@ -361,7 +348,7 @@ function JobsCreateForm() {
                   ) : (
                     <Asset
                       src={dataImage}
-                      message="Your recent job listings are mpty"
+                      message="Opps your job listings are empty"
                     />
                   )}
                 </Container>
