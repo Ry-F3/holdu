@@ -10,27 +10,33 @@ import JobsPostPage from "./pages/jobs/JobsPostPage.jsx";
 import JobsCreateForm from "./pages/jobs/JobsCreateForm.jsx";
 import JobsHomePage from "./pages/jobs/JobsHomePage.jsx";
 import { useCurrentUser } from "./contexts/CurrentUserContext.jsx";
-import { useProfileData } from "./contexts/ProfileContext.jsx";
+import { useState } from "react";
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
   const currentUser = useCurrentUser();
-  const profileData = useProfileData(); // Invoke useProfileData to fetch profile data
   const profile_id = currentUser?.id || ""; // Check if profileData is available
 
-  console.log("currentUser app:", currentUser);
-  console.log("profileData app:", profileData);
-  console.log("profile_id app:", profile_id);
+
+  // Handle search for different pages
+  const handleSearch = (searchValue) => {
+   
+    setSearchQuery(searchValue);
+  };
 
   return (
     <div className={styles.App}>
-      <NavBar />
+      <NavBar handleSearch={handleSearch} />
       <Container className={styles.Main}>
         <Switch>
           <Route
             exact
             path="/"
             render={() => (
-              <JobsHomePage message="No results found. Adjust the search keyword" filter={`employer_profile__owner__username=${profile_id}`}  />
+              <JobsHomePage
+                searchQuery={searchQuery}
+                filter={`employer_profile__owner__username=${profile_id}`}
+              />
             )}
           />
           <Route exact path="/signin" render={() => <SignInForm />} />
@@ -42,7 +48,11 @@ function App() {
           />
           <Route exact path="/connect" render={() => <h1>Connect</h1>} />
           <Route exact path="/chats" render={() => <h1>Chats</h1>} />
-          <Route exact path="/jobs/post" render={() => <JobsCreateForm />} />
+          <Route
+            exact
+            path="/jobs/post"
+            render={() => <JobsCreateForm searchQuery={searchQuery} />}
+          />
           <Route exact path="/jobs/post/:id" render={() => <JobsPostPage />} />
           <Route
             exact

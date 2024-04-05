@@ -23,7 +23,6 @@ const JobsPost = (props) => {
 
   // Ensure employer_profile exists in props before destructuring
   const employer_profile = props.employer_profile || {};
-  console.log(employer_profile)
 
   const {
     average_rating,
@@ -37,7 +36,6 @@ const JobsPost = (props) => {
     profile_type,
     ratings,
   } = employer_profile;
-  console.log(employer_profile)
 
   const currentUser = useCurrentUser();
 
@@ -57,23 +55,23 @@ const JobsPost = (props) => {
             </div>
           )}
         </div>
-       
+
         <span>{updated_at}</span>
       </Card.Body>
       <Card.Body>
         <ul className="list-unstyled rounded">
-          <JobPostHomeItem    
+          <JobPostHomeItem
             title={title}
             description={description}
             location={location}
             salary={salary}
             closing_date={closing_date}
-            created_at={created_at}/>
+            created_at={created_at}
+          />
         </ul>
       </Card.Body>
     </Card>
   );
 };
-  
 
 export default JobsPost;

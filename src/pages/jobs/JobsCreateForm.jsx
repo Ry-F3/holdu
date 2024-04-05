@@ -19,10 +19,12 @@ import Asset from "../../components/Asset";
 import Spinner from "../../components/Spinner";
 import JobAdListItem from "../../components/JobAdListItem";
 import DummyBoxes from "../../components/DummyBoxes";
+import { useLocation } from "react-router-dom";
 
-function JobsCreateForm() {
+function JobsCreateForm({ searchQuery }) {
   const [setErrors] = useState({});
   const [loading, setLoading] = useState(true);
+
   const [editMode, setEditMode] = useState(false); // State to track edit mode
   const [editListingId, setEditListingId] = useState(null); // State to store the ID of the listing being edited
   const [editFormData, setEditFormData] = useState({
@@ -35,6 +37,7 @@ function JobsCreateForm() {
   const { title, description, location, salary, closing_date } = editFormData;
 
   const [recentAds, setRecentAds] = useState([]);
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -53,38 +56,41 @@ function JobsCreateForm() {
 
   const currentUser = useCurrentUser();
   const profileData = useProfileData();
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    // Fetch recent ads data from the backend API
-    const fetchRecentAds = async () => {
+    let isMounted = true;
+
+    const fetchJobs = async () => {
+      setLoading(true);
       try {
-        // Check if current user data is available
-        if (currentUser) {
-          let nextPage = "/jobs/";
-          const allResults = [];
-
-          // Fetch data recursively until there's no next page
-          while (nextPage) {
-            const response = await axios.get(nextPage);
-            const data = response.data;
-
-            // Concatenate the results to the allResults array
-            allResults.push(...data.results);
-
-            // Update nextPage with the URL of the next page
-            nextPage = data.next;
-          }
-
-          // Set the concatenated results to the state
-          setRecentAds({ count: allResults.length, results: allResults });
+        let apiUrl;
+        // If searchQuery is provided, fetch jobs based on search
+        if (searchQuery) {
+          apiUrl = `/jobs/?search=${searchQuery}`;
+        } else {
+          // Fetch recent ads if searchQuery is not provided
+          apiUrl = "/jobs/";
+        }
+        const { data } = await axiosReq.get(apiUrl);
+        if (isMounted) {
+          setRecentAds(data);
         }
       } catch (error) {
-        console.error("Error fetching recent ads:", error);
+        console.error("Error fetching job ads:", error);
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
-    fetchRecentAds();
-  }, [currentUser]);
+    fetchJobs();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [pathname, searchQuery, currentUser]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -151,10 +157,8 @@ function JobsCreateForm() {
 
   const handleDelete = async (jobListingId) => {
     try {
-      console.log("Deleting job listing...");
       // Send a request to delete the job listing from the database
       await axiosReq.delete(`/jobs/post/${jobListingId}/`);
-      console.log("Job listing deleted successfully.");
 
       // Remove the job listing from the UI only if the deletion was successful
       setRecentAds((prevAds) => ({
@@ -340,16 +344,21 @@ function JobsCreateForm() {
                         {/* Add dummy boxes for remaining listings */}
                         {[...Array(4 - recentAds.results.length)].map(
                           (_, index) => (
-                            <DummyBoxes key={`dummy-${index}`} widths={[200, 150, 100, 120, 130, 150, 180, 190]} />
+                            <DummyBoxes
+                              key={`dummy-${index}`}
+                              widths={[200, 150, 100, 120, 130, 150, 180, 190]}
+                            />
                           )
                         )}
                       </ul>
                     </>
                   ) : (
-                    <Asset
-                      src={dataImage}
-                      message="Opps your job listings are empty"
-                    />
+                    <Container className={appStyles.Content}>
+                      <Asset
+                        src={dataImage}
+                        message="Opps your job listings are empty"
+                      />
+                    </Container>
                   )}
                 </Container>
               )}
@@ -357,7 +366,7 @@ function JobsCreateForm() {
           </Container>
         </Col>
         <Col md={12} lg={4} className="p-0 p-md-2">
-          <Container>
+          <Container className="mt-2">
             <div
               className={`${appStyles.Content} ${formStyles.triangleGradient} d-flex flex-column justify-content-center`}>
               <Container className="p-3">{textFields}</Container>

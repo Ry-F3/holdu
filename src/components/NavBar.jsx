@@ -27,13 +27,14 @@ import { useHistory } from "react-router-dom";
 import LoggedInLogo from "./LoggedInLogo";
 import LoggedOutLogo from "./LoggedOutLogo";
 
-const NavBar = () => {
+const NavBar = ({ handleSearch }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const profileData = useProfileData();
   const setLoginCount = useSetLoginCount();
+  const [searchValue, setSearchValue] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -92,6 +93,16 @@ const NavBar = () => {
     </>
   );
 
+  const handleChange = (e) => {
+    setSearchValue(e.target.value);
+    handleSearch(e.target.value);
+  };
+
+  // Function to handle search form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Navbar
       bg="white"
@@ -102,14 +113,17 @@ const NavBar = () => {
         {currentUser ? <LoggedInLogo /> : <LoggedOutLogo />}
         <Nav className="d-flex align-items-center">
           <div className="d-flex align-items-center mr-5">
-            <Form className="ml-1 d-flex">
+            <Form inline onSubmit={handleSubmit}>
               <FormControl
-                type="search"
+                type="text"
                 placeholder="Search Jobs"
-                className="mr-2"
-                aria-label="Search"
+                className="mr-sm-2"
+                name="search"
+                value={searchValue}
+                onChange={handleChange} // Use onChange event for search input
               />
-              <Button variant="white" className="btn-transparent">
+
+              <Button variant="white" className="btn-transparent" type="sumbit">
                 <i className="fa-solid fa-magnifying-glass"></i>
               </Button>
             </Form>
