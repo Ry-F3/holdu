@@ -1,7 +1,4 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-
-import appStyles from "../App.module.css";
 
 const JobPostHomeItem = ({
   title,
@@ -10,8 +7,7 @@ const JobPostHomeItem = ({
   salary,
   closing_date,
   created_at,
-  handleEdit,
-  handleDelete,
+ 
 }) => {
   return (
     <li className="py-3 mb-3 rounded p-3 position-relative">

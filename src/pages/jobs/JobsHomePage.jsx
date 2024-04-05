@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -32,7 +31,6 @@ function JobsHomePage({ filter = "", searchQuery }) {
       try {
         setLoading(true); // Set loading to true before fetching data
         const apiUrl = `/jobs/?search=${query}`;
-        console.log("Request URL:", apiUrl);
         const { data } = await axiosReq.get(apiUrl);
         setJobsPost(data);
       } catch (err) {
@@ -43,7 +41,7 @@ function JobsHomePage({ filter = "", searchQuery }) {
     };
 
     fetchJobs();
-  }, [filter, pathname, searchQuery, currentUser]);
+  }, [filter, pathname, searchQuery, currentUser, query]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -55,7 +53,7 @@ function JobsHomePage({ filter = "", searchQuery }) {
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
+      <Col className="py-2 p-0 p-lg-4" lg={8}>
         <p>Popular profiles mobile</p>
         {loading ? (
           <Container
@@ -70,7 +68,7 @@ function JobsHomePage({ filter = "", searchQuery }) {
           <>
             {jobsPost.results.length ? (
               jobsPost.results.map((jobPost) => (
-                <JobsPost key={jobPost.id} {...jobPost} />
+                <JobsPost key={jobPost.id} {...jobPost} postJob/>
               ))
             ) : (
               <Container className={appStyles.Content}>

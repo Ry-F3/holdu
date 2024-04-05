@@ -17,12 +17,19 @@ const LoggedInEmployeeIcons = () => {
           <span className={navStyles.NavText}>Connect</span>
         </div>
       </NavLink>
+      <NavLink to="/" className={`${navStyles.Pointer} mr-3 text-muted`}>
+        <div className="d-flex flex-column align-items-center">
+          <i className="fa-solid fa-heart mt-2"></i>
+          <span className={navStyles.NavText}>Likes</span>
+        </div>
+      </NavLink>
       <NavLink to="/chats" className={`${navStyles.Pointer} mr-3 text-muted`}>
         <div className="d-flex flex-column align-items-center">
           <i className="fa-solid fa-message mt-2"></i>
           <span className={navStyles.NavText}>Chats</span>
         </div>
       </NavLink>
+    
       <NavLink to="/notifications" className={`${navStyles.Pointer} mr-3 text-muted`}>
         <div className="d-flex flex-column align-items-center">
           <i className="fa-solid fa-bell mt-2"></i>

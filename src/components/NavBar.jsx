@@ -55,7 +55,6 @@ const NavBar = ({ handleSearch }) => {
       setCurrentUser(null);
       setIsLoading(false);
       // Redirect to home page after signing out
-      console.log("Redirecting to home page...");
       history.push("/");
     } catch (err) {
       console.log(err);
@@ -80,7 +79,9 @@ const NavBar = ({ handleSearch }) => {
       <Nav.Link to={`/profiles/${currentUser?.profile_id}`}>
         <div className="d-flex align-items-center">
           <Avatar src={currentUser?.profile_image} height={40} />
-          <span>{currentUser?.username}</span>
+          <span className="d-none d-lg-flex align-items-center">
+            {currentUser?.username}
+          </span>
         </div>
       </Nav.Link>
 
@@ -106,6 +107,7 @@ const NavBar = ({ handleSearch }) => {
   return (
     <Navbar
       bg="white"
+      fluid
       fixed="light"
       className={`border-bottom ${nav.NavHeight}`}>
       <Container className="d-flex align-items-center justify-content-between">
@@ -122,10 +124,16 @@ const NavBar = ({ handleSearch }) => {
                 value={searchValue}
                 onChange={handleChange} // Use onChange event for search input
               />
-
-              <Button variant="white" className="btn-transparent" type="sumbit">
-                <i className="fa-solid fa-magnifying-glass"></i>
-              </Button>
+              <div className="d-none d-lg-flex align-items-center">
+                {" "}
+                {/* Change from d-md-flex to d-lg-flex */}
+                <Button
+                  variant="white"
+                  className="btn-transparent"
+                  type="submit">
+                  <i className="fa-solid fa-magnifying-glass"></i>
+                </Button>
+              </div>
             </Form>
           </div>
           {isLoading ? (
@@ -135,9 +143,13 @@ const NavBar = ({ handleSearch }) => {
               {currentUser && profileData && profileData.is_signup_completed ? (
                 // If the user has completed signup, render icons based on profile type
                 profileData.profile_type === "employer" ? (
-                  <LoggedInEmployerIcons />
+                  <div className="d-none d-xl-flex">
+                    <LoggedInEmployerIcons />
+                  </div>
                 ) : (
-                  <LoggedInEmployeeIcons />
+                  <div className="d-none d-xl-flex">
+                    <LoggedInEmployeeIcons />
+                  </div>
                 )
               ) : (
                 // If currentUser doesn't exist or signup is not completed, render nothing
@@ -146,16 +158,20 @@ const NavBar = ({ handleSearch }) => {
 
               {/* Conditional rendering of div */}
               {currentUser && profileData && profileData.is_signup_completed ? (
-                <div className={`${styles.verticalLine} mr-3`}></div>
+                <div
+                  className={`${styles.verticalLine} d-none d-sm-flex align-items-center mr-3`}></div>
               ) : null}
             </>
           )}
-          <div>
+          <div className="d-none d-lg-flex">
             <p className="mb-0 mr-2">Tagline</p> {/* Tagline */}
           </div>
-          <div className={styles.verticalLine}></div> {/* Vertical line */}
+          <div className={`${styles.verticalLine}  d-none d-lg-flex`}></div>{" "}
+          {/* Vertical line */}
           {/* Render icons based on currentUser */}
-          {currentUser ? loggedInIcons : loggedOutIcons}
+          <div className="d-none d-sm-flex align-items-center">
+            {currentUser ? loggedInIcons : loggedOutIcons}
+          </div>
         </Nav>
       </Container>
     </Navbar>

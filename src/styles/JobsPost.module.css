@@ -9,3 +9,23 @@
 .JobPostBody {
     background-color: #fc7fb6;
 }
+
+.Heart {
+    color: #fc7fb6;
+}
+
+.Heart:hover {
+    color: #7e4961;
+}
+
+.HeartOutline:hover {
+    color: #fc7fb6;
+}
+
+.HeartSize {
+    font-size: 19px;
+}
+
+.Background {
+    background-color: #fc7fb6;
+}

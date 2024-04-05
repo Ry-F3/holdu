@@ -11,7 +11,7 @@ import Container from "react-bootstrap/Container";
 import appStyles from "../../App.module.css";
 import formStyles from "../../styles/JobsCreateForm.module.css";
 import spinnerStyle from "../../styles/Spinner.module.css";
-import axios from "axios";
+
 import { axiosReq } from "../../api/axiosDefaults";
 
 import dataImage from "../../assets/dataImage.png";
@@ -342,14 +342,14 @@ function JobsCreateForm({ searchQuery }) {
                             />
                           ))}
                         {/* Add dummy boxes for remaining listings */}
-                        {[...Array(4 - recentAds.results.length)].map(
-                          (_, index) => (
-                            <DummyBoxes
-                              key={`dummy-${index}`}
-                              widths={[200, 150, 100, 120, 130, 150, 180, 190]}
-                            />
-                          )
-                        )}
+                        {Array.from({
+                          length: Math.max(4 - recentAds.results.length, 0),
+                        }).map((_, index) => (
+                          <DummyBoxes
+                            key={`dummy-${index}`}
+                            widths={[200, 150, 100, 120, 130, 150, 180, 190]}
+                          />
+                        ))}
                       </ul>
                     </>
                   ) : (

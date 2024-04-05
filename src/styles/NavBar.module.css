@@ -39,7 +39,7 @@ Button:hover {
 }
 
 .NavHeight {
-    height: 60px;
+    height: 80px;
 }
 
 Nav.Link {
@@ -63,4 +63,31 @@ Nav.Link {
     100% {
         transform: rotate(360deg);
     }
+}
+
+/* Styles for the navigation bar */
+.NavHeight {
+    height: 60px;
+    /* Example height */
+}
+
+.BottomNavBar {
+    background-color: white;
+    /* Example background color */
+    border-top: 1px solid #ccc;
+    /* Example border */
+    transition: transform 0.3s ease;
+    /* Example transition effect */
+}
+
+/* Class to show the navigation bar */
+.Show {
+    transform: translateY(0);
+    /* Move the navigation bar to its original position */
+}
+
+/* Class to hide the navigation bar */
+.Hide {
+    transform: translateY(100%);
+    /* Move the navigation bar below the viewport */
 }

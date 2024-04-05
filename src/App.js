@@ -11,6 +11,7 @@ import JobsCreateForm from "./pages/jobs/JobsCreateForm.jsx";
 import JobsHomePage from "./pages/jobs/JobsHomePage.jsx";
 import { useCurrentUser } from "./contexts/CurrentUserContext.jsx";
 import { useState } from "react";
+import BottomNavBar from "./components/BottomNavBar.jsx";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,6 +28,7 @@ function App() {
   return (
     <div className={styles.App}>
       <NavBar handleSearch={handleSearch} />
+      <BottomNavBar/>
       <Container className={styles.Main}>
         <Switch>
           <Route
@@ -62,6 +64,7 @@ function App() {
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
+  
     </div>
   );
 }
