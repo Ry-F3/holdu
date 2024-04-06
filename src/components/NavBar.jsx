@@ -10,6 +10,7 @@ import {
 
 import styles from "../App.module.css";
 import nav from "../styles/NavBar.module.css";
+import navBottom from "../styles/BottomNav.module.css"
 import LoggedInEmployeeIcons from "./LoggedInEmployeeIcons";
 import LoggedInEmployerIcons from "./LoggedInEmployerIcons";
 import { NavLink } from "react-router-dom";
@@ -150,8 +151,8 @@ const NavBar = ({ handleSearch }) => {
                       <LoggedInEmployerIcons />
                     </div>
                     <div>
-                      <Nav.Link onClick={handleSignOut}>
-                        <div className="d-flex align-items-center">
+                      <Nav.Link className={navBottom.HideSignOut} onClick={handleSignOut}>
+                        <div className="d-flex d-xl-none  align-items-center">
                           <i className="fas fa-sign-out mr-2"></i>
                           {/* <span>Sign out</span> */}
                         </div>
@@ -160,12 +161,12 @@ const NavBar = ({ handleSearch }) => {
                   </>
                 ) : (
                   <>
-                  <div className="d-none d-xl-flex">
-                    <LoggedInEmployeeIcons />
+                  <div >
+                    <LoggedInEmployeeIcons className="d-none d-xl-flex" />
                   </div>
                   <div>
-                    <Nav.Link onClick={handleSignOut}>
-                      <div className="d-flex align-items-center">
+                    <Nav.Link className={navBottom.HideSignOut} onClick={handleSignOut}>
+                      <div className="d-flex d-xl-none align-items-center">
                         <i className="fas fa-sign-out mr-2"></i>
                         {/* <span>Sign out</span> */}
                       </div>

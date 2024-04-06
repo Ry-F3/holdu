@@ -22,7 +22,7 @@ const JobPostHomeItem = ({
             </p>
 
             <p className="mb-0 small mr-2">£{salary}/hr</p>
-            <p className="mb-0 small mr-2">{created_at}</p>
+            {/* <p className="mb-0 small mr-2">{created_at}</p> */}
           </div>
         </div>
         <div>
@@ -55,7 +55,7 @@ const JobPostHomeItem = ({
               paddingLeft: "16px",
             }}
           >
-            Closing Date: {closing_date}
+            Ends: {closing_date}
           </p>
           {/* <p
             className={`${appStyles.myPointer} mb-0 mr-5 ml-3`}

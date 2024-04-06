@@ -71,12 +71,22 @@
     }
 }
 
+@media (min-width: 576px) {
+
+
+    .HideSignOut {
+        display: none;
+    }
+}
+
 
 @media (min-width: 425px) {
     .IconText {
         font-size: 10px;
         /* Adjust the font size for smaller screens */
     }
+
+
 }
 
 
