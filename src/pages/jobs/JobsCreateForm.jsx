@@ -37,6 +37,8 @@ function JobsCreateForm({ searchQuery }) {
   const { title, description, location, salary, closing_date } = editFormData;
 
   const [recentAds, setRecentAds] = useState([]);
+  const [currentUserAds, setCurrentUserAds] = useState([]);
+  const [notUserAds, setNotUserAds] = useState([]);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -65,15 +67,25 @@ function JobsCreateForm({ searchQuery }) {
       setLoading(true);
       try {
         let apiUrl;
-        // If searchQuery is provided, fetch jobs based on search
         if (searchQuery) {
           apiUrl = `/jobs/?search=${searchQuery}`;
         } else {
-          // Fetch recent ads if searchQuery is not provided
           apiUrl = "/jobs/";
         }
         const { data } = await axiosReq.get(apiUrl);
         if (isMounted) {
+          setCurrentUserAds(
+            data.results.filter(
+              (ad) =>
+                ad.employer_profile.owner_username === currentUser.username
+            )
+          );
+          setNotUserAds(
+            data.results.filter(
+              (ad) =>
+                ad.employer_profile.owner_username !== currentUser.username
+            )
+          );
           setRecentAds(data);
         }
       } catch (error) {
@@ -159,14 +171,11 @@ function JobsCreateForm({ searchQuery }) {
     try {
       // Send a request to delete the job listing from the database
       await axiosReq.delete(`/jobs/post/${jobListingId}/`);
-
+  
       // Remove the job listing from the UI only if the deletion was successful
-      setRecentAds((prevAds) => ({
-        ...prevAds,
-        results: prevAds.results.filter(
-          (ad) => ad.job_listing_id !== jobListingId
-        ),
-      }));
+      setCurrentUserAds((prevAds) =>
+        prevAds.filter((ad) => ad.job_listing_id !== jobListingId)
+      );
     } catch (error) {
       console.error("Error deleting job listing:", error);
     }
@@ -202,6 +211,8 @@ function JobsCreateForm({ searchQuery }) {
       }));
     }
   };
+
+ 
 
   const textFields = (
     <div>
@@ -279,102 +290,91 @@ function JobsCreateForm({ searchQuery }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-<Row>
-  {/* Column for "Post an Advert" section */}
-  <Col md={12} lg={4} className="order-md-2 p-0 p-md-2">
-    <Container className="mt-2">
-      <div className={`${appStyles.Content} ${formStyles.triangleGradient} d-flex flex-column justify-content-center`}>
-        <Container className="p-3">{textFields}</Container>
-      </div>
-    </Container>
-  </Col>
-  {/* Column for "Recent Listings" section */}
-  <Col md={12} lg={8} className="order-md-1 py-2 p-md-2">
-    <Container style={{ backgroundColor: "transparent", border: "none" }} className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}>
-      <Form.Group className="align-items-center`">
-        {/* Recent Listings section */}
-        {loading ? (
-          <div className={`${spinnerStyle.spinnerContain}`}>
-            <Spinner size="50px" />
-          </div>
-        ) : (
-          <Container className="">
-            {/* Recent Listings */}
-            {recentAds.results &&
-            recentAds.results.some(
-              (ad) =>
-                ad.employer_profile.owner_username ===
-                currentUser.username
-            ) ? (
-              <>
-                <div className="d-flex justify-content-between bg-white p-3 rounded border align-items-center mb-3">
-                  <div className="d-flex align-items-center">
-                    {/* Add user's image */}
-                    <img
-                      src={profileData.image}
-                      alt="User"
-                      className="mr-2"
-                      style={{
-                        width: "50px",
-                        height: "50px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                    {/* Heading */}
-                    <h2 className="mb-0 mr-2 small">
-                      {profileData.name}'s recent listings:
-                    </h2>
-                  </div>
-                  {/* Conditionally render the "View More" button */}
-                  {recentAds.results.length > 4 && (
-                    <Button
-                      className="btn btn-primary"
-                      onClick={() => {}}>
-                      View More
-                    </Button>
-                  )}
+      <Row>
+        <Col md={12} lg={8} className="py-2 p-md-2">
+          <Container
+            style={{ backgroundColor: "transparent", border: "none" }}
+            className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}>
+            <Form.Group className="align-items-center`">
+              {loading ? (
+                <div className={`${spinnerStyle.spinnerContain}`}>
+                  <Spinner size="50px" />
                 </div>
-                <ul className={`list-unstyled p-2 `}>
-                  {recentAds.results
-                    .slice(0, 4)
-                    .filter(
-                      (ad) =>
-                        ad.employer_profile.owner_username ===
-                        currentUser.username
-                    )
-                    .map((ad, index) => (
-                      <JobAdListItem
-                        key={index}
-                        ad={ad}
-                        handleEdit={handleEdit}
-                        handleDelete={handleDelete}
+              ) : (
+                <Container className="">
+                  {currentUserAds.length > 0 ? (
+                    <>
+                      <div className="d-flex justify-content-between bg-white p-3 rounded border align-items-center mb-3">
+                        <div className="d-flex align-items-center">
+                          {/* Add user's image */}
+                          <img
+                            src={profileData.image}
+                            alt="User"
+                            className="mr-2"
+                            style={{
+                              width: "50px",
+                              height: "50px",
+                              borderRadius: "50%",
+                            }}
+                          />
+                          {/* Heading */}
+                          <h2 className="mb-0 mr-2 small">
+                            {profileData.name}'s recent listings:
+                          </h2>
+                        </div>
+                        {/* Conditionally render the "View More" button */}
+                        {recentAds.results.length > 4 && (
+                          <Button
+                            className="btn btn-primary"
+                            onClick={() => {}}>
+                            View More
+                          </Button>
+                        )}
+                      </div>
+                      <ul className={`list-unstyled p-2 `}>
+                        {currentUserAds.slice(0, 4).map((ad, index) => (
+                          <JobAdListItem
+                            key={index}
+                            ad={ad}
+                            handleEdit={handleEdit}
+                            handleDelete={handleDelete}
+                          />
+                        ))}
+                        {/* Add a console.log statement here */}
+                        {console.log("Filtered currentUserAds ads:", currentUserAds)}
+                        {/* Add dummy boxes for remaining listings */}
+                        {Array.from({
+                          length: Math.max(4 - currentUserAds.length, 0),
+                        }).map((_, index) => (
+                          <DummyBoxes
+                            key={`dummy-${index}`}
+                            widths={[200, 150, 100, 120, 130, 150, 180, 190]}
+                          />
+                        ))}
+                      </ul>
+                    </>
+                  ) : (
+                    <Container>
+                      <Asset
+                        src={dataImage}
+                        message="Opps your job listings are empty"
                       />
-                    ))}
-                  {/* Add dummy boxes for remaining listings */}
-                  {Array.from({
-                    length: Math.max(4 - recentAds.results.length, 0),
-                  }).map((_, index) => (
-                    <DummyBoxes
-                      key={`dummy-${index}`}
-                      widths={[200, 150, 100, 120, 130, 150, 180, 190]}
-                    />
-                  ))}
-                </ul>
-              </>
-            ) : (
-              <Container >
-                <Asset
-                  src={dataImage}
-                  message="Opps your job listings are empty"
-                />
-              </Container>
-            )}
+                    </Container>
+                  )}
+                </Container>
+              )}
+            </Form.Group>
           </Container>
-        )}
-      </Form.Group>
-    </Container>
-  </Col>
-</Row>
+        </Col>
+        <Col md={12} lg={4} className="p-0 p-md-2">
+          <Container className="mt-2">
+            <div
+              className={`${appStyles.Content} ${formStyles.triangleGradient} d-flex flex-column justify-content-center`}>
+              <Container className="p-3">{textFields}</Container>
+            </div>
+          </Container>
+        </Col>
+      </Row>
     </Form>
   );
 }
