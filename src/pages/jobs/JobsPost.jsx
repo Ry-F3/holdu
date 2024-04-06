@@ -135,16 +135,12 @@ const JobsPost = ({
             alignItems: "center",
           }}>
           {currentUser ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>{like_id ? "Unlike" : "Like"}</Tooltip>}>
-              <span onClick={handleLikeUnlike}>
-                <i
-                  className={`${styles.HeartSize} ${
-                    like_id ? styles.Heart : styles.HeartOutline
-                  }  mt-2 ${like_id ? "fas fa-heart" : "far fa-heart"}`}></i>
-              </span>
-            </OverlayTrigger>
+            <span onClick={handleLikeUnlike}>
+              <i
+                className={`${styles.HeartSize} ${
+                  like_id ? styles.Heart : styles.HeartOutline
+                }  mt-2 ${like_id ? "fas fa-heart" : "far fa-heart"}`}></i>
+            </span>
           ) : (
             <OverlayTrigger
               placement="top"
