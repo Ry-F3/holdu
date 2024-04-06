@@ -159,9 +159,19 @@ const NavBar = ({ handleSearch }) => {
                     </div>
                   </>
                 ) : (
+                  <>
                   <div className="d-none d-xl-flex">
                     <LoggedInEmployeeIcons />
                   </div>
+                  <div>
+                    <Nav.Link onClick={handleSignOut}>
+                      <div className="d-flex align-items-center">
+                        <i className="fas fa-sign-out mr-2"></i>
+                        {/* <span>Sign out</span> */}
+                      </div>
+                    </Nav.Link>
+                  </div>
+                </>
                 )
               ) : (
                 // If currentUser doesn't exist or signup is not completed, render nothing
