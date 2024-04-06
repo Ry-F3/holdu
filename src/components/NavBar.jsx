@@ -54,6 +54,7 @@ const NavBar = ({ handleSearch }) => {
       setLoginCount(0);
       localStorage.removeItem("loginCount");
       setCurrentUser(null);
+      // profileData(null);
       setIsLoading(false);
       // Redirect to home page after signing out
       history.push("/");

@@ -55,7 +55,7 @@ const JobPostHomeItem = ({
               paddingLeft: "16px",
             }}
           >
-            Ends: {closing_date}
+            Closing Date: {closing_date}
           </p>
           {/* <p
             className={`${appStyles.myPointer} mb-0 mr-5 ml-3`}
