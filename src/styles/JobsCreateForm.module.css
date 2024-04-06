@@ -35,3 +35,44 @@ h2 {
 .minHeightContent {
     min-height: 60vh;
 }
+
+@media (max-width: 576px) {
+    .jobCard {
+        margin-bottom: 10px;
+    }
+
+    .jobCardBody {
+        padding: 10px;
+    }
+
+    .jobTitle {
+        font-size: 18px;
+    }
+
+    .jobDescription {
+        font-size: 14px;
+    }
+
+    /* Remove width: 100% from container classes */
+    .Container,
+    .Container-fluid,
+    .Container-lg,
+    .Container-md,
+    .Container-sm,
+    .Container-xl {
+        width: auto !important;
+        padding-right: 0px;
+        padding-left: 0px;
+        margin-right: auto;
+        margin-left: auto;
+
+    }
+
+    .Col,
+    .Col-lg-8,
+    .Col-md-12 {
+        padding: 0 !important;
+
+    }
+
+}

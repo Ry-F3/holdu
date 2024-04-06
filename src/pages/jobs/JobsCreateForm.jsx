@@ -291,7 +291,7 @@ function JobsCreateForm({ searchQuery }) {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col md={12} lg={8} className="py-2 p-md-2">
+        <Col md={12} lg={8} className={`${formStyles.Col} py-2 p-md-2`}>
           <Container
             style={{ backgroundColor: "transparent", border: "none" }}
             className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}>
@@ -301,7 +301,7 @@ function JobsCreateForm({ searchQuery }) {
                   <Spinner size="50px" />
                 </div>
               ) : (
-                <Container className="">
+                <Container className={formStyles.Container}>
                   {currentUserAds.length > 0 ? (
                     <>
                       <div className="d-flex justify-content-between bg-white p-3 rounded border align-items-center mb-3">
