@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useJobDataContext } from "../../contexts/JobDataContext"; // Import the job data context
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -14,29 +15,31 @@ import { axiosReq } from "../../api/axiosDefaults";
 import JobsPost from "./JobsPost";
 import Asset from "../../components/Asset";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 import Spinner from "../../components/Spinner";
 
 function JobsHomePage({ filter = "", searchQuery }) {
-  const [jobsPost, setJobsPost] = useState({ results: [] });
-  const [loading, setLoading] = useState(false);
+  const { jobData, loading } = useJobDataContext(); // Access job data from the context
   const [query, setQuery] = useState("");
+  const [jobsPost, setJobsPost] = useState({ results: [] });
+  const [loadingPage, setLoadingPage] = useState(false);
 
   const { pathname } = useLocation();
-
   const currentUser = useCurrentUser();
 
   useEffect(() => {
     const fetchJobs = async () => {
       setQuery(searchQuery);
       try {
-        setLoading(true); // Set loading to true before fetching data
+        setLoadingPage(true);
         const apiUrl = `/jobs/?search=${query}`;
         const { data } = await axiosReq.get(apiUrl);
+        console.log("Fetched Jobs:", data.results);
         setJobsPost(data);
       } catch (err) {
         console.log(err);
       } finally {
-        setLoading(false); // Set loading to false after fetching data (whether success or error)
+        setLoadingPage(false);
       }
     };
 
@@ -45,8 +48,8 @@ function JobsHomePage({ filter = "", searchQuery }) {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false); // Set loading to false after 2.5 seconds
-    }, 2500); // 2500 milliseconds = 2.5 seconds
+      setLoadingPage(false);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -55,20 +58,29 @@ function JobsHomePage({ filter = "", searchQuery }) {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-4" lg={8}>
         <p>Popular profiles mobile</p>
-        {loading ? (
+        {loadingPage ? (
           <Container
             style={{ backgroundColor: "transparent", border: "none" }}
-            className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}>
+            className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}
+          >
             <div
-              className={`${spinnerStyle.spinnerContain} align-items-center`}>
+              className={`${spinnerStyle.spinnerContain} align-items-center`}
+            >
               <Spinner size="50px" />
             </div>
           </Container>
         ) : (
           <>
-            {jobsPost.results.length ? (
-              jobsPost.results.map((jobPost) => (
-                <JobsPost key={jobPost.id} {...jobPost} postJob/>
+            {jobData && jobsPost.results.length ? (
+              [...jobsPost.results].reverse().map((jobPost) => (
+                <JobsPost
+                  key={jobPost.job_listing_id}
+                  {...jobPost}
+                  postJob
+                  setJobsPost={setJobsPost}
+                  like_id={jobPost.like_id}
+                  jobData
+                />
               ))
             ) : (
               <Container className={appStyles.Content}>

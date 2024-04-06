@@ -30,16 +30,12 @@
 
 .ProfileImageContainer {
     width: 80px;
-
     height: 80px;
-
 }
 
 .ProfileImage {
     width: 100%;
-
     height: 100%;
-
     border-radius: 50%;
     /* Makes the image round */
 }
@@ -55,11 +51,8 @@
 
 .IconText {
     margin-top: 1px;
-
 }
 
-
-/* Class to show the navigation bar */
 .Show {
     transform: translateY(0);
     /* Move the navigation bar to its original position */
@@ -106,6 +99,10 @@
     .IconText {
         font-size: 8px;
         /* Adjust the font size for smaller screens */
+    }
+
+    .HideText {
+        display: none;
     }
 }
 

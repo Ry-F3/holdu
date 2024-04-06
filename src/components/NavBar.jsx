@@ -137,15 +137,27 @@ const NavBar = ({ handleSearch }) => {
             </Form>
           </div>
           {isLoading ? (
-            <Spinner />
+            <div className="d-none d-xl-flex">
+              <Spinner />
+            </div>
           ) : (
             <>
               {currentUser && profileData && profileData.is_signup_completed ? (
                 // If the user has completed signup, render icons based on profile type
                 profileData.profile_type === "employer" ? (
-                  <div className="d-none d-xl-flex">
-                    <LoggedInEmployerIcons />
-                  </div>
+                  <>
+                    <div className="d-none d-xl-flex">
+                      <LoggedInEmployerIcons />
+                    </div>
+                    <div>
+                      <Nav.Link onClick={handleSignOut}>
+                        <div className="d-flex align-items-center">
+                          <i className="fas fa-sign-out mr-2"></i>
+                          {/* <span>Sign out</span> */}
+                        </div>
+                      </Nav.Link>
+                    </div>
+                  </>
                 ) : (
                   <div className="d-none d-xl-flex">
                     <LoggedInEmployeeIcons />

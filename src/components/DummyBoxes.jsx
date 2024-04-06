@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "../styles/DummyBoxes.module.css"; 
-
+// Dummy post ad boxes 
 const DummyBoxes = ({ widths }) => {
   return (
     <li   className={styles.DummyBoxes}>

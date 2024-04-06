@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import {
-  useCurrentUser,
-  useSetCurrentUser,
-  useSetLoginCount,
-} from "../contexts/CurrentUserContext";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import styles from "../styles/NavBar.module.css";
-import stylesBottom from "../styles/BottomNav.module.css"
-import LoggedInEmployeeIcons from "./LoggedInEmployeeIcons";
-import axios from "axios";
+import stylesBottom from "../styles/BottomNav.module.css";
+
 import Spinner from "../components/Spinner";
-import { useHistory } from "react-router-dom";
+
 import { useProfileData } from "../contexts/ProfileContext";
 import LoggedInEmployerIconsBottom from "./LoggedInEmployerIconsBottom";
+import LoggedInEmployeeIconsBottom from "./LoggedInEmployeeIconsBottom";
+import LoggedOutIcons from "./LoggedOutIcons";
 
 const BottomNavBar = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +25,7 @@ const BottomNavBar = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollPos, visible]);
+  }, [prevScrollPos, visible, handleScroll]);
 
   const currentUser = useCurrentUser();
   const profileData = useProfileData();
@@ -46,24 +43,24 @@ const BottomNavBar = () => {
       fixed="bottom"
       className={`border-top d-lg-none ${styles.NavHeight} ${
         styles.BottomNavBar
-      } ${visible ? stylesBottom.Show : styles.Hide}`}
-    >
+      } ${visible ? stylesBottom.Show : styles.Hide}`}>
       <Container className="justify-content-center">
         <Nav>
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            <>
-              {currentUser && profileData && profileData.is_signup_completed ? (
-                profileData.profile_type === "employer" ? (
-                  <div className="text-center">
-                    <LoggedInEmployerIconsBottom />
-                  </div>
-                ) : (
-                  <LoggedInEmployeeIcons />
-                )
-              ) : null}
-            </>
+          {!isLoading &&
+            currentUser &&
+            profileData &&
+            profileData.is_signup_completed &&
+            (profileData.profile_type === "employer" ? (
+              <div className="text-center">
+                <LoggedInEmployerIconsBottom />
+              </div>
+            ) : (
+              <LoggedInEmployeeIconsBottom />
+            ))}
+          {!currentUser && (
+            <div className="align-items-center d-flex">
+              <LoggedOutIcons />
+            </div>
           )}
         </Nav>
       </Container>

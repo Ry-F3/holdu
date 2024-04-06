@@ -353,7 +353,7 @@ function JobsCreateForm({ searchQuery }) {
                       </ul>
                     </>
                   ) : (
-                    <Container className={appStyles.Content}>
+                    <Container >
                       <Asset
                         src={dataImage}
                         message="Opps your job listings are empty"
