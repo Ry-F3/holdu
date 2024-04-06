@@ -161,8 +161,8 @@ const NavBar = ({ handleSearch }) => {
                   </>
                 ) : (
                   <>
-                  <div >
-                    <LoggedInEmployeeIcons className="d-none d-xl-flex" />
+                  <div className="d-none d-xl-flex" >
+                    <LoggedInEmployeeIcons />
                   </div>
                   <div>
                     <Nav.Link className={navBottom.HideSignOut} onClick={handleSignOut}>

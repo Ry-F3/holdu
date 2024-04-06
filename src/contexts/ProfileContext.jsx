@@ -3,8 +3,8 @@ import axios from "axios";
 import { useCurrentUser } from "./CurrentUserContext";
 
 // Create a ProfileContext
-const ProfileContext = createContext();
-const SetProfileContext = createContext();
+const ProfileContext = createContext(null); // Set initial value to null
+const SetProfileContext = createContext(null);
 
 // Custom hook to consume the ProfileContext
 export const useProfileData = () => useContext(ProfileContext);
@@ -39,7 +39,6 @@ export const ProfileProvider = ({ children }) => {
   return (
     <ProfileContext.Provider value={profileData}>
       <SetProfileContext.Provider value={setProfileData}>
-        {" "}
         {children}
       </SetProfileContext.Provider>
     </ProfileContext.Provider>

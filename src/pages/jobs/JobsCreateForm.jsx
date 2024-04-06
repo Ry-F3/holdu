@@ -279,101 +279,102 @@ function JobsCreateForm({ searchQuery }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col md={12} lg={8} className="py-2 p-md-2">
-          <Container
-            style={{ backgroundColor: "transparent", border: "none" }}
-            className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}>
-            <Form.Group className="align-items-center`">
-              {loading ? (
-                <div className={`${spinnerStyle.spinnerContain}`}>
-                  <Spinner size="50px" />
-                </div>
-              ) : (
-                <Container className="">
-                  {recentAds.results &&
-                  recentAds.results.some(
-                    (ad) =>
-                      ad.employer_profile.owner_username ===
-                      currentUser.username
-                  ) ? (
-                    <>
-                      <div className="d-flex justify-content-between bg-white p-3 rounded border align-items-center mb-3">
-                        <div className="d-flex align-items-center">
-                          {/* Add user's image */}
-                          <img
-                            src={profileData.image}
-                            alt="User"
-                            className="mr-2"
-                            style={{
-                              width: "50px",
-                              height: "50px",
-                              borderRadius: "50%",
-                            }}
-                          />
-                          {/* Heading */}
-                          <h2 className="mb-0 mr-2 small">
-                            {profileData.name}'s recent listings:
-                          </h2>
-                        </div>
-                        {/* Conditionally render the "View More" button */}
-                        {recentAds.results.length > 4 && (
-                          <Button
-                            className="btn btn-primary"
-                            onClick={() => {}}>
-                            View More
-                          </Button>
-                        )}
-                      </div>
-                      <ul className={`list-unstyled p-2 `}>
-                        {recentAds.results
-                          .slice(0, 4)
-                          .filter(
-                            (ad) =>
-                              ad.employer_profile.owner_username ===
-                              currentUser.username
-                          )
-                          .map((ad, index) => (
-                            <JobAdListItem
-                              key={index}
-                              ad={ad}
-                              handleEdit={handleEdit}
-                              handleDelete={handleDelete}
-                            />
-                          ))}
-                        {/* Add dummy boxes for remaining listings */}
-                        {Array.from({
-                          length: Math.max(4 - recentAds.results.length, 0),
-                        }).map((_, index) => (
-                          <DummyBoxes
-                            key={`dummy-${index}`}
-                            widths={[200, 150, 100, 120, 130, 150, 180, 190]}
-                          />
-                        ))}
-                      </ul>
-                    </>
-                  ) : (
-                    <Container >
-                      <Asset
-                        src={dataImage}
-                        message="Opps your job listings are empty"
-                      />
-                    </Container>
+<Row>
+  {/* Column for "Post an Advert" section */}
+  <Col md={12} lg={4} className="order-md-2 p-0 p-md-2">
+    <Container className="mt-2">
+      <div className={`${appStyles.Content} ${formStyles.triangleGradient} d-flex flex-column justify-content-center`}>
+        <Container className="p-3">{textFields}</Container>
+      </div>
+    </Container>
+  </Col>
+  {/* Column for "Recent Listings" section */}
+  <Col md={12} lg={8} className="order-md-1 py-2 p-md-2">
+    <Container style={{ backgroundColor: "transparent", border: "none" }} className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}>
+      <Form.Group className="align-items-center`">
+        {/* Recent Listings section */}
+        {loading ? (
+          <div className={`${spinnerStyle.spinnerContain}`}>
+            <Spinner size="50px" />
+          </div>
+        ) : (
+          <Container className="">
+            {/* Recent Listings */}
+            {recentAds.results &&
+            recentAds.results.some(
+              (ad) =>
+                ad.employer_profile.owner_username ===
+                currentUser.username
+            ) ? (
+              <>
+                <div className="d-flex justify-content-between bg-white p-3 rounded border align-items-center mb-3">
+                  <div className="d-flex align-items-center">
+                    {/* Add user's image */}
+                    <img
+                      src={profileData.image}
+                      alt="User"
+                      className="mr-2"
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        borderRadius: "50%",
+                      }}
+                    />
+                    {/* Heading */}
+                    <h2 className="mb-0 mr-2 small">
+                      {profileData.name}'s recent listings:
+                    </h2>
+                  </div>
+                  {/* Conditionally render the "View More" button */}
+                  {recentAds.results.length > 4 && (
+                    <Button
+                      className="btn btn-primary"
+                      onClick={() => {}}>
+                      View More
+                    </Button>
                   )}
-                </Container>
-              )}
-            </Form.Group>
+                </div>
+                <ul className={`list-unstyled p-2 `}>
+                  {recentAds.results
+                    .slice(0, 4)
+                    .filter(
+                      (ad) =>
+                        ad.employer_profile.owner_username ===
+                        currentUser.username
+                    )
+                    .map((ad, index) => (
+                      <JobAdListItem
+                        key={index}
+                        ad={ad}
+                        handleEdit={handleEdit}
+                        handleDelete={handleDelete}
+                      />
+                    ))}
+                  {/* Add dummy boxes for remaining listings */}
+                  {Array.from({
+                    length: Math.max(4 - recentAds.results.length, 0),
+                  }).map((_, index) => (
+                    <DummyBoxes
+                      key={`dummy-${index}`}
+                      widths={[200, 150, 100, 120, 130, 150, 180, 190]}
+                    />
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <Container >
+                <Asset
+                  src={dataImage}
+                  message="Opps your job listings are empty"
+                />
+              </Container>
+            )}
           </Container>
-        </Col>
-        <Col md={12} lg={4} className="p-0 p-md-2">
-          <Container className="mt-2">
-            <div
-              className={`${appStyles.Content} ${formStyles.triangleGradient} d-flex flex-column justify-content-center`}>
-              <Container className="p-3">{textFields}</Container>
-            </div>
-          </Container>
-        </Col>
-      </Row>
+        )}
+      </Form.Group>
+    </Container>
+  </Col>
+</Row>
     </Form>
   );
 }

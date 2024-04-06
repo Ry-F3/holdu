@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useJobDataContext } from "../../contexts/JobDataContext"; // Import the job data context
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -19,7 +18,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Spinner from "../../components/Spinner";
 
 function JobsHomePage({ filter = "", searchQuery }) {
-  const { jobData, loading } = useJobDataContext(); // Access job data from the context
+ 
   const [query, setQuery] = useState("");
   const [jobsPost, setJobsPost] = useState({ results: [] });
   const [loadingPage, setLoadingPage] = useState(false);
@@ -61,27 +60,27 @@ function JobsHomePage({ filter = "", searchQuery }) {
         {loadingPage ? (
           <Container
             style={{ backgroundColor: "transparent", border: "none" }}
-            className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}
-          >
+            className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}>
             <div
-              className={`${spinnerStyle.spinnerContain} align-items-center`}
-            >
+              className={`${spinnerStyle.spinnerContain} align-items-center`}>
               <Spinner size="50px" />
             </div>
           </Container>
         ) : (
           <>
-            {jobData && jobsPost.results.length ? (
-              [...jobsPost.results].reverse().map((jobPost) => (
-                <JobsPost
-                  key={jobPost.job_listing_id}
-                  {...jobPost}
-                  postJob
-                  setJobsPost={setJobsPost}
-                  like_id={jobPost.like_id}
-                  jobData
-                />
-              ))
+            {jobsPost.results.length ? (
+              [...jobsPost.results]
+                .reverse()
+                .map((jobPost) => (
+                  <JobsPost
+                    key={jobPost.job_listing_id}
+                    {...jobPost}
+                    postJob
+                    setJobsPost={setJobsPost}
+                    like_id={jobPost.like_id}
+                    
+                  />
+                ))
             ) : (
               <Container className={appStyles.Content}>
                 <Asset src={dataImage} message="No results found." />
