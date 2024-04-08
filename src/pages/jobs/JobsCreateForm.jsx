@@ -20,7 +20,7 @@ import Spinner from "../../components/Spinner";
 import JobAdListItem from "../../components/JobAdListItem";
 import DummyBoxes from "../../components/DummyBoxes";
 import { useLocation } from "react-router-dom";
-import Dropdown from 'react-bootstrap/Dropdown';
+import Dropdown from "react-bootstrap/Dropdown";
 
 function JobsCreateForm({ searchQuery }) {
   const [setErrors] = useState({});
@@ -300,8 +300,6 @@ function JobsCreateForm({ searchQuery }) {
     </div>
   );
 
-
-
   const handlePostAdClick = () => {
     setShowPostAdForm(true); // Show the post ad form when the "Post Ad" button is clicked
   };
@@ -350,29 +348,29 @@ function JobsCreateForm({ searchQuery }) {
                           {/* Heading */}
                           <h2 className="mb-0 mr-2 ">
                             {profileData.name}'s activity:
+                            {" "}
+                          <i className="text-muted fas fa-arrows-alt-v ml-3"></i>
                           </h2>
                         </div>
                         {/* Dropdown for "Post" job ad */}
-                        <Dropdown
-                          className="d-lg-none"
-                          >
-                          <Dropdown.Toggle caret="true">
-                            <i className="fa-regular fa-paper-plane"></i>
+                        <>
+                         
+                        </>
+
+                        <Dropdown className="d-lg-none">
+                          <Dropdown.Toggle className={formStyles.ClearDrop}>
+                            <i className="fas fa-ellipsis-v"></i>
                           </Dropdown.Toggle>
-                          <Dropdown.Menu >
+                          <Dropdown.Menu>
                             <Dropdown.Item
                               className="p-2 mb-1"
                               onClick={handlePostAdClick}>
-                              <i className="fa-solid fa-plus"></i> Create job
-                              listing
+                              Create job listing
                             </Dropdown.Item>
                             <Dropdown.Item
                               className="p-2 mt-1 border-top"
                               onClick={handleCloseAdClick}>
-                              <span>
-                                <i className="fa-solid fa-minus mt-2"></i> Close
-                                job listing
-                              </span>
+                              <span>Close job listing</span>
                             </Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>

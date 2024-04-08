@@ -36,6 +36,57 @@ h2 {
     min-height: 60vh;
 }
 
+.ClearDropSort {
+    position: relative;
+    font-size: 15px;
+    font-weight: 800;
+    background-color: none !important;
+    border: none !important;
+
+
+}
+
+.ClearDropSort::after {
+    content: '';
+    /* Ensures the ::after pseudo-element is visible */
+    position: absolute !important;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) !important;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    /* Adjust the size of the caret */
+    border-color: transparent transparent transparent transparent;
+    pointer-events: none;
+}
+
+.ClearDrop {
+    position: relative;
+    font-size: 15px;
+    font-weight: 800;
+    background-color: #fc7fb6 !important;
+
+    color: #ffff !important;
+}
+
+.ClearDrop::after {
+    content: '';
+    /* Ensures the ::after pseudo-element is visible */
+    position: absolute !important;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) !important;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    /* Adjust the size of the caret */
+    border-color: transparent transparent transparent transparent;
+    pointer-events: none;
+}
+
 @media (max-width: 576px) {
     .jobCard {
         margin-bottom: 10px;
