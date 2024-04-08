@@ -7,6 +7,19 @@
     padding-left: 16px;
 }
 
+.ListingClosed {
+    background-color: #ff0000;
+    /* Example color */
+    color: #ffffff;
+    /* Text color */
+    padding: 5px 10px;
+    /* Padding around the text */
+    border-radius: 5px;
+    /* Rounded corners */
+    font-weight: bold;
+    /* Bold text */
+}
+
 @media (max-width: 450px) {
 
     .ClosingBox {

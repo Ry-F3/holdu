@@ -18,6 +18,16 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
     console.log("Owner Username:", applicant.owner_username);
   });
 
+  // Check if the closing date has passed
+  const currentDate = new Date();
+  const closingDate = new Date(ad.closing_date);
+  const isClosingDatePassed = currentDate > closingDate;
+
+  // Automatically close the listing if the closing date has passed
+  if (isClosingDatePassed) {
+    ad.is_listing_closed = true;
+  }
+
   console.log("ad", ad);
 
   return (
@@ -26,8 +36,17 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
         className={`${appStyles.jobCardBody} border-bottom align-items-center`}>
         <div className="d-flex justify-content-between align-items-center w-100">
           <span className={`${appStyles.jobEnd} mr-auto small`}>
-            Closing Date: {ad.closing_date}
+            {ad.is_listing_closed ? (
+              <span className={styles.ListingClosed}>
+                Listing Closed: {ad.closing_date}
+              </span>
+            ) : (
+              <span className={styles.jobEnd}>
+                Closing date: {ad.closing_date}
+              </span>
+            )}
           </span>
+
           <div className={`${appStyles.myPointer}`}>
             <Button
               className={`${appStyles.Button} mb-0 d-flex align-items-center justify-content-center`}
@@ -37,25 +56,37 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
           </div>
         </div>
       </Card.Body>
+
       <Card.Body>
         <div className="d-flex justify-content-between align-items-center">
           <div>
-            <Link className="text-dark" to={`post/${ad.job_listing_id}`}>
-              <h3 className={`mb-2 ${styles.jobTitle}`}>{ad.title} </h3>
+            <Link className="text-dark" to={`${ad.job_listing_id}`}>
+              <div className="d-flex align-items-center">
+                <h3 className={`mb-2 ${styles.jobTitle}`}>{ad.title}</h3>
+              </div>
             </Link>
-
             <div className="d-flex align-items-center">
               <p className={`${styles.jobLocation} mb-0 mr-3 small`}>
                 {ad.location}{" "}
                 <i className="fas fa-map-marker-alt text-muted"></i>
               </p>
-
               <p className={` ${styles.jobSalary} mb-0 small mr-2`}>
                 £{ad.salary}/hr
               </p>
               <p className={` ${styles.jobCreated} mb-0 small mr-2`}>
                 {ad.created_at}
               </p>
+              {ad.is_listing_closed ? (
+                <span className={`${styles.ActiveCross} mb-0 small ml-0 mr-2 `}>
+                  <p className="d-none d-sm-inline">Closed</p>{" "}
+                  <i className="fas fa-times-circle"></i>
+                </span>
+              ) : (
+                <span className={`${styles.ActiveTick} mb-0 small ml-0 mr-2 `}>
+                  <p className="d-none d-sm-inline">Active</p>{" "}
+                  <i className="fas fa-check-circle"></i>
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -68,13 +99,6 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
       </Card.Body>
       <Card.Body className="border-top">
         <div className={`d-flex align-items-center`}>
-          {/* <div className={`${styles.jobEndBox}`}>
-            <p
-              className={`${styles.jobEnd} mb-0 mt-0 small`}
-            >
-              Closing Date: {ad.closing_date}
-            </p>
-            </div> */}
           <p
             className={`${appStyles.myPointer} mb-0 mr-5 ml-3`}
             onClick={() => handleEdit(ad.job_listing_id)}>
@@ -87,7 +111,8 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
           </span>
           {ad.applicants.length > 0 && (
             <span onClick={toggleApplicants} className={styles.ArrowDown}>
-                <i className={`ml-2 small text-muted fas fa-level-${arrowDirection}-alt`}></i>
+              <i
+                className={`ml-2 small text-muted fas fa-level-${arrowDirection}-alt`}></i>
             </span>
           )}
           {console.log("Applicants:", ad.applicants)}
@@ -123,12 +148,12 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
                       <span>No Ratings</span>
                     )}
                   </div>
-                  {!ad.is_listing_closed && (
+                  {ad.is_listing_closed && (
                     <div className="d-flex justify-content-center mt-3">
-                      <Button variant="success" className="mr-3">
+                      <Button className="mr-3">
                         <i className="fas fa-check"></i>
                       </Button>
-                      <Button variant="danger">
+                      <Button>
                         <i className="fas fa-times"></i>
                       </Button>
                     </div>
