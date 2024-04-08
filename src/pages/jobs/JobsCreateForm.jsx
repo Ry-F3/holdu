@@ -20,10 +20,15 @@ import Spinner from "../../components/Spinner";
 import JobAdListItem from "../../components/JobAdListItem";
 import DummyBoxes from "../../components/DummyBoxes";
 import { useLocation } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
+import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
+import DropdownItem from "react-bootstrap/esm/DropdownItem";
+import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 
 function JobsCreateForm({ searchQuery }) {
   const [setErrors] = useState({});
   const [loading, setLoading] = useState(true);
+  const [showPostAdForm, setShowPostAdForm] = useState(false);
 
   const [editMode, setEditMode] = useState(false); // State to track edit mode
   const [editListingId, setEditListingId] = useState(null); // State to store the ID of the listing being edited
@@ -87,6 +92,11 @@ function JobsCreateForm({ searchQuery }) {
             )
           );
           setRecentAds(data);
+
+          // Close the job ad post if in mobile view and user is searching
+          if (window.innerWidth <= 993 && searchQuery) {
+            setShowPostAdForm(false);
+          }
         }
       } catch (error) {
         console.error("Error fetching job ads:", error);
@@ -102,7 +112,7 @@ function JobsCreateForm({ searchQuery }) {
     return () => {
       isMounted = false;
     };
-  }, [pathname, searchQuery, currentUser]);
+  }, [pathname, searchQuery, currentUser, setShowPostAdForm]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -130,6 +140,13 @@ function JobsCreateForm({ searchQuery }) {
         salary: listingToEdit.salary,
         closing_date: listingToEdit.closing_date,
       });
+
+      // Check if the device is a mobile
+      if (window.innerWidth <= 993) {
+        setShowPostAdForm(true);
+        // Scroll to the form section
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     }
   };
 
@@ -171,7 +188,7 @@ function JobsCreateForm({ searchQuery }) {
     try {
       // Send a request to delete the job listing from the database
       await axiosReq.delete(`/jobs/post/${jobListingId}/`);
-  
+
       // Remove the job listing from the UI only if the deletion was successful
       setCurrentUserAds((prevAds) =>
         prevAds.filter((ad) => ad.job_listing_id !== jobListingId)
@@ -212,11 +229,9 @@ function JobsCreateForm({ searchQuery }) {
     }
   };
 
- 
-
   const textFields = (
     <div>
-      <h1 className="text-center mt-2 p-2 mb-5">
+      <h1 className="text-center mt-2 p-2 mb-5 text-muted">
         {editMode ? "Edit" : "Post"} <i className="far fa-address-card"></i>{" "}
         <br /> Job Advert{" "}
       </h1>
@@ -288,6 +303,30 @@ function JobsCreateForm({ searchQuery }) {
     </div>
   );
 
+  const [dropdownOpen, setDropdownOpen] = React.useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handlePostAdClick = () => {
+    setShowPostAdForm(true); // Show the post ad form when the "Post Ad" button is clicked
+  };
+
+  const handleCloseAdClick = async () => {
+    try {
+  
+      // Hide the "Close a job listing" option after it's clicked
+      setShowPostAdForm(false);
+
+
+      console.log("Job listing closed successfully!");
+    } catch (error) {
+      console.error("Error closing job listing:", error);
+      // Handle errors appropriately, such as displaying an error message to the user
+    }
+  };
+
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
@@ -318,19 +357,52 @@ function JobsCreateForm({ searchQuery }) {
                             }}
                           />
                           {/* Heading */}
-                          <h2 className="mb-0 mr-2 small">
-                            {profileData.name}'s recent listings:
+                          <h2 className="mb-0 mr-2 ">
+                            {profileData.name}'s activity:
                           </h2>
                         </div>
-                        {/* Conditionally render the "View More" button */}
-                        {recentAds.results.length > 4 && (
-                          <Button
-                            className="btn btn-primary"
-                            onClick={() => {}}>
-                            View More
-                          </Button>
-                        )}
+                        {/* Dropdown for "Post" job ad */}
+                        <Dropdown
+                          className="d-lg-none"
+                          isOpen={dropdownOpen}
+                          toggle={toggleDropdown}>
+                          <DropdownToggle caret color="primary">
+                            <i className="fa-regular fa-paper-plane"></i>
+                          </DropdownToggle>
+                          <DropdownMenu right>
+                            <DropdownItem onClick={handlePostAdClick}>
+                              Create a job listing
+                            </DropdownItem>
+                            <DropdownItem onClick={handleCloseAdClick}>
+                              Close a job listing
+                            </DropdownItem>
+                          </DropdownMenu>
+                        </Dropdown>
                       </div>
+                      {/* Show post job ad div  */}
+                      {showPostAdForm && (
+                        <>
+                          <div
+                            style={{ maxWidth: "380px", margin: "0 auto" }}
+                            className={`${appStyles.Content} ${formStyles.triangleGradient} mb-2 d-lg-none d-flex flex-column justify-content-center`}>
+                            <Container className="p-4">{textFields}</Container>
+                          </div>
+                          <div className="text-center mb-3 d-lg-none">
+                            <hr
+                              className="w-25 mx-auto border-top border-muted"
+                              style={{ opacity: "0.5" }}
+                            />
+                            <span className="mx-2 text-muted">
+                              Your recent ads
+                            </span>
+                            <hr
+                              className="w-25 mx-auto border-top border-muted"
+                              style={{ opacity: "0.5" }}
+                            />
+                          </div>
+                        </>
+                      )}
+
                       <ul className={`list-unstyled p-2 `}>
                         {currentUserAds.slice(0, 4).map((ad, index) => (
                           <JobAdListItem
@@ -341,7 +413,10 @@ function JobsCreateForm({ searchQuery }) {
                           />
                         ))}
                         {/* Add a console.log statement here */}
-                        {console.log("Filtered currentUserAds ads:", currentUserAds)}
+                        {console.log(
+                          "Filtered currentUserAds ads:",
+                          currentUserAds
+                        )}
                         {/* Add dummy boxes for remaining listings */}
                         {Array.from({
                           length: Math.max(4 - currentUserAds.length, 0),
@@ -366,8 +441,10 @@ function JobsCreateForm({ searchQuery }) {
             </Form.Group>
           </Container>
         </Col>
-        <Col md={12} lg={4} className="p-0 p-md-2">
+        <Col md={12} lg={4} className="p-0 p-md-2 d-none d-lg-flex">
           <Container className="mt-2">
+            {/* Render the post ad form only if showPostAdForm is true */}
+
             <div
               className={`${appStyles.Content} ${formStyles.triangleGradient} d-flex flex-column justify-content-center`}>
               <Container className="p-3">{textFields}</Container>
