@@ -315,10 +315,8 @@ function JobsCreateForm({ searchQuery }) {
 
   const handleCloseAdClick = async () => {
     try {
-  
       // Hide the "Close a job listing" option after it's clicked
       setShowPostAdForm(false);
-
 
       console.log("Job listing closed successfully!");
     } catch (error) {
@@ -370,11 +368,19 @@ function JobsCreateForm({ searchQuery }) {
                             <i className="fa-regular fa-paper-plane"></i>
                           </DropdownToggle>
                           <DropdownMenu right>
-                            <DropdownItem onClick={handlePostAdClick}>
-                              Create a job listing
+                            <DropdownItem
+                              className="p-2 mb-1"
+                              onClick={handlePostAdClick}>
+                              <i className="fa-solid fa-plus"></i> Create job
+                              listing
                             </DropdownItem>
-                            <DropdownItem onClick={handleCloseAdClick}>
-                              Close a job listing
+                            <DropdownItem
+                              className="p-2 mt-1 border-top"
+                              onClick={handleCloseAdClick}>
+                              <span>
+                                <i className="fa-solid fa-minus mt-2"></i> Close
+                                job listing
+                              </span>
                             </DropdownItem>
                           </DropdownMenu>
                         </Dropdown>
@@ -443,8 +449,6 @@ function JobsCreateForm({ searchQuery }) {
         </Col>
         <Col md={12} lg={4} className="p-0 p-md-2 d-none d-lg-flex">
           <Container className="mt-2">
-            {/* Render the post ad form only if showPostAdForm is true */}
-
             <div
               className={`${appStyles.Content} ${formStyles.triangleGradient} d-flex flex-column justify-content-center`}>
               <Container className="p-3">{textFields}</Container>
