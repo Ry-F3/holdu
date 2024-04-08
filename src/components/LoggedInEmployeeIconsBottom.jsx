@@ -2,11 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import navStyles from "../styles/NavBar.module.css";
 import styles from "../styles/BottomNav.module.css";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const LoggedInEmployeeIconsBottom = () => {
-  const location = useLocation();
-
   return (
     <div className={`container-fluid ${styles.BottomNavBar}`}>
       <div className="row">
