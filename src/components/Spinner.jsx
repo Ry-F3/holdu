@@ -7,7 +7,7 @@ const Spinner = ({ size }) => {
     height: size,
   };
 
-  return <div className={`${navStyles.spinner} text-center mr-5`} style={spinnerStyle}></div>;
+  return <div className={`${navStyles.spinner} text-center mr-0`} style={spinnerStyle}></div>;
 };
 
 export default Spinner;

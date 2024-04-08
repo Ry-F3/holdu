@@ -20,10 +20,7 @@ import Spinner from "../../components/Spinner";
 import JobAdListItem from "../../components/JobAdListItem";
 import DummyBoxes from "../../components/DummyBoxes";
 import { useLocation } from "react-router-dom";
-import { Dropdown } from "react-bootstrap";
-import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
-import DropdownItem from "react-bootstrap/esm/DropdownItem";
-import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
+import Dropdown from 'react-bootstrap/Dropdown';
 
 function JobsCreateForm({ searchQuery }) {
   const [setErrors] = useState({});
@@ -303,11 +300,7 @@ function JobsCreateForm({ searchQuery }) {
     </div>
   );
 
-  const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
 
   const handlePostAdClick = () => {
     setShowPostAdForm(true); // Show the post ad form when the "Post Ad" button is clicked
@@ -334,9 +327,9 @@ function JobsCreateForm({ searchQuery }) {
             className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}>
             <Form.Group className="align-items-center`">
               {loading ? (
-                <div className={`${spinnerStyle.spinnerContain}`}>
+                <Container className={`${spinnerStyle.spinnerContain} bg-red`}>
                   <Spinner size="50px" />
-                </div>
+                </Container>
               ) : (
                 <Container className={formStyles.Container}>
                   {currentUserAds.length > 0 ? (
@@ -362,27 +355,26 @@ function JobsCreateForm({ searchQuery }) {
                         {/* Dropdown for "Post" job ad */}
                         <Dropdown
                           className="d-lg-none"
-                          isOpen={dropdownOpen}
-                          toggle={toggleDropdown}>
-                          <DropdownToggle caret color="primary">
+                          >
+                          <Dropdown.Toggle caret="true">
                             <i className="fa-regular fa-paper-plane"></i>
-                          </DropdownToggle>
-                          <DropdownMenu right>
-                            <DropdownItem
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu >
+                            <Dropdown.Item
                               className="p-2 mb-1"
                               onClick={handlePostAdClick}>
                               <i className="fa-solid fa-plus"></i> Create job
                               listing
-                            </DropdownItem>
-                            <DropdownItem
+                            </Dropdown.Item>
+                            <Dropdown.Item
                               className="p-2 mt-1 border-top"
                               onClick={handleCloseAdClick}>
                               <span>
                                 <i className="fa-solid fa-minus mt-2"></i> Close
                                 job listing
                               </span>
-                            </DropdownItem>
-                          </DropdownMenu>
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
                         </Dropdown>
                       </div>
                       {/* Show post job ad div  */}
