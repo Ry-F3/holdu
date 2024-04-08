@@ -352,7 +352,7 @@ function JobsCreateForm({ searchQuery }) {
                           </h2>
                         </div>
                         {/* Toggle button */}
-                        <div onClick={() => setShowDropdown(!showDropdown)}>
+                        <div className="d-lg-none mr-2" onClick={() => setShowDropdown(!showDropdown)}>
                           {showDropdown ? (
                             <i className="text-muted fas fa-toggle-on mr-2"></i>
                           ) : (
