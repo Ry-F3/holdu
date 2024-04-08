@@ -15,19 +15,28 @@ const LoggedInEmployeeIcons = () => {
           <span className={navStyles.NavText}>Home</span>
         </div>
       </NavLink>
-      <NavLink to="/connect" activeClassName={navStyles.Active}  className={`${navStyles.Pointer} mr-3 text-muted`}>
+      <NavLink
+        to="/connect"
+        activeClassName={navStyles.Active}
+        className={`${navStyles.Pointer} mr-3 text-muted`}>
         <div className="d-flex flex-column align-items-center">
           <i className="fa-solid fa-user-group mt-2"></i>
           <span className={navStyles.NavText}>Connect</span>
         </div>
       </NavLink>
-      <NavLink to="/" activeClassName={navStyles.Active}  className={`${navStyles.Pointer} mr-3 text-muted`}>
+      <NavLink
+        to="/likes"
+        activeClassName={navStyles.Active}
+        className={`${navStyles.Pointer} mr-3 text-muted`}>
         <div className="d-flex flex-column align-items-center">
           <i className="fa-solid fa-heart mt-2"></i>
           <span className={navStyles.NavText}>Likes</span>
         </div>
       </NavLink>
-      <NavLink to="/chats" activeClassName={navStyles.Active}  className={`${navStyles.Pointer} mr-3 text-muted`}>
+      <NavLink
+        to="/chats"
+        activeClassName={navStyles.Active}
+        className={`${navStyles.Pointer} mr-3 text-muted`}>
         <div className="d-flex flex-column align-items-center">
           <i className="fa-solid fa-message mt-2"></i>
           <span className={navStyles.NavText}>Chats</span>
@@ -36,7 +45,7 @@ const LoggedInEmployeeIcons = () => {
 
       <NavLink
         to="/notifications"
-        activeClassName={navStyles.Active} 
+        activeClassName={navStyles.Active}
         className={`${navStyles.Pointer} mr-3 text-muted`}>
         <div className="d-flex flex-column align-items-center">
           <i className="fa-solid fa-bell mt-2"></i>

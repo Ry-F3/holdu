@@ -46,21 +46,27 @@ const BottomNavBar = () => {
       } ${visible ? stylesBottom.Show : styles.Hide}`}>
       <Container className="justify-content-center">
         <Nav>
-          {!isLoading &&
-            currentUser &&
-            profileData &&
-            profileData.is_signup_completed &&
-            (profileData.profile_type === "employer" ? (
-              <div className="text-center">
-                <LoggedInEmployerIconsBottom />
-              </div>
-            ) : (
-              <LoggedInEmployeeIconsBottom />
-            ))}
-          {!currentUser && (
-            <div className="align-items-center d-flex">
-              <LoggedOutIcons />
-            </div>
+          {isLoading ? (
+            <Spinner size="sm" />
+          ) : (
+            <>
+              {!currentUser && (
+                <div className="align-items-center d-flex">
+                  <LoggedOutIcons />
+                </div>
+              )}
+              {currentUser &&
+                profileData &&
+                profileData.is_signup_completed && (
+                  <div className="text-center">
+                    {profileData.profile_type === "employer" ? (
+                      <LoggedInEmployerIconsBottom />
+                    ) : (
+                      <LoggedInEmployeeIconsBottom />
+                    )}
+                  </div>
+                )}
+            </>
           )}
         </Nav>
       </Container>
