@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "../styles/JobPostHomeItem.module.css"
 
 const JobPostHomeItem = ({
   title,
@@ -44,15 +45,8 @@ const JobPostHomeItem = ({
         <p className="mb-1 mb-2 small">Job Description: {description}</p>
         <div className="d-flex align-items-center">
           <p
-            className="mb-0 mt-1 small"
-            style={{
-              width: "200px",
-              height: "28px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "5px",
-              padding: "4px",
-              paddingLeft: "16px",
-            }}>
+            className={`${styles.ClosingBox} mb-0 mt-1 small`}
+           >
             Closing Date: {closing_date}
           </p>
           {/* <p

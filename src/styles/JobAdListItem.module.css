@@ -18,8 +18,16 @@
     margin-top: 4px;
     position: relative;
     cursor: pointer;
+
+}
+
+.ArrowUp {
+    margin-top: 4px;
+    position: relative;
+    cursor: pointer;
     bottom: -3px;
 }
+
 
 
 @media (max-width: 500px) {

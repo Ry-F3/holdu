@@ -7,9 +7,11 @@ import styles from "../styles/JobAdListItem.module.css";
 
 const JobListItem = ({ ad, handleEdit, handleDelete }) => {
   const [showApplicants, setShowApplicants] = useState(false);
+  const [arrowDirection, setArrowDirection] = useState("down");
 
   const toggleApplicants = () => {
     setShowApplicants(!showApplicants);
+    setArrowDirection(arrowDirection === "down" ? "up" : "down");
   };
 
   ad.applicants.forEach((applicant) => {
@@ -85,7 +87,7 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
           </span>
           {ad.applicants.length > 0 && (
             <span onClick={toggleApplicants} className={styles.ArrowDown}>
-              <i className="ml-2 small text-muted fas fa-level-down-alt"></i>
+                <i className={`ml-2 small text-muted fas fa-level-${arrowDirection}-alt`}></i>
             </span>
           )}
           {console.log("Applicants:", ad.applicants)}
@@ -108,7 +110,7 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
                     style={{ width: "100px", height: "100px" }}
                   />
                   <p className="mb-1">{applicant.owner_username}</p>
-                 
+
                   <div className="d-flex align-items-center">
                     {applicant.average_rating ? (
                       <>
@@ -142,7 +144,6 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
                       className="mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center"
                       style={{ minWidth: "150px" }}>
                       <i className="fas fa-ban text-muted"></i>
-                    
                     </div>
                   )
                 )}
