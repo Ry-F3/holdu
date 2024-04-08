@@ -1,8 +1,10 @@
-.Active div span {
-    color: black;
-    text-decoration: underline black;
+.Active {
+    color: #fc7fb6 !important;
+    text-decoration: solid 1px white !important;
 
+    /* Change the color to your desired active color */
 }
+
 
 .customButton {
     border-color: #fc7fb6 !important;

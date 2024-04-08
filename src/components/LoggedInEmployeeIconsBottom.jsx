@@ -9,7 +9,7 @@ const LoggedInEmployeeIconsBottom = () => {
       <div className="row">
         <div className={`col text-center ${styles.NavLinkContainer}`}>
           {/* Home */}
-          <NavLink to="/" className={`${navStyles.Pointer} text-muted`}>
+          <NavLink to="/" activeClassName={styles.Active} exact className={`${navStyles.Pointer} text-muted`}>
             <div className="d-flex flex-column">
               <i className="fa-solid fa-house mt-2"></i>
               <span className={`${navStyles.NavText} ${styles.IconText}`}>Home</span>
@@ -18,7 +18,7 @@ const LoggedInEmployeeIconsBottom = () => {
         </div>
         <div className={`col text-center ${styles.NavLinkContainer}`}>
           {/* Connect */}
-          <NavLink to="/connect" className={`${navStyles.Pointer} text-muted`}>
+          <NavLink to="/connect" activeClassName={styles.Active} className={`${navStyles.Pointer} text-muted`}>
             <div className="d-flex flex-column">
               <i className="fa-solid fa-user-group mt-2"></i>
               <span className={`${navStyles.NavText} ${styles.IconText}`}>Connect</span>
@@ -27,7 +27,7 @@ const LoggedInEmployeeIconsBottom = () => {
         </div>
         <div className={`col text-center ${styles.NavLinkContainer}`}>
           {/* Jobs */}
-          <NavLink to="/" className={`${navStyles.Pointer} text-muted`}>
+          <NavLink to="/"  activeClassName={styles.Active} className={`${navStyles.Pointer} text-muted`}>
             <div className="d-flex flex-column">
               <i className="fa-solid fa-heart mt-2"></i>
               <span className={`${navStyles.NavText} ${styles.IconText}`}>Likes</span>
@@ -36,7 +36,7 @@ const LoggedInEmployeeIconsBottom = () => {
         </div>
         <div className={`col text-center ${styles.NavLinkContainer}`}>
           {/* Chats */}
-          <NavLink to="/chats" className={`${navStyles.Pointer} text-muted`}>
+          <NavLink to="/chats" activeClassName={styles.Active} className={`${navStyles.Pointer} text-muted`}>
             <div className="d-flex flex-column">
               <i className="fa-solid fa-message mt-2"></i>
               <span className={`${navStyles.NavText} ${styles.IconText}`}>Chats</span>
@@ -45,7 +45,7 @@ const LoggedInEmployeeIconsBottom = () => {
         </div>
         <div className={`col text-center ${styles.NavLinkContainer}`}>
           {/* Notifications */}
-          <NavLink to="/notifications" className={`${navStyles.Pointer} text-muted`}>
+          <NavLink to="/notifications" activeClassName={styles.Active} className={`${navStyles.Pointer} text-muted`}>
             <div className="d-flex flex-column">
               <i className="fa-solid fa-bell mt-2"></i>
               <span className={`${navStyles.NavText} ${styles.IconText}`}>Notifications</span>
