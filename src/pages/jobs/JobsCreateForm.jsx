@@ -26,6 +26,7 @@ function JobsCreateForm({ searchQuery }) {
   const [setErrors] = useState({});
   const [loading, setLoading] = useState(true);
   const [showPostAdForm, setShowPostAdForm] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const [editMode, setEditMode] = useState(false); // State to track edit mode
   const [editListingId, setEditListingId] = useState(null); // State to store the ID of the listing being edited
@@ -348,32 +349,41 @@ function JobsCreateForm({ searchQuery }) {
                           {/* Heading */}
                           <h2 className="mb-0 mr-2 ">
                             {profileData.name}'s activity:
-                            {" "}
-                          <i className="text-muted fas fa-arrows-alt-v ml-3"></i>
                           </h2>
                         </div>
-                        {/* Dropdown for "Post" job ad */}
-                        <>
-                         
-                        </>
+                        {/* Toggle button */}
+                        <div onClick={() => setShowDropdown(!showDropdown)}>
+                          {showDropdown ? (
+                            <i className="text-muted fas fa-toggle-on mr-2"></i>
+                          ) : (
+                            <i className="text-muted fas fa-toggle-off mr-2"></i>
+                          )}
+                        </div>
 
-                        <Dropdown className="d-lg-none">
-                          <Dropdown.Toggle className={formStyles.ClearDrop}>
-                            <i className="fas fa-ellipsis-v"></i>
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu>
-                            <Dropdown.Item
-                              className="p-2 mb-1"
-                              onClick={handlePostAdClick}>
-                              Create job listing
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              className="p-2 mt-1 border-top"
-                              onClick={handleCloseAdClick}>
-                              <span>Close job listing</span>
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>
+                        {/* Dropdown or arrows */}
+                        {showDropdown ? (
+                          <Dropdown className="d-lg-none ml-2">
+                            <Dropdown.Toggle className={formStyles.ClearDrop}>
+                              <i className="fas fa-ellipsis-v"></i>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                              <Dropdown.Item
+                                className="p-2 mb-1"
+                                onClick={handlePostAdClick}>
+                                Create job listing
+                              </Dropdown.Item>
+                              <Dropdown.Item
+                                className="p-2 mt-1 border-top"
+                                onClick={handleCloseAdClick}>
+                                <span>Close job listing</span>
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
+                        ) : (
+                          <Button>
+                            <i className=" fas fa-arrows-alt-v"></i>
+                          </Button>
+                        )}
                       </div>
                       {/* Show post job ad div  */}
                       {showPostAdForm && (
