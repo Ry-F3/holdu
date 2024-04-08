@@ -262,7 +262,7 @@ function JobsCreateForm({ searchQuery }) {
         <Form.Control
           type="number"
           value={editMode ? salary : newSalary}
-          placeholder="Salary"
+          placeholder="Hourly wage"
           onChange={handleChange}
           name="salary"
         />

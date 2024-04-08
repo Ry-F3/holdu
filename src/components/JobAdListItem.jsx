@@ -68,7 +68,7 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
             <i className="fa-regular fa-pen-to-square"></i>
           </p>
 
-          <span className="mr-1">Aplicants:</span>
+          <span className="mr-1">Applicants:</span>
           <span className="badge bg-secondary text-white">
             {ad.applicants ? ad.applicants.length : 0}
           </span>

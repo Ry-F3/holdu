@@ -6,8 +6,8 @@ const JobPostHomeItem = ({
   location,
   salary,
   closing_date,
+  applicants,
   created_at,
- 
 }) => {
   return (
     <li className="py-3 mb-3 rounded p-3 position-relative">
@@ -17,8 +17,7 @@ const JobPostHomeItem = ({
 
           <div className="d-flex align-items-center">
             <p className="mb-0 mr-3 small">
-              {location}{" "}
-              <i className="fas fa-map-marker-alt text-muted"></i>
+              {location} <i className="fas fa-map-marker-alt text-muted"></i>
             </p>
 
             <p className="mb-0 small mr-2">£{salary}/hr</p>
@@ -53,8 +52,7 @@ const JobPostHomeItem = ({
               borderRadius: "5px",
               padding: "4px",
               paddingLeft: "16px",
-            }}
-          >
+            }}>
             Closing Date: {closing_date}
           </p>
           {/* <p
@@ -64,8 +62,10 @@ const JobPostHomeItem = ({
             <i className="far fa-edit"></i>
           </p> */}
 
-          <span className="mr-1 ml-3">Aplicants:</span>
-          <span className="badge bg-secondary text-white">0</span>
+          <span className="mr-1 ml-3">Applicants:</span>
+          <span className="badge bg-secondary text-white">
+            {applicants ? applicants.length : 0}
+          </span>
         </div>
       </div>
     </li>

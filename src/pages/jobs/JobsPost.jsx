@@ -20,6 +20,7 @@ const JobsPost = ({
   created_at,
   employer_profile,
   likes_count,
+  applicants,
   is_applied,
   like_id,
   setJobsPost,
@@ -171,6 +172,7 @@ const JobsPost = ({
             location={location}
             salary={salary}
             closing_date={closing_date}
+            applicants={applicants}
           />
         </ul>
       </Card.Body>
