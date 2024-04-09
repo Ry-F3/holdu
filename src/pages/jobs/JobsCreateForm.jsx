@@ -42,6 +42,7 @@ function JobsCreateForm({ searchQuery }) {
   const [recentAds, setRecentAds] = useState([]);
   const [currentUserAds, setCurrentUserAds] = useState([]);
   const [notUserAds, setNotUserAds] = useState([]);
+  const [sortByClosingDate, setSortByClosingDate] = useState(false); 
 
   const [formData, setFormData] = useState({
     title: "",
@@ -111,6 +112,29 @@ function JobsCreateForm({ searchQuery }) {
       isMounted = false;
     };
   }, [pathname, searchQuery, currentUser, setShowPostAdForm]);
+
+   // Sorting logic
+   const sortJobsByClosingDate = (currentUserAds) => {
+    if (sortByClosingDate) {
+      return currentUserAds.slice().sort((a, b) => {
+        const dateA = new Date(a.closing_date).getTime();
+        const dateB = new Date(b.closing_date).getTime();
+        return dateA - dateB;
+      });
+    } else {
+      return currentUserAds.slice().sort((a, b) => {
+        const dateA = new Date(a.closing_date).getTime();
+        const dateB = new Date(b.closing_date).getTime();
+        return dateB - dateA;
+      });
+    }
+  };
+
+  const handleToggleSort = () => {
+    setSortByClosingDate((prevSort) => !prevSort);
+  };
+
+  const sortedCurrentUserAds = sortJobsByClosingDate(currentUserAds);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -229,7 +253,7 @@ function JobsCreateForm({ searchQuery }) {
 
   const textFields = (
     <div>
-      <h1 className="text-center mt-2 p-2 mb-5 text-muted">
+      <h1 className="text-center mt-1 p-2 mb-3 text-muted">
         {editMode ? "Edit" : "Post"} <i className="far fa-address-card"></i>{" "}
         <br /> Job Advert{" "}
       </h1>
@@ -331,7 +355,7 @@ function JobsCreateForm({ searchQuery }) {
                 </Container>
               ) : (
                 <Container className={formStyles.Container}>
-                  {currentUserAds.length > 0 ? (
+                  {sortedCurrentUserAds.length > 0 ? (
                     <>
                       <div className="d-flex justify-content-between bg-white p-3 rounded border align-items-center mb-3">
                         <div className="d-flex align-items-center">
@@ -354,7 +378,7 @@ function JobsCreateForm({ searchQuery }) {
                         {/* Toggle button */}
                         <div className="d-lg-none mr-2" onClick={() => setShowDropdown(!showDropdown)}>
                           {showDropdown ? (
-                            <i className="text-muted fas fa-toggle-on mr-2"></i>
+                            <i className="text-muted fas fa-toggle-on mr-1"></i>
                           ) : (
                             <i className="text-muted fas fa-toggle-off mr-2"></i>
                           )}
@@ -380,7 +404,7 @@ function JobsCreateForm({ searchQuery }) {
                             </Dropdown.Menu>
                           </Dropdown>
                         ) : (
-                          <Button>
+                          <Button onClick={handleToggleSort}>
                             <i className=" fas fa-arrows-alt-v"></i>
                           </Button>
                         )}
@@ -410,7 +434,7 @@ function JobsCreateForm({ searchQuery }) {
                       )}
 
                       <ul className={`list-unstyled p-2 `}>
-                        {currentUserAds.slice(0, 4).map((ad, index) => (
+                        {sortedCurrentUserAds.slice(0, 4).map((ad, index) => (
                           <JobAdListItem
                             key={index}
                             ad={ad}
@@ -421,11 +445,11 @@ function JobsCreateForm({ searchQuery }) {
                         {/* Add a console.log statement here */}
                         {console.log(
                           "Filtered currentUserAds ads:",
-                          currentUserAds
+                          sortedCurrentUserAds
                         )}
                         {/* Add dummy boxes for remaining listings */}
                         {Array.from({
-                          length: Math.max(4 - currentUserAds.length, 0),
+                          length: Math.max(4 - sortedCurrentUserAds.length, 0),
                         }).map((_, index) => (
                           <DummyBoxes
                             key={`dummy-${index}`}
