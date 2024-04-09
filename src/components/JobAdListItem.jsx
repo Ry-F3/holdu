@@ -5,20 +5,46 @@ import { Link } from "react-router-dom";
 import appStyles from "../App.module.css";
 import styles from "../styles/JobAdListItem.module.css";
 import axios from "axios";
+import ApplicantFilteredItem from "./ApplicantFilteredItem";
+import ApplicantItem from "./ApplicantItem";
+import DummyApplicantBox from "./DummyApplicantBox";
+import ApprovedApplicantItem from "./ApprovedApplicantItem";
 
 const JobListItem = ({ ad, handleEdit, handleDelete }) => {
   const [showApplicants, setShowApplicants] = useState(false);
+  const [showApprovedApplicants, setShowApprovedApplicants] = useState(false);
   const [arrowDirection, setArrowDirection] = useState("down");
   const [updatedAd, setUpdatedAd] = useState(ad);
   const [approvedApplicants, setApprovedApplicants] = useState([]);
   const [filteredApplicants, setFilteredApplicants] = useState([]);
+  const [acceptedFolderOpen, setAcceptedFolderOpen] = useState(false);
 
-  const toggleApplicants = () => {
+  const toggleFilteredApplicants = () => {
+    console.log("click")
+    // Check if there are filtered applicants
+    if (filteredApplicants.length === 0) {
+      // If there are no filtered applicants, close the applicant box
+      setShowApplicants(false);
+    } else {
+      // If there are filtered applicants, toggle the visibility
+      setShowApplicants(!showApplicants);
+    }
+    // Change the arrow direction
+    setArrowDirection((prevDirection) => (prevDirection === "down" ? "up" : "down"));
+  };
+  
+  const toggleUpdatedApplicants = () => {
     setShowApplicants(!showApplicants);
-    setArrowDirection(arrowDirection === "down" ? "up" : "down");
+    setArrowDirection((prevDirection) => (prevDirection === "down" ? "up" : "down"));
   };
 
-  
+  useEffect(() => {
+    // Check if there are no filtered applicants
+    if (filteredApplicants.length === 0) {
+      // If there are no filtered applicants, close the applicant box
+      setShowApplicants(false);
+    }
+  }, [filteredApplicants]);
 
   const fetchApplicants = async () => {
     try {
@@ -33,8 +59,7 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
       );
       setApprovedApplicants(approvedApplicants);
       setFilteredApplicants(pendingApplicants);
-      console.log("Approved Applicants:", approvedApplicants);
-      console.log("Pending Applicants:", pendingApplicants);
+    
     } catch (error) {
       console.error("Error fetching applicants:", error);
     }
@@ -55,10 +80,11 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
     setApprovedApplicants([...approvedApplicants, approvedApplicant]);
   };
 
-  const toggleAprovedApplicants = () => {
-    setUpdatedAd([ ...approvedApplicants]);
-    setApprovedApplicants([]);
+  const toggleAcceptedApplicants = () => {
+    setShowApprovedApplicants(!showApprovedApplicants);
+    setAcceptedFolderOpen(!showApprovedApplicants);
   };
+
 
   // Check if the closing date has passed
   const currentDate = new Date();
@@ -70,67 +96,84 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
     ad.is_listing_closed = true;
   }
 
-  const handleApplicantStatus = async (applicantId, status) => {
-    if (!ad || !ad.job_listing_id) {
-      console.error("Error: Job listing ID is undefined.");
-      return;
-    }
+ const handleApplicantStatus = async (applicantId, status) => {
+  if (!ad || !ad.job_listing_id) {
+    console.error("Error: Job listing ID is undefined.");
+    return;
+  }
 
-    const url = `/jobs/post/${ad.job_listing_id}/applicants/${applicantId}/`;
-    console.log("URL:", url); // Log the URL before making the request
-    try {
-      let response;
-      if (status === "binned") {
-        // Send a DELETE request to remove the applicant
-        response = await axios.delete(url);
-        // Check if the applicant was successfully removed
-        if (response.status === 204) {
-          // Filter out the removed applicant from both updatedAd and filteredApplicants
-          const updatedApplicants = updatedAd.applicants.filter(
-            (applicant) => applicant.id !== applicantId
-          );
-          setUpdatedAd({ ...updatedAd, applicants: updatedApplicants });
+  const url = `/jobs/post/${ad.job_listing_id}/applicants/${applicantId}/`;
+  console.log("URL:", url); // Log the URL before making the request
+  try {
+    let response;
+    if (status === "binned") {
+      // Send a DELETE request to remove the applicant
+      response = await axios.delete(url);
+      // Check if the applicant was successfully removed
+      if (response.status === 204) {
+        // Filter out the removed applicant from both updatedAd and filteredApplicants
+        const updatedApplicants = updatedAd.applicants.filter(
+          (applicant) => applicant.id !== applicantId
+        );
+        setUpdatedAd({ ...updatedAd, applicants: updatedApplicants });
 
-          const updatedFilteredApplicants = filteredApplicants.filter(
-            (applicant) => applicant.id !== applicantId
-          );
-          setFilteredApplicants(updatedFilteredApplicants);
+        const updatedFilteredApplicants = filteredApplicants.filter(
+          (applicant) => applicant.id !== applicantId
+        );
+        setFilteredApplicants(updatedFilteredApplicants);
 
-          // If there are no applicants left, hide the applicants section
-          if (updatedFilteredApplicants.length === 0) {
-            setShowApplicants(false);
-          }
-          // Fetch applicants again to update the list
-          fetchApplicants();
+        console.log("Updated filtered applicants count after binning:", updatedFilteredApplicants.length); // Log the count of filtered applicants after binning
+
+        // If there are no applicants left, hide the applicants section
+        if (updatedFilteredApplicants.length === 0) {
+          console.log("No applicants left after binning, hiding the applicants section");
+          setShowApplicants(false);
+        } else {
+          console.log("Still applicants left after binning, keeping the applicants section open");
+          // Run the check to update showApplicants state
+          toggleFilteredApplicants();
         }
-      } else {
-        // Send a PUT request to update the applicant status
-        response = await axios.put(url, {
-          employer_applicant_choice: status,
-        });
-        if (response.status === 200 && status === "accepted") {
-          toggleApprovedApplicants(applicantId);
-          // Fetch applicants again to update the list
-          fetchApplicants();
-        }
-        // If the status is "accepted", remove the applicant from filteredApplicants
-        if (status === "accepted") {
-          const updatedFilteredApplicants = filteredApplicants.filter(
-            (applicant) => applicant.id !== applicantId
-          );
-          setFilteredApplicants(updatedFilteredApplicants);
-        }
+        
+        // Fetch applicants again to update the list
+        fetchApplicants();
       }
-      if (response.status === 200) {
-        console.log("Applicant status updated successfully");
-      } else {
-        console.error("Failed to update applicant status");
-        console.log("Response data:", response.data);
+    } else {
+      // Send a PUT request to update the applicant status
+      response = await axios.put(url, {
+        employer_applicant_choice: status,
+      });
+      if (response.status === 200 && status === "accepted") {
+        toggleApprovedApplicants(applicantId);
+        // Fetch applicants again to update the list
+        fetchApplicants();
       }
-    } catch (error) {
-      console.error("Error updating applicant status:", error);
+      // If the status is "accepted", remove the applicant from filteredApplicants
+      if (status === "accepted") {
+        const updatedFilteredApplicants = filteredApplicants.filter(
+          (applicant) => applicant.id !== applicantId
+        );
+        setFilteredApplicants(updatedFilteredApplicants);
+      }
+
+      console.log("Updated filtered applicants count after status update:", filteredApplicants.length); // Log the count of filtered applicants after status update
+
+      // Run the check to update showApplicants state
+      // toggleFilteredApplicants();
     }
-  };
+    if (response.status === 200) {
+      console.log("Applicant status updated successfully");
+    } else {
+      console.error("Failed to update applicant status");
+      console.log("Response data:", response.data);
+    }
+  } catch (error) {
+    console.error("Error updating applicant status:", error);
+  }
+};
+
+  
+
+  console.log("showApplicants state:", showApplicants);
 
   return (
     <Card className={`${styles.jobCard}  mb-3`}>
@@ -208,14 +251,17 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
               <i className="fa-regular fa-pen-to-square"></i>
             </p>
           )}
-     
+
           {/* Toggle approved applicants */}
           {ad.is_listing_closed && approvedApplicants.length > 0 && (
-            <span
-              onClick={toggleApprovedApplicants}
-              className={`mr-3 text-muted`}>
-              Accepted <i className="fa-regular fa-folder-closed"></i>
-            </span>
+             <span onClick={toggleAcceptedApplicants} className={`mr-3 text-muted`}>
+             Accepted{" "}
+             <i
+               className={`fa-regular fa-folder-${
+                 acceptedFolderOpen ? "open" : "closed"
+               }`}
+             ></i>
+           </span>
           )}
           {/* Applicants count */}
           <span className="mr-1">Applicants:</span>
@@ -231,136 +277,62 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
           {/* Toggle applicants arrow */}
           {ad.is_listing_closed
             ? filteredApplicants.length > 0 && (
-                <span onClick={toggleApplicants} className={styles.ArrowDown}>
+                <span onClick={toggleFilteredApplicants} className={styles.ArrowDown}>
                   <i
                     className={`ml-2 small text-muted fas fa-level-${arrowDirection}-alt`}></i>
                 </span>
               )
             : updatedAd.applicants.length > 0 && (
-                <span onClick={toggleApplicants} className={styles.ArrowDown}>
+                <span onClick={toggleUpdatedApplicants} className={styles.ArrowDown}>
                   <i
                     className={`ml-2 small text-muted fas fa-level-${arrowDirection}-alt`}></i>
                 </span>
               )}
 
-          {console.log("Applicants filtered:", filteredApplicants)}
+      
         </div>
       </Card.Body>
+
       {showApplicants && (
         <Card.Body className="border-top">
           <div>
             {/* List of applicants with name, ID, picture, and rating */}
             <div className="d-flex overflow-auto">
               {ad.is_listing_closed
-                ? filteredApplicants.map((applicantData) => (
-                    <div
+                ? (filteredApplicants || []).map((applicantData) => (
+                    <ApplicantFilteredItem
                       key={applicantData.id}
-                      className="mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center"
-                      style={{ minWidth: "150px" }}>
-                      <img
-                        src={applicantData.applicant.image}
-                        alt={applicantData.applicant.owner_username}
-                        className="rounded-circle mb-2"
-                        style={{ width: "100px", height: "100px" }}
-                      />
-                      <p className="mb-1">
-                        {applicantData.applicant.owner_username}
-                      </p>
-                      <div className="d-flex align-items-center">
-                        {applicantData.applicant.average_rating ? (
-                          <>
-                            <span className="mr-1">Rating:</span>
-                            <span className="badge bg-secondary text-white">
-                              {applicantData.applicant.average_rating}
-                            </span>
-                          </>
-                        ) : (
-                          <span>No Ratings</span>
-                        )}
-                      </div>
-
-                      {/* Employer applicant decision */}
-                      {ad.is_listing_closed && (
-                        <div className="d-flex justify-content-center mt-3">
-                          <>
-                            <Button
-                              className="mr-3"
-                              onClick={() =>
-                                handleApplicantStatus(
-                                  applicantData.applicant.id,
-                                  "accepted"
-                                )
-                              }>
-                              <i className="fas fa-check"></i>
-                            </Button>
-                            <Button
-                              onClick={() =>
-                                handleApplicantStatus(
-                                  applicantData.applicant.id,
-                                  "binned"
-                                )
-                              }>
-                              <i className="fas fa-times"></i>
-                            </Button>
-                          </>
-                        </div>
-                      )}
-                    </div>
+                      applicantData={applicantData}
+                      handleApplicantStatus={handleApplicantStatus}
+                    />
                   ))
                 : updatedAd.applicants.map((applicant) => (
-                    <div
-                      key={applicant.id}
-                      className="mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center"
-                      style={{ minWidth: "150px" }}>
-                      <img
-                        src={applicant.image}
-                        alt={applicant.owner_username}
-                        className="rounded-circle mb-2"
-                        style={{ width: "100px", height: "100px" }}
-                      />
-                      <p className="mb-1">{applicant.owner_username}</p>
-                      <div className="d-flex align-items-center">
-                        {applicant.average_rating ? (
-                          <>
-                            <span className="mr-1">Rating:</span>
-                            <span className="badge bg-secondary text-white">
-                              {applicant.average_rating}
-                            </span>
-                          </>
-                        ) : (
-                          <span>No Ratings</span>
-                        )}
-                      </div>
-                    </div>
+                    <ApplicantItem key={applicant.id} applicant={applicant} />
                   ))}
               {/* Dummy boxes for updatedAd.applicants if listing is not closed */}
               {!ad.is_listing_closed &&
                 updatedAd.applicants.length < 4 &&
                 Array.from({ length: 4 - updatedAd.applicants.length }).map(
-                  (_, index) => (
-                    <div
-                      key={`dummy-updatedAd-${index}`}
-                      className="mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center"
-                      style={{ minWidth: "150px" }}>
-                      <i className="fas fa-ban text-muted"></i>
-                    </div>
-                  )
+                  (_, index) => <DummyApplicantBox key={index} index={index} />
                 )}
 
               {/* Dummy boxes for filteredApplicants if listing is closed */}
               {ad.is_listing_closed &&
                 filteredApplicants.length < 4 &&
                 Array.from({ length: 4 - filteredApplicants.length }).map(
-                  (_, index) => (
-                    <div
-                      key={`dummy-filtered-${index}`}
-                      className="mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center"
-                      style={{ minWidth: "150px" }}>
-                      <i className="fas fa-ban text-muted"></i>
-                    </div>
-                  )
+                  (_, index) => <DummyApplicantBox key={index} index={index} />
                 )}
             </div>
+          </div>
+        </Card.Body>
+      )}
+
+      {showApprovedApplicants && (
+        <Card.Body className="border-top">
+          <div className="d-flex overflow-auto">
+            {approvedApplicants.map((applicant) => (
+              <ApprovedApplicantItem key={applicant.id} applicant={applicant} />
+            ))}
           </div>
         </Card.Body>
       )}
