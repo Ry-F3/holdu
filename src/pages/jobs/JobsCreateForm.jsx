@@ -27,6 +27,7 @@ function JobsCreateForm({ searchQuery }) {
   const [loading, setLoading] = useState(true);
   const [showPostAdForm, setShowPostAdForm] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showImageAndMessage, setShowImageAndMessage] = useState(true);
 
   const [editMode, setEditMode] = useState(false); // State to track edit mode
   const [editListingId, setEditListingId] = useState(null); // State to store the ID of the listing being edited
@@ -42,7 +43,7 @@ function JobsCreateForm({ searchQuery }) {
   const [recentAds, setRecentAds] = useState([]);
   const [currentUserAds, setCurrentUserAds] = useState([]);
   const [notUserAds, setNotUserAds] = useState([]);
-  const [sortByClosingDate, setSortByClosingDate] = useState(false); 
+  const [sortByClosingDate, setSortByClosingDate] = useState(false);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -113,8 +114,8 @@ function JobsCreateForm({ searchQuery }) {
     };
   }, [pathname, searchQuery, currentUser, setShowPostAdForm]);
 
-   // Sorting logic
-   const sortJobsByClosingDate = (currentUserAds) => {
+  // Sorting logic
+  const sortJobsByClosingDate = (currentUserAds) => {
     if (sortByClosingDate) {
       return currentUserAds.slice().sort((a, b) => {
         const dateA = new Date(a.closing_date).getTime();
@@ -326,6 +327,8 @@ function JobsCreateForm({ searchQuery }) {
   );
 
   const handlePostAdClick = () => {
+    setShowImageAndMessage(false); // Hide the image and message when the button is clicked
+
     setShowPostAdForm(true); // Show the post ad form when the "Post Ad" button is clicked
   };
 
@@ -376,7 +379,9 @@ function JobsCreateForm({ searchQuery }) {
                           </h2>
                         </div>
                         {/* Toggle button */}
-                        <div className="d-lg-none mr-2" onClick={() => setShowDropdown(!showDropdown)}>
+                        <div
+                          className="d-lg-none mr-2"
+                          onClick={() => setShowDropdown(!showDropdown)}>
                           {showDropdown ? (
                             <i className="text-muted fas fa-toggle-on mr-1"></i>
                           ) : (
@@ -459,11 +464,32 @@ function JobsCreateForm({ searchQuery }) {
                       </ul>
                     </>
                   ) : (
-                    <Container>
-                      <Asset
-                        src={dataImage}
-                        message="Opps your job listings are empty"
-                      />
+                    <Container className="text-center">
+                      {showImageAndMessage && (
+                        <>
+                          <div>
+                            <Asset
+                              src={dataImage}
+                              message="Oops, your job listings are empty"
+                            />
+                          </div>
+                          <div className="d-flex justify-content-center">
+                            <Button onClick={handlePostAdClick}>
+                              List Job Ad Now
+                            </Button>
+                          </div>
+                        </>
+                      )}
+
+                      {showPostAdForm && (
+                        <>
+                          <div
+                            style={{ maxWidth: "380px", margin: "0 auto" }}
+                            className={`${appStyles.Content} ${formStyles.triangleGradient} mb-2 d-lg-none d-flex flex-column justify-content-center`}>
+                            <Container className="p-4">{textFields}</Container>
+                          </div>
+                        </>
+                      )}
                     </Container>
                   )}
                 </Container>

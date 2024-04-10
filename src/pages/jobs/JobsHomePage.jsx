@@ -53,10 +53,15 @@ function JobsHomePage({ filter = "", searchQuery }) {
     return () => clearTimeout(timer);
   }, []);
 
+  console.log("Posts before filtering:", jobsPost.results);
+
+  // Filter out closed listings
+  const filteredJobsPost = jobsPost.results.filter(job => !job.is_listing_closed);
+
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-4" lg={8}>
-        <p>Popular profiles mobile</p>
+        {/* <p>Popular profiles mobile</p> */}
         {loadingPage ? (
           <Container
             style={{ backgroundColor: "transparent", border: "none" }}
@@ -68,8 +73,8 @@ function JobsHomePage({ filter = "", searchQuery }) {
           </Container>
         ) : (
           <>
-            {jobsPost.results.length ? (
-              [...jobsPost.results]
+              {filteredJobsPost.length ? (
+              [...filteredJobsPost]
                 .reverse()
                 .map((jobPost) => (
                   <JobsPost
@@ -78,11 +83,10 @@ function JobsHomePage({ filter = "", searchQuery }) {
                     postJob
                     setJobsPost={setJobsPost}
                     like_id={jobPost.like_id}
-                    
                   />
                 ))
             ) : (
-              <Container className={appStyles.Content}>
+              <Container>
                 <Asset src={dataImage} message="No results found." />
               </Container>
             )}
@@ -90,7 +94,7 @@ function JobsHomePage({ filter = "", searchQuery }) {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        <p>Popular profiles for desktop</p>
+        {/* <p>Popular profiles for desktop</p> */}
       </Col>
     </Row>
   );
