@@ -12,7 +12,7 @@ import LoggedInEmployeeIconsBottom from "./LoggedInEmployeeIconsBottom";
 import LoggedOutIcons from "./LoggedOutIcons";
 
 const BottomNavBar = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -31,11 +31,12 @@ const BottomNavBar = () => {
   const profileData = useProfileData();
 
   useEffect(() => {
-    setIsLoading(true);
-    if (profileData) {
-      setIsLoading(false);
-    }
-  }, [profileData, setIsLoading]);
+    const timer = setTimeout(() => {
+      setIsLoading(false); 
+    }, 1000);
+
+    return () => clearTimeout(timer); 
+  }, []);
 
   return (
     <Navbar

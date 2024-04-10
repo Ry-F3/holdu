@@ -128,12 +128,7 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
         if (updatedFilteredApplicants.length === 0) {
           console.log("No applicants left after binning, hiding the applicants section");
           setShowApplicants(false);
-        } else {
-          console.log("Still applicants left after binning, keeping the applicants section open");
-          // Run the check to update showApplicants state
-          toggleFilteredApplicants();
-        }
-        
+        } 
         // Fetch applicants again to update the list
         fetchApplicants();
       }
