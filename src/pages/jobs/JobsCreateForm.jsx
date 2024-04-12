@@ -331,9 +331,9 @@ function JobsCreateForm({ searchQuery }) {
         />
       </Form.Group>
 
-      <Button type="submit">{editMode ? "Edit Ad" : "Post Ad"}</Button>
+      <Button className={`${appStyles.Button}`} type="submit">{editMode ? "Edit Ad" : "Post Ad"}</Button>
       {editMode && (
-        <Button className="ml-2" onClick={handleCancel}>
+        <Button className={`${appStyles.Button} ml-2`} onClick={handleCancel}>
           Cancel
         </Button>
       )}

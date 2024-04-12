@@ -12,6 +12,7 @@ import JobsHomePage from "./pages/jobs/JobsHomePage.jsx";
 import { useCurrentUser } from "./contexts/CurrentUserContext.jsx";
 import { useState } from "react";
 import BottomNavBar from "./components/BottomNavBar.jsx";
+import ConnectionsPage from "./pages/connections/ConnectionsPage.jsx";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -48,12 +49,7 @@ function App() {
             path="/profiles/:id"
             render={() => <ProfileTypeChoiceForm />}
           />
-           <Route
-            exact
-            path="/profiles/:id/edit"
-            render={() => <ProfileTypeChoiceForm />}
-          />
-          <Route exact path="/connect" render={() => <h1>Connect</h1>} />
+          <Route exact path="/connect" render={() => <ConnectionsPage/>} />
           <Route exact path="/chats" render={() => <h1>Chats</h1>} />
           <Route
             exact

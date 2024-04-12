@@ -82,7 +82,7 @@ const NavBar = ({ handleSearch }) => {
     <>
       <NavLink className="text-muted mr-2" to={`/profiles/${currentUser?.profile_id}/`}>
         <div className="d-flex align-items-center">
-          <Avatar src={currentUser?.profile_image} height={40} />
+          <Avatar src={currentUser?.profile_image} height={40} border={false} />
           <span className="d-none d-lg-flex align-items-center">
             {currentUser?.username}
           </span>
@@ -111,7 +111,7 @@ const NavBar = ({ handleSearch }) => {
   return (
     <Navbar
       bg="white"
-      fluid
+      
       fixed="light"
       className={`border-bottom ${nav.NavHeight}`}>
       <Container className="d-flex align-items-center justify-content-between">

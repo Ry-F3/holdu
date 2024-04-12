@@ -16,26 +16,26 @@ const BottomNavBar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
 
-  const handleScroll = () => {
-    const currentScrollPos = window.pageYOffset;
-    setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
-    setPrevScrollPos(currentScrollPos);
-  };
-
   useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+      setPrevScrollPos(currentScrollPos);
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollPos, visible, handleScroll]);
+  }, [prevScrollPos]);
 
   const currentUser = useCurrentUser();
   const profileData = useProfileData();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoading(false); 
+      setIsLoading(false);
     }, 1000);
 
-    return () => clearTimeout(timer); 
+    return () => clearTimeout(timer);
   }, []);
 
   return (

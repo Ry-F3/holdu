@@ -151,8 +151,9 @@ const JobsPost = ({
               {employer_profile.owner_username && (
                 <Link
                   className="text-white font-weight-bold"
+                
                   to={`/profiles/${employer_profile.owner_id}/`}>
-                  <Avatar src={employer_profile.image} height={35} />
+                  <Avatar src={employer_profile.image} height={35} border={true}  />
                   {employer_profile.name}
                 </Link>
               )}
