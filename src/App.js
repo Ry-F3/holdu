@@ -48,6 +48,11 @@ function App() {
             path="/profiles/:id"
             render={() => <ProfileTypeChoiceForm />}
           />
+           <Route
+            exact
+            path="/profiles/:id/edit"
+            render={() => <ProfileTypeChoiceForm />}
+          />
           <Route exact path="/connect" render={() => <h1>Connect</h1>} />
           <Route exact path="/chats" render={() => <h1>Chats</h1>} />
           <Route

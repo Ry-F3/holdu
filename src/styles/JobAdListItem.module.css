@@ -44,6 +44,10 @@
     font-weight: bold;
 }
 
+.Pointer {
+    cursor: pointer;
+}
+
 
 .ListingClosed {
     /* background-color: #FBFF12; */

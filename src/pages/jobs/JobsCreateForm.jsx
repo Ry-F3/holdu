@@ -19,8 +19,7 @@ import Asset from "../../components/Asset";
 import Spinner from "../../components/Spinner";
 import JobAdListItem from "../../components/JobAdListItem";
 import DummyBoxes from "../../components/DummyBoxes";
-import { useLocation } from "react-router-dom";
-import Dropdown from "react-bootstrap/Dropdown";
+import { useLocation, useHistory } from "react-router-dom";
 
 function JobsCreateForm({ searchQuery }) {
   const [setErrors] = useState({});
@@ -43,7 +42,8 @@ function JobsCreateForm({ searchQuery }) {
   const [recentAds, setRecentAds] = useState([]);
   const [currentUserAds, setCurrentUserAds] = useState([]);
   const [notUserAds, setNotUserAds] = useState([]);
-  const [sortByClosingDate, setSortByClosingDate] = useState(false);
+  const [isListingClosed, setIsListingClosed] = useState(null);
+  
 
   const [formData, setFormData] = useState({
     title: "",
@@ -64,6 +64,8 @@ function JobsCreateForm({ searchQuery }) {
   const currentUser = useCurrentUser();
   const profileData = useProfileData();
   const { pathname } = useLocation();
+  const history = useHistory();
+
 
   useEffect(() => {
     let isMounted = true;
@@ -114,28 +116,35 @@ function JobsCreateForm({ searchQuery }) {
     };
   }, [pathname, searchQuery, currentUser, setShowPostAdForm]);
 
-  // Sorting logic
-  const sortJobsByClosingDate = (currentUserAds) => {
-    if (sortByClosingDate) {
-      return currentUserAds.slice().sort((a, b) => {
-        const dateA = new Date(a.closing_date).getTime();
-        const dateB = new Date(b.closing_date).getTime();
-        return dateA - dateB;
-      });
+  const filterJobsByListingClosed = (currentUserAds, isListingClosed) => {
+    if (isListingClosed === true) {
+      // Show only closed listings
+      return currentUserAds.filter(ad => ad.is_listing_closed === true);
+    } else if (isListingClosed === false) {
+      // Show only open listings
+      return currentUserAds.filter(ad => ad.is_listing_closed === false);
     } else {
-      return currentUserAds.slice().sort((a, b) => {
-        const dateA = new Date(a.closing_date).getTime();
-        const dateB = new Date(b.closing_date).getTime();
-        return dateB - dateA;
-      });
+      // Show all listings when isListingClosed is not explicitly set
+      // Sort by closing date in descending order
+      return currentUserAds.slice().sort((b, a) => new Date(b.closing_date) - new Date(a.closing_date));
     }
   };
 
-  const handleToggleSort = () => {
-    setSortByClosingDate((prevSort) => !prevSort);
+  const handleToggleFilter = () => {
+    setIsListingClosed(prevState => {
+      if (prevState === null) {
+        return true; // Activate closed listings filter
+      } else if (prevState === true) {
+        return false; // Activate open listings filter
+      } else {
+        return null; // Deactivate filter to show all listings
+      }
+    });
+    setShowPostAdForm(false);
   };
-
-  const sortedCurrentUserAds = sortJobsByClosingDate(currentUserAds);
+  
+  const sortedCurrentUserAds = filterJobsByListingClosed(currentUserAds, isListingClosed);
+  console.log(sortedCurrentUserAds);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -252,6 +261,11 @@ function JobsCreateForm({ searchQuery }) {
     }
   };
 
+  const handleProfileClick = () => {
+    // Use history.push to navigate programmatically
+    history.push(`/profiles/${currentUser?.profile_id}`);
+  };
+
   const textFields = (
     <div>
       <h1 className="text-center mt-1 p-2 mb-3 text-muted">
@@ -328,8 +342,7 @@ function JobsCreateForm({ searchQuery }) {
 
   const handlePostAdClick = () => {
     setShowImageAndMessage(false); // Hide the image and message when the button is clicked
-
-    setShowPostAdForm(true); // Show the post ad form when the "Post Ad" button is clicked
+    setShowPostAdForm((prevShowPostAdForm) => !prevShowPostAdForm); // Toggle the state variable
   };
 
   const handleCloseAdClick = async () => {
@@ -375,7 +388,8 @@ function JobsCreateForm({ searchQuery }) {
                           />
                           {/* Heading */}
                           <h2 className="mb-0 mr-2 ">
-                            {profileData.name}'s activity:
+                          <span className={formStyles.Pointer} onClick={handleProfileClick}>{profileData.name}</span>'s activity:
+                           
                           </h2>
                         </div>
                         {/* Toggle button */}
@@ -383,7 +397,13 @@ function JobsCreateForm({ searchQuery }) {
                           className="d-lg-none mr-2"
                           onClick={() => setShowDropdown(!showDropdown)}>
                           {showDropdown ? (
-                            <i className="text-muted fas fa-toggle-on mr-1"></i>
+                            <i
+                            onClick={() => {
+                              setShowPostAdForm(false);
+                              
+                            }}
+                        
+                              className="text-muted fas fa-toggle-on mr-1"></i>
                           ) : (
                             <i className="text-muted fas fa-toggle-off mr-2"></i>
                           )}
@@ -391,25 +411,19 @@ function JobsCreateForm({ searchQuery }) {
 
                         {/* Dropdown or arrows */}
                         {showDropdown ? (
-                          <Dropdown className="d-lg-none ml-2">
-                            <Dropdown.Toggle className={formStyles.ClearDrop}>
-                              <i className="fas fa-ellipsis-v"></i>
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                              <Dropdown.Item
-                                className="p-2 mb-1"
-                                onClick={handlePostAdClick}>
-                                Create job listing
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                className="p-2 mt-1 border-top"
-                                onClick={handleCloseAdClick}>
-                                <span>Close job listing</span>
-                              </Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>
+                          <>
+                            <Button>
+                              <i
+                                onClick={
+                                  showDropdown
+                                    ? handlePostAdClick
+                                    : handleCloseAdClick
+                                }
+                                className="fa-solid fa-plus"></i>
+                            </Button>
+                          </>
                         ) : (
-                          <Button onClick={handleToggleSort}>
+                          <Button onClick={handleToggleFilter}>
                             <i className=" fas fa-arrows-alt-v"></i>
                           </Button>
                         )}
@@ -464,31 +478,31 @@ function JobsCreateForm({ searchQuery }) {
                       </ul>
                     </>
                   ) : (
-                    <Container className="text-center">
+                    <Container>
                       {showImageAndMessage && (
-                        <>
+                        <div className="text-center">
+                          <Asset
+                            src={dataImage}
+                            message="Oops, your job listings are empty"
+                          />
                           <div>
-                            <Asset
-                              src={dataImage}
-                              message="Oops, your job listings are empty"
-                            />
-                          </div>
-                          <div className="d-flex justify-content-center">
-                            <Button onClick={handlePostAdClick}>
+                            <Button
+                              className="d-lg-none"
+                              onClick={handlePostAdClick}>
                               List Job Ad Now
                             </Button>
                           </div>
-                        </>
+                        </div>
                       )}
 
                       {showPostAdForm && (
-                        <>
+                        <div className="text-center">
                           <div
-                            style={{ maxWidth: "380px", margin: "0 auto" }}
-                            className={`${appStyles.Content} ${formStyles.triangleGradient} mb-2 d-lg-none d-flex flex-column justify-content-center`}>
+                            style={{ maxWidth: "350px", margin: "0 auto" }}
+                            className={`${appStyles.Content} ${formStyles.triangleGradient} mb-2 d-lg-none d-flex`}>
                             <Container className="p-4">{textFields}</Container>
                           </div>
-                        </>
+                        </div>
                       )}
                     </Container>
                   )}

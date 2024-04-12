@@ -29,10 +29,13 @@ const ProfileTypeChoiceForm = () => {
     content: "",
     image: "",
     profile_type: "", // Added profileType state
+    is_signup_completed: "",
   });
 
-  const { name, content, image, profile_type } = profileData;
+  const { name, content, image, profile_type, is_signup_completed } = profileData;
   const [errors, setErrors] = useState({});
+
+  console.log("signup", is_signup_completed);
 
   useEffect(() => {
     let isMounted = true; // Flag to track if the component is mounted
@@ -41,13 +44,14 @@ const ProfileTypeChoiceForm = () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, content, image, profile_type } = data; 
+          const { name, content, image, profile_type, is_signup_completed } = data; 
           if (isMounted) { // Check if the component is still mounted before updating state
             setProfileDataState({ 
               name, 
               content, 
               image, 
               profile_type,
+              is_signup_completed,
             });
           }
         } catch (err) {
@@ -128,7 +132,9 @@ const ProfileTypeChoiceForm = () => {
   const textFields = (
     <>
       <Form.Group>
+      {!is_signup_completed && (
         <Form.Label>Please fill in the form to continue</Form.Label>
+      )}
         <Form.Control
           type="text"
           value={name}
@@ -164,6 +170,7 @@ const ProfileTypeChoiceForm = () => {
         )}
       </Form.Group>
 
+      {!is_signup_completed && (
       <Form.Group>
         {/* <Form.Label>Profile Type</Form.Label> */}
         <Form.Control
@@ -185,6 +192,7 @@ const ProfileTypeChoiceForm = () => {
           </Alert>
         )}
       </Form.Group>
+    )}
 
       <Button
         className={`${btnStyles.customButton} ${btnStyles.Bright}  ${btnStyles.Wide}`}
@@ -193,6 +201,10 @@ const ProfileTypeChoiceForm = () => {
       </Button>
     </>
   );
+
+  
+  console.log("signup", is_signup_completed);
+  console.log("profile", profileData)
 
   return (
     <Form onSubmit={handleSubmit}>

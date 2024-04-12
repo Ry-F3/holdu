@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
@@ -13,14 +13,15 @@ import ApprovedApplicantItem from "./ApprovedApplicantItem";
 const JobListItem = ({ ad, handleEdit, handleDelete }) => {
   const [showApplicants, setShowApplicants] = useState(false);
   const [showApprovedApplicants, setShowApprovedApplicants] = useState(false);
-  const [arrowDirection, setArrowDirection] = useState("down");
+  const [arrowDirection, setArrowDirection] = useState("up");
   const [updatedAd, setUpdatedAd] = useState(ad);
   const [approvedApplicants, setApprovedApplicants] = useState([]);
   const [filteredApplicants, setFilteredApplicants] = useState([]);
   const [acceptedFolderOpen, setAcceptedFolderOpen] = useState(false);
+  
 
   const toggleFilteredApplicants = () => {
-    console.log("click")
+    console.log("click");
     // Check if there are filtered applicants
     if (filteredApplicants.length === 0) {
       // If there are no filtered applicants, close the applicant box
@@ -30,12 +31,16 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
       setShowApplicants(!showApplicants);
     }
     // Change the arrow direction
-    setArrowDirection((prevDirection) => (prevDirection === "down" ? "up" : "down"));
+    setArrowDirection((prevDirection) =>
+      prevDirection === "down" ? "up" : "down"
+    );
   };
-  
+
   const toggleUpdatedApplicants = () => {
     setShowApplicants(!showApplicants);
-    setArrowDirection((prevDirection) => (prevDirection === "down" ? "up" : "down"));
+    setArrowDirection((prevDirection) =>
+      prevDirection === "down" ? "up" : "down"
+    );
   };
 
   useEffect(() => {
@@ -46,7 +51,8 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
     }
   }, [filteredApplicants]);
 
-  const fetchApplicants = async () => {
+  const fetchApplicants = useCallback(async () => {
+    console.log('ad.job_listing_id : ', ad.job_listing_id)
     try {
       const response = await axios.get(
         `/jobs/post/${ad.job_listing_id}/applicants/`
@@ -59,15 +65,15 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
       );
       setApprovedApplicants(approvedApplicants);
       setFilteredApplicants(pendingApplicants);
-    
     } catch (error) {
       console.error("Error fetching applicants:", error);
     }
-  };
+  }, [ad.job_listing_id]); // Dependency added here
 
+  // useEffect hook with fetchApplicants dependency
   useEffect(() => {
     fetchApplicants();
-  }, [ad.job_listing_id]);
+  }, [fetchApplicants]);
 
   const toggleApprovedApplicants = (applicantId) => {
     const updatedApplicants = updatedAd.applicants.filter(
@@ -85,7 +91,6 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
     setAcceptedFolderOpen(!showApprovedApplicants);
   };
 
-
   // Check if the closing date has passed
   const currentDate = new Date();
   const closingDate = new Date(ad.closing_date);
@@ -96,77 +101,83 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
     ad.is_listing_closed = true;
   }
 
- const handleApplicantStatus = async (applicantId, status) => {
-  if (!ad || !ad.job_listing_id) {
-    console.error("Error: Job listing ID is undefined.");
-    return;
-  }
-
-  const url = `/jobs/post/${ad.job_listing_id}/applicants/${applicantId}/`;
-  console.log("URL:", url); // Log the URL before making the request
-  try {
-    let response;
-    if (status === "binned") {
-      // Send a DELETE request to remove the applicant
-      response = await axios.delete(url);
-      // Check if the applicant was successfully removed
-      if (response.status === 204) {
-        // Filter out the removed applicant from both updatedAd and filteredApplicants
-        const updatedApplicants = updatedAd.applicants.filter(
-          (applicant) => applicant.id !== applicantId
-        );
-        setUpdatedAd({ ...updatedAd, applicants: updatedApplicants });
-
-        const updatedFilteredApplicants = filteredApplicants.filter(
-          (applicant) => applicant.id !== applicantId
-        );
-        setFilteredApplicants(updatedFilteredApplicants);
-
-        console.log("Updated filtered applicants count after binning:", updatedFilteredApplicants.length); // Log the count of filtered applicants after binning
-
-        // If there are no applicants left, hide the applicants section
-        if (updatedFilteredApplicants.length === 0) {
-          console.log("No applicants left after binning, hiding the applicants section");
-          setShowApplicants(false);
-        } 
-        // Fetch applicants again to update the list
-        fetchApplicants();
-      }
-    } else {
-      // Send a PUT request to update the applicant status
-      response = await axios.put(url, {
-        employer_applicant_choice: status,
-      });
-      if (response.status === 200 && status === "accepted") {
-        toggleApprovedApplicants(applicantId);
-        // Fetch applicants again to update the list
-        fetchApplicants();
-      }
-      // If the status is "accepted", remove the applicant from filteredApplicants
-      if (status === "accepted") {
-        const updatedFilteredApplicants = filteredApplicants.filter(
-          (applicant) => applicant.id !== applicantId
-        );
-        setFilteredApplicants(updatedFilteredApplicants);
-      }
-
-      console.log("Updated filtered applicants count after status update:", filteredApplicants.length); // Log the count of filtered applicants after status update
-
-      // Run the check to update showApplicants state
-      // toggleFilteredApplicants();
+  const handleApplicantStatus = async (applicantId, status) => {
+    if (!ad || !ad.job_listing_id) {
+      console.error("Error: Job listing ID is undefined.");
+      return;
     }
-    if (response.status === 200) {
-      console.log("Applicant status updated successfully");
-    } else {
-      console.error("Failed to update applicant status");
-      console.log("Response data:", response.data);
-    }
-  } catch (error) {
-    console.error("Error updating applicant status:", error);
-  }
-};
 
-  
+    const url = `/jobs/post/${ad.job_listing_id}/applicants/${applicantId}/`;
+    console.log("URL:", url); // Log the URL before making the request
+    try {
+      let response;
+      if (status === "binned") {
+        // Send a DELETE request to remove the applicant
+        response = await axios.delete(url);
+        // Check if the applicant was successfully removed
+        if (response.status === 204) {
+          // Filter out the removed applicant from both updatedAd and filteredApplicants
+          const updatedApplicants = updatedAd.applicants.filter(
+            (applicant) => applicant.id !== applicantId
+          );
+          setUpdatedAd({ ...updatedAd, applicants: updatedApplicants });
+
+          const updatedFilteredApplicants = filteredApplicants.filter(
+            (applicant) => applicant.id !== applicantId
+          );
+          setFilteredApplicants(updatedFilteredApplicants);
+
+          console.log(
+            "Updated filtered applicants count after binning:",
+            updatedFilteredApplicants.length
+          ); // Log the count of filtered applicants after binning
+
+          // If there are no applicants left, hide the applicants section
+          if (updatedFilteredApplicants.length === 0) {
+            console.log(
+              "No applicants left after binning, hiding the applicants section"
+            );
+            setShowApplicants(false);
+          }
+          // Fetch applicants again to update the list
+          fetchApplicants();
+        }
+      } else {
+        // Send a PUT request to update the applicant status
+        response = await axios.put(url, {
+          employer_applicant_choice: status,
+        });
+        if (response.status === 200 && status === "accepted") {
+          toggleApprovedApplicants(applicantId);
+          // Fetch applicants again to update the list
+          fetchApplicants();
+        }
+        // If the status is "accepted", remove the applicant from filteredApplicants
+        if (status === "accepted") {
+          const updatedFilteredApplicants = filteredApplicants.filter(
+            (applicant) => applicant.id !== applicantId
+          );
+          setFilteredApplicants(updatedFilteredApplicants);
+        }
+
+        console.log(
+          "Updated filtered applicants count after status update:",
+          filteredApplicants.length
+        ); // Log the count of filtered applicants after status update
+
+        // Run the check to update showApplicants state
+        // toggleFilteredApplicants();
+      }
+      if (response.status === 200) {
+        console.log("Applicant status updated successfully");
+      } else {
+        console.error("Failed to update applicant status");
+        console.log("Response data:", response.data);
+      }
+    } catch (error) {
+      console.error("Error updating applicant status:", error);
+    }
+  };
 
   console.log("showApplicants state:", showApplicants);
 
@@ -249,42 +260,52 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
 
           {/* Toggle approved applicants */}
           {ad.is_listing_closed && approvedApplicants.length > 0 && (
-             <span onClick={toggleAcceptedApplicants} className={`mr-3 text-muted`}>
-             Accepted{" "}
-             <i
-               className={`fa-regular fa-folder-${
-                 acceptedFolderOpen ? "open" : "closed"
-               }`}
-             ></i>
-           </span>
+            <span
+              onClick={toggleAcceptedApplicants}
+              className={`mr-3`}>
+              Accepted:{" "}
+              <i
+                className={`text-muted fa-regular fa-folder-${
+                  acceptedFolderOpen ? "open" : "closed"
+                }`}></i>
+            </span>
           )}
           {/* Applicants count */}
-          <span className="mr-1">Applicants:</span>
-          <span className="badge bg-secondary text-white">
-            {ad.is_listing_closed
-              ? filteredApplicants
-                ? filteredApplicants.length
-                : 0
-              : updatedAd.applicants
-              ? updatedAd.applicants.length
-              : 0}
-          </span>
+          {(!ad.is_listing_closed ||
+            (filteredApplicants && filteredApplicants.length > 0) ||
+            (updatedAd.applicants && updatedAd.applicants.length === null)) && (
+            <>
+              <span className="mr-1">Applicants:</span>
+              <span className="badge bg-secondary text-white">
+                {ad.is_listing_closed
+                  ? filteredApplicants
+                    ? filteredApplicants.length
+                    : 0
+                  : updatedAd.applicants
+                  ? updatedAd.applicants.length
+                  : 0}
+              </span>
+            </>
+          )}
+
           {/* Toggle applicants arrow */}
           {ad.is_listing_closed
             ? filteredApplicants.length > 0 && (
-                <span onClick={toggleFilteredApplicants} className={styles.ArrowDown}>
+                <span
+                  onClick={toggleFilteredApplicants}
+                  className={styles.ArrowDown}>
                   <i
                     className={`ml-2 small text-muted fas fa-level-${arrowDirection}-alt`}></i>
                 </span>
               )
             : updatedAd.applicants.length > 0 && (
-                <span onClick={toggleUpdatedApplicants} className={styles.ArrowDown}>
+                <span
+                  onClick={toggleUpdatedApplicants}
+                  className={styles.ArrowDown}>
                   <i
                     className={`ml-2 small text-muted fas fa-level-${arrowDirection}-alt`}></i>
                 </span>
               )}
-
-      
         </div>
       </Card.Body>
 
@@ -293,8 +314,10 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
           <div>
             {/* List of applicants with name, ID, picture, and rating */}
             <div className="d-flex overflow-auto">
+         
               {ad.is_listing_closed
                 ? (filteredApplicants || []).map((applicantData) => (
+                  
                     <ApplicantFilteredItem
                       key={applicantData.id}
                       applicantData={applicantData}
@@ -303,6 +326,7 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
                   ))
                 : updatedAd.applicants.map((applicant) => (
                     <ApplicantItem key={applicant.id} applicant={applicant} />
+                    
                   ))}
               {/* Dummy boxes for updatedAd.applicants if listing is not closed */}
               {!ad.is_listing_closed &&
@@ -325,9 +349,21 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
       {showApprovedApplicants && (
         <Card.Body className="border-top">
           <div className="d-flex overflow-auto">
-            {approvedApplicants.map((applicant) => (
-              <ApprovedApplicantItem key={applicant.id} applicant={applicant} />
-            ))}
+            {approvedApplicants.map((applicant) => {
+              console.log("Applicant:", applicant); 
+              console.log("Key ApprovedApplicantItem:", applicant.id);
+              return (
+                <ApprovedApplicantItem
+                  key={applicant.id}
+                  applicant={applicant}
+                />
+              );
+            })}
+            {ad.is_listing_closed &&
+              filteredApplicants.length < 4 &&
+              Array.from({ length: 4 - filteredApplicants.length }).map(
+                (_, index) => <DummyApplicantBox key={index} index={index} />
+              )}
           </div>
         </Card.Body>
       )}

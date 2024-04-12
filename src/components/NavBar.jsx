@@ -76,16 +76,18 @@ const NavBar = ({ handleSearch }) => {
     </>
   );
 
+  console.log("id profile url", currentUser?.profile_id)
+
   const loggedInIcons = (
     <>
-      <Nav.Link to={`/profiles/${currentUser?.profile_id}`}>
+      <NavLink className="text-muted mr-2" to={`/profiles/${currentUser?.profile_id}/`}>
         <div className="d-flex align-items-center">
           <Avatar src={currentUser?.profile_image} height={40} />
           <span className="d-none d-lg-flex align-items-center">
             {currentUser?.username}
           </span>
         </div>
-      </Nav.Link>
+      </NavLink>
 
       <Nav.Link onClick={handleSignOut}>
         <div className="d-flex align-items-center">

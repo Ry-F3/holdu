@@ -7,7 +7,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/JobsPost.module.css";
 import { useProfileData } from "../../contexts/ProfileContext";
 import JobPostHomeItem from "../../components/JobPostHomeItem";
-import { useParams } from "react-router-dom";
+
 import axios from "axios";
 
 const JobsPost = ({
@@ -29,7 +29,7 @@ const JobsPost = ({
   const profileData = useProfileData();
   const [isApplying, setIsApplying] = useState(false);
   const [has_applied, setHasApplied] = useState(is_applied);
-  const { id } = useParams();
+
 
   const is_owner = currentUser?.username === employer_profile?.owner_username;
   const isEmployee = currentUser && profileData?.profile_type === "employee";

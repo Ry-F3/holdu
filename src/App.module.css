@@ -2,7 +2,7 @@
     font-family: 'DM Sans';
     background-color: #f8f8f8;
     min-height: 100vh;
-    text-decoration: none !important;
+
 }
 
 .Content {
@@ -10,17 +10,18 @@
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #dadadf;
-    text-decoration: none !important;
+
 
 }
 
 .Main {
     padding: 25px;
-    text-decoration: none !important;
+
 }
 
 * {
     box-sizing: border-box;
+    text-decoration: none !important;
 }
 
 

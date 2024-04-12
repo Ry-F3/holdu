@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.Pointer {
+    cursor: pointer;
+}
+
 .triangleGradient::before {
     content: '';
     position: absolute;
