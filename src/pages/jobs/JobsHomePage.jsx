@@ -8,42 +8,47 @@ import dataImage from "../../assets/dataImage.png";
 import appStyles from "../../App.module.css";
 import spinnerStyle from "../../styles/Spinner.module.css";
 import formStyles from "../../styles/JobsCreateForm.module.css";
-import { useLocation } from "react-router-dom";
+
 import { axiosReq } from "../../api/axiosDefaults";
 
 import JobsPost from "./JobsPost";
 import Asset from "../../components/Asset";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 
 import Spinner from "../../components/Spinner";
 
-function JobsHomePage({ filter = "", searchQuery }) {
+function JobsHomePage({ searchQuery }) {
  
-  const [query, setQuery] = useState("");
   const [jobsPost, setJobsPost] = useState({ results: [] });
   const [loadingPage, setLoadingPage] = useState(false);
 
-  const { pathname } = useLocation();
-  const currentUser = useCurrentUser();
+
+  // Define fetchJobs function
+  const fetchJobs = async (query) => {
+    try {
+      setLoadingPage(true);
+      const apiUrl = `/jobs/?search=${query}`;
+      const { data } = await axiosReq.get(apiUrl);
+      console.log("Fetched Jobs:", data.results);
+      setJobsPost(data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoadingPage(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchJobs = async () => {
-      setQuery(searchQuery);
-      try {
-        setLoadingPage(true);
-        const apiUrl = `/jobs/?search=${query}`;
-        const { data } = await axiosReq.get(apiUrl);
-        console.log("Fetched Jobs:", data.results);
-        setJobsPost(data);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setLoadingPage(false);
-      }
-    };
-
-    fetchJobs();
-  }, [filter, pathname, searchQuery, currentUser, query]);
+    // Fetch jobs when searchQuery changes
+    if (searchQuery !== "") {
+      fetchJobs(searchQuery);
+    } else {
+      fetchJobs("");
+    }
+    console.log("The value of searchQuery is:", searchQuery);
+  }, [searchQuery]);
+  
+  
 
   useEffect(() => {
     const timer = setTimeout(() => {

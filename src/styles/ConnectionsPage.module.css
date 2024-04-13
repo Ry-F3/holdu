@@ -1,0 +1,15 @@
+.Button {
+    border: none !important;
+    background-color: transparent !important;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.Button:hover {
+    border: none !important;
+    background-color: transparent !important;
+    font-weight: 800;
+    font-size: 16px;
+    color: #ca417f !important;
+    transition: color 3s ease-in-out;
+}

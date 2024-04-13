@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+// Bootstrap
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
-import styles from "../styles/NavBar.module.css";
-import stylesBottom from "../styles/BottomNav.module.css";
-
-import Spinner from "../components/Spinner";
-
-import { useProfileData } from "../contexts/ProfileContext";
+// Styles
+import styles from "../../styles/NavBar.module.css";
+import stylesBottom from "../../styles/BottomNav.module.css";
+// Contexts
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useProfileData } from "../../contexts/ProfileContext";
+// Components
+import Spinner from "../Spinner";
 import LoggedInEmployerIconsBottom from "./LoggedInEmployerIconsBottom";
 import LoggedInEmployeeIconsBottom from "./LoggedInEmployeeIconsBottom";
 import LoggedOutIcons from "./LoggedOutIcons";

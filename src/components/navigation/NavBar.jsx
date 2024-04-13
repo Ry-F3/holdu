@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import axios from "axios";
+// Bootstrap
 import {
   Navbar,
   Container,
@@ -7,24 +10,22 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
-
-import styles from "../App.module.css";
-import nav from "../styles/NavBar.module.css";
-import navBottom from "../styles/BottomNav.module.css"
-import LoggedInEmployeeIcons from "./LoggedInEmployeeIcons";
-import LoggedInEmployerIcons from "./LoggedInEmployerIcons";
-import { NavLink } from "react-router-dom";
-import { useProfileData } from "../contexts/ProfileContext";
-import Spinner from "../components/Spinner";
-
+// Contexts
 import {
   useCurrentUser,
   useSetCurrentUser,
   useSetLoginCount,
-} from "../contexts/CurrentUserContext";
-import axios from "axios";
-import Avatar from "./Avatar";
-import { useHistory } from "react-router-dom";
+} from "../../contexts/CurrentUserContext";
+import { useProfileData } from "../../contexts/ProfileContext";
+// Styles
+import styles from "../../App.module.css";
+import nav from "../../styles/NavBar.module.css";
+import navBottom from "../../styles/BottomNav.module.css";
+// Components
+import LoggedInEmployeeIcons from "./LoggedInEmployeeIcons";
+import LoggedInEmployerIcons from "./LoggedInEmployerIcons";
+import Spinner from "../Spinner";
+import Avatar from "../Avatar";
 import LoggedInLogo from "./LoggedInLogo";
 import LoggedOutLogo from "./LoggedOutLogo";
 
@@ -36,6 +37,9 @@ const NavBar = ({ handleSearch }) => {
   const profileData = useProfileData();
   const setLoginCount = useSetLoginCount();
   const [searchValue, setSearchValue] = useState("");
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [isButtonVisible, setIsButtonVisible] = useState(true);
+  const [isClearButtonVisible, setIsClearButtonVisible] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -76,11 +80,13 @@ const NavBar = ({ handleSearch }) => {
     </>
   );
 
-  console.log("id profile url", currentUser?.profile_id)
+  console.log("id profile url", currentUser?.profile_id);
 
   const loggedInIcons = (
     <>
-      <NavLink className="text-muted mr-2" to={`/profiles/${currentUser?.profile_id}/`}>
+      <NavLink
+        className="text-muted mr-2"
+        to={`/profiles/${currentUser?.profile_id}/`}>
         <div className="d-flex align-items-center">
           <Avatar src={currentUser?.profile_image} height={40} border={false} />
           <span className="d-none d-lg-flex align-items-center">
@@ -101,17 +107,82 @@ const NavBar = ({ handleSearch }) => {
   const handleChange = (e) => {
     setSearchValue(e.target.value);
     handleSearch(e.target.value);
+    setIsSearchActive(!!e.target.value);
   };
 
-  // Function to handle search form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    const isEmptySearch = searchValue.trim() === "";
+
+    if (isEmptySearch) {
+      // Clear the search value and deactivate search
+      setSearchValue("");
+      handleSearch("");
+    } else {
+      // Perform search based on the search value
+      history.push(`/`);
+      handleSearch(searchValue);
+      setIsSearchActive(!!searchValue);
+    }
+
+    // Update the search state based on whether search is active or not
+    setIsSearchActive(!isEmptySearch);
+    isHomePageOrJobsPage();
+    determineSearchIcon();
+    setIsButtonVisible(false);
+    setIsClearButtonVisible(true);
   };
+
+  const isHomePageOrJobsPage = () => {
+    const { pathname } = history.location;
+    return pathname === "/" || pathname === "/jobs/post";
+  };
+
+  const handleClearSearch = () => {
+    setSearchValue("");
+    handleSearch("");
+
+    console.log(
+      "Before state update - isClearButtonVisible:",
+      isClearButtonVisible
+    );
+    console.log("Before state update - isButtonVisible:", isButtonVisible);
+
+    if (isClearButtonVisible) {
+      console.log("inside state");
+      setIsClearButtonVisible(false);
+      setIsButtonVisible(true);
+    }
+
+    console.log("-------------------------------------------- state change");
+    console.log("-------------------------------------------- state change");
+
+    console.log(
+      "After state update - isClearButtonVisible:",
+      isClearButtonVisible
+    );
+    console.log("After state update - isButtonVisible:", isButtonVisible);
+  };
+
+  const determineSearchIcon = () => {
+    if (searchValue.trim() === "") {
+      console.log("Button state: glass");
+      return <i className="fa-solid fa-magnifying-glass"></i>;
+    } else {
+      console.log("Button state: cross");
+      return <i onClick={handleClearSearch} className="fas fa-times"></i>;
+    }
+  };
+
+  console.log(
+    "NATURAL state update - isClearButtonVisible:",
+    isClearButtonVisible
+  );
+  console.log("NATURAL state update - isButtonVisible:", isButtonVisible);
 
   return (
     <Navbar
       bg="white"
-      
       fixed="light"
       className={`border-bottom ${nav.NavHeight}`}>
       <Container className="d-flex align-items-center justify-content-between">
@@ -130,12 +201,22 @@ const NavBar = ({ handleSearch }) => {
               />
               <div className="d-none d-lg-flex align-items-center">
                 {" "}
-                {/* Change from d-md-flex to d-lg-flex */}
                 <Button
-                  variant="white"
+                  type={searchValue.trim() !== "" ? "submit" : "button"}
                   className="btn-transparent"
-                  type="submit">
-                  <i className="fa-solid fa-magnifying-glass"></i>
+                  style={{ display: isButtonVisible ? "block" : "none" }}>
+                  {isHomePageOrJobsPage() ? (
+                    determineSearchIcon()
+                  ) : (
+                    <i className="fa-solid fa-magnifying-glass"></i>
+                  )}
+                </Button>
+                <Button
+                  type="button"
+                  className="btn-transparent"
+                  style={{ display: isClearButtonVisible ? "block" : "none" }}
+                  onClick={handleClearSearch}>
+                  <i className="fas fa-times"></i>
                 </Button>
               </div>
             </Form>
@@ -154,7 +235,9 @@ const NavBar = ({ handleSearch }) => {
                       <LoggedInEmployerIcons />
                     </div>
                     <div>
-                      <Nav.Link className={navBottom.HideSignOut} onClick={handleSignOut}>
+                      <Nav.Link
+                        className={navBottom.HideSignOut}
+                        onClick={handleSignOut}>
                         <div className="d-flex d-xl-none  align-items-center">
                           <i className="fas fa-sign-out mr-2"></i>
                           {/* <span>Sign out</span> */}
@@ -164,18 +247,20 @@ const NavBar = ({ handleSearch }) => {
                   </>
                 ) : (
                   <>
-                  <div className="d-none d-xl-flex" >
-                    <LoggedInEmployeeIcons />
-                  </div>
-                  <div>
-                    <Nav.Link className={navBottom.HideSignOut} onClick={handleSignOut}>
-                      <div className="d-flex d-xl-none align-items-center">
-                        <i className="fas fa-sign-out mr-2"></i>
-                        {/* <span>Sign out</span> */}
-                      </div>
-                    </Nav.Link>
-                  </div>
-                </>
+                    <div className="d-none d-xl-flex">
+                      <LoggedInEmployeeIcons />
+                    </div>
+                    <div>
+                      <Nav.Link
+                        className={navBottom.HideSignOut}
+                        onClick={handleSignOut}>
+                        <div className="d-flex d-xl-none align-items-center">
+                          <i className="fas fa-sign-out mr-2"></i>
+                          {/* <span>Sign out</span> */}
+                        </div>
+                      </Nav.Link>
+                    </div>
+                  </>
                 )
               ) : (
                 // If currentUser doesn't exist or signup is not completed, render nothing

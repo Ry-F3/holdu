@@ -3,7 +3,7 @@ import React from 'react';
 const ApprovedApplicantItem = ({ applicant }) => {
   console.log("Approved Applicant component:", applicant); // Log the entire applicant object
   
-  // Log specific properties if needed
+  // Log specific properties
   console.log("Applicant ID:", applicant.applicant.id);
   console.log("Applicant Image:", applicant.image);
   console.log("Applicant Owner Username:", applicant.owner_username);

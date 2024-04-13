@@ -13,6 +13,11 @@
 
 }
 
+.Background {
+    background-color: #fc7fb6;
+    color: #ffffff;
+}
+
 .Button {
     text-decoration: none !important;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import nav from '../styles/NavBar.module.css'
+// Styles
+import nav from '../../styles/NavBar.module.css'
 
 const LoggedInEmployerIcons = () => {
   return (

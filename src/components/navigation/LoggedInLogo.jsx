@@ -1,9 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+// Bootstrap
 import { Navbar } from "react-bootstrap";
-import logo from "../assets/logo.png";
-import navBottom from "../styles/BottomNav.module.css"
-import { useProfileData } from "../contexts/ProfileContext";
+// Image
+import logo from "../../assets/logo.png";
+// Styles
+import navBottom from "../../styles/BottomNav.module.css"
+// Contexts
+import { useProfileData } from "../../contexts/ProfileContext";
 
 const LoggedInLogo = () => {
   const profileData = useProfileData();

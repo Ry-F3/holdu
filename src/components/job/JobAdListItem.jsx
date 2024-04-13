@@ -1,13 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+// Bootstrap
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
-import appStyles from "../App.module.css";
-import styles from "../styles/JobAdListItem.module.css";
-import axios from "axios";
+// Styles
+import appStyles from "../../App.module.css";
+import styles from "../../styles/JobAdListItem.module.css";
+// Components
 import ApplicantFilteredItem from "./ApplicantFilteredItem";
 import ApplicantItem from "./ApplicantItem";
-import DummyApplicantBox from "./DummyApplicantBox";
+import DummyApplicantBox from "../miscellaneous/DummyApplicantBox";
 import ApprovedApplicantItem from "./ApprovedApplicantItem";
 
 const JobListItem = ({ ad, handleEdit, handleDelete }) => {

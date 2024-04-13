@@ -1,6 +1,7 @@
 import React from "react";
 
 const ApplicantItem = ({ applicant }) => {
+  
   return (
     <div
       className="mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center"

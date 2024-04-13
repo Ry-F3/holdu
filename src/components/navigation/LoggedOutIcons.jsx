@@ -1,7 +1,9 @@
 import React from 'react';
+// Bootstrap
 import { Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import nav from "../styles/NavBar.module.css";
+// Styles
+import nav from "../../styles/NavBar.module.css";
 
 
 const LoggedOutIcons = () => {

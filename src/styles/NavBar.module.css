@@ -1,6 +1,6 @@
 .Active {
     color: #fc7fb6 !important;
-    text-decoration: solid 1px white !important;
+
 
     /* Change the color to your desired active color */
 }
@@ -19,7 +19,7 @@ Button {
     background-color: white !important;
     color: #fc7fb6 !important;
     box-shadow: none !important;
-    text-decoration: underline white !important;
+
 }
 
 
@@ -28,7 +28,6 @@ Button:hover {
     background-color: #fc7fb6 !important;
     box-shadow: none !important;
     color: white !important;
-    text-decoration: underline #fc7fb6 !important;
     transition: 0.2s;
 }
 

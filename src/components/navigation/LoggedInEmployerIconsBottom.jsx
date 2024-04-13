@@ -1,7 +1,9 @@
 import React from "react";
+// Bootstrap
 import { NavLink} from "react-router-dom";
-import navStyles from "../styles/NavBar.module.css";
-import styles from "../styles/BottomNav.module.css";
+// Styles
+import navStyles from "../../styles/NavBar.module.css";
+import styles from "../../styles/BottomNav.module.css";
 
 const LoggedInEmployerIconsBottom = () => {
   

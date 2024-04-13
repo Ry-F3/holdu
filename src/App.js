@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/navigation/NavBar";
 import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
@@ -11,7 +11,7 @@ import JobsCreateForm from "./pages/jobs/JobsCreateForm.jsx";
 import JobsHomePage from "./pages/jobs/JobsHomePage.jsx";
 import { useCurrentUser } from "./contexts/CurrentUserContext.jsx";
 import { useState } from "react";
-import BottomNavBar from "./components/BottomNavBar.jsx";
+import BottomNavBar from "./components/navigation/BottomNavBar.jsx";
 import ConnectionsPage from "./pages/connections/ConnectionsPage.jsx";
 
 function App() {

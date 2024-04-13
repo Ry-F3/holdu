@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom';
+//Bootstrap
 import {
     Navbar,
   } from "react-bootstrap";
-import logo from "../assets/logo.png";
+// Image
+import logo from "../../assets/logo.png";
 
 const LoggedOutLogo = () => {
   return (

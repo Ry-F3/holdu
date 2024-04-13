@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "../styles/JobPostHomeItem.module.css"
+// Styles
+import styles from "../../styles/JobPostHomeItem.module.css"
 
 const JobPostHomeItem = ({
   title,

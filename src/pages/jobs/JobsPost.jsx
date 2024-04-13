@@ -6,7 +6,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/JobsPost.module.css";
 import { useProfileData } from "../../contexts/ProfileContext";
-import JobPostHomeItem from "../../components/JobPostHomeItem";
+import JobPostHomeItem from "../../components/job/JobPostHomeItem";
 
 import axios from "axios";
 

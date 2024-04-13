@@ -17,8 +17,8 @@ import { axiosReq } from "../../api/axiosDefaults";
 import dataImage from "../../assets/dataImage.png";
 import Asset from "../../components/Asset";
 import Spinner from "../../components/Spinner";
-import JobAdListItem from "../../components/JobAdListItem";
-import DummyBoxes from "../../components/DummyBoxes";
+import JobAdListItem from "../../components/job/JobAdListItem";
+import DummyBoxes from "../../components/miscellaneous/DummyBoxes";
 import { useLocation, useHistory } from "react-router-dom";
 
 function JobsCreateForm({ searchQuery }) {
@@ -116,6 +116,7 @@ function JobsCreateForm({ searchQuery }) {
     };
   }, [pathname, searchQuery, currentUser, setShowPostAdForm]);
 
+  
   const filterJobsByListingClosed = (currentUserAds, isListingClosed) => {
     if (isListingClosed === true) {
       // Show only closed listings
@@ -405,14 +406,14 @@ function JobsCreateForm({ searchQuery }) {
                         
                               className="text-muted fas fa-toggle-on mr-1"></i>
                           ) : (
-                            <i className="text-muted fas fa-toggle-off mr-2"></i>
+                            <i className="text-muted fas fa-toggle-off mr-1"></i>
                           )}
                         </div>
 
                         {/* Dropdown or arrows */}
                         {showDropdown ? (
                           <>
-                            <Button>
+                            <Button className={formStyles.Button}>
                               <i
                                 onClick={
                                   showDropdown
@@ -423,8 +424,8 @@ function JobsCreateForm({ searchQuery }) {
                             </Button>
                           </>
                         ) : (
-                          <Button onClick={handleToggleFilter}>
-                            <i className=" fas fa-arrows-alt-v"></i>
+                          <Button className={formStyles.Button} onClick={handleToggleFilter}>
+                            <i className="fa-solid fa-arrow-down-wide-short"></i>
                           </Button>
                         )}
                       </div>
