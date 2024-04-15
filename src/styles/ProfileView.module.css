@@ -1,0 +1,103 @@
+h2 {
+    font-size: 18px !important;
+}
+
+.profileTimeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileTimelineItem {
+    display: flex;
+    align-items: flex-start;
+}
+
+.profileTimelineItemContent {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.profileTimelineItemLabel {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    width: 80px;
+    /* Adjust margin to create space between label and connector */
+}
+
+.profileTimelineItemConnector {
+    width: 20px;
+    /* Set the width of the horizontal line */
+    height: 3px;
+    /* Set the height of the horizontal line */
+    background-color: #ced4da;
+    margin-top: 18px;
+    margin-right: 12px;
+}
+
+.Stars {
+    color: #fc7fb6;
+}
+
+.Button {
+    background-color: #fc7fb6 !important;
+    border: 1px solid #fc7fb6 !important;
+    color: #ffff !important;
+    font-weight: 500;
+    font-size: 25px;
+
+
+}
+
+.buttonForm {
+    border: 1px solid #fc7fb6 !important;
+    font-weight: 500;
+    width: 100% !important;
+
+}
+
+.buttonForm:hover {
+    transform: scale(0.95);
+    /* Reduce the size of the button on hover */
+    transition: transform 0.3s ease-in-out;
+    /* Add a smooth transition effect */
+}
+
+.buttonForm:active {
+    transform: scale(0.95);
+    /* Further reduce the size when the button is clicked */
+}
+
+.Button:hover {
+    transform: scale(0.95);
+    /* Reduce the size of the button on hover */
+    transition: transform 0.1s ease-in-out;
+    /* Add a smooth transition effect */
+}
+
+.Button:active {
+    transform: scale(0.95);
+    /* Further reduce the size when the button is clicked */
+}
+
+.triangleGradient {
+    position: relative;
+}
+
+.triangleGradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 100px 100px 0;
+    border-color: transparent #fc7fb6 transparent transparent;
+}

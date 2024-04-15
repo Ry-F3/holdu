@@ -6,6 +6,7 @@ import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import ProfileTypeChoiceForm from "./pages/profiles/ProfileTypeChoiceForm";
+import ProfileViewPage from "./pages/profiles/ProfileViewPage";
 import JobsPostPage from "./pages/jobs/JobsPostPage.jsx";
 import JobsCreateForm from "./pages/jobs/JobsCreateForm.jsx";
 import JobsHomePage from "./pages/jobs/JobsHomePage.jsx";
@@ -48,6 +49,11 @@ function App() {
             exact
             path="/profiles/:id"
             render={() => <ProfileTypeChoiceForm />}
+          />
+           <Route
+            exact
+            path="/profiles/:id/user/"
+            render={() => <ProfileViewPage/>}
           />
           <Route exact path="/connect" render={() => <ConnectionsPage/>} />
           <Route exact path="/chats" render={() => <h1>Chats</h1>} />

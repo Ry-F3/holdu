@@ -80,13 +80,11 @@ const NavBar = ({ handleSearch }) => {
     </>
   );
 
-  console.log("id profile url", currentUser?.profile_id);
-
   const loggedInIcons = (
     <>
       <NavLink
         className="text-muted mr-2"
-        to={`/profiles/${currentUser?.profile_id}/`}>
+        to={`/profiles/${currentUser?.profile_id}/user/`}>
         <div className="d-flex align-items-center">
           <Avatar src={currentUser?.profile_image} height={40} border={false} />
           <span className="d-none d-lg-flex align-items-center">
@@ -154,9 +152,6 @@ const NavBar = ({ handleSearch }) => {
       setIsButtonVisible(true);
     }
 
-    console.log("-------------------------------------------- state change");
-    console.log("-------------------------------------------- state change");
-
     console.log(
       "After state update - isClearButtonVisible:",
       isClearButtonVisible
@@ -173,12 +168,6 @@ const NavBar = ({ handleSearch }) => {
       return <i onClick={handleClearSearch} className="fas fa-times"></i>;
     }
   };
-
-  console.log(
-    "NATURAL state update - isClearButtonVisible:",
-    isClearButtonVisible
-  );
-  console.log("NATURAL state update - isButtonVisible:", isButtonVisible);
 
   return (
     <Navbar

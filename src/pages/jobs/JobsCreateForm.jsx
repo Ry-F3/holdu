@@ -264,7 +264,7 @@ function JobsCreateForm({ searchQuery }) {
 
   const handleProfileClick = () => {
     // Use history.push to navigate programmatically
-    history.push(`/profiles/${currentUser?.profile_id}`);
+    history.push(`/profiles/${currentUser?.profile_id}/user/`);
   };
 
   const textFields = (
