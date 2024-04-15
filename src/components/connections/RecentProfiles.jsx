@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // Styles
 import { Button } from "react-bootstrap";
 import styles from '../../styles/ConnectionsPage.module.css'
@@ -15,6 +16,7 @@ const RecentProfiles = ({
   profileData,
   handleConnect,
   limit,
+ 
 }) => {
   return (
     <>
@@ -58,9 +60,11 @@ const RecentProfiles = ({
                       height={40}
                       border={true}
                     />
+                    <Link to={`/profiles/${profile.id}/user/`}>
                     <div className="ml-2">
                       <h5 className="mt-0 mb-0 small">{profile.name}</h5>
                     </div>
+                    </Link>
                   </div>
                   {pendingConnection ? (
                     <Button

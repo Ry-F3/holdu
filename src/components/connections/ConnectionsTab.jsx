@@ -1,10 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // Bootstrap
 import { Button } from "react-bootstrap";
 // Styles
 import connectStyles from "../../styles/ConnectionsPage.module.css";
 
-const ConnectionsTab = ({ connections, handleDeleteConnection }) => {
+const ConnectionsTab = ({ connections, handleDeleteConnection, profile }) => {
+    console.log("connections", connections)
   return (
     <ul className="list-group">
       {/* Render connections */}
@@ -15,7 +17,12 @@ const ConnectionsTab = ({ connections, handleDeleteConnection }) => {
               key={connection.id}
               className="list-group-item bg-light d-flex align-items-center justify-content-between"
             >
-              {connection.connection_name}
+             
+             <Link to={`/profiles/${connection.connection}/user/`}>
+                    <div className="ml-2">
+                      <h5 className="mt-0 mb-0 small"> {connection.connection_name}</h5>
+                    </div>
+                    </Link>
               <div>
                 <Button
                   className={` ${connectStyles.Button}`}
