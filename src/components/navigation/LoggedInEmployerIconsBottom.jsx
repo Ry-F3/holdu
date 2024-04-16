@@ -37,15 +37,15 @@ const LoggedInEmployerIconsBottom = () => {
             </div>
           </NavLink>
         </div>
-        <div className={`col text-center ${styles.NavLinkContainer}`}>
-          {/* Chats */}
+        {/* <div className={`col text-center ${styles.NavLinkContainer}`}>
+         
           <NavLink to="/chats" activeClassName={styles.Active}  className={`${navStyles.Pointer} text-muted`}>
             <div className="d-flex flex-column">
               <i className="fa-solid fa-message mt-2"></i>
               <span className={`${navStyles.NavText} ${styles.IconText}`}>Chats</span>
             </div>
           </NavLink>
-        </div>
+        </div> */}
         <div className={`col text-center ${styles.NavLinkContainer}`}>
           {/* Notifications */}
           <NavLink to="/notifications" activeClassName={styles.Active}  className={`${navStyles.Pointer} text-muted`}>

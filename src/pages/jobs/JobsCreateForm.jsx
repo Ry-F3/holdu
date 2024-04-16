@@ -21,12 +21,15 @@ import JobAdListItem from "../../components/job/JobAdListItem";
 import DummyBoxes from "../../components/miscellaneous/DummyBoxes";
 import { useLocation, useHistory } from "react-router-dom";
 
-function JobsCreateForm({ searchQuery }) {
+function JobsCreateForm({ searchQuery, fetchApplicants }) {
   const [setErrors] = useState({});
   const [loading, setLoading] = useState(true);
   const [showPostAdForm, setShowPostAdForm] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showImageAndMessage, setShowImageAndMessage] = useState(true);
+  const [isFilterActive, setIsFilterActive] = useState(false);
+
+  const [toggleState, setToggleState] = useState(null);
 
   const [editMode, setEditMode] = useState(false); // State to track edit mode
   const [editListingId, setEditListingId] = useState(null); // State to store the ID of the listing being edited
@@ -43,7 +46,6 @@ function JobsCreateForm({ searchQuery }) {
   const [currentUserAds, setCurrentUserAds] = useState([]);
   const [notUserAds, setNotUserAds] = useState([]);
   const [isListingClosed, setIsListingClosed] = useState(null);
-  
 
   const [formData, setFormData] = useState({
     title: "",
@@ -65,7 +67,6 @@ function JobsCreateForm({ searchQuery }) {
   const profileData = useProfileData();
   const { pathname } = useLocation();
   const history = useHistory();
-
 
   useEffect(() => {
     let isMounted = true;
@@ -116,35 +117,83 @@ function JobsCreateForm({ searchQuery }) {
     };
   }, [pathname, searchQuery, currentUser, setShowPostAdForm]);
 
-  
   const filterJobsByListingClosed = (currentUserAds, isListingClosed) => {
     if (isListingClosed === true) {
       // Show only closed listings
-      return currentUserAds.filter(ad => ad.is_listing_closed === true);
+      return currentUserAds.filter((ad) => ad.is_listing_closed === true);
     } else if (isListingClosed === false) {
       // Show only open listings
-      return currentUserAds.filter(ad => ad.is_listing_closed === false);
+      return currentUserAds.filter((ad) => ad.is_listing_closed === false);
     } else {
       // Show all listings when isListingClosed is not explicitly set
       // Sort by closing date in descending order
-      return currentUserAds.slice().sort((b, a) => new Date(b.closing_date) - new Date(a.closing_date));
+      return currentUserAds
+        .slice()
+        .sort((a, b) => new Date(b.closing_date) - new Date(a.closing_date));
     }
   };
 
+ 
+
+  // Define the toggle handler
   const handleToggleFilter = () => {
-    setIsListingClosed(prevState => {
-      if (prevState === null) {
-        return true; // Activate closed listings filter
-      } else if (prevState === true) {
-        return false; // Activate open listings filter
-      } else {
-        return null; // Deactivate filter to show all listings
-      }
-    });
-    setShowPostAdForm(false);
-  };
+    // Ensure sortedCurrentUserAds is an array before using some method
+    if (!Array.isArray(sortedCurrentUserAds)) {
+      console.error("sortedCurrentUserAds is not an array");
+      return;
+    }
   
-  const sortedCurrentUserAds = filterJobsByListingClosed(currentUserAds, isListingClosed);
+    // Check if there are both open and closed ads available
+    const hasOpenAds = sortedCurrentUserAds.some((ad) => !ad.is_listing_closed);
+    const hasClosedAds = sortedCurrentUserAds.some((ad) => ad.is_listing_closed);
+  
+    console.log("hasOpenAds:", hasOpenAds);
+    console.log("hasClosedAds:", hasClosedAds);
+
+  if (toggleState === null) {
+    setIsFilterActive(false);
+    if (hasClosedAds === false) {
+      // If there are no closed ads, exit the condition block
+      return;
+    } 
+  if (hasOpenAds) {
+    setIsFilterActive(true);
+    setIsListingClosed(false); // Show only open ads initially
+    setToggleState(true);
+    console.log("Fetching applicants for initial toggle (showing only open ads)");
+  } else if (hasClosedAds) {
+    setIsFilterActive(true);
+    setIsListingClosed(true); // Show only closed ads if no open ads available
+    setToggleState(false);
+    console.log("Fetching applicants for initial toggle (showing only closed ads)");
+  } else {
+    setIsFilterActive(false);
+    setIsListingClosed(null); // Revert to default if no open or closed ads available
+    setToggleState(null);
+    console.log("No ads available, reverting to default state");
+  }
+} else if (toggleState === true) {
+  // Toggle from open to closed
+  setIsFilterActive(true);
+  setIsListingClosed(true); // Show only closed ads
+  setToggleState(false);
+  console.log("Fetching applicants for toggle from open to closed");
+} else {
+  // Toggle from closed to default
+  setIsFilterActive(false);
+  setIsListingClosed(null); // Revert to default
+  setToggleState(null);
+  console.log("Fetching applicants for toggle from closed to default");
+}
+
+setShowPostAdForm(false);
+};
+
+
+  const sortedCurrentUserAds = filterJobsByListingClosed(
+    currentUserAds,
+    isListingClosed
+  );
   console.log(sortedCurrentUserAds);
 
   useEffect(() => {
@@ -221,11 +270,16 @@ function JobsCreateForm({ searchQuery }) {
     try {
       // Send a request to delete the job listing from the database
       await axiosReq.delete(`/jobs/post/${jobListingId}/`);
-
+  
       // Remove the job listing from the UI only if the deletion was successful
       setCurrentUserAds((prevAds) =>
         prevAds.filter((ad) => ad.job_listing_id !== jobListingId)
       );
+  
+      // Update the state to null and the toggle to null
+      setIsFilterActive(false);
+      setIsListingClosed(null);
+      setToggleState(null);
     } catch (error) {
       console.error("Error deleting job listing:", error);
     }
@@ -332,7 +386,9 @@ function JobsCreateForm({ searchQuery }) {
         />
       </Form.Group>
 
-      <Button className={`${appStyles.Button}`} type="submit">{editMode ? "Edit Ad" : "Post Ad"}</Button>
+      <Button className={`${appStyles.Button}`} type="submit">
+        {editMode ? "Edit Ad" : "Post Ad"}
+      </Button>
       {editMode && (
         <Button className={`${appStyles.Button} ml-2`} onClick={handleCancel}>
           Cancel
@@ -367,7 +423,7 @@ function JobsCreateForm({ searchQuery }) {
             className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}>
             <Form.Group className="align-items-center`">
               {loading ? (
-                <Container className={`${spinnerStyle.spinnerContain} bg-red`}>
+                <Container className={`${spinnerStyle.spinnerContain}`}>
                   <Spinner size="50px" />
                 </Container>
               ) : (
@@ -389,8 +445,12 @@ function JobsCreateForm({ searchQuery }) {
                           />
                           {/* Heading */}
                           <h2 className="mb-0 mr-2 ">
-                          <span className={formStyles.Pointer} onClick={handleProfileClick}>{profileData.name}</span>'s activity:
-                           
+                            <span
+                              className={formStyles.Pointer}
+                              onClick={handleProfileClick}>
+                              {profileData.name}
+                            </span>
+                            's activity:
                           </h2>
                         </div>
                         {/* Toggle button */}
@@ -399,11 +459,9 @@ function JobsCreateForm({ searchQuery }) {
                           onClick={() => setShowDropdown(!showDropdown)}>
                           {showDropdown ? (
                             <i
-                            onClick={() => {
-                              setShowPostAdForm(false);
-                              
-                            }}
-                        
+                              onClick={() => {
+                                setShowPostAdForm(false);
+                              }}
                               className="text-muted fas fa-toggle-on mr-1"></i>
                           ) : (
                             <i className="text-muted fas fa-toggle-off mr-1"></i>
@@ -424,7 +482,9 @@ function JobsCreateForm({ searchQuery }) {
                             </Button>
                           </>
                         ) : (
-                          <Button className={formStyles.Button} onClick={handleToggleFilter}>
+                          <Button
+                            className={formStyles.Button}
+                            onClick={handleToggleFilter}>
                             <i className="fa-solid fa-arrow-down-wide-short"></i>
                           </Button>
                         )}
@@ -460,6 +520,7 @@ function JobsCreateForm({ searchQuery }) {
                             ad={ad}
                             handleEdit={handleEdit}
                             handleDelete={handleDelete}
+                            fetchApplicants={fetchApplicants}
                           />
                         ))}
                         {/* Add a console.log statement here */}

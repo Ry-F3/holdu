@@ -1,0 +1,39 @@
+h2 {
+    font-size: 14px !important;
+    margin-top: 0px !important;
+    padding: 0px !important;
+}
+
+.Background {
+    /* background-color: rgba(127, 160, 252, 0.1); */
+
+    font-weight: 800;
+}
+
+.Background:hover {
+    /* background-color: rgba(127, 160, 252, 0.2); */
+    cursor: pointer;
+    font-weight: 800;
+    background-color: #f0f0f0dd;
+}
+
+.Badge {
+    background-color: #fc7fb6;
+    color: white;
+}
+
+
+.Image {
+    max-width: 100%;
+}
+
+.transitionEnd {
+    transition: 1.5s ease-in-out;
+    justify-content: flex-end;
+
+}
+
+.transitionStart {
+    transition: 1.5s ease-in-out;
+    justify-content: flex-start;
+}

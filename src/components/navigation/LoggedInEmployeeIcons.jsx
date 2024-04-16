@@ -34,7 +34,7 @@ const LoggedInEmployeeIcons = () => {
           <span className={navStyles.NavText}>Likes</span>
         </div>
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to="/chats"
         activeClassName={navStyles.Active}
         className={`${navStyles.Pointer} mr-3 text-muted`}>
@@ -42,7 +42,7 @@ const LoggedInEmployeeIcons = () => {
           <i className="fa-solid fa-message mt-2"></i>
           <span className={navStyles.NavText}>Chats</span>
         </div>
-      </NavLink>
+      </NavLink> */}
 
       <NavLink
         to="/notifications"

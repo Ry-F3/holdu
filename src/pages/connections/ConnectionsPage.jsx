@@ -31,6 +31,7 @@ const ConnectionsPage = () => {
   const [filteredProfiles, setFilteredProfiles] = useState(profiles);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true); // Loading indicator
+  const [initialLoad, setInitialLoad] = useState(false);
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
@@ -50,7 +51,8 @@ const ConnectionsPage = () => {
       // setIsLoading(false);
       // Handle error, show error message, etc.
     }
-    delay(100).then(() =>  setIsLoading(false));
+    delay(100).then(() => setIsLoading(false));
+    setInitialLoad(true);
   };
 
   useEffect(() => {
@@ -166,66 +168,56 @@ const ConnectionsPage = () => {
 
   return (
     <Row>
-      {/* {isLoading ? (
-        <Container className={styles.Content} lg={8}>
-          <Spinner size={60} />
-        </Container>
-      ) : ( */}
       <>
         <Col className="py-2 p-0 p-lg-4" lg={8}>
-          {isLoading ? (
-            <Container
-              className={`bg-transparent border-none border-bottom-none`}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}>
-              {/* <Spinner size={60} /> */}
+          <Container
+            className={`bg-transparent border-none border-bottom-none`}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}></Container>
+
+          <Container
+            className={`${styles.Content} bg-white border-bottom-none mb-3 d-block d-lg-none`}>
+            <Container className={`bg-white border-none`}>
+              <Nav
+                variant="tabs"
+                className="mb-2 mt-2"
+                activeKey={activeTabProfiles}
+                onSelect={setActiveTabProfiles}>
+                <Nav.Item>
+                  <Nav.Link eventKey="recentProfiles">Recent Profiles</Nav.Link>
+                </Nav.Item>
+              </Nav>
             </Container>
-          ) : (
-            <Container
-              className={`${styles.Content} bg-white border-bottom-none mb-3 d-block d-lg-none`}>
-              <Container className={`bg-white border-none`}>
-                <Nav
-                  variant="tabs"
-                  className="mb-2 mt-2"
-                  activeKey={activeTabProfiles}
-                  onSelect={setActiveTabProfiles}>
-                  <Nav.Item>
-                    <Nav.Link eventKey="recentProfiles">
-                      Recent Profiles
-                    </Nav.Link>
-                  </Nav.Item>
-                </Nav>
-              </Container>
-              <Container className={`p-3 bg-white `}>
-                {/* Search Bar */}
-                <div className="mb-3 border-bottom-none p-0">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search profiles..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-                {/* RecentProfiles mobile */}
-                <RecentProfiles
-                  activeTabProfiles={activeTabProfiles}
-                  searchQuery={searchQuery}
-                  filteredProfiles={filteredProfiles}
-                  profiles={profiles}
-                  connections={connections}
-                  pendingConnections={pendingConnections}
-                  profileData={profileData}
-                  handleConnect={handleConnect}
-                  limit={4}
+            <Container className={`p-3 bg-white `}>
+              {/* Search Bar */}
+              <div className="mb-3 border-bottom-none p-0">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search profiles..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
-              </Container>
+              </div>
+              {/* RecentProfiles mobile */}
+              <RecentProfiles
+                activeTabProfiles={activeTabProfiles}
+                searchQuery={searchQuery}
+                filteredProfiles={filteredProfiles}
+                profiles={profiles}
+                connections={connections}
+                pendingConnections={pendingConnections}
+                profileData={profileData}
+                handleConnect={handleConnect}
+                limit={4}
+              />
             </Container>
-          )}
-          {isLoading ? (
+          </Container>
+
+          {isLoading && !initialLoad ? (
             <Container
               className={`bg-transparent border-none border-bottom-none`}
               style={{
@@ -302,23 +294,18 @@ const ConnectionsPage = () => {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              {/* {isLoading ? (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '300px' }}>
-          <Spinner size={60} />
-        </div> */}
-    
-        <RecentProfiles
-          activeTabProfiles={activeTabProfiles}
-          searchQuery={searchQuery}
-          filteredProfiles={filteredProfiles}
-          profiles={profiles}
-          connections={connections}
-          pendingConnections={pendingConnections}
-          profileData={profileData}
-          handleConnect={handleConnect}
-          limit={8}
-        />
-      
+
+              <RecentProfiles
+                activeTabProfiles={activeTabProfiles}
+                searchQuery={searchQuery}
+                filteredProfiles={filteredProfiles}
+                profiles={profiles}
+                connections={connections}
+                pendingConnections={pendingConnections}
+                profileData={profileData}
+                handleConnect={handleConnect}
+                limit={8}
+              />
             </Container>
           </Container>
         </Col>

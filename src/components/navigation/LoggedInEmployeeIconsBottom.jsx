@@ -51,8 +51,8 @@ const LoggedInEmployeeIconsBottom = () => {
             </div>
           </NavLink>
         </div>
-        <div className={`col text-center ${styles.NavLinkContainer}`}>
-          {/* Chats */}
+        {/* <div className={`col text-center ${styles.NavLinkContainer}`}>
+         
           <NavLink
             to="/chats"
             activeClassName={styles.Active}
@@ -64,7 +64,7 @@ const LoggedInEmployeeIconsBottom = () => {
               </span>
             </div>
           </NavLink>
-        </div>
+        </div> */}
         <div className={`col text-center ${styles.NavLinkContainer}`}>
           {/* Notifications */}
           <NavLink

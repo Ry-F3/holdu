@@ -14,6 +14,7 @@ import { useCurrentUser } from "./contexts/CurrentUserContext.jsx";
 import { useState } from "react";
 import BottomNavBar from "./components/navigation/BottomNavBar.jsx";
 import ConnectionsPage from "./pages/connections/ConnectionsPage.jsx";
+import NotificationsPage from "./pages/notifications/NotificationsPage.jsx"
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -66,7 +67,7 @@ function App() {
           <Route
             exact
             path="/notifications"
-            render={() => <h1>Notifications</h1>}
+            render={() => <NotificationsPage/>}
           />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>

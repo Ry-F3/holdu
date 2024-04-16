@@ -18,12 +18,12 @@ const LoggedInEmployerIcons = () => {
           <span className={nav.NavText}>Connect</span>
         </div>
       </NavLink>
-      <NavLink to="/chats" activeClassName={nav.Active} className={`${nav.Pointer} mr-3 text-muted`}>
+      {/* <NavLink to="/chats" activeClassName={nav.Active} className={`${nav.Pointer} mr-3 text-muted`}>
         <div className="d-flex flex-column align-items-center">
           <i className="fa-solid fa-message mt-2"></i>
           <span className={nav.NavText}>Chats</span>
         </div>
-      </NavLink>
+      </NavLink> */}
       <NavLink to="/jobs/post" activeClassName={nav.Active} className={`${nav.Pointer} mr-3 text-muted`}>
         <div className="d-flex flex-column align-items-center">
           <i className="fa-solid fa-briefcase mt-2"></i>
