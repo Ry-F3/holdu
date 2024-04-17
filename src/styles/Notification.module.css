@@ -4,6 +4,11 @@ h2 {
     padding: 0px !important;
 }
 
+.Icon {
+    font-size: 15px;
+    font-weight: 800;
+}
+
 .Background {
     /* background-color: rgba(127, 160, 252, 0.1); */
 
@@ -14,12 +19,16 @@ h2 {
     /* background-color: rgba(127, 160, 252, 0.2); */
     cursor: pointer;
     font-weight: 800;
-    background-color: #f0f0f0dd;
+    background-color: #f8f9fa;
 }
 
 .Badge {
     background-color: #fc7fb6;
     color: white;
+}
+
+.ButtonSize {
+    width: 49;
 }
 
 
@@ -36,4 +45,27 @@ h2 {
 .transitionStart {
     transition: 1.5s ease-in-out;
     justify-content: flex-start;
+}
+
+@media (max-width: 767px) {
+    .buttonSize {
+        margin-top: 4px;
+        margin-right: -35px;
+    }
+
+}
+
+@media (max-width: 484px) {
+    .Badge {
+        font-size: 10px !important;
+    }
+
+    .textSize {
+        font-size: 13px;
+    }
+
+    h2 {
+        font-size: 10px;
+    }
+
 }

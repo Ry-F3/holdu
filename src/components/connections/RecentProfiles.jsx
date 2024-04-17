@@ -61,7 +61,7 @@ const RecentProfiles = ({
                       border={true}
                     />
                     <Link to={`/profiles/${profile.id}/user/`}>
-                    <div className="ml-2">
+                    <div className="ml-0">
                       <h5 className="mt-0 mb-0 small">{profile.name}</h5>
                     </div>
                     </Link>

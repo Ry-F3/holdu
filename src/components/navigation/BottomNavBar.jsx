@@ -13,7 +13,7 @@ import LoggedInEmployerIconsBottom from "./LoggedInEmployerIconsBottom";
 import LoggedInEmployeeIconsBottom from "./LoggedInEmployeeIconsBottom";
 import LoggedOutIcons from "./LoggedOutIcons";
 
-const BottomNavBar = () => {
+const BottomNavBar = (profile_id) => {
   const [isLoading, setIsLoading] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -63,9 +63,9 @@ const BottomNavBar = () => {
                 profileData.is_signup_completed && (
                   <div className="text-center">
                     {profileData.profile_type === "employer" ? (
-                      <LoggedInEmployerIconsBottom />
+                      <LoggedInEmployerIconsBottom profile_id={profile_id}/>
                     ) : (
-                      <LoggedInEmployeeIconsBottom />
+                      <LoggedInEmployeeIconsBottom profile_id={profile_id}/>
                     )}
                   </div>
                 )}

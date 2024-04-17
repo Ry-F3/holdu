@@ -8,3 +8,11 @@
 .Border {
     border: 3px solid #ffffff;
 }
+
+
+@media (max-width: 468px) {
+    .Avatar {
+        height: 45px !important;
+        width: 45px !important;
+    }
+}

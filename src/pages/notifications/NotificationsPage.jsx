@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { axiosReq } from "../../api/axiosDefaults";
+import axios from "axios";
 // Styles
 import styles from "../../App.module.css";
 import notifyStyles from "../../styles/Notification.module.css";
@@ -12,16 +14,16 @@ import {
   Button,
   Image,
 } from "react-bootstrap"; // Assuming you're using Bootstrap
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { axiosReq } from "../../api/axiosDefaults";
-import axios from "axios";
+
+
+// Contexts
 import { useProfileData } from "../../contexts/ProfileContext";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 //Image
 import World from "../../assets/world.png";
 // Components
-import Asset from "../../components/Asset";
 import Avatar from "../../components/Avatar";
-import Spinner from "../../components/Spinner";
+
 
 const NotificationPage = () => {
   const [notifications, setNotifications] = useState({ results: [] });
@@ -157,6 +159,7 @@ const NotificationPage = () => {
     console.log("click");
     if (selectedNotifications.length === 0) {
       setDeleteClickedWithoutSelection(true);
+      setTimeout(() => setDeleteClickedWithoutSelection(false), 3000);
       return;
     }
     try {
@@ -188,7 +191,17 @@ const NotificationPage = () => {
         : "justify-content-start"
     );
   };
-  
+
+  const countUserNotifications = () => {
+    let count = 0;
+    notifications.results.forEach((notification) => {
+      // Check if the notification is for the current user
+      if (notification.recipient === currentUser.id) {
+        count++;
+      }
+    });
+    return count;
+  };
 
   const renderNotifications = () => {
     if (!hasLoaded) {
@@ -260,7 +273,7 @@ const NotificationPage = () => {
                 )}
                 {/* Sender's Name */}
                 <div>
-                  <Card.Text>
+                  <Card.Text className={notifyStyles.textSize}>
                     {sendersProfileData[notification.sender].name}
                     <Badge
                       className="ml-3 text-black"
@@ -270,8 +283,9 @@ const NotificationPage = () => {
                     <Badge className={`${notifyStyles.Badge} small ml-3`}>
                       {getTimeDifference(notification.sent_at)}
                     </Badge>
+                    <br></br>
+                    <span>{notification.title}</span>
                   </Card.Text>
-                  <h2>{notification.title}</h2>
                 </div>
               </>
             )}
@@ -294,35 +308,74 @@ const NotificationPage = () => {
               notifications.results.length ? (
                 <>
                   <Container
-                    className={` ${styles.Content} rounded border p-3 mb-3 bg-white justify-content-end d-flex`}>
-                    <Row className="justify-content-end">
+                    className={` ${styles.Content} rounded border p-2 mb-3 bg-white justify-content-start d-flex`}>
+                    <Row>
                       {" "}
-                 
-                      <Col className="text-end">
+                      <Col>
                         {" "}
-                 
-                        <div className="mb-0">
-                          <Button
-                            onClick={
-                              selectedNotifications.length ===
-                              notifications.results.length
-                                ? handleDeselectAll
-                                : handleSelectAll
-                            }
-                            disabled={notifications.results.length === 0}
-                            className="mb-0 mr-1">
-                            {selectedNotifications.length ===
-                            notifications.results.length ? (
-                              <i className="fa-solid fa-xmark"></i>
-                            ) : (
-                              <i className="fa-solid fa-check"></i>
-                            )}
-                          </Button>
-                          <Button
-                            className="mb-0"
-                            onClick={handleDeleteSelected}>
-                            <i className="fa-solid fa-trash-can"></i>
-                          </Button>
+                        <div className="p-2 d-flex justify-content-between align-items-center ml-5">
+                          <div>
+                            <Badge
+                              className={`${notifyStyles.Icon} mr-2`}
+                              style={{ position: "relative" }}>
+                              <i className="text-muted fa-solid fa-bell large"></i>
+                              <Badge
+                                pill
+                                variant="danger"
+                                className="position-absolute top-0 start-100 translate-middle">
+                                {countUserNotifications()}
+                              </Badge>
+                            </Badge>
+                            <Badge className="mr-2 ml-3" variant="primary">
+                              Connection
+                            </Badge>
+                            <Badge className="mr-2" variant="warning">
+                              Connection Request
+                            </Badge>
+                            <Badge className="mr-2" variant="info">
+                              New Job
+                            </Badge>
+                            <Badge className="mr-2" variant="warning">
+                              New Rating
+                            </Badge>
+                            <Badge
+                              className={`${notifyStyles.Badge} mr-5`}
+                              variant="warning">
+                              Time
+                            </Badge>
+                          </div>
+                          <div className="d-lg-flex">
+                            <Button
+                              onClick={
+                                selectedNotifications.length ===
+                                notifications.results.length
+                                  ? handleDeselectAll
+                                  : handleSelectAll
+                              }
+                              disabled={notifications.results.length === 0}
+                              className="mb-0 ml-0 mr-3 d-lg-none">
+                              {selectedNotifications.length ===
+                              notifications.results.length ? (
+                                <i className="fa-solid fa-xmark"></i>
+                              ) : (
+                                <i className="fa-solid fa-check"></i>
+                              )}
+                            </Button>
+                            <Button
+                              className={`${notifyStyles.buttonSize} mb-0 d-lg-none`}
+                              onClick={handleDeleteSelected}>
+                              <i className="fa-solid fa-trash-can"></i>
+                            </Button>
+                          </div>
+                        </div>
+                        <div className="d-flex justify-content-center">
+                          {deleteClickedWithoutSelection && (
+                            <div
+                              className="alert alert-warning mt-3"
+                              role="alert">
+                              Please select at least one notification.
+                            </div>
+                          )}
                         </div>
                       </Col>
                     </Row>
@@ -346,10 +399,10 @@ const NotificationPage = () => {
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2 mt-3">
         <Container className={`${styles.Content}`}>
           <div className="rounded p-3 d-flex flex-column align-items-center bg-light">
-        
             <div className="mb-1 ">
               <Image className={`${notifyStyles.Image}`} src={World} />
-              <div className={`mb-0 border bg-white p-2 d-flex ${notifyStyles.Transition} ${alignClass}`}>
+              <div
+                className={`mb-0 border bg-white p-2 d-flex ${notifyStyles.Transition} ${alignClass}`}>
                 <Button
                   onClick={
                     selectedNotifications.length ===

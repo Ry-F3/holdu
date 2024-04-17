@@ -133,8 +133,6 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
     }
   };
 
- 
-
   // Define the toggle handler
   const handleToggleFilter = () => {
     // Ensure sortedCurrentUserAds is an array before using some method
@@ -142,53 +140,58 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
       console.error("sortedCurrentUserAds is not an array");
       return;
     }
-  
+
     // Check if there are both open and closed ads available
     const hasOpenAds = sortedCurrentUserAds.some((ad) => !ad.is_listing_closed);
-    const hasClosedAds = sortedCurrentUserAds.some((ad) => ad.is_listing_closed);
-  
+    const hasClosedAds = sortedCurrentUserAds.some(
+      (ad) => ad.is_listing_closed
+    );
+
     console.log("hasOpenAds:", hasOpenAds);
     console.log("hasClosedAds:", hasClosedAds);
 
-  if (toggleState === null) {
-    setIsFilterActive(false);
-    if (hasClosedAds === false) {
-      // If there are no closed ads, exit the condition block
-      return;
-    } 
-  if (hasOpenAds) {
-    setIsFilterActive(true);
-    setIsListingClosed(false); // Show only open ads initially
-    setToggleState(true);
-    console.log("Fetching applicants for initial toggle (showing only open ads)");
-  } else if (hasClosedAds) {
-    setIsFilterActive(true);
-    setIsListingClosed(true); // Show only closed ads if no open ads available
-    setToggleState(false);
-    console.log("Fetching applicants for initial toggle (showing only closed ads)");
-  } else {
-    setIsFilterActive(false);
-    setIsListingClosed(null); // Revert to default if no open or closed ads available
-    setToggleState(null);
-    console.log("No ads available, reverting to default state");
-  }
-} else if (toggleState === true) {
-  // Toggle from open to closed
-  setIsFilterActive(true);
-  setIsListingClosed(true); // Show only closed ads
-  setToggleState(false);
-  console.log("Fetching applicants for toggle from open to closed");
-} else {
-  // Toggle from closed to default
-  setIsFilterActive(false);
-  setIsListingClosed(null); // Revert to default
-  setToggleState(null);
-  console.log("Fetching applicants for toggle from closed to default");
-}
+    if (toggleState === null) {
+      setIsFilterActive(false);
+      if (hasClosedAds === false) {
+        // If there are no closed ads, exit the condition block
+        return;
+      }
+      if (hasOpenAds) {
+        setIsFilterActive(true);
+        setIsListingClosed(false); // Show only open ads initially
+        setToggleState(true);
+        console.log(
+          "Fetching applicants for initial toggle (showing only open ads)"
+        );
+      } else if (hasClosedAds) {
+        setIsFilterActive(true);
+        setIsListingClosed(true); // Show only closed ads if no open ads available
+        setToggleState(false);
+        console.log(
+          "Fetching applicants for initial toggle (showing only closed ads)"
+        );
+      } else {
+        setIsFilterActive(false);
+        setIsListingClosed(null); // Revert to default if no open or closed ads available
+        setToggleState(null);
+        console.log("No ads available, reverting to default state");
+      }
+    } else if (toggleState === true) {
+      // Toggle from open to closed
+      setIsFilterActive(true);
+      setIsListingClosed(true); // Show only closed ads
+      setToggleState(false);
+      console.log("Fetching applicants for toggle from open to closed");
+    } else {
+      // Toggle from closed to default
+      setIsFilterActive(false);
+      setIsListingClosed(null); // Revert to default
+      setToggleState(null);
+      console.log("Fetching applicants for toggle from closed to default");
+    }
 
-setShowPostAdForm(false);
-};
-
+    setShowPostAdForm(false);
+  };
 
   const sortedCurrentUserAds = filterJobsByListingClosed(
     currentUserAds,
@@ -270,12 +273,12 @@ setShowPostAdForm(false);
     try {
       // Send a request to delete the job listing from the database
       await axiosReq.delete(`/jobs/post/${jobListingId}/`);
-  
+
       // Remove the job listing from the UI only if the deletion was successful
       setCurrentUserAds((prevAds) =>
         prevAds.filter((ad) => ad.job_listing_id !== jobListingId)
       );
-  
+
       // Update the state to null and the toggle to null
       setIsFilterActive(false);
       setIsListingClosed(null);

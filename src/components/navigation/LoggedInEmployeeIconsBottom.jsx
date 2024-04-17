@@ -3,8 +3,11 @@ import { NavLink } from "react-router-dom";
 // Styles
 import navStyles from "../../styles/NavBar.module.css";
 import styles from "../../styles/BottomNav.module.css";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const LoggedInEmployeeIconsBottom = () => {
+  const currentUser = useCurrentUser();
+
   return (
     <div className={`container-fluid ${styles.BottomNavBar}`}>
       <div className="row">
@@ -51,20 +54,15 @@ const LoggedInEmployeeIconsBottom = () => {
             </div>
           </NavLink>
         </div>
-        {/* <div className={`col text-center ${styles.NavLinkContainer}`}>
-         
-          <NavLink
-            to="/chats"
-            activeClassName={styles.Active}
-            className={`${navStyles.Pointer} text-muted`}>
+        <div className={`col text-center ${styles.NavLinkContainer}`}>
+          {/* Profile */}
+          <NavLink to={`/profiles/${currentUser?.profile_id}/user/`} activeClassName={styles.Active}  className={`${navStyles.Pointer} text-muted`}>
             <div className="d-flex flex-column">
-              <i className="fa-solid fa-message mt-2"></i>
-              <span className={`${navStyles.NavText} ${styles.IconText}`}>
-                Chats
-              </span>
+            <i className="fa-solid fa-circle-user mt-2"></i>
+              <span className={`${navStyles.NavText} ${styles.IconText}`}>Profile</span>
             </div>
           </NavLink>
-        </div> */}
+        </div>
         <div className={`col text-center ${styles.NavLinkContainer}`}>
           {/* Notifications */}
           <NavLink
