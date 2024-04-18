@@ -12,7 +12,7 @@ const SentTab = ({ connections, handleUnsend }) => {
         const isSent = !connection.accepted && connection.owner; // Check if connection is sent by the user
         if (isSent) {
           return (
-            <li key={connection.id} className="list-group-item bg-light">
+            <li key={connection.id} className="list-group-item">
               <div className="d-flex justify-content-between align-items-center">
                 <span>{connection.connection_name}</span>
                 <Button

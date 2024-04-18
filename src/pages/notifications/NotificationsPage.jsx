@@ -14,8 +14,6 @@ import {
   Button,
   Image,
 } from "react-bootstrap"; // Assuming you're using Bootstrap
-
-
 // Contexts
 import { useProfileData } from "../../contexts/ProfileContext";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -30,7 +28,7 @@ const NotificationPage = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [sendersProfileData, setSendersProfileData] = useState({});
   const [selectedNotifications, setSelectedNotifications] = useState([]);
-  const currentUser = useCurrentUser(); // Assuming you have a hook to get the current user
+  const currentUser = useCurrentUser(); 
   const profileData = useProfileData();
   const [deleteClickedWithoutSelection, setDeleteClickedWithoutSelection] =
     useState(false);
@@ -106,29 +104,34 @@ const NotificationPage = () => {
     }
   }, [notifications]);
 
+  const monthNames = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+  
+
   const getTimeDifference = (sentAt) => {
     const now = new Date();
-    const sentTime = new Date(sentAt);
-    const difference = now - sentTime;
-
-    // Convert milliseconds to minutes
-    const minutes = Math.floor(difference / 60000);
-
-    // Return the time difference in a human-readable format
-    if (minutes < 1) {
-      return "Just now";
-    } else if (minutes === 1) {
-      return "1 minute ago";
-    } else if (minutes < 60) {
-      return `${minutes} minutes ago`;
-    } else if (minutes < 1440) {
-      const hours = Math.floor(minutes / 60);
-      return `${hours} hour${hours > 1 ? "s" : ""} ago`;
-    } else {
-      const days = Math.floor(minutes / 1440);
-      return `${days} day${days > 1 ? "s" : ""} ago`;
+    const [day, month, year] = sentAt.split(" ");
+    const sentTime = new Date(year, monthNames.indexOf(month), day);
+    
+    // Check if sent time is today
+    if (now.getDate() === sentTime.getDate() && now.getMonth() === sentTime.getMonth() && now.getFullYear() === sentTime.getFullYear()) {
+      return "Today";
     }
+  
+    // Check if sent time is yesterday
+    const yesterday = new Date(now);
+    yesterday.setDate(now.getDate() - 1);
+    if (yesterday.getDate() === sentTime.getDate() && yesterday.getMonth() === sentTime.getMonth() && yesterday.getFullYear() === sentTime.getFullYear()) {
+      return "Yesterday";
+    }
+  
+    // Calculate number of days ago
+    const differenceInDays = Math.floor((now - sentTime) / (1000 * 60 * 60 * 24));
+    return `${differenceInDays} day${differenceInDays === 1 ? '' : 's'} ago`;
   };
+  
 
   const handleCheckboxChange = (notificationId) => {
     setSelectedNotifications((prevSelected) => {
@@ -202,6 +205,8 @@ const NotificationPage = () => {
     });
     return count;
   };
+
+  console.log("n", notifications)
 
   const renderNotifications = () => {
     if (!hasLoaded) {

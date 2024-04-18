@@ -6,6 +6,10 @@ h2 {
     font-size: 15px !important;
 }
 
+h3 {
+    font-size: 11px;
+}
+
 .profileTimeline {
     display: flex;
     flex-direction: column;
@@ -102,6 +106,6 @@ h2 {
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 100px 100px 0;
+    border-width: 0 80px 80px 0;
     border-color: transparent #fc7fb6 transparent transparent;
 }
