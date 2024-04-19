@@ -34,7 +34,7 @@ function JobsPostPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Section for mobile</p>
+       
         {/* Pass necessary data as props to JobsPost component */}
         <JobsPost
           key={jobsPost.id}
@@ -53,9 +53,7 @@ function JobsPostPage() {
         />
         {/* <Container className={appStyles.Content}>Comments</Container> */}
       </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        section
-      </Col>
+      
     </Row>
   );
 }

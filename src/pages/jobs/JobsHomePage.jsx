@@ -14,14 +14,20 @@ import { axiosReq } from "../../api/axiosDefaults";
 import JobsPost from "./JobsPost";
 import Asset from "../../components/Asset";
 
-
 import Spinner from "../../components/Spinner";
+import TopJobs from "../../components/job/TopJobs";
 
 function JobsHomePage({ searchQuery }) {
- 
-  const [jobsPost, setJobsPost] = useState({ results: [] });
-  const [loadingPage, setLoadingPage] = useState(false);
+  const [jobsPost, setJobsPost] = useState([]);
 
+  const [loadingPage, setLoadingPage] = useState(false);
+  const [filteredJobsPost, setFilteredJobsPost] = useState([]);
+  const [previouslyClickedJob, setPreviouslyClickedJob] = useState(null);
+  const [showClearButton, setShowClearButton] = useState(false);
+  // Determine the most popular jobs based on the number of applicants
+  const popularJobs = filteredJobsPost.sort(
+    (a, b) => b.applicants.length - a.applicants.length
+  );
 
   // Define fetchJobs function
   const fetchJobs = async (query) => {
@@ -30,7 +36,8 @@ function JobsHomePage({ searchQuery }) {
       const apiUrl = `/jobs/?search=${query}`;
       const { data } = await axiosReq.get(apiUrl);
       console.log("Fetched Jobs:", data.results);
-      setJobsPost(data);
+      setJobsPost(data.results.filter((job) => !job.is_listing_closed));
+      setFilteredJobsPost(data.results.filter((job) => !job.is_listing_closed));
     } catch (err) {
       console.log(err);
     } finally {
@@ -47,8 +54,6 @@ function JobsHomePage({ searchQuery }) {
     }
     console.log("The value of searchQuery is:", searchQuery);
   }, [searchQuery]);
-  
-  
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -58,10 +63,36 @@ function JobsHomePage({ searchQuery }) {
     return () => clearTimeout(timer);
   }, []);
 
-  console.log("Posts before filtering:", jobsPost.results);
+  const handleJobClick = (jobId) => {
+    console.log("Job click");
+    console.log("Clicked job ID:", jobId);
+    console.log("Current jobs post:", jobsPost);
+    console.log("Previously clicked job:", previouslyClickedJob);
 
-  // Filter out closed listings
-  const filteredJobsPost = jobsPost.results.filter(job => !job.is_listing_closed);
+    // Clear previously clicked job if exists
+    if (previouslyClickedJob === jobId) {
+      setPreviouslyClickedJob(null);
+      // Refetch jobsPost
+      fetchJobs(searchQuery);
+    } else {
+      // Set the clicked job as previously clicked
+      setPreviouslyClickedJob(jobId);
+      // Filter out the selected job from the current list
+      const updatedJobs = filteredJobsPost.filter(
+        (job) => job.job_listing_id === jobId
+      );
+      console.log("Updated jobs after filtering:", updatedJobs);
+      setJobsPost(updatedJobs);
+      setShowClearButton(true);
+    }
+  };
+
+  const handleClearClick = () => {
+    // Clear the clicked job and refetch jobs
+    setPreviouslyClickedJob(null);
+    fetchJobs(searchQuery);
+    setShowClearButton(false); // Hide the clear button
+  };
 
   return (
     <Row className="h-100">
@@ -78,8 +109,8 @@ function JobsHomePage({ searchQuery }) {
           </Container>
         ) : (
           <>
-              {filteredJobsPost.length ? (
-              [...filteredJobsPost]
+            {jobsPost.length ? (
+              [...jobsPost]
                 .reverse()
                 .map((jobPost) => (
                   <JobsPost
@@ -99,11 +130,14 @@ function JobsHomePage({ searchQuery }) {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        
-        <Container className={`mt-3 ${appStyles.Content}`}>
-          Most popular jobs 
-
-        </Container>
+        <>
+          <TopJobs
+            popularJobs={popularJobs}
+            handleJobClick={handleJobClick}
+            handleClearClick={handleClearClick}
+            showClearButton={showClearButton}
+          />
+        </>
       </Col>
     </Row>
   );

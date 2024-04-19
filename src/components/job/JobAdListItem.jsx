@@ -214,7 +214,8 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
       <Card.Body>
         <div className="d-flex justify-content-between align-items-center">
           <div>
-            <Link className="text-dark" to={`${ad.job_listing_id}`}>
+          <Link className="text-dark" to={`/jobs/post/${ad.job_listing_id}/`}>
+
               <div className="d-flex align-items-center">
                 <h3 className={`mb-2 ${styles.jobTitle}`}>{ad.title}</h3>
               </div>

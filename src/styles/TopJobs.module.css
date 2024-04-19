@@ -1,0 +1,16 @@
+.H3 {
+    font-weight: 800;
+    font-size: 16px !important;
+}
+
+.boldText {
+    font-weight: 800;
+}
+
+.Icons {
+    font-size: 12px;
+}
+
+.Item:hover {
+    background-color: aliceblue;
+}
