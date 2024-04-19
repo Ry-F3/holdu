@@ -24,6 +24,7 @@ const JobsPost = ({
   is_applied,
   like_id,
   setJobsPost,
+  refetchJobsData,  // Receive the callback function as a prop
 }) => {
   const currentUser = useCurrentUser();
   const profileData = useProfileData();
@@ -99,8 +100,10 @@ const JobsPost = ({
     if (!currentUser) return;
     if (like_id) {
       await handleUnlike();
+      refetchJobsData();
     } else {
       await handleLike();
+      refetchJobsData();
     }
   };
 
@@ -120,6 +123,7 @@ const JobsPost = ({
       // Update UI or handle any response from the server
       setHasApplied(true);
       setIsApplying(false);
+      refetchJobsData();
     } catch (err) {
       console.error("Error applying for job:", err);
       console.error("API error message:", err.response.data); // Log the error message from the API
@@ -135,6 +139,7 @@ const JobsPost = ({
       await axiosRes.delete(`/jobs/post/${job_listing_id}/unapply/`);
       // Update UI or handle any response from the server
       setHasApplied(false);
+      refetchJobsData();
     } catch (err) {
       console.error("Error unapplying for job:", err.message);
       console.error("Error unapplying for job:", err.data);

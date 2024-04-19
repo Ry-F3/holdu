@@ -11,6 +11,7 @@ function TopJobs({
   handleJobClick,
   handleClearClick,
   showClearButton,
+
 }) {
   const maxJobsToShow = 6;
   const displayedJobs = popularJobs.slice(0, maxJobsToShow);

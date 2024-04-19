@@ -29,6 +29,10 @@ function JobsHomePage({ searchQuery }) {
   const popularJobs = filteredJobsPost.sort(
     (a, b) => b.applicants.length - a.applicants.length
   );
+  // Define a callback function to refetch jobs data
+  const refetchJobsData = async () => {
+    fetchJobs(searchQuery);
+  };
 
   // Define fetchJobs function
   const fetchJobs = async (query) => {
@@ -119,6 +123,7 @@ function JobsHomePage({ searchQuery }) {
                     postJob
                     setJobsPost={setJobsPost}
                     like_id={jobPost.like_id}
+                    refetchJobsData={refetchJobsData}
                   />
                 ))
             ) : (
