@@ -18,12 +18,13 @@ import Spinner from "../../components/Spinner";
 import TopJobs from "../../components/job/TopJobs";
 
 function JobsHomePage({ searchQuery }) {
-  const [jobsPost, setJobsPost] = useState([]);
+  const [jobsPost, setJobsPost] = useState({ results: [] });
 
   const [loadingPage, setLoadingPage] = useState(false);
   const [filteredJobsPost, setFilteredJobsPost] = useState([]);
   const [previouslyClickedJob, setPreviouslyClickedJob] = useState(null);
   const [showClearButton, setShowClearButton] = useState(false);
+
   // Determine the most popular jobs based on the number of applicants
   const popularJobs = filteredJobsPost.sort(
     (a, b) => b.applicants.length - a.applicants.length
@@ -36,7 +37,7 @@ function JobsHomePage({ searchQuery }) {
       const apiUrl = `/jobs/?search=${query}`;
       const { data } = await axiosReq.get(apiUrl);
       console.log("Fetched Jobs:", data.results);
-      setJobsPost(data.results.filter((job) => !job.is_listing_closed));
+      setJobsPost({ results: data.results.filter((job) => !job.is_listing_closed) });
       setFilteredJobsPost(data.results.filter((job) => !job.is_listing_closed));
     } catch (err) {
       console.log(err);
@@ -82,7 +83,7 @@ function JobsHomePage({ searchQuery }) {
         (job) => job.job_listing_id === jobId
       );
       console.log("Updated jobs after filtering:", updatedJobs);
-      setJobsPost(updatedJobs);
+      setJobsPost({ results: updatedJobs });
       setShowClearButton(true);
     }
   };
@@ -97,20 +98,19 @@ function JobsHomePage({ searchQuery }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-4" lg={8}>
-        {/* <p>Popular profiles mobile</p> */}
         {loadingPage ? (
           <Container
             style={{ backgroundColor: "transparent", border: "none" }}
-            className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}>
-            <div
-              className={`${spinnerStyle.spinnerContain} align-items-center`}>
+            className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}
+          >
+            <div className={`${spinnerStyle.spinnerContain} align-items-center`}>
               <Spinner size="50px" />
             </div>
           </Container>
         ) : (
           <>
-            {jobsPost.length ? (
-              [...jobsPost]
+            {jobsPost.results.length ? (
+              [...jobsPost.results]
                 .reverse()
                 .map((jobPost) => (
                   <JobsPost
@@ -130,14 +130,12 @@ function JobsHomePage({ searchQuery }) {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        <>
-          <TopJobs
-            popularJobs={popularJobs}
-            handleJobClick={handleJobClick}
-            handleClearClick={handleClearClick}
-            showClearButton={showClearButton}
-          />
-        </>
+        <TopJobs
+          popularJobs={popularJobs}
+          handleJobClick={handleJobClick}
+          handleClearClick={handleClearClick}
+          showClearButton={showClearButton}
+        />
       </Col>
     </Row>
   );

@@ -139,24 +139,17 @@ const NavBar = ({ handleSearch }) => {
   const handleClearSearch = () => {
     setSearchValue("");
     handleSearch("");
-
-    console.log(
-      "Before state update - isClearButtonVisible:",
-      isClearButtonVisible
-    );
-    console.log("Before state update - isButtonVisible:", isButtonVisible);
-
-    if (isClearButtonVisible) {
-      console.log("inside state");
-      setIsClearButtonVisible(false);
-      setIsButtonVisible(true);
-    }
-
-    console.log(
-      "After state update - isClearButtonVisible:",
-      isClearButtonVisible
-    );
-    console.log("After state update - isButtonVisible:", isButtonVisible);
+  
+    // Update the visibility of the clear button and search icon using functional setState
+    setIsClearButtonVisible(prevState => {
+      console.log("Before state update - isClearButtonVisible:", prevState);
+      return false;
+    });
+    
+    setIsButtonVisible(prevState => {
+      console.log("Before state update - isButtonVisible:", prevState);
+      return true;
+    });
   };
 
   const determineSearchIcon = () => {
