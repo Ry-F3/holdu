@@ -20,6 +20,24 @@
 
 ![board-1](src/assets/readme/board-1.png)
 
+<hr>
+
+* **User Authentication:**
+    * Unauthenticated users are directed to the home page where they can browse job listings.
+    * To interact with job listings, users must either join or sign in if they are returning users.
+* **Navigation Bar:**
+    * The navigation bar provides easy access for users to search for jobs.
+* **Form Validation:**
+    * The forms for joining and signing in have validation mechanisms in place.
+    * These validation features are similar to those demonstrated in the walkthrough project.
+    * Code for form validation has been reused, ensuring consistency and reliability.
+* **Customized Form:**
+    * The form includes a field prompting users to specify what they are looking for, providing insight into their preferences.
+    * Note that while a custom Django login was not implemented, this feature emphasises the applications intention regarding the site's content.
+* **Simplistic Design:**
+    * The design incorporates simplistic colors inspired by the logo, enhancing visual coherence and brand identity.
+
+
 </details>
 
 <hr>
