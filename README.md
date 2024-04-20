@@ -9,10 +9,34 @@
 
 ## Key Features:
 
-## Mobile first design
+### Mobile first design
+
+<hr>
+
+### Employer Profile
+
+#### Overview:
+
+The Employer Profile provides a comprehensive set of tools and features tailored to the needs of employers. Below are the key features offered by the Employer Profile experience:
+
+- **Jobs Management Tool:**
+  - Post, edit, and update job listings with ease.
+  - View applicants for each job and make decisions to accept or reject them.
+
+- **Profile Type Selection Form:**
+  - Employ a customizable user form where users can select their profile type and provide relevant profile information tailored specifically for employer profiles.
+
+- **Connection Management:**
+  - Connect with other users and efficiently manage connections within the platform.
+
+- **View Profile:**
+  - Access detailed profiles of other users to view their ratings, activity, and profile details.
+  - Edit profile details and upload profile images as needed.
+
+- **Alerts and Management Tool:**
+  - Receive and manage notifications and alerts related to connections, connection requests, new ratings, and new job listings.
 
 
-#### Employer Profile
 
 <details>
 
