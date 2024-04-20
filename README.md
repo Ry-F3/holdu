@@ -3,7 +3,9 @@
 
 ![app](src/assets/readme/app-3.png)
 
-*The deployed application link can be found here: [link](https://hold-u-c52c62c74dca.herokuapp.com/)*
+*The deployed application link can be found here: [Holdu](https://hold-u-c52c62c74dca.herokuapp.com/)*
+
+*Backend repository link can be found here: [link](https://github.com/Ry-F3/holdu-drf-api)*
 
 ## Key Features:
 
