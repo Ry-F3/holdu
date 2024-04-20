@@ -32,7 +32,10 @@ The Employer Profile provides a comprehensive set of tools and features tailored
 
 <br>
 
-### **Mobile Design <code>profile_type="employer"</code>:** 
+#### **Mobile Design <code>profile_type="employer"</code>:** 
+
+*Refer below to view the details and screenshots for the employer profiles mobile design experience.*
+
 
 <br>
 
@@ -208,12 +211,44 @@ The Employer Profile provides a comprehensive set of tools and features tailored
   * **Bulk Alert Deletion:** Clicking the tick icon will select all alerts, allowing the user to delete them all at once.
   * **Empty Alerts Notification:** Once all alerts are deleted, the user will be notified that their alerts are empty.
 
+</details>
+
+</details>
+
+
+#### **Employee Profile Overview:**
+
+
+<br>
+
+
+#### **Mobile Design <code>profile_type="employee"</code>:** 
+
+*Refer below to view the details and screenshots for the employee profiles mobile design experience.*
+
+<hr>
+
+<details>
+
+<summary>Workflow board [1]</summary>
+
+<hr>
+
+![employee-board-1](src/assets/readme/employee-board-1.png)
+
+<details>
+
+<summary>Details [1]</summary>
+
+<br>
+
 
 
 
 </details>
 
 </details>
+
 
 ## User Stories 
 
