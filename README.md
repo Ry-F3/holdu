@@ -162,11 +162,34 @@
 
 <details>
 
-<summary>Workflow board (5)</summary>
+<summary>Workflow board [5]</summary>
 
 <hr>
 
 ![board-5](src/assets/readme/board-5.png)
+
+<details>
+
+<summary>Details [5]</summary>
+
+<br>
+
+
+* **Navigation to Alerts Icon:** 
+    * Users can navigate to the alerts icon to view their notifications for connections, connection requests, new ratings, and new jobs. The labels are clearly displayed at the top in a small panel to inform the user.
+
+* **Alert Types:** 
+    * Please note that there are currently no alerts for applicants applying to the user's jobs. This feature will be added in future developments as it was overlooked during initial implementation. However, the applicant count is clearly defined on the job management page.
+
+* **Alert Deletion:**
+  * **Single Alert Deletion:** If the user clicks the delete icon without selecting an alert, a warning message will prompt the user to select at least one alert.
+  * **Bulk Alert Deletion:** Clicking the tick icon will select all alerts, allowing the user to delete them all at once.
+  * **Empty Alerts Notification:** Once all alerts are deleted, the user will be notified that their alerts are empty.
+
+
+
+
+</details>
 
 </details>
 
