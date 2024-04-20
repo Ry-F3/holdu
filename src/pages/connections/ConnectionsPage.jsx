@@ -150,7 +150,7 @@ const ConnectionsPage = () => {
   };
 
   const handleDeleteConnection = async (connectionId) => {
-    console.log("click")
+   
     try {
       await axios.delete(`/connections/${connectionId}/`);
       fetchConnections();

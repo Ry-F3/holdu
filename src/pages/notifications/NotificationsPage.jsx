@@ -19,16 +19,17 @@ import { useProfileData } from "../../contexts/ProfileContext";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 //Image
 import World from "../../assets/world.png";
+import dataImage from "../../assets/dataImage.png";
 // Components
 import Avatar from "../../components/Avatar";
-
+import Asset from "../../components/Asset";
 
 const NotificationPage = () => {
   const [notifications, setNotifications] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [sendersProfileData, setSendersProfileData] = useState({});
   const [selectedNotifications, setSelectedNotifications] = useState([]);
-  const currentUser = useCurrentUser(); 
+  const currentUser = useCurrentUser();
   const profileData = useProfileData();
   const [deleteClickedWithoutSelection, setDeleteClickedWithoutSelection] =
     useState(false);
@@ -105,33 +106,51 @@ const NotificationPage = () => {
   }, [notifications]);
 
   const monthNames = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
-  
 
   const getTimeDifference = (sentAt) => {
     const now = new Date();
     const [day, month, year] = sentAt.split(" ");
     const sentTime = new Date(year, monthNames.indexOf(month), day);
-    
+
     // Check if sent time is today
-    if (now.getDate() === sentTime.getDate() && now.getMonth() === sentTime.getMonth() && now.getFullYear() === sentTime.getFullYear()) {
+    if (
+      now.getDate() === sentTime.getDate() &&
+      now.getMonth() === sentTime.getMonth() &&
+      now.getFullYear() === sentTime.getFullYear()
+    ) {
       return "Today";
     }
-  
+
     // Check if sent time is yesterday
     const yesterday = new Date(now);
     yesterday.setDate(now.getDate() - 1);
-    if (yesterday.getDate() === sentTime.getDate() && yesterday.getMonth() === sentTime.getMonth() && yesterday.getFullYear() === sentTime.getFullYear()) {
+    if (
+      yesterday.getDate() === sentTime.getDate() &&
+      yesterday.getMonth() === sentTime.getMonth() &&
+      yesterday.getFullYear() === sentTime.getFullYear()
+    ) {
       return "Yesterday";
     }
-  
+
     // Calculate number of days ago
-    const differenceInDays = Math.floor((now - sentTime) / (1000 * 60 * 60 * 24));
-    return `${differenceInDays} day${differenceInDays === 1 ? '' : 's'} ago`;
+    const differenceInDays = Math.floor(
+      (now - sentTime) / (1000 * 60 * 60 * 24)
+    );
+    return `${differenceInDays} day${differenceInDays === 1 ? "" : "s"} ago`;
   };
-  
 
   const handleCheckboxChange = (notificationId) => {
     setSelectedNotifications((prevSelected) => {
@@ -206,7 +225,7 @@ const NotificationPage = () => {
     return count;
   };
 
-  console.log("n", notifications)
+  console.log("n", notifications);
 
   const renderNotifications = () => {
     if (!hasLoaded) {
@@ -378,7 +397,7 @@ const NotificationPage = () => {
                             <div
                               className="alert alert-warning mt-3"
                               role="alert">
-                              Please select at least one notification.
+                              Please select at least one alert.
                             </div>
                           )}
                         </div>
@@ -391,7 +410,14 @@ const NotificationPage = () => {
                   </Container>
                 </>
               ) : (
-                <p>No new notifications</p>
+                <>
+                  <div className="text-center">
+                    <Asset
+                      src={dataImage}
+                      message="Oops, your alerts are empty"
+                    />
+                  </div>
+                </>
               )
             ) : (
               <>
@@ -431,7 +457,7 @@ const NotificationPage = () => {
             </div>
             {deleteClickedWithoutSelection && (
               <div className="alert alert-warning mt-3" role="alert">
-                Please select at least one notification.
+                Please select at least one alert.
               </div>
             )}
           </div>

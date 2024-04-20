@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge } from 'react-bootstrap';
 
-const RatingContent = ({ ratings, currentIndex }) => {
+const RatingContent = ({ ratings, currentIndex, handleStarClick }) => {
   return (
     <>
       {ratings.results.map((rating, index) => (
@@ -15,10 +15,18 @@ const RatingContent = ({ ratings, currentIndex }) => {
           <span>
             <p>
               {rating.comment}{" "}
-              <Badge variant="secondary">
-                {rating.rating}
-              </Badge>
+    
             </p>
+            <div className="text-warning text-center">
+              {[1, 2, 3, 4, 5].map((starIndex) => (
+                <i
+                  key={starIndex}
+                  className={starIndex <= rating.rating ? "fas fa-star" : "far fa-star"}
+                  onClick={() => handleStarClick(starIndex)}
+                  style={{ cursor: "pointer", marginRight: "5px" }}
+                />
+              ))}
+            </div>
           </span>
         </div>
       ))}

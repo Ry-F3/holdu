@@ -15,14 +15,14 @@ const ProfileHeader = ({ profile, currentUser }) => {
         <h1 className="mb-0">{profile && profile.name}</h1>
       </div>
       {currentUser && profile && currentUser.username === profile.owner_username && (
-        <div className="ml-auto">
-          <Link to={`/profiles/${currentUser?.profile_id}/`}>
-            <Button className={profileStyles.Button}>
-              <i className=" text-white fas fa-ellipsis-v"></i>
-            </Button>
-          </Link>
-        </div>
-      )}
+  <div className="ml-auto">
+    <Link to={`/profiles/${currentUser?.profile_id}/`}>
+      <Button className={profileStyles.Button}>
+        <i className="text-white fas fa-ellipsis-v"></i>
+      </Button>
+    </Link>
+  </div>
+)}
     </div>
   );
 };

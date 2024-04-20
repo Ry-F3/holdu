@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 // Styles
 import connectStyles from "../../styles/ConnectionsPage.module.css";
-import styles from "../../App.module.css"
+import styles from "../../App.module.css";
 
-const ConnectionsTab = ({ connections, handleDeleteConnection, profile }) => {
-  console.log("connections", connections);
+const ConnectionsTab = ({ connections, handleDeleteConnection }) => {
 
   return (
     <ul className="list-group">
@@ -48,10 +47,19 @@ const ConnectionsTab = ({ connections, handleDeleteConnection, profile }) => {
           <div className="bg-light p-3 rounded"></div>
         </li>
       ))}
+      {connections.filter((conn) => conn.accepted).length > 0 && (
+        <div className="list-group-item">
+          <p
+            className={` ${styles.Background} text-white  p-2 rounded small mb-0`}>
+            Connections
+          </p>
+        </div>
+      )}
       {/* Render message if no accepted connections are found */}
       {connections.filter((conn) => conn.accepted).length === 0 && (
         <div className="list-group-item">
-          <p className={` ${styles.Background} text-white  p-2 rounded small mb-0`}>
+          <p
+            className={` ${styles.Background} text-white  p-2 rounded small mb-0`}>
             No connections found.
           </p>
         </div>

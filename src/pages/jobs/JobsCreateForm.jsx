@@ -119,17 +119,29 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
 
   const filterJobsByListingClosed = (currentUserAds, isListingClosed) => {
     if (isListingClosed === true) {
-      // Show only closed listings
-      return currentUserAds.filter((ad) => ad.is_listing_closed === true);
+      // Show only closed listings and corresponding applicants
+      const filteredJobs = currentUserAds.filter((ad) => ad.is_listing_closed === true);
+      return filteredJobs.map(job => ({
+        ...job,
+        applicants: job.applicants.filter(applicant => applicant.is_listing_closed === true)
+      }));
     } else if (isListingClosed === false) {
-      // Show only open listings
-      return currentUserAds.filter((ad) => ad.is_listing_closed === false);
+      // Show only open listings and corresponding applicants
+      const filteredJobs = currentUserAds.filter((ad) => ad.is_listing_closed === false);
+      return filteredJobs.map(job => ({
+        ...job,
+        applicants: job.applicants.filter(applicant => applicant.is_listing_closed === false)
+      }));
     } else {
       // Show all listings when isListingClosed is not explicitly set
       // Sort by closing date in descending order
       return currentUserAds
         .slice()
-        .sort((a, b) => new Date(b.closing_date) - new Date(a.closing_date));
+        .sort((b, a) => new Date(b.closing_date) - new Date(a.closing_date))
+        .map(job => ({
+          ...job,
+          applicants: job.applicants.slice().sort((a, b) => new Date(b.closing_date) - new Date(a.closing_date))
+        }));
     }
   };
 

@@ -54,7 +54,7 @@ const LoggedInEmployerIconsBottom = () => {
           <NavLink to="/notifications" activeClassName={styles.Active}  className={`${navStyles.Pointer} text-muted`}>
             <div className="d-flex flex-column">
               <i className="fa-solid fa-bell mt-2"></i>
-              <span className={`${navStyles.NavText} ${styles.IconText}`}>Notifications</span>
+              <span className={`${navStyles.NavText} ${styles.IconText}`}>Alerts</span>
             </div>
           </NavLink>
         </div>

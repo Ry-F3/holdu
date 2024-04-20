@@ -1,4 +1,5 @@
 import React from "react";
+import { Alert } from "react-bootstrap";
 // styles
 import profileStyles from "../../../styles/ProfileView.module.css"
 
@@ -8,6 +9,7 @@ const RatingForm = ({
   comment,
   handleCommentChange,
   handleSubmit,
+  error,
 
 }) => {
   return (
@@ -38,6 +40,7 @@ const RatingForm = ({
             onChange={handleCommentChange}
           ></textarea>
         </div>
+        {error && <Alert variant="warning">{error}</Alert>} 
         <button
           type="submit"
           className={`btn btn-primary`}

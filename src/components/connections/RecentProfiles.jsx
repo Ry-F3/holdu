@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 // Styles
 import { Button } from "react-bootstrap";
-import styles from '../../styles/ConnectionsPage.module.css'
 // Components
 import Avatar from "../Avatar";
 

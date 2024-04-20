@@ -32,11 +32,12 @@ const ProfilePage = () => {
   const [ratings, setRatings] = useState([]);
   const [comment, setComment] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndexClick, setCurrentIndexClick] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [jobsPost, setJobsPost] = useState({ results: [] });
   const [connections, setConnections] = useState([]);
   const [acceptedConnections, setAcceptedConnections] = useState([]);
- 
+  const [showRatingContainer, setShowRatingContainer] = useState(false);
 
   // Fetch data for profile id
   useEffect(() => {
@@ -54,9 +55,15 @@ const ProfilePage = () => {
         );
         const connectionsData = connectionsResponse.data.results;
 
-        // Fetch ratings for the profile
-        const ratingsResponse = await axios.get(`/profiles/${id}/ratings/`);
-        const ratingsData = ratingsResponse.data;
+        // Fetch all ratings pages
+        let allRatings = [];
+        let nextPage = `/profiles/${id}/ratings/`;
+        while (nextPage) {
+          const ratingsResponse = await axios.get(nextPage);
+          const ratingsData = ratingsResponse.data;
+          allRatings = [...allRatings, ...ratingsData.results];
+          nextPage = ratingsData.next; // Get the URL for the next page of ratings
+        }
 
         if (isMounted) {
           // Update profile data with connections count
@@ -67,7 +74,8 @@ const ProfilePage = () => {
 
           // Set profile state
           setProfile(profileWithData);
-          setRatings(ratingsData);
+          setRatings({ results: allRatings }); // Set concatenated ratings data
+          setShowRatingContainer(allRatings.length > 3); 
           setTimeout(() => {
             setIsLoading(false); // Set isLoading to false after 1000 milliseconds (1 second)
           }, 1000);
@@ -135,27 +143,54 @@ const ProfilePage = () => {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    // Clear any previous error messages after 3 seconds
+  const clearError = () => setError(null);
+  
+     // Validation checks
+  if (!rating || rating === 0) {
+    setError("Please select a star rating.");
+    setTimeout(clearError, 3000); // Clear error message after 3 seconds
+    return;
+  }
+
+  if (!comment) {
+    setError("Please enter a comment.");
+    setTimeout(clearError, 3000); // Clear error message after 3 seconds
+    return;
+  }
+  
     try {
+      // If validation passes, proceed with submitting the rating
       await axios.post(`/profiles/${profile?.id}/rate-user/`, {
         rating,
         comment,
       });
-
+  
       console.log("Rating submitted successfully");
+      window.location.reload();
     } catch (error) {
       // Handle error
       console.error("Error submitting rating:", error);
+      setError("Failed to submit rating. Please try again later.");
     }
   };
 
   // Handler for moving to the next rating
   const nextRating = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % ratings.results.length);
+    setCurrentIndexClick((prevIndex) => {
+      if (prevIndex === ratings.results.length - 1) {
+        return 0; // If at the last rating, loop back to the first rating
+      } else {
+        return prevIndex + 1; // Otherwise, increment the index
+      }
+    });
   };
 
   // Handler for moving to the previous rating
   const prevRating = () => {
-    setCurrentIndex((prevIndex) =>
+    setCurrentIndexClick((prevIndex) =>
       prevIndex === 0 ? ratings.results.length - 1 : prevIndex - 1
     );
   };
@@ -180,7 +215,6 @@ const ProfilePage = () => {
   }, [ratings.results]);
 
   const postCount = filteredJobsPost.length;
-  console.log("filtered posts", filteredJobsPost);
 
   return (
     <>
@@ -200,7 +234,7 @@ const ProfilePage = () => {
           <Col className="py-1 p-0 p-md-2 mt-1 mb-0" md={7} lg={3}>
             <>
               <Container className={`p-0 mb-2 ${styles.Content}`}>
-                <ProfileHeader profile={profile} />
+                <ProfileHeader profile={profile} currentUser={currentUser} />
                 {profile && (
                   <div className="mt-1 mb-0">
                     <div className="p-2 rounded">
@@ -227,7 +261,7 @@ const ProfilePage = () => {
                         </div>
                         <div className="col-md-12 ">
                           <>
-                            {ratings.count > 0 ? (
+                            {ratings.results.length > 0 ? (
                               <div
                                 className="rounded border text-muted p-3 mt-1 d-flex flex-column align-items-center"
                                 style={{
@@ -240,7 +274,7 @@ const ProfilePage = () => {
                                   {/* Ratings */}
                                   <RatingContent
                                     ratings={ratings}
-                                    currentIndex={currentIndex}
+                                    currentIndex={currentIndexClick}
                                   />
                                 </div>
                                 {/* Navigation buttons */}
@@ -255,6 +289,7 @@ const ProfilePage = () => {
                               <div className="p-1 mt-1 mb-0 border text-left rounded justify-content-start">
                                 <p className="mt-2 ml-2">No ratings to show.</p>
                               </div>
+                              
                             )}
                           </>
                         </div>
@@ -265,7 +300,7 @@ const ProfilePage = () => {
               </Container>
             </>
           </Col>
-  
+
           <Col md={5} lg={6}>
             {" "}
             <Container className="p-0 border mt-2 bg-white">
@@ -275,12 +310,14 @@ const ProfilePage = () => {
                 filteredJobsPost={filteredJobsPost}
               />
             </Container>
-            <Container className="p-3 mt-2 bg-white border">
-              <HorizontalRatingList
-                ratings={ratings}
-                currentIndex={currentIndex}
-              />
-            </Container>
+            {showRatingContainer && (
+              <Container className="p-3 mt-2 bg-white border">
+                <HorizontalRatingList
+                  ratings={ratings}
+                  currentIndex={currentIndex}
+                />
+              </Container>
+            )}
           </Col>
           <Col
             md={5}
@@ -298,10 +335,11 @@ const ProfilePage = () => {
                     comment={comment}
                     handleCommentChange={handleCommentChange}
                     handleSubmit={handleSubmit}
+                    error={error}
                   />
                 </Container>
               )}
-  
+
             {/* Connections Tab Container */}
             {!currentUser ||
               !profile ||
@@ -320,7 +358,6 @@ const ProfilePage = () => {
       )}
     </>
   );
-  
 };
 
 export default ProfilePage;

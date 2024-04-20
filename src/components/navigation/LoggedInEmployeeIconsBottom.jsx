@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 // Styles
 import navStyles from "../../styles/NavBar.module.css";
 import styles from "../../styles/BottomNav.module.css";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const LoggedInEmployeeIconsBottom = () => {
@@ -41,25 +42,16 @@ const LoggedInEmployeeIconsBottom = () => {
           </NavLink>
         </div>
         <div className={`col text-center ${styles.NavLinkContainer}`}>
-          {/* Likes */}
+          {/* Profile */}
           <NavLink
-            to="/likes"
+            to={`/profiles/${currentUser?.profile_id}/user/`}
             activeClassName={styles.Active}
             className={`${navStyles.Pointer} text-muted`}>
             <div className="d-flex flex-column">
-              <i className="fa-solid fa-heart mt-2"></i>
+              <i className="fa-solid fa-circle-user mt-2"></i>
               <span className={`${navStyles.NavText} ${styles.IconText}`}>
-                Likes
+                Profile
               </span>
-            </div>
-          </NavLink>
-        </div>
-        <div className={`col text-center ${styles.NavLinkContainer}`}>
-          {/* Profile */}
-          <NavLink to={`/profiles/${currentUser?.profile_id}/user/`} activeClassName={styles.Active}  className={`${navStyles.Pointer} text-muted`}>
-            <div className="d-flex flex-column">
-            <i className="fa-solid fa-circle-user mt-2"></i>
-              <span className={`${navStyles.NavText} ${styles.IconText}`}>Profile</span>
             </div>
           </NavLink>
         </div>
@@ -72,7 +64,7 @@ const LoggedInEmployeeIconsBottom = () => {
             <div className="d-flex flex-column">
               <i className="fa-solid fa-bell mt-2"></i>
               <span className={`${navStyles.NavText} ${styles.IconText}`}>
-                Notifications
+                Alerts
               </span>
             </div>
           </NavLink>

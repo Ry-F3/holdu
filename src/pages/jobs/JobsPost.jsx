@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
@@ -24,28 +24,30 @@ const JobsPost = ({
   is_applied,
   like_id,
   setJobsPost,
-  refetchJobsData,  // Receive the callback function as a prop
+  refetchJobsData,// Receive the callback function as a prop
 }) => {
   const currentUser = useCurrentUser();
   const profileData = useProfileData();
   const [isApplying, setIsApplying] = useState(false);
   const [has_applied, setHasApplied] = useState(is_applied);
-
+  const [applicantsCount, setApplicantsCount] = useState(applicants ? applicants.length : 0);
 
   const is_owner = currentUser?.username === employer_profile?.owner_username;
   const isEmployee = currentUser && profileData?.profile_type === "employee";
 
-  console.log("is_owner", is_owner);
-  console.log("employer profile", employer_profile.id);
 
-  console.log("profileData", profileData && profileData.profile_type);
+  useEffect(() => {
+    setApplicantsCount(applicants ? applicants.length : 0);
+  }, [applicants]);
+
+
 
   const handleLike = async () => {
     try {
       if (!currentUser) return;
-      console.log("Liking job post with ID:", job_listing_id);
+     
       const { data } = await axiosRes.post("/likes/", { job: job_listing_id });
-      console.log("Like response data:", data);
+   
 
       // Update job post in setJobsPost
       setJobsPost((prevJobsPost) => ({
@@ -59,6 +61,7 @@ const JobsPost = ({
               }
             : jobPost
         ),
+       
       }));
     } catch (err) {
       console.error(
@@ -66,11 +69,12 @@ const JobsPost = ({
         err.response ? err.response.data : err.message
       );
     }
+    
   };
 
   const handleUnlike = async () => {
     try {
-      console.log("Unliking job post with ID:", like_id);
+    
 
       // Delete like
       await axiosRes.delete(`/likes/${like_id}/`);
@@ -123,7 +127,9 @@ const JobsPost = ({
       // Update UI or handle any response from the server
       setHasApplied(true);
       setIsApplying(false);
-      refetchJobsData();
+      // Update the local applicants count and pass it to JobsHomePage
+       setApplicantsCount((prevCount) => prevCount + 1);
+       refetchJobsData();
     } catch (err) {
       console.error("Error applying for job:", err);
       console.error("API error message:", err.response.data); // Log the error message from the API
@@ -139,6 +145,7 @@ const JobsPost = ({
       await axiosRes.delete(`/jobs/post/${job_listing_id}/unapply/`);
       // Update UI or handle any response from the server
       setHasApplied(false);
+      setApplicantsCount((prevCount) => prevCount - 1);
       refetchJobsData();
     } catch (err) {
       console.error("Error unapplying for job:", err.message);
@@ -156,9 +163,12 @@ const JobsPost = ({
               {employer_profile.owner_username && (
                 <Link
                   className="text-white font-weight-bold"
-                
                   to={`/profiles/${employer_profile.owner_id}/user/`}>
-                  <Avatar src={employer_profile.image} height={35} border={true}  />
+                  <Avatar
+                    src={employer_profile.image}
+                    height={35}
+                    border={true}
+                  />
                   {employer_profile.name}
                 </Link>
               )}
@@ -178,13 +188,14 @@ const JobsPost = ({
             location={location}
             salary={salary}
             closing_date={closing_date}
-            applicants={applicants}
+            numApplicants={applicantsCount}
           />
+        
         </ul>
       </Card.Body>
       <Card.Body className="border-top m-1">
         <div className="d-flex justify-content-between">
-          {isEmployee && currentUser ?  (
+          {isEmployee && currentUser ? (
             <form onSubmit={has_applied ? handleUnapply : handleApply}>
               <div>
                 {/* Hidden input field with default value "applied" */}

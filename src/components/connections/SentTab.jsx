@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // Bootstrap
 import { Button } from "react-bootstrap";
 // Styles
 import connectStyles from "../../styles/ConnectionsPage.module.css";
+import appStyles from "../../App.module.css";
 
 const SentTab = ({ connections, handleUnsend }) => {
   return (
@@ -14,7 +16,14 @@ const SentTab = ({ connections, handleUnsend }) => {
           return (
             <li key={connection.id} className="list-group-item">
               <div className="d-flex justify-content-between align-items-center">
-                <span>{connection.connection_name}</span>
+              <Link to={`/profiles/${connection.connection}/user/`}>
+                <div className="ml-2">
+                  <h5 className="mt-0 mb-0 small">
+                    {" "}
+                    {connection.connection_name}
+                  </h5>
+                </div>
+              </Link>
                 <Button
                   size="sm"
                   className={` ${connectStyles.Button}`}
@@ -38,7 +47,13 @@ const SentTab = ({ connections, handleUnsend }) => {
       ))}
       {/* Render message if no sent connections are found */}
       {connections.filter((conn) => !conn.accepted).length === 0 && (
-        <p className="text-muted">No sent connections found.</p>
+      
+        <div className="list-group-item">
+        <p
+          className={` ${appStyles.Background} text-white  p-2 rounded small mb-0`}>
+          No sent connections found.
+        </p>
+      </div>
       )}
     </ul>
   );

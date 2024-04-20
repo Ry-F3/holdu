@@ -29,10 +29,12 @@ function JobsHomePage({ searchQuery }) {
   const popularJobs = filteredJobsPost.sort(
     (a, b) => b.applicants.length - a.applicants.length
   );
-  // Define a callback function to refetch jobs data
-  const refetchJobsData = async () => {
-    fetchJobs(searchQuery);
-  };
+    // Define a callback function to refetch jobs data only on larger screens
+    const refetchJobsData = async () => {
+      if (window.innerWidth >= 868) {
+        fetchJobs(searchQuery);
+      }
+    };
 
   // Define fetchJobs function
   const fetchJobs = async (query) => {

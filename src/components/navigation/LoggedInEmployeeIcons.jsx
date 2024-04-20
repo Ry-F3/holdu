@@ -26,31 +26,12 @@ const LoggedInEmployeeIcons = () => {
         </div>
       </NavLink>
       <NavLink
-        to="/likes"
-        activeClassName={navStyles.Active}
-        className={`${navStyles.Pointer} mr-3 text-muted`}>
-        <div className="d-flex flex-column align-items-center">
-          <i className="fa-solid fa-heart mt-2"></i>
-          <span className={navStyles.NavText}>Likes</span>
-        </div>
-      </NavLink>
-      {/* <NavLink
-        to="/chats"
-        activeClassName={navStyles.Active}
-        className={`${navStyles.Pointer} mr-3 text-muted`}>
-        <div className="d-flex flex-column align-items-center">
-          <i className="fa-solid fa-message mt-2"></i>
-          <span className={navStyles.NavText}>Chats</span>
-        </div>
-      </NavLink> */}
-
-      <NavLink
         to="/notifications"
         activeClassName={navStyles.Active}
         className={`${navStyles.Pointer} mr-3 text-muted`}>
         <div className="d-flex flex-column align-items-center">
           <i className="fa-solid fa-bell mt-2"></i>
-          <span className={navStyles.NavText}>Notifications</span>
+          <span className={navStyles.NavText}>Alerts</span>
         </div>
       </NavLink>
     </>

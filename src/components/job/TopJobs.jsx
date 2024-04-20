@@ -11,10 +11,10 @@ function TopJobs({
   handleJobClick,
   handleClearClick,
   showClearButton,
-
 }) {
   const maxJobsToShow = 6;
   const displayedJobs = popularJobs.slice(0, maxJobsToShow);
+  console.log("pop jobs", popularJobs);
 
   return (
     <Container className={`mt-3`}>
@@ -63,7 +63,12 @@ function TopJobs({
           ))}
         </ul>
       ) : (
-        <p>No popular jobs found.</p>
+        <div className="list-group-item">
+          <p
+            className={` ${appStyles.Background} text-white  p-2 rounded small mb-0`}>
+            No top jobs found.
+          </p>
+        </div>
       )}
     </Container>
   );

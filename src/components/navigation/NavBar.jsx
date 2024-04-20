@@ -139,25 +139,25 @@ const NavBar = ({ handleSearch }) => {
   const handleClearSearch = () => {
     setSearchValue("");
     handleSearch("");
-  
+
     // Update the visibility of the clear button and search icon using functional setState
-    setIsClearButtonVisible(prevState => {
-      console.log("Before state update - isClearButtonVisible:", prevState);
+    setIsClearButtonVisible((prevState) => {
+  
       return false;
     });
+
+    setIsButtonVisible((prevState) => {
     
-    setIsButtonVisible(prevState => {
-      console.log("Before state update - isButtonVisible:", prevState);
       return true;
     });
   };
 
   const determineSearchIcon = () => {
     if (searchValue.trim() === "") {
-      console.log("Button state: glass");
+     
       return <i className="fa-solid fa-magnifying-glass"></i>;
     } else {
-      console.log("Button state: cross");
+   
       return <i onClick={handleClearSearch} className="fas fa-times"></i>;
     }
   };
