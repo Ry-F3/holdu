@@ -25,7 +25,7 @@
 
 <summary>Details [1]</summary>
 
-
+<br>
 
 * **User Authentication:**
     * Unauthenticated users are directed to the home page where they can browse job listings.
@@ -55,27 +55,27 @@
 
 ![board-2](src/assets/readme/board-2.png)
 
-
+<details>
 
 <summary>Details [2]</summary>
 
+<br>
 
-
-* User Authentication:
+* **User Authentication:**
   * Upon signing in for the first time after joining, users are directed to a form where they must fill out their details and specify what they are looking for, determining their profile_type.
   * To interact with the platform's features, users are required to join or sign in, catering to both new and returning users.
 
-* Navigation Bar:
+* **Navigation Bar:**
    * The bottom navigation features active colors to indicate the current page, enhancing user navigation and experience.
    * Users can navigate to the connections page by clicking on the connection icon.
    * On the connections page, users can send connections and view other profiles, with tabs to manage their pending and sent connections.
 
-* Form Validation:
+* **Form Validation:**
   * Forms for user registration and profile setup incorporate validation mechanisms to ensure accurate data entry and a smooth user experience.
   * These validation features align with industry standards and best practices, similar to those demonstrated in the walkthrough project.
   * On the home page, there is a validation mechanism to prevent the owner from liking their own posts.
 
-* Customized Form:
+* **Customized Form:**
   * During profile setup, users are prompted to specify what they are looking for, shaping their profile_type within the platform.
   * Please note that development focus has primarily been on the employer profile type to meet project timelines.
 </details>
