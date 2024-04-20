@@ -32,7 +32,9 @@ The Employer Profile provides a comprehensive set of tools and features tailored
 
 <hr>
 
-## Mobile Design (*Employer Profile*): 
+#### Mobile Design <code>profile_type="employer"</code>: 
+
+<br>
 
 <details>
 
