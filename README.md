@@ -14,13 +14,17 @@
 
 <details>
 
-<summary>Workflow board (1)</summary>
+<summary>Workflow board [1]</summary>
 
 <hr>
 
 ![board-1](src/assets/readme/board-1.png)
 
 <hr>
+
+<details>
+
+<summary>Details [1]</summary>
 
 * **User Authentication:**
     * Unauthenticated users are directed to the home page where they can browse job listings.
@@ -36,7 +40,7 @@
     * Note that while a custom Django login was not implemented, this feature emphasises the applications intention regarding the site's content.
 * **Simplistic Design:**
     * The design incorporates simplistic colors inspired by the logo, enhancing visual coherence and brand identity.
-
+</details>
 
 </details>
 
