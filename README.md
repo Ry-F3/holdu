@@ -86,7 +86,7 @@
 
 <details>
 
-<summary>Workflow board (3)</summary>
+<summary>Workflow board [3]</summary>
 
 <hr>
 
@@ -99,19 +99,19 @@
 <br>
 
 
-* Jobs Page Navigation:
+* **Jobs Page Navigation**:
     * Users can navigate to the jobs page where they can view their open and closed listings.
     * Active listings are marked with a teal green tick, while closed listings display a red cross next to the open date.
 
-* Job Management:
+* **Job Management**:
     * Once a job listing is closed, users have the option to accept or reject applicants.
     * Accepted applicants are stored in a designated "Accepted" folder for easy reference.
 
-* Filter Toggle:
+* **Filter Toggle**:
     * Users can toggle the filter to view and post jobs using the "Post Job Advert" form.
     * The form validates user data and displays Bootstrap alerts and warnings for improved user experience.
 
-* Edit Functionality:
+* **Edit Functionality**:
     * Users can click the "Edit" button on active listings to open a pop-up form and make edits to their job listings.
 
 </details>
@@ -122,11 +122,37 @@
 
 <details>
 
-<summary>Workflow board (4)</summary>
+<summary>Workflow board [4]</summary>
 
 <hr>
 
 ![board-4](src/assets/readme/board-4.png)
+
+<details>
+
+<summary>Details [4]</summary>
+
+<br>
+
+* **Applicant Panel**:
+    * On active listings, users can dropdown a panel to view the applicants for each job.
+    * Clicking on the filter toggle cycles through the active and inactive listings. However, there are known bugs affecting the functionality. The issue may be attributed to a key error or data communication problem between the child and parent components.
+
+* **Profile Page Navigation**:
+    * Navigating to the profile page, users can view their profile type badge, average_rating, and connection count.
+    * Users can also view and cycle through individual reviews.
+
+* **Activity Panel**:
+    * An activity panel has been implemented on the users profile to record employer profile type activities such as listing jobs. However, it is currently in a basic state and will be part of future development.
+
+* **Profile Information Editing**:
+    * Users can edit their profile information by clicking on the ellipsis icon.
+
+* **Bug Explaination**:
+    * When filtering through active and inactive job listings, applicants remain in their original positions on the page, while the data associated with the listings changes positions. This leads to a discrepancy where applicants appear to be attached to the wrong jobs or remain unaffected by the filtering action.
+
+
+</details>
 
 </details>
 
