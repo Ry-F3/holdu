@@ -1,7 +1,7 @@
 # Holdu
 ## React FrontEnd: Job Application Platform
 
-
+![app](src/assets/readme/app-3.png)
 
 *The deployed application link can be found here: [link](https://hold-u-c52c62c74dca.herokuapp.com/)*
 
