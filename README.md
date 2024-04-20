@@ -13,7 +13,7 @@
 
 <hr>
 
-### Employer Profile
+#### Employer Profile
 
 #### Overview:
 
@@ -36,7 +36,7 @@ The Employer Profile provides a comprehensive set of tools and features tailored
 - **Alerts and Management Tool:**
   - Receive and manage notifications and alerts related to connections, connection requests, new ratings, and new job listings.
 
-
+<hr>
 
 <details>
 
