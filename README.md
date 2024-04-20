@@ -92,6 +92,30 @@
 
 ![board-3](src/assets/readme/board-3.png)
 
+<details>
+
+<summary>Details [3]</summary>
+
+<br>
+
+
+* Jobs Page Navigation:
+    * Users can navigate to the jobs page where they can view their open and closed listings.
+    * Active listings are marked with a teal green tick, while closed listings display a red cross next to the open date.
+
+* Job Management:
+    * Once a job listing is closed, users have the option to accept or reject applicants.
+    * Accepted applicants are stored in a designated "Accepted" folder for easy reference.
+
+* Filter Toggle:
+    * Users can toggle the filter to view and post jobs using the "Post Job Advert" form.
+    * The form validates user data and displays Bootstrap alerts and warnings for improved user experience.
+
+* Edit Functionality:
+    * Users can click the "Edit" button on active listings to open a pop-up form and make edits to their job listings.
+
+</details>
+
 </details>
 
 <hr>
