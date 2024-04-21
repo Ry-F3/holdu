@@ -34,10 +34,25 @@ Key features of this profile type include:
 
 <br>
 
+#### **Employee Profile Overview:**
+
+Originally intended for a more interactive experience, the Employee Profile Type had to be simplified to meet development time constraints. To align with the applicant model, users can apply and unapply for jobs, while employers can accept or reject their applications.
+
+Key features of this profile type include:
+
+- **Apply and Unapply:** Users can apply for jobs they're interested in and withdraw their applications if needed.
+
+- **Like Job Adverts:** Employees can express interest in job listings by liking them.
+
+- **Receive Alerts:** Stay informed about new job listings with alerts.
+
+- **Connect and Rate Profiles:** Connect with other users and rate their profiles based on interactions.
+
+While the current iteration provides basic functionality, future developments will include a management tool for employees to track and respond to their accepted applications, enhancing the overall user experience.
+
 ### **Mobile Design <code>profile_type="employer"</code>:** 
 
 *Refer below to view the details and screenshots for the employer profiles mobile design experience.*
-
 
 <br>
 
@@ -219,21 +234,7 @@ Key features of this profile type include:
 
 <hr>
 
-#### **Employee Profile Overview:**
 
-Originally intended for a more interactive experience, the Employee Profile Type had to be simplified to meet development time constraints. To align with the applicant model, users can apply and unapply for jobs, while employers can accept or reject their applications.
-
-Key features of this profile type include:
-
-- **Apply and Unapply:** Users can apply for jobs they're interested in and withdraw their applications if needed.
-
-- **Like Job Adverts:** Employees can express interest in job listings by liking them.
-
-- **Receive Alerts:** Stay informed about new job listings with alerts.
-
-- **Connect and Rate Profiles:** Connect with other users and rate their profiles based on interactions.
-
-While the current iteration provides basic functionality, future developments will include a management tool for employees to track and respond to their accepted applications, enhancing the overall user experience.
 
 <br>
 
@@ -275,7 +276,9 @@ While the current iteration provides basic functionality, future developments wi
 <br>
 
 
-### **Desktop design differences**
+### **Desktop design differences:**
+
+<br>
 
 <details>
 
