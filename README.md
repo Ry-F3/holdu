@@ -9,6 +9,8 @@
 
 ## Key Features:
 
+<br>
+
 #### **Employer Profile Overview:**
 
 The Employer Profile provides a comprehensive set of tools and features tailored to the needs of employers. Below are the key features offered by the Employer Profile experience:
@@ -247,17 +249,7 @@ While the current iteration provides basic functionality, future developments wi
 
 <br>
 
-<details>
-
-<summary>Workflow board [1]</summary>
-
-<hr>
-
 ![employee-board-1](src/assets/readme/employee-board-1.png)
-
-<details>
-
-<summary>Details [1]</summary>
 
 <br>
 
@@ -268,17 +260,10 @@ While the current iteration provides basic functionality, future developments wi
   - The JobsPost file runs a check to see whether the user is an employee.
   - If the user is authenticated as an employee, the file displays the buttons for applying and unapplying for jobs.
 
-
-</details>
-
-</details>
-
-<hr>
-
 <br>
 
 
-### **Desktop design differences:**
+### **Desktop Design Differences:**
 
 <br>
 
