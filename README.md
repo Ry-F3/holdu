@@ -364,6 +364,8 @@ While the current iteration provides basic functionality, future developments wi
 
 <hr>
 
+<br>
+
 ## User Stories 
 
 #### Section 1
@@ -406,7 +408,7 @@ While the current iteration provides basic functionality, future developments wi
 | [**#22**](https://github.com/Ry-F3/holdu/issues/22)   | I should be able to view pending connection requests and manage them accordingly.                                                                    |    ✅     |
 | [**#23**](https://github.com/Ry-F3/holdu/issues/23)   | As a user, I want to be able to view the connection requests I've sent to other users.                                                              |    ✅     |
 | [**#24**](https://github.com/Ry-F3/holdu/issues/24)   | As a user, I want a centralized dashboard to manage all my connections.                                                                              |    ✅     |
-| [**#25**](https://github.com/Ry-F3/holdu/issues/25)   | As a user, I want to receive notifications for connection requests, job alerts, accepted applications, message alerts, and new ratings.            |    ✅     |
+| [**#25**](https://github.com/Ry-F3/holdu/issues/25)   | As a user, I want to receive notifications for connection requests, job alerts, accepted applications, message alerts, and new ratings.            |     ◔     |
 | [**#26**](https://github.com/Ry-F3/holdu/issues/26)   | I should be able to mark notifications as read or delete them.                                                                                        |    ✅     |
 
 
