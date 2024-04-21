@@ -1,5 +1,4 @@
 import React from 'react';
-import { Badge } from 'react-bootstrap';
 
 const RatingContent = ({ ratings, currentIndex, handleStarClick }) => {
   return (

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { axiosReq } from "../../api/axiosDefaults";
 
 // Bootstrap
-import { Container, Row, Col, Button, Badge } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 // Styles
 import styles from "../../App.module.css";
 import profileStyles from "../../styles/ProfileView.module.css";
@@ -18,8 +17,6 @@ import RatingNavigationButtons from "../../components/profile/rating/RatingNavig
 import RatingContent from "../../components/profile/rating/RatingContent";
 import Activity from "../../components/profile/activity/Activity";
 import RatingForm from "../../components/profile/rating/RatingForm";
-import Avatar from "../../components/Avatar";
-import Asset from "../../components/Asset";
 import ConnectionsTab from "../../components/connections/ConnectionsTab";
 import HorizontalRatingList from "../../components/profile/rating/HorizontalRatingList";
 
@@ -38,50 +35,47 @@ const ProfilePage = () => {
   const [connections, setConnections] = useState([]);
   const [acceptedConnections, setAcceptedConnections] = useState([]);
   const [showRatingContainer, setShowRatingContainer] = useState(false);
+  const [showRatingForm, setShowRatingForm] = useState(false);
+  const isMounted = useRef(true);
 
   // Fetch data for profile id
   useEffect(() => {
-    let isMounted = true; // Variable to track if the component is mounted
+    isMounted.current = true;
 
     const fetchProfile = async () => {
       try {
-        // Fetch profile data
         const profileResponse = await axios.get(`/profiles/${id}/`);
         const profileData = profileResponse.data;
 
-        // Fetch connections data for the specific profile
         const connectionsResponse = await axios.get(
           `/connections/?owner=${profileData.owner_username}`
         );
         const connectionsData = connectionsResponse.data.results;
 
-        // Fetch all ratings pages
         let allRatings = [];
         let nextPage = `/profiles/${id}/ratings/`;
-        while (nextPage) {
+        while (nextPage && isMounted.current) {
           const ratingsResponse = await axios.get(nextPage);
           const ratingsData = ratingsResponse.data;
           allRatings = [...allRatings, ...ratingsData.results];
-          nextPage = ratingsData.next; // Get the URL for the next page of ratings
+          nextPage = ratingsData.next;
         }
 
-        if (isMounted) {
-          // Update profile data with connections count
+        if (isMounted.current) {
           const profileWithData = {
             ...profileData,
             connections_count: connectionsData.length,
           };
 
-          // Set profile state
           setProfile(profileWithData);
-          setRatings({ results: allRatings }); // Set concatenated ratings data
-          setShowRatingContainer(allRatings.length > 3); 
+          setRatings({ results: allRatings });
+          setShowRatingContainer(allRatings.length > 3);
           setTimeout(() => {
-            setIsLoading(false); // Set isLoading to false after 1000 milliseconds (1 second)
+            setIsLoading(false);
           }, 1000);
         }
       } catch (error) {
-        if (isMounted) {
+        if (isMounted.current) {
           setError("Failed to fetch profile data.");
           setIsLoading(false);
         }
@@ -90,9 +84,8 @@ const ProfilePage = () => {
 
     fetchProfile();
 
-    // Cleanup function to set isMounted to false when component unmounts
     return () => {
-      isMounted = false;
+      isMounted.current = false;
     };
   }, [id]);
 
@@ -104,18 +97,22 @@ const ProfilePage = () => {
         axios.get("/jobs/"),
         axios.get("/connections/"),
       ]);
-      setJobsPost(jobsResponse.data);
-      setConnections(connectionsResponse.data.results);
-      const accepted = connectionsResponse.data.results.filter(
-        (connection) => connection.accepted
-      );
-      setAcceptedConnections(accepted);
+      if (isMounted.current) {
+        setJobsPost(jobsResponse.data);
+        setConnections(connectionsResponse.data.results);
+        const accepted = connectionsResponse.data.results.filter(
+          (connection) => connection.accepted
+        );
+        setAcceptedConnections(accepted);
+      }
     } catch (err) {
       console.error("Error fetching data:", err);
     } finally {
-      setTimeout(() => {
-        setIsLoading(false); // Set isLoading to false after 1000 milliseconds (1 second)
-      }, 1000);
+      if (isMounted.current) {
+        setTimeout(() => {
+          setIsLoading(false); // Set isLoading to false after 1000 milliseconds (1 second)
+        }, 1000);
+      }
     }
   };
 
@@ -132,6 +129,11 @@ const ProfilePage = () => {
 
   useEffect(() => {
     fetchData();
+
+    // Cleanup function to set isMounted to false when component unmounts
+    return () => {
+      isMounted.current = false;
+    };
   }, []);
 
   const handleStarClick = (newValue) => {
@@ -144,30 +146,30 @@ const ProfilePage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    // Clear any previous error messages after 3 seconds
-  const clearError = () => setError(null);
-  
-     // Validation checks
-  if (!rating || rating === 0) {
-    setError("Please select a star rating.");
-    setTimeout(clearError, 3000); // Clear error message after 3 seconds
-    return;
-  }
 
-  if (!comment) {
-    setError("Please enter a comment.");
-    setTimeout(clearError, 3000); // Clear error message after 3 seconds
-    return;
-  }
-  
+    // Clear any previous error messages after 3 seconds
+    const clearError = () => setError(null);
+
+    // Validation checks
+    if (!rating || rating === 0) {
+      setError("Please select a star rating.");
+      setTimeout(clearError, 3000); // Clear error message after 3 seconds
+      return;
+    }
+
+    if (!comment) {
+      setError("Please enter a comment.");
+      setTimeout(clearError, 3000); // Clear error message after 3 seconds
+      return;
+    }
+
     try {
       // If validation passes, proceed with submitting the rating
       await axios.post(`/profiles/${profile?.id}/rate-user/`, {
         rating,
         comment,
       });
-  
+
       console.log("Rating submitted successfully");
       window.location.reload();
     } catch (error) {
@@ -216,6 +218,14 @@ const ProfilePage = () => {
 
   const postCount = filteredJobsPost.length;
 
+  const handleToggleRatingForm = () => {
+    setShowRatingForm((prevShowRatingForm) => !prevShowRatingForm);
+    // Scroll to the rating form container
+    if (!showRatingForm) {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       {isLoading ? (
@@ -231,10 +241,16 @@ const ProfilePage = () => {
         </Container>
       ) : (
         <Row className="mb-0">
-          <Col className="py-1 p-0 p-md-2 mt-1 mb-0" md={7} lg={3}>
+          <Col className="py-1 p-1 p-md-2 mt-1 mb-0" md={7} lg={3}>
             <>
               <Container className={`p-0 mb-2 ${styles.Content}`}>
-                <ProfileHeader profile={profile} currentUser={currentUser} />
+                <ProfileHeader
+                  profile={profile}
+                  currentUser={currentUser}
+                  showRatingForm={showRatingForm}
+                  handleToggleRatingForm={handleToggleRatingForm}
+                />
+
                 {profile && (
                   <div className="mt-1 mb-0">
                     <div className="p-2 rounded">
@@ -289,7 +305,6 @@ const ProfilePage = () => {
                               <div className="p-1 mt-1 mb-0 border text-left rounded justify-content-start">
                                 <p className="mt-2 ml-2">No ratings to show.</p>
                               </div>
-                              
                             )}
                           </>
                         </div>
@@ -302,13 +317,46 @@ const ProfilePage = () => {
           </Col>
 
           <Col md={5} lg={6}>
-            {" "}
+            {/* Additional Rating Form Container for mobile screens */}
+            {currentUser &&
+              profile &&
+              currentUser.username !== profile.owner_username && (
+                <Container className="p-0 mt-0">
+                  {showRatingForm ? ( // Show rating form if toggled
+                    <Container
+                    
+                      className={`${styles.Content} ${profileStyles.triangleGradient} text-center d-lg-none p-3`}>
+                      <RatingForm
+                        rating={rating}
+                        handleStarClick={handleStarClick}
+                        comment={comment}
+                        handleCommentChange={handleCommentChange}
+                        handleSubmit={handleSubmit}
+                        error={error}
+                      />
+                    </Container>
+                  ) : (
+                    // Otherwise, show the activity section
+                    <Container className="p-0 border mt-2 bg-white">
+                      {!showRatingForm && ( // Render Activity only if showRatingForm is false
+                        <Activity
+                          postCount={postCount}
+                          filteredJobsPost={filteredJobsPost}
+                        />
+                      )}
+                    </Container>
+                  )}
+                </Container>
+              )}
             <Container className="p-0 border mt-2 bg-white">
-              {/* Activity section */}
-              <Activity
-                postCount={postCount}
-                filteredJobsPost={filteredJobsPost}
-              />
+              {currentUser &&
+                currentUser.username === profile?.owner_username && (
+                  // Render Activity only if the current user is viewing their own profile
+                  <Activity
+                    postCount={postCount}
+                    filteredJobsPost={filteredJobsPost}
+                  />
+                )}
             </Container>
             {showRatingContainer && (
               <Container className="p-3 mt-2 bg-white border">
@@ -319,10 +367,11 @@ const ProfilePage = () => {
               </Container>
             )}
           </Col>
+
           <Col
             md={5}
             lg={3}
-            className="mr-0 d-none d-md-block p-0 p-md-2 mb-0 text-center">
+            className="mr-0 d-none d-lg-block p-0 p-md-2 mb-0 text-center">
             {/* Rating Form Container */}
             {currentUser &&
               profile &&

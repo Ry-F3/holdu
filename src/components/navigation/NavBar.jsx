@@ -257,7 +257,7 @@ const NavBar = ({ handleSearch }) => {
             </>
           )}
           <div className="d-none d-lg-flex">
-            <p className="mb-0 mr-2">Tagline</p> {/* Tagline */}
+            <p className="mb-0 mr-2  ml-2 text-muted">Build a fair future</p> {/* Tagline */}
           </div>
           <div className={`${styles.verticalLine}  d-none d-lg-flex`}></div>{" "}
           {/* Vertical line */}

@@ -219,8 +219,6 @@ Key features of this profile type include:
 
 <hr>
 
-<br>
-
 #### **Employee Profile Overview:**
 
 Originally intended for a more interactive experience, the Employee Profile Type had to be simplified to meet development time constraints. To align with the applicant model, users can apply and unapply for jobs, while employers can accept or reject their applications.
@@ -260,7 +258,12 @@ While the current iteration provides basic functionality, future developments wi
 
 <br>
 
+**Authentication:**
+  - Users must be authenticated with the employee profile type to have a different setup for the navigation icons.
 
+  **Navigation Setup:**
+  - The JobsPost file runs a check to see whether the user is an employee.
+  - If the user is authenticated as an employee, the file displays the buttons for applying and unapplying for jobs.
 
 
 </details>

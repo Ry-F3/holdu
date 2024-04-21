@@ -109,3 +109,9 @@ h3 {
     border-width: 0 80px 80px 0;
     border-color: transparent #fc7fb6 transparent transparent;
 }
+
+@media (max-width: 986px) {
+    .showButton {
+        display: block !important;
+    }
+}
