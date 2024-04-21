@@ -270,6 +270,77 @@ While the current iteration provides basic functionality, future developments wi
 
 </details>
 
+<hr>
+
+<details>
+
+#### Desktop design differences
+
+<summary>Desktop [1]</summary>
+
+<hr>
+
+![desktop-1](src/assets/readme/desktop-1.png)
+
+<details>
+
+<summary>Details [1]</summary>
+
+<br>
+
+
+
+
+</details>
+
+</details>
+
+<details>
+
+<summary>Desktop [2]</summary>
+
+<hr>
+
+![desktop-1](src/assets/readme/desktop-2.png)
+
+![desktop-1](src/assets/readme/desktop-3.png)
+
+<details>
+
+<summary>Details [2]</summary>
+
+<br>
+
+
+
+
+</details>
+
+</details>
+
+<details>
+
+<summary>Desktop [3]</summary>
+
+<hr>
+
+![desktop-1](src/assets/readme/desktop-4.png)
+
+![desktop-1](src/assets/readme/desktop-5.png)
+
+<details>
+
+<summary>Details [3]</summary>
+
+<br>
+
+
+
+
+</details>
+
+</details>
+
 
 ## User Stories 
 
