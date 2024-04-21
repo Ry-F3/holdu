@@ -370,16 +370,16 @@ While the current iteration provides basic functionality, future developments wi
 
 | #   | User Story                                                                                                      | Completed |
 |-----|-----------------------------------------------------------------------------------------------------------------|-----------|
-| #1   | As a new user, I want to be able to sign up for an account by providing my email, username, and password.      |    ✅     |
-| #2   | If I already have an account, I should be notified that the chosen username or email is already in use.       |    ✅     |
-| #3   | As a registered user, I want to log in to my account using my username/email and password.                     |    ✅     |
-| #4   | As a user I would like to pick my profile type when registering.                                                |  ✅          |
-| #5   | If my credentials are incorrect, I should receive an error message prompting me to try again.                  |      ✅      |
-| #6   | Upon successful login, I should be redirected to the dashboard.                                                 |     ✅       |
-| #7   | As a user, I want a top navigation bar with links to different sections of the application such as Home, Profile, Notifications, Messages, etc. |  ✅   |
-| #8   | The navigation bar should also include options for logging out and accessing settings.                         |    ✅     |
-| #9   | As a user on mobile devices, I want a bottom navigation bar for easy access to different sections of the application. |     ✅   |
-| #10  | The bottom navigation should include icons or labels for Home, Profile, Notifications, Messages, etc.          |    ✅    |
+| [**#1**]   | As a new user, I want to be able to sign up for an account by providing my email, username, and password.      |    ✅     |
+| [**#2**]  | If I already have an account, I should be notified that the chosen username or email is already in use.       |    ✅     |
+| [**#3**]   | As a registered user, I want to log in to my account using my username/email and password.                     |    ✅     |
+| [**#4**]   | As a user I would like to pick my profile type when registering.                                                |  ✅          |
+| [**#5**]   | If my credentials are incorrect, I should receive an error message prompting me to try again.                  |      ✅      |
+| [**#6**]   | Upon successful login, I should be redirected to the dashboard.                                                 |     ✅       |
+| [**#7**]   | As a user, I want a top navigation bar with links to different sections of the application such as Home, Profile, Notifications, Messages, etc. |  ✅   |
+| [**#8**]   | The navigation bar should also include options for logging out and accessing settings.                         |    ✅     |
+| [**#9**]   | As a user on mobile devices, I want a bottom navigation bar for easy access to different sections of the application. |     ✅   |
+| [**#10**]  | The bottom navigation should include icons or labels for Home, Profile, Notifications, Messages, etc.          |    ✅    |
 
 <br>
 
@@ -387,15 +387,15 @@ While the current iteration provides basic functionality, future developments wi
 
 | #   | User Story                                                                                                                                           | Completed |
 |-----|------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| 12  | As a user, I want to browse through available job listings.                                                                                          |    ✅     |
-| 13  | As an Employer user I should be able to post adverts with details such as job title, company name, location, and a brief description.                |    ✅     |
-| 14  | As an Employer user, I want to be able to manage my job listings.                                                                                     |    ✅     |
-| 15  | As an Employee user, I want to be able to apply for jobs that interest me.                                                                            |    ✅     |
-| 16  | As an Employee user, I want to be able to track the status of my job applications.                                                                    |    ❌     |
-| 17  | As an employer, I want to be able to respond to job applications.                                                                                     |    ✅     |
-| 18  | As a user, I want to view my profile information including name, profile type, content, image.                                                        |    ✅     |
-| 19  | If I'm an employee, I should be able to add/edit my work experiences.                                                                                 |    ❌     |
-| 20  | As a user I want to be able to rate other users and view their ratings.                                                                               |    ✅     |
+| [**12**]  | As a user, I want to browse through available job listings.                                                                                          |    ✅     |
+| [**13**]  | As an Employer user I should be able to post adverts with details such as job title, company name, location, and a brief description.                |    ✅     |
+| [**14**]  | As an Employer user, I want to be able to manage my job listings.                                                                                     |    ✅     |
+| [**15**]  | As an Employee user, I want to be able to apply for jobs that interest me.                                                                            |    ✅     |
+| [**16**]  | As an Employee user, I want to be able to track the status of my job applications.                                                                    |    ❌     |
+| [**17**]  | As an employer, I want to be able to respond to job applications.                                                                                     |    ✅     |
+| [**18**]  | As a user, I want to view my profile information including name, profile type, content, image.                                                        |    ✅     |
+| [**19**]  | If I'm an employee, I should be able to add/edit my work experiences.                                                                                 |    ❌     |
+| [**20**]  | As a user I want to be able to rate other users and view their ratings.                                                                               |    ✅     |
 
 
 
