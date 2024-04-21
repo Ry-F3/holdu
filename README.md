@@ -34,7 +34,7 @@ Key features of this profile type include:
 
 <br>
 
-#### **Mobile Design <code>profile_type="employer"</code>:** 
+### **Mobile Design <code>profile_type="employer"</code>:** 
 
 *Refer below to view the details and screenshots for the employer profiles mobile design experience.*
 
@@ -238,7 +238,7 @@ While the current iteration provides basic functionality, future developments wi
 <br>
 
 
-#### **Mobile Design <code>profile_type="employee"</code>:** 
+### **Mobile Design <code>profile_type="employee"</code>:** 
 
 *Refer below to view the details and screenshots for the employee profiles mobile design experience.*
 
@@ -270,9 +270,11 @@ While the current iteration provides basic functionality, future developments wi
 
 </details>
 
+<br>
+
 <hr>
 
-#### Desktop design differences
+### **Desktop design differences**
 
 <details>
 
@@ -280,7 +282,6 @@ While the current iteration provides basic functionality, future developments wi
 
 <summary>Desktop [1]</summary>
 
-<hr>
 
 ![desktop-1](src/assets/readme/desktop-1.png)
 
@@ -299,13 +300,13 @@ While the current iteration provides basic functionality, future developments wi
 
 <details>
 
+<hr>
+
 <summary>Desktop [2]</summary>
 
 <hr>
 
-![desktop-1](src/assets/readme/desktop-2.png)
-
-![desktop-1](src/assets/readme/desktop-3.png)
+![desktop-6](src/assets/readme/desktop-6.png)
 
 <details>
 
@@ -321,6 +322,8 @@ While the current iteration provides basic functionality, future developments wi
 </details>
 
 <details>
+
+<hr>
 
 <summary>Desktop [3]</summary>
 
