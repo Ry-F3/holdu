@@ -370,7 +370,7 @@ While the current iteration provides basic functionality, future developments wi
 
 | #   | User Story                                                                                                      | Completed |
 |-----|-----------------------------------------------------------------------------------------------------------------|-----------|
-| [**#1**]   | As a new user, I want to be able to sign up for an account by providing my email, username, and password.      |    ✅     |
+| [**#1**](https://github.com/Ry-F3/holdu/issues/1)   | As a new user, I want to be able to sign up for an account by providing my email, username, and password.      |    ✅     |
 | [**#2**]  | If I already have an account, I should be notified that the chosen username or email is already in use.       |    ✅     |
 | [**#3**]   | As a registered user, I want to log in to my account using my username/email and password.                     |    ✅     |
 | [**#4**]   | As a user I would like to pick my profile type when registering.                                                |  ✅          |
