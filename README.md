@@ -371,15 +371,15 @@ While the current iteration provides basic functionality, future developments wi
 | #   | User Story                                                                                                      | Completed |
 |-----|-----------------------------------------------------------------------------------------------------------------|-----------|
 | [**#1**](https://github.com/Ry-F3/holdu/issues/1)   | As a new user, I want to be able to sign up for an account by providing my email, username, and password.      |    ✅     |
-| [**#2**]  | If I already have an account, I should be notified that the chosen username or email is already in use.       |    ✅     |
-| [**#3**]   | As a registered user, I want to log in to my account using my username/email and password.                     |    ✅     |
-| [**#4**]   | As a user I would like to pick my profile type when registering.                                                |  ✅          |
-| [**#5**]   | If my credentials are incorrect, I should receive an error message prompting me to try again.                  |      ✅      |
-| [**#6**]   | Upon successful login, I should be redirected to the dashboard.                                                 |     ✅       |
-| [**#7**]   | As a user, I want a top navigation bar with links to different sections of the application such as Home, Profile, Notifications, Messages, etc. |  ✅   |
-| [**#8**]   | The navigation bar should also include options for logging out and accessing settings.                         |    ✅     |
-| [**#9**]   | As a user on mobile devices, I want a bottom navigation bar for easy access to different sections of the application. |     ✅   |
-| [**#10**]  | The bottom navigation should include icons or labels for Home, Profile, Notifications, Messages, etc.          |    ✅    |
+| [**#2**](https://github.com/Ry-F3/holdu/issues/2)   | If I already have an account, I should be notified that the chosen username or email is already in use.       |    ✅     |
+| [**#3**](https://github.com/Ry-F3/holdu/issues/3)    | As a registered user, I want to log in to my account using my username/email and password.                     |    ✅     |
+| [**#4**](https://github.com/Ry-F3/holdu/issues/4)    | As a user I would like to pick my profile type when registering.                                                |  ✅          |
+| [**#5**](https://github.com/Ry-F3/holdu/issues/5)    | If my credentials are incorrect, I should receive an error message prompting me to try again.                  |      ✅      |
+| [**#6**](https://github.com/Ry-F3/holdu/issues/6)    | Upon successful login, I should be redirected to the dashboard.                                                 |     ✅       |
+| [**#7**](https://github.com/Ry-F3/holdu/issues/7)    | As a user, I want a top navigation bar with links to different sections of the application such as Home, Profile, Notifications, Messages, etc. |  ✅   |
+| [**#8**](https://github.com/Ry-F3/holdu/issues/8)    | The navigation bar should also include options for logging out and accessing settings.                         |    ✅     |
+| [**#9**](https://github.com/Ry-F3/holdu/issues/9)    | As a user on mobile devices, I want a bottom navigation bar for easy access to different sections of the application. |     ✅   |
+| [**#10**](https://github.com/Ry-F3/holdu/issues/10)   | The bottom navigation should include icons or labels for Home, Profile, Notifications, Messages, etc.          |    ✅    |
 
 <br>
 
@@ -387,22 +387,28 @@ While the current iteration provides basic functionality, future developments wi
 
 | #   | User Story                                                                                                                                           | Completed |
 |-----|------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| [**#12**]  | As a user, I want to browse through available job listings.                                                                                          |    ✅     |
-| [**#13**]  | As an Employer user I should be able to post adverts with details such as job title, company name, location, and a brief description.                |    ✅     |
-| [**#14**]  | As an Employer user, I want to be able to manage my job listings.                                                                                     |    ✅     |
-| [**#15**]  | As an Employee user, I want to be able to apply for jobs that interest me.                                                                            |    ✅     |
-| [**#16**]  | As an Employee user, I want to be able to track the status of my job applications.                                                                    |    ❌     |
-| [**#17**]  | As an employer, I want to be able to respond to job applications.                                                                                     |    ✅     |
-| [**#18**]  | As a user, I want to view my profile information including name, profile type, content, image.                                                        |    ✅     |
-| [**#19**]  | If I'm an employee, I should be able to add/edit my work experiences.                                                                                 |    ❌     |
-| [**#20**]  | As a user I want to be able to rate other users and view their ratings.                                                                               |    ✅     |
+| [**#12**](https://github.com/Ry-F3/holdu/issues/12)   | As a user, I want to browse through available job listings.                                                                                          |    ✅     |
+| [**#13**](https://github.com/Ry-F3/holdu/issues/13)   | As an Employer user I should be able to post adverts with details such as job title, company name, location, and a brief description.                |    ✅     |
+| [**#14**](https://github.com/Ry-F3/holdu/issues/14)   | As an Employer user, I want to be able to manage my job listings.                                                                                     |    ✅     |
+| [**#15**](https://github.com/Ry-F3/holdu/issues/15)   | As an Employee user, I want to be able to apply for jobs that interest me.                                                                            |    ✅     |
+| [**#16**](https://github.com/Ry-F3/holdu/issues/16)   | As an Employee user, I want to be able to track the status of my job applications.                                                                    |    ❌     |
+| [**#17**](https://github.com/Ry-F3/holdu/issues/17)   | As an employer, I want to be able to respond to job applications.                                                                                     |    ✅     |
+| [**#18**](https://github.com/Ry-F3/holdu/issues/18)   | As a user, I want to view my profile information including name, profile type, content, image.                                                        |    ✅     |
+| [**#19**](https://github.com/Ry-F3/holdu/issues/19)   | If I'm an employee, I should be able to add/edit my work experiences.                                                                                 |    ❌     |
+| [**#20**](https://github.com/Ry-F3/holdu/issues/20)   | As a user I want to be able to rate other users and view their ratings.                                                                               |    ✅     |
 
 
+#### Section 3
 
+| #   | User Story                                                                                                                                           | Completed |
+|-----|------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| [**#21**](https://github.com/Ry-F3/holdu/issues/21)  | As a user, I want to have control over the connections I establish on the platform.                                                                 |    ✅     |
+| [**#22**](https://github.com/Ry-F3/holdu/issues/22)   | I should be able to view pending connection requests and manage them accordingly.                                                                    |    ✅     |
+| [**#23**](https://github.com/Ry-F3/holdu/issues/23)   | As a user, I want to be able to view the connection requests I've sent to other users.                                                              |    ✅     |
+| [**#24**](https://github.com/Ry-F3/holdu/issues/24)   | As a user, I want a centralized dashboard to manage all my connections.                                                                              |    ✅     |
+| [**#25**](https://github.com/Ry-F3/holdu/issues/25)   | As a user, I want to receive notifications for connection requests, job alerts, accepted applications, message alerts, and new ratings.            |    ✅     |
+| [**#26**](https://github.com/Ry-F3/holdu/issues/26)   | I should be able to mark notifications as read or delete them.                                                                                        |    ✅     |
 
-
-
-| Section 3 |
 
 
 ## Agile Methodology
