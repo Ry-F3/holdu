@@ -13,6 +13,8 @@
 
 The Employer Profile provides a comprehensive set of tools and features tailored to the needs of employers. Below are the key features offered by the Employer Profile experience:
 
+Key features of this profile type include:
+
 - **Jobs Management Tool:**
   - Post, edit, and update job listings with ease.
   - View applicants for each job and make decisions to accept or reject them.
@@ -215,9 +217,25 @@ The Employer Profile provides a comprehensive set of tools and features tailored
 
 </details>
 
+<hr>
+
+<br>
 
 #### **Employee Profile Overview:**
 
+Originally intended for a more interactive experience, the Employee Profile Type had to be simplified to meet development time constraints. To align with the applicant model, users can apply and unapply for jobs, while employers can accept or reject their applications.
+
+Key features of this profile type include:
+
+- **Apply and Unapply:** Users can apply for jobs they're interested in and withdraw their applications if needed.
+
+- **Like Job Adverts:** Employees can express interest in job listings by liking them.
+
+- **Receive Alerts:** Stay informed about new job listings with alerts.
+
+- **Connect and Rate Profiles:** Connect with other users and rate their profiles based on interactions.
+
+While the current iteration provides basic functionality, future developments will include a management tool for employees to track and respond to their accepted applications, enhancing the overall user experience.
 
 <br>
 
