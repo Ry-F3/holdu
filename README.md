@@ -281,7 +281,7 @@ While the current iteration provides basic functionality, future developments wi
 
 <br>
 
-* Please note that the design layout code was reused from the Code Institute walkthrough project. However, an image was sourced to fit the application from [Storyset](https://storyset.com/illustration).
+* Please be aware that while the design layout code was borrowed from the Code Institute walkthrough project, an image was sourced from [Storyset](https://storyset.com/illustration) to suit the application. I utilized Photoshop to edit the image, to ensure color consistency with my application.
 
 
 </details>
@@ -295,7 +295,7 @@ While the current iteration provides basic functionality, future developments wi
 
 <summary>Desktop [2]</summary>
 
-
+<hr>
 
 ![desktop-6](src/assets/readme/desktop-6.png)
 
@@ -304,6 +304,9 @@ While the current iteration provides basic functionality, future developments wi
 <summary>Details [2]</summary>
 
 <br>
+
+
+* The desktop view of the home page features a sidebar that analyzes the top jobs with the most applicants. It identifies the top 6 jobs based on the number of applicants. Clicking on any of these jobs filters the job listings for the user, allowing them to apply if they are an employee <code>profile_type</code>.
 
 
 </details>
@@ -320,9 +323,8 @@ While the current iteration provides basic functionality, future developments wi
 
 <hr>
 
-![desktop-1](src/assets/readme/desktop-4.png)
+![desktop-4](src/assets/readme/desktop-4.png)
 
-![desktop-1](src/assets/readme/desktop-5.png)
 
 <details>
 
@@ -330,13 +332,35 @@ While the current iteration provides basic functionality, future developments wi
 
 <br>
 
+* Clicking on the user's profile icon in the navbar will direct them to their profile page. The profile page features a sidebar, allowing the owner to easily navigate to their connections' profile pages.
+
+</details>
+
+</details>
+
+<hr>
+
+<details>
 
 
+<summary>Desktop [4]</summary>
+
+<hr>
+
+![desktop-1](src/assets/readme/desktop-5.png)
+
+
+<details>
+
+<summary>Details [4]</summary>
+
+<br>
+
+* The rating form is located in the sidebar when viewing another user's profile page. If the user has more than three reviews, a horizontal review carousel is automatically activated, allowing for seamless navigation through the reviews.
 
 </details>
 
 </details>
-
 
 <hr>
 
