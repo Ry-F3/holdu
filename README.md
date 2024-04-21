@@ -408,10 +408,48 @@ While the current iteration provides basic functionality, future developments wi
 | [**#22**](https://github.com/Ry-F3/holdu/issues/22)   | I should be able to view pending connection requests and manage them accordingly.                                                                    |    ✅     |
 | [**#23**](https://github.com/Ry-F3/holdu/issues/23)   | As a user, I want to be able to view the connection requests I've sent to other users.                                                              |    ✅     |
 | [**#24**](https://github.com/Ry-F3/holdu/issues/24)   | As a user, I want a centralized dashboard to manage all my connections.                                                                              |    ✅     |
-| [**#25**](https://github.com/Ry-F3/holdu/issues/25)   | As a user, I want to receive notifications for connection requests, job alerts, accepted applications, message alerts, and new ratings.            |     ◔     |
+| [**#25**](https://github.com/Ry-F3/holdu/issues/25)   | As a user, I want to receive notifications for connection requests, job alerts, accepted applications, message alerts, and new ratings.            |     ✅ / ❌     |
 | [**#26**](https://github.com/Ry-F3/holdu/issues/26)   | I should be able to mark notifications as read or delete them.                                                                                        |    ✅     |
 
 
+#### Section 4
+
+
+| #   | User Story                                                                                                                                      | Completed |
+|-----|-------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| [**#27**](https://github.com/Ry-F3/holdu/issues/27) | As a user, I want to be able to leave reviews on users' profile pages that contribute to their average rating.                                |    ✅     |
+| [**#28**](https://github.com/Ry-F3/holdu/issues/28) | As a user, I want to be able to see the employer's activity on their profile page.                                                           |    ✅    |
+| [**#29**](https://github.com/Ry-F3/holdu/issues/29) | As a user, I want to be able to see the number of connections on a profile page.                                                              |    ✅    |
+| [**#30**](https://github.com/Ry-F3/holdu/issues/30) | As a user, I want to see a defining badge to know if a user is looking to work or looking to hire.                                           |    ✅     |
+
+
+## Development Choices
+
+<br>
+
+| Used Models         | Description                                     |
+|---------------------|-------------------------------------------------|
+| User                | Model representing the user entity.            |
+| Custom Profile      | Model representing custom user profiles.       |
+| Connection          | Model representing connections between users.  |
+| Rating              | Model representing ratings given by users.     |
+| Job                 | Model representing job listings.                |
+| Application         | Model representing job applications.            |
+| Notification        | Model representing notifications for users.    |
+| Like                | Model representing likes on certain entities.  |
+
+| Unused Models       | Description                                     |
+|---------------------|-------------------------------------------------|
+| Chat                | Model representing chat conversations.         |
+| Message             | Model representing individual chat messages.   |
+| Experience          | Model representing user work experiences.      |
+| Comment             | Model representing comments on entities.       |
+
+<br>
+
+The unused models, including Chat, Message, Experience, and Comment, will be explored in future development plans to enhance the product and broaden the application's use case. These models represent features such as chat conversations, individual chat messages, user work experiences, and comments on entities within the application. Integrating these features will enrich the user experience and provide additional functionality, ultimately improving engagement and expanding the application's capabilities.
+
+<br>
 
 ## Agile Methodology
 
