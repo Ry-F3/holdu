@@ -270,9 +270,10 @@ While the current iteration provides basic functionality, future developments wi
 
 </details>
 
+<hr>
+
 <br>
 
-<hr>
 
 ### **Desktop design differences**
 
@@ -292,19 +293,18 @@ While the current iteration provides basic functionality, future developments wi
 <br>
 
 
-
-
 </details>
 
 </details>
+
+<hr>
 
 <details>
 
-<hr>
 
 <summary>Desktop [2]</summary>
 
-<hr>
+
 
 ![desktop-6](src/assets/readme/desktop-6.png)
 
@@ -315,15 +315,15 @@ While the current iteration provides basic functionality, future developments wi
 <br>
 
 
-
-
 </details>
 
 </details>
+
+<hr>
 
 <details>
 
-<hr>
+
 
 <summary>Desktop [3]</summary>
 
