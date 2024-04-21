@@ -347,6 +347,8 @@ While the current iteration provides basic functionality, future developments wi
 </details>
 
 
+<hr>
+
 ## User Stories 
 
 | Section 1 |
