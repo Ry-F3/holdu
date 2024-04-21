@@ -387,15 +387,15 @@ While the current iteration provides basic functionality, future developments wi
 
 | #   | User Story                                                                                                                                           | Completed |
 |-----|------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| [**12**]  | As a user, I want to browse through available job listings.                                                                                          |    ✅     |
-| [**13**]  | As an Employer user I should be able to post adverts with details such as job title, company name, location, and a brief description.                |    ✅     |
-| [**14**]  | As an Employer user, I want to be able to manage my job listings.                                                                                     |    ✅     |
-| [**15**]  | As an Employee user, I want to be able to apply for jobs that interest me.                                                                            |    ✅     |
-| [**16**]  | As an Employee user, I want to be able to track the status of my job applications.                                                                    |    ❌     |
-| [**17**]  | As an employer, I want to be able to respond to job applications.                                                                                     |    ✅     |
-| [**18**]  | As a user, I want to view my profile information including name, profile type, content, image.                                                        |    ✅     |
-| [**19**]  | If I'm an employee, I should be able to add/edit my work experiences.                                                                                 |    ❌     |
-| [**20**]  | As a user I want to be able to rate other users and view their ratings.                                                                               |    ✅     |
+| [**#12**]  | As a user, I want to browse through available job listings.                                                                                          |    ✅     |
+| [**#13**]  | As an Employer user I should be able to post adverts with details such as job title, company name, location, and a brief description.                |    ✅     |
+| [**#14**]  | As an Employer user, I want to be able to manage my job listings.                                                                                     |    ✅     |
+| [**#15**]  | As an Employee user, I want to be able to apply for jobs that interest me.                                                                            |    ✅     |
+| [**#16**]  | As an Employee user, I want to be able to track the status of my job applications.                                                                    |    ❌     |
+| [**#17**]  | As an employer, I want to be able to respond to job applications.                                                                                     |    ✅     |
+| [**#18**]  | As a user, I want to view my profile information including name, profile type, content, image.                                                        |    ✅     |
+| [**#19**]  | If I'm an employee, I should be able to add/edit my work experiences.                                                                                 |    ❌     |
+| [**#20**]  | As a user I want to be able to rate other users and view their ratings.                                                                               |    ✅     |
 
 
 
