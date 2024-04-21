@@ -370,16 +370,16 @@ While the current iteration provides basic functionality, future developments wi
 
 | #   | User Story                                                                                                      | Completed |
 |-----|-----------------------------------------------------------------------------------------------------------------|-----------|
-| 1   | As a new user, I want to be able to sign up for an account by providing my email, username, and password.      |    ✅     |
-| 2   | If I already have an account, I should be notified that the chosen username or email is already in use.       |    ✅     |
-| 3   | As a registered user, I want to log in to my account using my username/email and password.                     |    ✅     |
-| 4   | As a user I would like to pick my profile type when registering.                                                |  ✅          |
-| 5   | If my credentials are incorrect, I should receive an error message prompting me to try again.                  |      ✅      |
-| 6   | Upon successful login, I should be redirected to the dashboard.                                                 |     ✅       |
-| 7   | As a user, I want a top navigation bar with links to different sections of the application such as Home, Profile, Notifications, Messages, etc. |  ✅   |
-| 8   | The navigation bar should also include options for logging out and accessing settings.                         |    ✅     |
-| 9   | As a user on mobile devices, I want a bottom navigation bar for easy access to different sections of the application. |     ✅   |
-| 10  | The bottom navigation should include icons or labels for Home, Profile, Notifications, Messages, etc.          |    ✅    |
+| #1   | As a new user, I want to be able to sign up for an account by providing my email, username, and password.      |    ✅     |
+| #2   | If I already have an account, I should be notified that the chosen username or email is already in use.       |    ✅     |
+| #3   | As a registered user, I want to log in to my account using my username/email and password.                     |    ✅     |
+| #4   | As a user I would like to pick my profile type when registering.                                                |  ✅          |
+| #5   | If my credentials are incorrect, I should receive an error message prompting me to try again.                  |      ✅      |
+| #6   | Upon successful login, I should be redirected to the dashboard.                                                 |     ✅       |
+| #7   | As a user, I want a top navigation bar with links to different sections of the application such as Home, Profile, Notifications, Messages, etc. |  ✅   |
+| #8   | The navigation bar should also include options for logging out and accessing settings.                         |    ✅     |
+| #9   | As a user on mobile devices, I want a bottom navigation bar for easy access to different sections of the application. |     ✅   |
+| #10  | The bottom navigation should include icons or labels for Home, Profile, Notifications, Messages, etc.          |    ✅    |
 
 <br>
 
