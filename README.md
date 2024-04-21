@@ -262,7 +262,6 @@ While the current iteration provides basic functionality, future developments wi
 
 <br>
 
-
 ### **Desktop Design Differences:**
 
 <br>
@@ -270,9 +269,9 @@ While the current iteration provides basic functionality, future developments wi
 <details>
 
 
-
 <summary>Desktop [1]</summary>
 
+<hr>
 
 ![desktop-1](src/assets/readme/desktop-1.png)
 
@@ -281,6 +280,8 @@ While the current iteration provides basic functionality, future developments wi
 <summary>Details [1]</summary>
 
 <br>
+
+* Please note that the design layout code was reused from the Code Institute walkthrough project. However, an image was sourced to fit the application from [Storyset](https://storyset.com/illustration).
 
 
 </details>
