@@ -50,6 +50,8 @@ Key features of this profile type include:
 
 While the current iteration provides basic functionality, future developments will include a management tool for employees to track and respond to their accepted applications, enhancing the overall user experience.
 
+<br>
+
 ### **Mobile Design <code>profile_type="employer"</code>:** 
 
 *Refer below to view the details and screenshots for the employer profiles mobile design experience.*
@@ -243,7 +245,7 @@ While the current iteration provides basic functionality, future developments wi
 
 *Refer below to view the details and screenshots for the employee profiles mobile design experience.*
 
-<hr>
+<br>
 
 <details>
 
