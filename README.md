@@ -615,22 +615,7 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 <br>
 
-<details>
 
-<hr>
-
-  <summary>Wave</summary>
-
-  <p><strong>Dropdown Selection:</strong> "Wave"</p>
-
-   ![wave](../holdu/src/assets/readme/wave.png)
-
- <br>
-  
-  <p><strong>Issue Encountered:</strong> While attempting to test with "wave", the system encountered difficulties. Unfortunately, it did not allow access to other pages and consistently displayed the error message "Page Not Found."</p>
-
-
-</details>
 
 #### My Testing Experience with ESLint
 
@@ -709,6 +694,23 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 </details>
 
 <hr>
+
+<details>
+
+<hr>
+
+  <summary>Wave</summary>
+
+  <p><strong>Dropdown Selection:</strong> "Wave"</p>
+
+   ![wave](../holdu/src/assets/readme/wave.png)
+
+ <br>
+  
+  <p><strong>Issue Encountered:</strong> While attempting to test with "wave", the system encountered difficulties. Unfortunately, it did not allow access to other pages and consistently displayed the error message "Page Not Found."</p>
+
+
+</details>
 
 <br>
 
