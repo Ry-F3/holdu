@@ -615,8 +615,6 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 <br>
 
-
-
 #### My Testing Experience with ESLint
 
 ##### Issues Encountered:
@@ -651,7 +649,7 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
   <br>
 
-  ![eslint](../holdu/src/assets/readme/eslint.png)
+  ![eslint](src/assets/readme/eslint.png)
 
   <br>
   
@@ -703,7 +701,7 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
   <p><strong>Dropdown Selection:</strong> "Wave"</p>
 
-   ![wave](../holdu/src/assets/readme/wave.png)
+   ![wave](src/assets/readme/wave.png)
 
  <br>
   
