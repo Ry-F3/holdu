@@ -623,12 +623,87 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
   <p><strong>Dropdown Selection:</strong> "Wave"</p>
 
-  ![wave-image](../holdu/src/assets/readme/wave.png)
+   ![wave](../holdu/src/assets/readme/wave.png)
 
-  <hr>
-
+ <br>
   
   <p><strong>Issue Encountered:</strong> While attempting to test with "wave", the system encountered difficulties. Unfortunately, it did not allow access to other pages and consistently displayed the error message "Page Not Found."</p>
+
+
+</details>
+
+#### My Testing Experience with ESLint
+
+##### Issues Encountered:
+1. **Initial Installation**: I faced some difficulties during the installation of ESLint. The correct command for installing ESLint with npm is <code>`npx install eslint --save-dev`</code>.
+
+2. **File Type Selection**: Initially, I opted for JSX files for their compatibility with the built-in Prettier plugin. However, this decision led to compatibility issues with ESLint.
+
+3. **Configuration Challenges**: Configuring ESLint to work with JSX syntax was a bit challenging. I had to ensure that ESLint was set up to lint both JavaScript and React files.
+
+4. **Conversion to JS**: To address the issues with ESLint, I decided to convert all JSX files to JavaScript files to simplify linting.
+
+5. **Running ESLint**: After configuring ESLint, I ran ESLint using the command <code>`npx eslint .`</code>  to identify and fix linting errors in my project.
+
+6. **Error Detection**: ESLint detected various errors in my codebase, including missing React imports and props validation errors.
+
+7. **Workspace Cleanup**: Due to issues with ESLint's auto-fix feature causing breaking errors in my application, I decided to discard the workspace where ESLint was used.
+
+**Future Development**: Moving forward, I plan to address the identified errors below in future developments to enhance the code quality and maintainability of the project.
+
+#### Summary:
+Overall, my testing experience with ESLint involved troubleshooting installation issues, configuring ESLint for JSX syntax, converting file types, and identifying and addressing linting errors.
+
+<hr>
+
+<details>
+
+<hr>
+
+  <summary>Eslint</summary>
+
+  <p><strong>Dropdown Selection:</strong> "Eslint Testing"</p>
+
+  <br>
+
+  ![eslint](../holdu/src/assets/readme/eslint.png)
+
+  <br>
+  
+  | File                                                             | Line   | Error                                                                                         |
+|------------------------------------------------------------------|--------|-----------------------------------------------------------------------------------------------|
+| /workspace/holdu/src/App.js                                     | 32-72  | 'React' must be in scope when using JSX                                                      |
+| /workspace/holdu/src/App.test.js                                | 5      | 'React' must be in scope when using JSX                                                      |
+| /workspace/holdu/src/components/Asset.js                        | 6      | 'loading', 'src', 'message' are missing in props validation                                  |
+| /workspace/holdu/src/components/Avatar.js                       | 5      | 'src', 'height', 'border' are missing in props validation                                    |
+| /workspace/holdu/src/components/Spinner.js                      | 4      | 'size' is missing in props validation                                                        |
+| /workspace/holdu/src/components/connections/ConnectionsTab.js   | 9, 14, 43, 50, 59  | Various props like 'connections', 'handleDeleteConnection', etc. are missing in props validation  |
+| /workspace/holdu/src/components/connections/PendingTab.js       | 9, 12, 40, 47  | Various props like 'pendingConnections', 'handleAccept', 'handleDecline', etc. are missing in props validation  |
+| /workspace/holdu/src/components/connections/RecentProfiles.js  | 9-17, 28, 34, 40, 46, 86  | Various props like 'activeTabProfiles', 'searchQuery', 'filteredProfiles', etc. are missing in props validation  |
+| /workspace/holdu/src/components/connections/SentTab.js          | 9, 13, 42, 49  | Various props like 'connections', 'handleUnsend', etc. are missing in props validation  |
+| /workspace/holdu/src/components/job/ApplicantItem.js            | 3, 11, 12, 16, 18, 22  | Various props like 'applicant', 'applicant.image', 'applicant.owner_username', etc. are missing in props validation  |
+| /workspace/holdu/src/components/job/ApprovedApplicantItem.js   | 3, 12, 13, 17, 30, 36  | Various props like 'applicant', 'applicant.applicant', 'applicant.employee_acceptance_response', etc. are missing in props validation  |
+| /workspace/holdu/src/components/job/JobAdListItem.js           | 16, 58, 61, 74, 99, 104, etc.  | Various props like 'ad', 'ad.job_listing_id', 'ad.closing_date', etc. are missing in props validation  |
+| /workspace/holdu/src/components/job/JobPostHomeItem.js         | 6-11  | Various props like 'title', 'description', 'location', etc. are missing in props validation  |
+| /workspace/holdu/src/components/job/TopJobs.js                 | 10-16  | Various props like 'popularJobs', 'handleJobClick', 'handleClearClick', etc. are missing in props validation  |
+| /workspace/holdu/src/components/miscellaneous/DummyApplicantBox.js | 3  | 'index' is missing in props validation                                                      |
+| /workspace/holdu/src/components/navigation/LoggedOutLogo.js    | 11-15  | 'React' must be in scope when using JSX                                                      |
+| /workspace/holdu/src/components/navigation/NavBar.js           | 32  | 'handleSearch' is missing in props validation                                                |
+| /workspace/holdu/src/components/profile/ProfileBadges.js       | 4, 25, 27, 30, 34  | Various props like 'profile', 'acceptedConnections', etc. are missing in props validation  |
+| /workspace/holdu/src/components/profile/ProfileHeader.js       | 9-12, 18, 19, 23, 28, 42, etc.  | Various props like 'profile', 'currentUser', 'showRatingForm', etc. are missing in props validation  |
+| /workspace/holdu/src/components/profile/activity/Activity.js   | 5, 11  | Various props like 'postCount', 'filteredJobsPost', etc. are missing in props validation  |
+| /workspace/holdu/src/components/profile/rating/HorizontalRatingList.js | 4, 10  | Various props like 'ratings', 'currentIndex', etc. are missing in props validation  |
+| /workspace/holdu/src/components/profile/rating/RatingContent.js | 3, 6  | Various props like 'ratings', 'currentIndex', 'handleStarClick', etc. are missing in props validation  |
+| /workspace/holdu/src/components/profile/rating/RatingForm.js  | 7-12  | Various props like 'rating', 'handleStarClick', 'comment', etc. are missing in props validation  |
+| /workspace/holdu/src/components/profile/rating/RatingNavigationButtons.js | 5  | 'prevRating', 'nextRating' are missing in props validation                                   |
+| /workspace/holdu/src/contexts/CurrentUserContext.js            | 24, 175-177  | 'children', 'React' is missing in props validation                                           |
+| /workspace/holdu/src/contexts/ProfileContext.js                | 13  | 'children' is missing in props validation                                                    |
+| /workspace/holdu/src/index.js                                   | 11  | ReactDOM.render is deprecated since React 18.0.0, use createRoot instead                       |
+| /workspace/holdu/src/pages/auth/SignInForm.js                  | 110  | `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                               |
+| /workspace/holdu/src/pages/jobs/JobsCreateForm.js              | 25, 487  | 'searchQuery', 'fetchApplicants' are missing in props validation                              |
+| /workspace/holdu/src/pages/jobs/JobsHomePage.js                | 20  | 'searchQuery' is missing in props validation                                                  |
+| /workspace/holdu/src/pages/jobs/JobsPost.js                    | 14-27, 33, 35, 40, 163, 166, etc.  | Various props like 'job_listing_id', 'title', 'description', etc. are missing in props validation  |
+
 
 
 </details>
