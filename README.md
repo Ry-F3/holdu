@@ -490,6 +490,15 @@ The unused models, including Chat, Message, Experience, and Comment, will be exp
 
 ## Agile Methodology
 
+<br>
+
+During my development process, I experienced differing approaches between backend and frontend work, which were reflected in my utilization of the sprint boards.
+
+The backend development proceeded smoothly, with a more concise approach and well-timed execution in line with the planning of user stories. The structured nature of backend tasks allowed for efficient progress tracking on the sprint boards, ensuring alignment with project goals and timely completion of objectives.
+
+In contrast, frontend development presented more challenges, requiring a more fluid approach to address evolving requirements and complexities. The dynamic nature of frontend tasks necessitated frequent adjustments and iterations, making it challenging to adhere strictly to predefined sprint plans. As a result, the frontend sprint boards often saw more frequent updates and adaptations to accommodate changing needs and overcome hurdles encountered during development.
+
+Overall, while backend work followed a more structured and predictable path facilitated by the sprint boards, frontend development demanded greater flexibility and adaptability to navigate the complexities inherent in building the user interface and ensuring a seamless user experience.
 
 
 <hr>
@@ -502,6 +511,11 @@ The unused models, including Chat, Message, Experience, and Comment, will be exp
 
 <hr>
 
+Description: A bit of a learning curve with React, and I have been humbled on many occasions. Unfortunately, I wasted a lot of time not realizing that the user context and the profile provider were the wrong way around in the index.js file. I kept getting unexpected data errors. Once fixed, the understanding came a little quicker.
+
+[Board 1](https://github.com/users/Ry-F3/projects/6)
+
+<hr>
 
 </details>
 
@@ -515,7 +529,11 @@ The unused models, including Chat, Message, Experience, and Comment, will be exp
 
 <hr>
 
+Description: Mostly focused on the jobs management tool and posting. Please note that due to the extended development time on this section, I left out 2 user stories: #16 and #19.
 
+[Board 2](https://github.com/users/Ry-F3/projects/7)
+
+<hr>
 
 </details>
 
@@ -529,8 +547,9 @@ The unused models, including Chat, Message, Experience, and Comment, will be exp
 
 <hr>
 
+Description: Mostly focused on utilizing the connections model and notifications. Please note that there are tick and cross user stories #25 and #26 because they were half completed. Applicant notifications will be implemented in future developments.
 
-</details>
+[Board 3](https://github.com/users/Ry-F3/projects/8)
 
 <hr>
 
@@ -546,10 +565,16 @@ The unused models, including Chat, Message, Experience, and Comment, will be exp
 
 <hr>
 
+Description: Mostly focused on building the profile pages. This is in its most basic form and will need further expansion in future developments.
+
+[Board 4](https://github.com/users/Ry-F3/projects/9)
+
+<hr>
 
 </details>
 
 <hr>
+
 
 
 
