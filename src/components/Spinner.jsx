@@ -1,4 +1,5 @@
 import React from 'react';
+//Styles
 import navStyles from '../styles/NavBar.module.css';
 
 function Spinner({ size }) {

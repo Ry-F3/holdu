@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+// Styles
 import styles from '../styles/Avatar.module.css';
 
 function Avatar({ src, height = 30, border }) {

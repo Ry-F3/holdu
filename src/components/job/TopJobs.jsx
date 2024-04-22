@@ -14,7 +14,6 @@ function TopJobs({
 }) {
   const maxJobsToShow = 6;
   const displayedJobs = popularJobs.slice(0, maxJobsToShow);
-  console.log("pop jobs", popularJobs);
 
   return (
     <Container className={`mt-3`}>

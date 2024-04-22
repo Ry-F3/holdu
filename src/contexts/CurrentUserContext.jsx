@@ -46,18 +46,18 @@ export const CurrentUserProvider = ({ children }) => {
       // Set profile data using profileId
       const profileResponse = await axiosRes.get(`/profiles/${profileId}/`);
       const profileData = profileResponse.data;
-      console.log("Profile data:", profileData);
+
 
       // Check if user data is available and if the signup is completed
       if (profileData && profileData.is_signup_completed) {
-        console.log("Incrementing login count");
+   
         setLoginCount((prevCount) => prevCount + 1);
       } else {
-        console.log("Resetting login count to 0 for new or incomplete users");
+      
         setLoginCount(0);
       }
     } catch (err) {
-      console.log("Error fetching user data:", err);
+      console.log(err);
     }
   };
 
@@ -67,7 +67,6 @@ export const CurrentUserProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    console.log("Current login count:", loginCount); // Log the current login count
     // Store login count in localStorage
     localStorage.setItem("loginCount", loginCount);
   }, [loginCount]); // Log whenever login count changes
@@ -82,21 +81,20 @@ export const CurrentUserProvider = ({ children }) => {
             `/profiles/${currentUser.profile_id}/`
           );
           const profileData = profileResponse.data;
-          // console.log(profileData)
 
           // Check if profile data indicates signup is not completed
           if (!profileData.is_signup_completed) {
             // Redirect to profile form if signup is not completed
             history.push(`/profiles/${currentUser.profile_id}/`);
             setIsSignupCompleted(false);
-            console.log("Is signup completed?", isSignupCompleted);
+      
           } else {
             setIsSignupCompleted(true);
             history.push(`/`);
           }
         }
       } catch (err) {
-        console.log("Error fetching profile data:", err);
+        console.log(err);
       }
     };
 
@@ -167,9 +165,6 @@ export const CurrentUserProvider = ({ children }) => {
     );
   }, [history]);
 
-  useEffect(() => {
-    console.log("Current User:", currentUser);
-  }, [currentUser]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

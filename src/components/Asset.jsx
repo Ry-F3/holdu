@@ -1,5 +1,7 @@
 import React from 'react';
+// Component
 import Spinner from './Spinner';
+// Styles
 import styles from '../styles/Asset.module.css';
 import imageStyle from '../styles/JobsCreateForm.module.css';
 

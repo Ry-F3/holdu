@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// Bootstrap
 import { Button } from "react-bootstrap";
+// Component
 import Avatar from "../../components/Avatar";
+// Styles
 import profileStyles from "../../styles/ProfileView.module.css";
 import styles from "../../App.module.css";
 

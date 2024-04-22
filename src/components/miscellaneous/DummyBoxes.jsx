@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+// Styles
 import styles from "../../styles/DummyBoxes.module.css";
 
 const DummyBoxes = ({ widths }) => {

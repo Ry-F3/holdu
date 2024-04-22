@@ -24,30 +24,28 @@ const JobsPost = ({
   is_applied,
   like_id,
   setJobsPost,
-  refetchJobsData,// Receive the callback function as a prop
+  refetchJobsData, // Receive the callback function as a prop
 }) => {
   const currentUser = useCurrentUser();
   const profileData = useProfileData();
   const [isApplying, setIsApplying] = useState(false);
   const [has_applied, setHasApplied] = useState(is_applied);
-  const [applicantsCount, setApplicantsCount] = useState(applicants ? applicants.length : 0);
+  const [applicantsCount, setApplicantsCount] = useState(
+    applicants ? applicants.length : 0
+  );
 
   const is_owner = currentUser?.username === employer_profile?.owner_username;
   const isEmployee = currentUser && profileData?.profile_type === "employee";
-
 
   useEffect(() => {
     setApplicantsCount(applicants ? applicants.length : 0);
   }, [applicants]);
 
-
-
   const handleLike = async () => {
     try {
       if (!currentUser) return;
-     
+
       const { data } = await axiosRes.post("/likes/", { job: job_listing_id });
-   
 
       // Update job post in setJobsPost
       setJobsPost((prevJobsPost) => ({
@@ -61,21 +59,14 @@ const JobsPost = ({
               }
             : jobPost
         ),
-       
       }));
     } catch (err) {
-      console.error(
-        "Error liking job post:",
-        err.response ? err.response.data : err.message
-      );
+      console.error(err);
     }
-    
   };
 
   const handleUnlike = async () => {
     try {
-    
-
       // Delete like
       await axiosRes.delete(`/likes/${like_id}/`);
 
@@ -93,10 +84,7 @@ const JobsPost = ({
         ),
       }));
     } catch (err) {
-      console.error(
-        "Error Unliking job post:",
-        err.response ? err.response.data : err.message
-      );
+      console.error(err);
     }
   };
 
@@ -115,24 +103,20 @@ const JobsPost = ({
     event.preventDefault(); // Prevent the default form submission behavior
     try {
       setIsApplying(true);
-      console.log("Applying for job post with ID:", job_listing_id);
 
       // Make API call to apply for the job
-      const response = await axios.post(`/jobs/post/${job_listing_id}/apply/`, {
+      await axios.post(`/jobs/post/${job_listing_id}/apply/`, {
         applied: true, // Include the value of "applied" in the request body
         job: job_listing_id, // Include the job ID in the request body
       });
 
-      console.log("Application submitted successfully:", response.data);
       // Update UI or handle any response from the server
       setHasApplied(true);
       setIsApplying(false);
       // Update the local applicants count and pass it to JobsHomePage
-       setApplicantsCount((prevCount) => prevCount + 1);
-       refetchJobsData();
+      setApplicantsCount((prevCount) => prevCount + 1);
+      refetchJobsData();
     } catch (err) {
-      console.error("Error applying for job:", err);
-      console.error("API error message:", err.response.data); // Log the error message from the API
       setIsApplying(false);
     }
   };
@@ -140,7 +124,6 @@ const JobsPost = ({
   const handleUnapply = async (event) => {
     event.preventDefault();
     try {
-      console.log("Unapplying for job post with ID:", job_listing_id);
       // Make API call to unapply for the job
       await axiosRes.delete(`/jobs/post/${job_listing_id}/unapply/`);
       // Update UI or handle any response from the server
@@ -148,8 +131,8 @@ const JobsPost = ({
       setApplicantsCount((prevCount) => prevCount - 1);
       refetchJobsData();
     } catch (err) {
-      console.error("Error unapplying for job:", err.message);
-      console.error("Error unapplying for job:", err.data);
+      console.error(err);
+     
     }
   };
 
@@ -190,7 +173,6 @@ const JobsPost = ({
             closing_date={closing_date}
             numApplicants={applicantsCount}
           />
-        
         </ul>
       </Card.Body>
       <Card.Body className="border-top m-1">

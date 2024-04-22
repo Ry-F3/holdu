@@ -176,7 +176,6 @@ const NotificationPage = () => {
   };
 
   const handleDeleteSelected = async () => {
-    console.log("click");
     if (selectedNotifications.length === 0) {
       setDeleteClickedWithoutSelection(true);
       setTimeout(() => setDeleteClickedWithoutSelection(false), 3000);
@@ -222,8 +221,6 @@ const NotificationPage = () => {
     });
     return count;
   };
-
-  console.log("n", notifications);
 
   const renderNotifications = () => {
     if (!hasLoaded) {

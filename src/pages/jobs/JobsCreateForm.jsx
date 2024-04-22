@@ -28,7 +28,8 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
   const [showPostAdForm, setShowPostAdForm] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showImageAndMessage, setShowImageAndMessage] = useState(true);
-  const [setIsFilterActive] = useState(false);
+  // eslint-disable-next-line
+  const [filterIsActive, setIsFilterActive] = useState(false);
 
   const [toggleState, setToggleState] = useState(null);
 
@@ -45,7 +46,8 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
 
   const [recentAds, setRecentAds] = useState([]);
   const [currentUserAds, setCurrentUserAds] = useState([]);
-  const [ notUserAds ,setNotUserAds] = useState([]);
+  // eslint-disable-next-line
+  const [notUserAds, setNotUserAds] = useState([]);
   const [isListingClosed, setIsListingClosed] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -172,9 +174,6 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
       (ad) => ad.is_listing_closed
     );
 
-    console.log("hasOpenAds:", hasOpenAds);
-    console.log("hasClosedAds:", hasClosedAds);
-
     if (toggleState === null) {
       setIsFilterActive(false);
       if (hasClosedAds === false) {
@@ -185,34 +184,25 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
         setIsFilterActive(true);
         setIsListingClosed(false); // Show only open ads initially
         setToggleState(true);
-        console.log(
-          "Fetching applicants for initial toggle (showing only open ads)"
-        );
       } else if (hasClosedAds) {
         setIsFilterActive(true);
         setIsListingClosed(true); // Show only closed ads if no open ads available
         setToggleState(false);
-        console.log(
-          "Fetching applicants for initial toggle (showing only closed ads)"
-        );
       } else {
         setIsFilterActive(false);
         setIsListingClosed(null); // Revert to default if no open or closed ads available
         setToggleState(null);
-        console.log("No ads available, reverting to default state");
       }
     } else if (toggleState === true) {
       // Toggle from open to closed
       setIsFilterActive(true);
       setIsListingClosed(true); // Show only closed ads
       setToggleState(false);
-      console.log("Fetching applicants for toggle from open to closed");
     } else {
       // Toggle from closed to default
       setIsFilterActive(false);
       setIsListingClosed(null); // Revert to default
       setToggleState(null);
-      console.log("Fetching applicants for toggle from closed to default");
     }
 
     setShowPostAdForm(false);
@@ -222,7 +212,6 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
     currentUserAds,
     isListingClosed
   );
-  console.log(sortedCurrentUserAds);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -440,8 +429,6 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
     try {
       // Hide the "Close a job listing" option after it's clicked
       setShowPostAdForm(false);
-
-      console.log("Job listing closed successfully!");
     } catch (error) {
       console.error("Error closing job listing:", error);
       // Handle errors appropriately, such as displaying an error message to the user
@@ -557,11 +544,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
                             fetchApplicants={fetchApplicants}
                           />
                         ))}
-                        {/* Add a console.log statement here */}
-                        {console.log(
-                          "Filtered currentUserAds ads:",
-                          sortedCurrentUserAds
-                        )}
+
                         {/* Add dummy boxes for remaining listings */}
                         {Array.from({
                           length: Math.max(4 - sortedCurrentUserAds.length, 0),

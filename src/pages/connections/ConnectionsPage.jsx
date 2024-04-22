@@ -48,8 +48,7 @@ const ConnectionsPage = () => {
       setConnections(response.data.results);
     } catch (error) {
       console.error(error);
-      // setIsLoading(false);
-      // Handle error, show error message, etc.
+  
     }
     delay(100).then(() => setIsLoading(false));
     setInitialLoad(true);
@@ -70,7 +69,7 @@ const ConnectionsPage = () => {
             results: filteredProfiles,
           }));
           setProfiles(filteredProfiles);
-          fetchConnections(); // <-- Include fetchConnections in the dependency array
+          fetchConnections(); 
         });
       } catch (error) {
         console.error(error);
@@ -89,7 +88,7 @@ const ConnectionsPage = () => {
       const response = await axios.get("/pending-connections/");
       setPendingConnections(response.data.results);
     } catch (error) {
-      console.error("Error fetching pending connections:", error);
+      console.error(error);
 
       // Handle error, show error message, etc.
     }
@@ -108,7 +107,7 @@ const ConnectionsPage = () => {
       // Fetch connections after the POST request is successful
       fetchConnections();
     } catch (error) {
-      console.error("Error connecting:", error.message);
+      console.error(error);
       // Handle error, show error message, etc.
     }
   };
@@ -119,7 +118,7 @@ const ConnectionsPage = () => {
       fetchPendingConnections(); // Refresh pending connections after accepting
       fetchConnections();
     } catch (error) {
-      console.error("Error accepting connection:", error.message);
+      console.error(error);
       // Handle error, show error message, etc.
     }
   };
@@ -130,7 +129,7 @@ const ConnectionsPage = () => {
       fetchPendingConnections(); // Refresh pending connections after declining
       fetchConnections();
     } catch (error) {
-      console.error("Error declining connection:", error.message);
+      console.error(error);
       // Handle error, show error message, etc.
     }
   };
@@ -141,7 +140,7 @@ const ConnectionsPage = () => {
       // Refresh connections after successful deletion
       fetchConnections();
     } catch (error) {
-      console.error("Error while unsending connection:", error.message);
+      console.error(error);
       // Handle error, show error message, etc.
     }
   };

@@ -1,4 +1,5 @@
 import React from 'react';
+// Component
 import Avatar from '../../Avatar';
 
 const HorizontalRatingList = ({ ratings, currentIndex }) => {

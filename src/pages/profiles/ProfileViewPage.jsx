@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
 // Bootstrap
 import { Container, Row, Col } from "react-bootstrap";
 // Styles
 import styles from "../../App.module.css";
 import profileStyles from "../../styles/ProfileView.module.css";
-// Components
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+// Components
 import Spinner from "../../components/Spinner";
 import ProfileBadges from "../../components/profile/ProfileBadges";
 import ProfileHeader from "../../components/profile/ProfileHeader";
@@ -324,7 +323,6 @@ const ProfileViewPage = () => {
                 <Container className="p-0 mt-0">
                   {showRatingForm ? ( // Show rating form if toggled
                     <Container
-                    
                       className={`${styles.Content} ${profileStyles.triangleGradient} text-center d-lg-none p-3`}>
                       <RatingForm
                         rating={rating}

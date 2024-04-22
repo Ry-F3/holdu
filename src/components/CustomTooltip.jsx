@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../styles/CustomTooltp.module.css'; // Import CSS module
+// Styles
+import styles from '../styles/CustomTooltp.module.css'; 
 
 function CustomTooltip({ text, color, children }) {
   const tooltipStyle = {

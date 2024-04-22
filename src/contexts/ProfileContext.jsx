@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+// Contexts
 import { useCurrentUser } from "./CurrentUserContext";
 
 // Create a ProfileContext

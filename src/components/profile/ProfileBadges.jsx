@@ -1,4 +1,5 @@
 import React from 'react';
+// Bootstrap
 import { Badge } from 'react-bootstrap';
 
 const ProfileBadges = ({ profile, acceptedConnections }) => {

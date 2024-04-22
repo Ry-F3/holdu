@@ -29,12 +29,12 @@ function JobsHomePage({ searchQuery }) {
   const popularJobs = filteredJobsPost.sort(
     (a, b) => b.applicants.length - a.applicants.length
   );
-    // Define a callback function to refetch jobs data only on larger screens
-    const refetchJobsData = async () => {
-      if (window.innerWidth >= 868) {
-        fetchJobs(searchQuery);
-      }
-    };
+  // Define a callback function to refetch jobs data only on larger screens
+  const refetchJobsData = async () => {
+    if (window.innerWidth >= 868) {
+      fetchJobs(searchQuery);
+    }
+  };
 
   // Define fetchJobs function
   const fetchJobs = async (query) => {
@@ -42,15 +42,17 @@ function JobsHomePage({ searchQuery }) {
       setLoadingPage(true);
       const apiUrl = `/jobs/?search=${query}`;
       const { data } = await axiosReq.get(apiUrl);
-      console.log("Fetched Jobs:", data.results);
-      setJobsPost({ results: data.results.filter((job) => !job.is_listing_closed) });
+
+      setJobsPost({
+        results: data.results.filter((job) => !job.is_listing_closed),
+      });
       setFilteredJobsPost(data.results.filter((job) => !job.is_listing_closed));
     } catch (err) {
       console.log(err);
     } finally {
       setTimeout(() => {
         setLoadingPage(false);
-      }, 2500); 
+      }, 2500);
     }
   };
 
@@ -61,7 +63,6 @@ function JobsHomePage({ searchQuery }) {
     } else {
       fetchJobs("");
     }
-    console.log("The value of searchQuery is:", searchQuery);
   }, [searchQuery]);
 
   useEffect(() => {
@@ -73,11 +74,6 @@ function JobsHomePage({ searchQuery }) {
   }, []);
 
   const handleJobClick = (jobId) => {
-    console.log("Job click");
-    console.log("Clicked job ID:", jobId);
-    console.log("Current jobs post:", jobsPost);
-    console.log("Previously clicked job:", previouslyClickedJob);
-
     // Clear previously clicked job if exists
     if (previouslyClickedJob === jobId) {
       setPreviouslyClickedJob(null);
@@ -90,7 +86,7 @@ function JobsHomePage({ searchQuery }) {
       const updatedJobs = filteredJobsPost.filter(
         (job) => job.job_listing_id === jobId
       );
-      console.log("Updated jobs after filtering:", updatedJobs);
+
       setJobsPost({ results: updatedJobs });
       setShowClearButton(true);
     }
@@ -109,9 +105,9 @@ function JobsHomePage({ searchQuery }) {
         {loadingPage ? (
           <Container
             style={{ backgroundColor: "transparent", border: "none" }}
-            className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}
-          >
-            <div className={`${spinnerStyle.spinnerContain} align-items-center`}>
+            className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}>
+            <div
+              className={`${spinnerStyle.spinnerContain} align-items-center`}>
               <Spinner size="50px" />
             </div>
           </Container>
