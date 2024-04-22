@@ -515,7 +515,7 @@ Description: A bit of a learning curve with React, and I have been humbled on ma
 
 [Board 1](https://github.com/users/Ry-F3/projects/6)
 
-<hr>
+
 
 </details>
 
@@ -533,7 +533,7 @@ Description: Mostly focused on the jobs management tool and posting. Please note
 
 [Board 2](https://github.com/users/Ry-F3/projects/7)
 
-<hr>
+
 
 </details>
 
@@ -547,11 +547,11 @@ Description: Mostly focused on the jobs management tool and posting. Please note
 
 <hr>
 
-Description: Mostly focused on utilizing the connections model and notifications. Please note that there are tick and cross user stories #25 and #26 because they were half completed. Applicant notifications will be implemented in future developments.
+Description: Mostly focused on utilizing the connections model and notifications. Please note that there are tick and cross, next to user stories #25 and #26 because they were half completed. Applicant notifications will be implemented in future developments.
 
 [Board 3](https://github.com/users/Ry-F3/projects/8)
 
-<hr>
+
 
 </details>
 
@@ -569,7 +569,7 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 [Board 4](https://github.com/users/Ry-F3/projects/9)
 
-<hr>
+
 
 </details>
 
