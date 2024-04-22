@@ -2,10 +2,9 @@ import React from 'react';
 import Avatar from '../../Avatar';
 
 const HorizontalRatingList = ({ ratings, currentIndex }) => {
-  // Check if there are less than three ratings
-  const shouldRender = ratings.results && ratings.results.length >= 3;
 
-  return shouldRender ? (
+
+  return  (
     <div className="p-1 mt-2" style={{ maxWidth: "100%", overflowX: "hidden" }}>
       <div style={{ display: "flex", flexWrap: "nowrap", transition: "transform 0.5s", transform: `translateX(-${currentIndex * 155}px)` }}>
         {ratings.results.map((rating, index) => (
@@ -28,7 +27,7 @@ const HorizontalRatingList = ({ ratings, currentIndex }) => {
         ))}
       </div>
     </div>
-  ) : null; // Render nothing if there are less than three ratings
+  )
 };
 
 export default HorizontalRatingList;

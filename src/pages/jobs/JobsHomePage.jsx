@@ -48,7 +48,9 @@ function JobsHomePage({ searchQuery }) {
     } catch (err) {
       console.log(err);
     } finally {
-      setLoadingPage(false);
+      setTimeout(() => {
+        setLoadingPage(false);
+      }, 3000); 
     }
   };
 
@@ -65,7 +67,7 @@ function JobsHomePage({ searchQuery }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoadingPage(false);
-    }, 2500);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);

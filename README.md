@@ -399,6 +399,7 @@ While the current iteration provides basic functionality, future developments wi
 | [**#19**](https://github.com/Ry-F3/holdu/issues/19)   | If I'm an employee, I should be able to add/edit my work experiences.                                                                                 |    ❌     |
 | [**#20**](https://github.com/Ry-F3/holdu/issues/20)   | As a user I want to be able to rate other users and view their ratings.                                                                               |    ✅     |
 
+<br>
 
 #### Section 3
 
@@ -409,8 +410,9 @@ While the current iteration provides basic functionality, future developments wi
 | [**#23**](https://github.com/Ry-F3/holdu/issues/23)   | As a user, I want to be able to view the connection requests I've sent to other users.                                                              |    ✅     |
 | [**#24**](https://github.com/Ry-F3/holdu/issues/24)   | As a user, I want a centralized dashboard to manage all my connections.                                                                              |    ✅     |
 | [**#25**](https://github.com/Ry-F3/holdu/issues/25)   | As a user, I want to receive notifications for connection requests, job alerts, accepted applications, message alerts, and new ratings.            |     ✅ / ❌     |
-| [**#26**](https://github.com/Ry-F3/holdu/issues/26)   | I should be able to mark notifications as read or delete them.                                                                                        |    ✅     |
+| [**#26**](https://github.com/Ry-F3/holdu/issues/26)   | I should be able to mark notifications as read or delete them.                                                                                        |    ✅ / ❌     |
 
+<br>
 
 #### Section 4
 
@@ -451,59 +453,10 @@ The unused models, including Chat, Message, Experience, and Comment, will be exp
 
 <br>
 
-## Agile Methodology
-
-
-
-<hr>
-
-#### Sprint 1 ()
-
-<details>
-
-<summary>Sprint details</summary>
-
-<hr>
-
-
-</details>
-
-<hr>
-
-#### Sprint 2 ()
-
-<details>
-
-<summary>Sprint details</summary>
-
-<hr>
-
-
-
-</details>
-
-<hr>
-
-#### Sprint 3 ()
-
-<details>
-
-<summary>Sprint details</summary>
-
-<hr>
-
-
-</details>
-
-<hr>
-
 ## Data Models
 
 <hr>
 
-
-
-<hr>
 
 ### Profile Model
 
@@ -535,6 +488,71 @@ The unused models, including Chat, Message, Experience, and Comment, will be exp
 
 <hr>
 
+## Agile Methodology
+
+
+
+<hr>
+
+#### Sprint 1 (March - April 2024)
+
+<details>
+
+<summary>Sprint details</summary>
+
+<hr>
+
+
+</details>
+
+<hr>
+
+#### Sprint 2 (March - April 2024)
+
+<details>
+
+<summary>Sprint details</summary>
+
+<hr>
+
+
+
+</details>
+
+<hr>
+
+#### Sprint 3 (March - April 2024)
+
+<details>
+
+<summary>Sprint details</summary>
+
+<hr>
+
+
+</details>
+
+<hr>
+
+</details>
+
+<hr>
+
+#### Sprint 4 (March - April 2024)
+
+<details>
+
+<summary>Sprint details</summary>
+
+<hr>
+
+
+</details>
+
+<hr>
+
+
+
 
 
 <hr>
@@ -554,6 +572,17 @@ The unused models, including Chat, Message, Experience, and Comment, will be exp
 <hr>
 
 ### Manual Testing
+
+
+### Bugs
+
+<br>
+
+| Component               | Known Bug                                                                                                                                         | Investigate | Solution                                                                                                          | Implementation                                                          |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|-------------|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| ProfileViewPage.jsx     | Authentication errors. An ideal solution would be to create a new view for specific profile IDs where authentication is not needed as a list format. |             | Quick fix: Removed the authenticated permission class from the detail view, which seemed to solve the problem temporarily. | Profile view has not crashed again on further testing.                    |
+| JobListItem.jsx         | Error code while fetching applicants. URL permissions are causing conflicts.                                                                        | Needs further investigation  | Trial removal of URL permissions caused recursive errors. Investigate and implement a solution to handle URL permissions effectively. | Error fetching applicants: Request failed with status code 400. Solutions will be found in further developments but seems to be causing no additional harm. Errors are present in the console.         |
+| ProfileTypeChoiceForm.jsx | Implementation of a pop-up profile choice form on initial sign up was complex. Addition of a login count to prevent posting to a specific URL.    |             | Further solutions needed for a more efficient user experience. If pop-up box doesn't appear on joining, please reload the page.  | Pop-up profile choice form may not appear on initial sign-up. Reload page if necessary. |
 
 
 

@@ -15,7 +15,6 @@ import {
   Image,
 } from "react-bootstrap"; // Assuming you're using Bootstrap
 // Contexts
-import { useProfileData } from "../../contexts/ProfileContext";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 //Image
 import World from "../../assets/world.png";
@@ -30,7 +29,6 @@ const NotificationPage = () => {
   const [sendersProfileData, setSendersProfileData] = useState({});
   const [selectedNotifications, setSelectedNotifications] = useState([]);
   const currentUser = useCurrentUser();
-  const profileData = useProfileData();
   const [deleteClickedWithoutSelection, setDeleteClickedWithoutSelection] =
     useState(false);
   const [alignClass, setAlignClass] = useState("justify-content-start");
@@ -248,12 +246,6 @@ const NotificationPage = () => {
                   }}></div>
               </div>
               <div>
-                <h2
-                  style={{
-                    backgroundColor: "#ccc",
-                    width: 150,
-                    height: 25,
-                  }}></h2>
                 <Card.Text
                   style={{
                     backgroundColor: "#ccc",

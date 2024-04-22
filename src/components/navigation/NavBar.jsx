@@ -141,23 +141,19 @@ const NavBar = ({ handleSearch }) => {
     handleSearch("");
 
     // Update the visibility of the clear button and search icon using functional setState
-    setIsClearButtonVisible((prevState) => {
-  
+    setIsClearButtonVisible(() => {
       return false;
     });
 
-    setIsButtonVisible((prevState) => {
-    
+    setIsButtonVisible(() => {
       return true;
     });
   };
 
   const determineSearchIcon = () => {
     if (searchValue.trim() === "") {
-     
       return <i className="fa-solid fa-magnifying-glass"></i>;
     } else {
-   
       return <i onClick={handleClearSearch} className="fas fa-times"></i>;
     }
   };
@@ -222,7 +218,6 @@ const NavBar = ({ handleSearch }) => {
                         onClick={handleSignOut}>
                         <div className="d-flex d-xl-none  align-items-center">
                           <i className="fas fa-sign-out mr-2"></i>
-                          {/* <span>Sign out</span> */}
                         </div>
                       </Nav.Link>
                     </div>
@@ -238,7 +233,6 @@ const NavBar = ({ handleSearch }) => {
                         onClick={handleSignOut}>
                         <div className="d-flex d-xl-none align-items-center">
                           <i className="fas fa-sign-out mr-2"></i>
-                          {/* <span>Sign out</span> */}
                         </div>
                       </Nav.Link>
                     </div>
@@ -246,7 +240,15 @@ const NavBar = ({ handleSearch }) => {
                 )
               ) : (
                 // If currentUser doesn't exist or signup is not completed, render nothing
-                console.log("Rendering nothing...")
+                // Please note quick fix to use state variable isSearchActive. It was unused. 
+                // If deleted code for toggling the clear and search failed to function.
+                <>
+                  {!isSearchActive && (
+                    <div className="mr-4">
+                      <Spinner size={20}/>
+                    </div>
+                  )}
+                </>
               )}
 
               {/* Conditional rendering of div */}
@@ -257,7 +259,8 @@ const NavBar = ({ handleSearch }) => {
             </>
           )}
           <div className="d-none d-lg-flex">
-            <p className="mb-0 mr-2  ml-2 text-muted">Build a fair future</p> {/* Tagline */}
+            <p className="mb-0 mr-2  ml-2 text-muted">Build a fair future</p>{" "}
+            {/* Tagline */}
           </div>
           <div className={`${styles.verticalLine}  d-none d-lg-flex`}></div>{" "}
           {/* Vertical line */}

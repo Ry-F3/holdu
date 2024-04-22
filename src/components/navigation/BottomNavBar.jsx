@@ -63,9 +63,9 @@ const BottomNavBar = (profile_id) => {
                 profileData.is_signup_completed && (
                   <div className="text-center">
                     {profileData.profile_type === "employer" ? (
-                      <LoggedInEmployerIconsBottom profile_id={profile_id}/>
+                      <LoggedInEmployerIconsBottom profile_id={profile_id} />
                     ) : (
-                      <LoggedInEmployeeIconsBottom profile_id={profile_id}/>
+                      <LoggedInEmployeeIconsBottom profile_id={profile_id} />
                     )}
                   </div>
                 )}

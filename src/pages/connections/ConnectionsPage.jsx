@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 // Bootstrap
 import Col from "react-bootstrap/Col";
@@ -41,7 +41,7 @@ const ConnectionsPage = () => {
     }
   }, [profileData, profileType]);
 
-  const fetchConnections = async () => {
+  const fetchConnections = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await axios.get("/connections/");
@@ -53,15 +53,13 @@ const ConnectionsPage = () => {
     }
     delay(100).then(() => setIsLoading(false));
     setInitialLoad(true);
-  };
+  }, []);
 
   useEffect(() => {
     const fetchProfiles = async () => {
-      // Set loading state to true
       setIsLoading(true);
-
+  
       try {
-        // Simulate delay of 1 second before fetching profiles
         setTimeout(async () => {
           const response = await axios.get(`/profiles/`);
           const filteredProfiles = response.data.filter(
@@ -72,18 +70,17 @@ const ConnectionsPage = () => {
             results: filteredProfiles,
           }));
           setProfiles(filteredProfiles);
-          fetchConnections(); // Fetch connections after fetching profiles
-        }); // 1000 milliseconds delay
+          fetchConnections(); // <-- Include fetchConnections in the dependency array
+        });
       } catch (error) {
         console.error(error);
-        // setIsLoading(false);
-        // Handle error, show error message, etc.
       }
-      // setIsLoading(false);
     };
-
+  
     fetchProfiles();
-  }, [setProfileData]);
+  }, [setProfileData, fetchConnections]); 
+  
+
 
   // Function to fetch pending connections
   const fetchPendingConnections = async () => {
@@ -93,10 +90,10 @@ const ConnectionsPage = () => {
       setPendingConnections(response.data.results);
     } catch (error) {
       console.error("Error fetching pending connections:", error);
-      // setIsLoading(false);
+
       // Handle error, show error message, etc.
     }
-    // setIsLoading(false);
+   
   };
 
   // useEffect to fetch pending connections on component mount

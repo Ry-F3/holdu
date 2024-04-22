@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 
 import appStyles from "../../App.module.css";
 import formStyles from "../../styles/JobsCreateForm.module.css";
@@ -22,12 +23,12 @@ import DummyBoxes from "../../components/miscellaneous/DummyBoxes";
 import { useLocation, useHistory } from "react-router-dom";
 
 function JobsCreateForm({ searchQuery, fetchApplicants }) {
-  const [setErrors] = useState({});
+  const [error, setErrors] = useState("");
   const [loading, setLoading] = useState(true);
   const [showPostAdForm, setShowPostAdForm] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showImageAndMessage, setShowImageAndMessage] = useState(true);
-  const [isFilterActive, setIsFilterActive] = useState(false);
+  const [setIsFilterActive] = useState(false);
 
   const [toggleState, setToggleState] = useState(null);
 
@@ -44,7 +45,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
 
   const [recentAds, setRecentAds] = useState([]);
   const [currentUserAds, setCurrentUserAds] = useState([]);
-  const [notUserAds, setNotUserAds] = useState([]);
+  const [ setNotUserAds] = useState([]);
   const [isListingClosed, setIsListingClosed] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -115,22 +116,30 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
     return () => {
       isMounted = false;
     };
-  }, [pathname, searchQuery, currentUser, setShowPostAdForm]);
+  }, [pathname, searchQuery, currentUser, setShowPostAdForm, setNotUserAds]);
 
   const filterJobsByListingClosed = (currentUserAds, isListingClosed) => {
     if (isListingClosed === true) {
       // Show only closed listings and corresponding applicants
-      const filteredJobs = currentUserAds.filter((ad) => ad.is_listing_closed === true);
-      return filteredJobs.map(job => ({
+      const filteredJobs = currentUserAds.filter(
+        (ad) => ad.is_listing_closed === true
+      );
+      return filteredJobs.map((job) => ({
         ...job,
-        applicants: job.applicants.filter(applicant => applicant.is_listing_closed === true)
+        applicants: job.applicants.filter(
+          (applicant) => applicant.is_listing_closed === true
+        ),
       }));
     } else if (isListingClosed === false) {
       // Show only open listings and corresponding applicants
-      const filteredJobs = currentUserAds.filter((ad) => ad.is_listing_closed === false);
-      return filteredJobs.map(job => ({
+      const filteredJobs = currentUserAds.filter(
+        (ad) => ad.is_listing_closed === false
+      );
+      return filteredJobs.map((job) => ({
         ...job,
-        applicants: job.applicants.filter(applicant => applicant.is_listing_closed === false)
+        applicants: job.applicants.filter(
+          (applicant) => applicant.is_listing_closed === false
+        ),
       }));
     } else {
       // Show all listings when isListingClosed is not explicitly set
@@ -138,9 +147,13 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
       return currentUserAds
         .slice()
         .sort((b, a) => new Date(b.closing_date) - new Date(a.closing_date))
-        .map(job => ({
+        .map((job) => ({
           ...job,
-          applicants: job.applicants.slice().sort((a, b) => new Date(b.closing_date) - new Date(a.closing_date))
+          applicants: job.applicants
+            .slice()
+            .sort(
+              (a, b) => new Date(b.closing_date) - new Date(a.closing_date)
+            ),
         }));
     }
   };
@@ -246,9 +259,9 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
       }
     }
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const data = new FormData();
 
     data.append("title", editMode ? editFormData.title : newTitle);
@@ -387,7 +400,13 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
           placeholder="Hourly wage"
           onChange={handleChange}
           name="salary"
+          required
         />
+        {error && (
+          <Alert variant="warning" className="mt-3">
+            {error}
+          </Alert>
+        )}
       </Form.Group>
 
       <Form.Group className="pr-1 pl-1" controlId="formClosingDate">

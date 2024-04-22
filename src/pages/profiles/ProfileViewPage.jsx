@@ -20,7 +20,7 @@ import RatingForm from "../../components/profile/rating/RatingForm";
 import ConnectionsTab from "../../components/connections/ConnectionsTab";
 import HorizontalRatingList from "../../components/profile/rating/HorizontalRatingList";
 
-const ProfilePage = () => {
+const ProfileViewPage = () => {
   const { id } = useParams();
   const currentUser = useCurrentUser();
   const [profile, setProfile] = useState(null);
@@ -409,4 +409,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default ProfileViewPage;
