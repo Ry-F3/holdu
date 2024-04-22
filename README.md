@@ -609,7 +609,33 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Notifications Icon       | Notifications show incoming notifications appropriately. Employee sees new job listings, while employer and employee see new ratings, connection requests, and connections.            | Notifications display correctly based on user profile. Employee receives new job listings notifications. Employer and employee receive new ratings, connection requests, and connections notifications.                                                                                                                                                             |
 | Profile Page             | User can see average rating and ratings. Connections are displayed with option to click or delete, updating connection badge. Employer sees job listing activity.                | User can view average rating and ratings. Connections are displayed with click or delete options, updating connection badge. Employer views job listing activity.                                                                                                                                                                                                      |
 | Navigation Search Bar    | Search bar works on all pages and takes user to home page. Clear button sometimes requires two clicks to work.                                                                           | Search bar successfully navigates to home page. Clear button occasionally requires two clicks to work, needing investigation for future developments.                                                                                                                                                                                                                   |
+<br>
 
+### Automated Testing
+
+<br>
+
+<details>
+
+<hr>
+
+  <summary>Wave</summary>
+
+  <p><strong>Dropdown Selection:</strong> "Wave"</p>
+
+  ![wave-image](../holdu/src/assets/readme/wave.png)
+
+  <hr>
+
+  
+  <p><strong>Issue Encountered:</strong> While attempting to test with "wave", the system encountered difficulties. Unfortunately, it did not allow access to other pages and consistently displayed the error message "Page Not Found."</p>
+
+
+</details>
+
+<hr>
+
+<br>
 
 ### Bugs
 

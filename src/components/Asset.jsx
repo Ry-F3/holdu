@@ -1,9 +1,9 @@
-import React from "react";
-import Spinner from "./Spinner";
-import styles from "../styles/Asset.module.css";
-import imageStyle from '../styles/JobsCreateForm.module.css'
+import React from 'react';
+import Spinner from './Spinner';
+import styles from '../styles/Asset.module.css';
+import imageStyle from '../styles/JobsCreateForm.module.css';
 
-const Asset = ({ loading, src, message }) => {
+function Asset({ loading, src, message }) {
   return (
     <div className={`${styles.Asset} p-4`}>
       {loading ? (
@@ -16,6 +16,6 @@ const Asset = ({ loading, src, message }) => {
       )}
     </div>
   );
-};
+}
 
 export default Asset;

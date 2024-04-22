@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "../styles/CustomTooltp.module.css"; // Import CSS module
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from '../styles/CustomTooltp.module.css'; // Import CSS module
 
-const CustomTooltip = ({ text, color, children }) => {
+function CustomTooltip({ text, color, children }) {
   const tooltipStyle = {
     backgroundColor: color,
   };
@@ -15,7 +15,7 @@ const CustomTooltip = ({ text, color, children }) => {
       <div className={styles.tooltipContent}>{children}</div>
     </div>
   );
-};
+}
 
 CustomTooltip.propTypes = {
   text: PropTypes.string.isRequired,

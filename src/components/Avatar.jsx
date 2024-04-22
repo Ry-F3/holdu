@@ -1,10 +1,10 @@
-import React from "react";
-import styles from "../styles/Avatar.module.css";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
+import styles from '../styles/Avatar.module.css';
 
-const Avatar = ({ src, height = 30, border }) => {
+function Avatar({ src, height = 30, border }) {
   const avatarClasses = classNames(styles.Avatar, {
-    [styles.Border]: border // Apply border class conditionally based on the prop
+    [styles.Border]: border, // Apply border class conditionally based on the prop
   });
   return (
     <span>
@@ -15,9 +15,9 @@ const Avatar = ({ src, height = 30, border }) => {
         width={height}
         alt="avatar"
       />
-  
+
     </span>
   );
-};
+}
 
 export default Avatar;

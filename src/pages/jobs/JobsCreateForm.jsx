@@ -45,7 +45,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
 
   const [recentAds, setRecentAds] = useState([]);
   const [currentUserAds, setCurrentUserAds] = useState([]);
-  const [ setNotUserAds] = useState([]);
+  const [ notUserAds ,setNotUserAds] = useState([]);
   const [isListingClosed, setIsListingClosed] = useState(null);
 
   const [formData, setFormData] = useState({
