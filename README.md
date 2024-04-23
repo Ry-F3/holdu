@@ -7,6 +7,8 @@
 
 *Backend repository link can be found here: [link](https://github.com/Ry-F3/holdu-drf-api)*
 
+<br>
+
 ## Mission Statement
 
 <br>
@@ -23,7 +25,6 @@ I envisioned a solution born from real-life experiences, facilitating direct con
 ## Key Features:
 
 <br>
-
 #### **Employer Profile Overview:**
 
 The Employer Profile provides a comprehensive set of tools and features tailored to the needs of employers. Below are the key features offered by the Employer Profile experience:
