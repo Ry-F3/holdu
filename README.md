@@ -20,6 +20,7 @@ I envisioned a solution born from real-life experiences, facilitating direct con
 
 Related fully realised products: [Childcare.co.uk](https://www.childcare.co.uk/?gad_source=1&gclid=CjwKCAjwuJ2xBhA3EiwAMVjkVJLap_mlDyBOYIXU_DjqeIY-XD30xb-lTyK4Ne0MSdhidUmqoIg98hoCQn4QAvD_BwE)
 
+<br>
 
 ## Key Features:
 
@@ -749,11 +750,24 @@ Description: Mostly focused on building the profile pages. This is in its most b
 ## Technologies Used
 
 ### Frameworks and Libraries
+- React
+- JSX
+- Code Institute templates
+- Bootstrap
+- React Bootstrap
+- React Router
 
 ### Key Packages
-
+- Axios: Used for making HTTP requests to the API.
 
 ### Other Software
+- Heroku: Deployment platform.
+- GitHub: Used for version control and project management.
+  - GitHub Issues: Utilized for Agile methodology by assigning user stories to issues and using labels for organization.
+  - GitHub Projects: Used for Agile sprint planning and task tracking. 
+- Chrome Lighthouse: Used for performance auditing.
+- Photoshop: Used for design and image editing.
+
 
 
 ## Testing
