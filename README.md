@@ -999,9 +999,31 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 | ProfileTypeChoiceForm.jsx | Implementation of a pop-up profile choice form on initial sign up was complex. Addition of a login count to prevent posting to a specific URL.    |             | Further solutions needed for a more efficient user experience. If pop-up box doesn't appear on joining, please reload the page.  | Pop-up profile choice form may not appear on initial sign-up. Reload page if necessary. |
 
 
-
-
 #### Deployment Steps
+
+<br>
+
+1. Set up your own instance of Holdu.
+
+2. Clone or duplicate this repository:
+   - To duplicate it, visit [this GitHub repository](https://github.com/Ry-F3/holdu), click on Duplicate, and follow the prompts.
+   - To clone the repository, run `git clone https://github.com/Ry-F3/holdu` in your terminal.
+
+3. Navigate to the repository directory and edit the file named `src/api/axiosDefaults.js`. In this file, update the value of `axios.defaults.baseURL` with the URL of your deployed API. You can find this URL by accessing your API app through the Heroku dashboard and copying the URL provided.
+
+4. If not already done, log in to your Heroku account on their website. From the Heroku dashboard, create a new app by selecting New and then Create new app.
+
+5. Give your app a unique name and select your preferred region (either US or Europe).
+
+6. Access the Deploy tab and link your Heroku app with your GitHub repository.
+
+7. Scroll down and pick the branch you wish to deploy under the Manual deploy section. Click on Deploy Branch to initiate the initial deployment of the application.
+
+8. If you encounter any difficulties during the deployment process, access Heroku logs by selecting More and then View logs, or review the Activity tab for troubleshooting.
+
+9. Upon successful deployment, click on View to open your deployed application.
+
+10. If the process goes smoothly, the Holdu landing page should appear without any issues. However, if you encounter a scenario where the landing page loads but lacks content from the API (such as a never-ending loading spinner), double-check the accuracy of the CLIENT_ORIGIN configuration variable within your API project, as per the provided instructions. If the content remains invisible, confirm that you've accurately supplied the URL for your API as outlined in step 3. Additionally, consider inspecting the browser console for any potential errors that may arise.
 
 
 
