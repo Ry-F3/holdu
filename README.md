@@ -546,55 +546,7 @@ The unused models, including Chat, Message, Experience, and Comment, will be exp
 
 <br>
 
-`src
-│
-└── components
-    │
-    ├── connections
-    │   ├── ConnectionsTab.jsx
-    │   ├── PendingTab.jsx
-    │   ├── RecentProfiles.jsx
-    │   └── SenttTab.jsx
-    │
-    ├── jobs
-    │   ├── ApplicantFilteredItem.jsx
-    │   ├── ApplicantItem.jsx
-    │   ├── ApprovedApplicantItem.jsx
-    │   ├── JobListItem.jsx
-    │   ├── JobPostHomeItem.jsx
-    │   └── TopJobs.jsx
-    │
-    ├── miscellaneous
-    │   ├── DummyApplicantBox.jsx
-    │   └── DummyBoxes.jsx
-    │
-    ├── navigation
-    │   ├── NavBar.jsx
-    │   ├── LoggedOutLogo.jsx
-    │   ├── LggedOutIcons.jsx
-    │   ├── LoggedInLogo.jsx
-    │   ├── LoggedInEmployerIconsBottom.jsx
-    │   ├── LoggedInEmployeeIcons.jsx
-    │   ├── LoggedInEmployerIcons.jsx
-    │   ├── LoggedInEmployeeIconsBottom.jsx
-    │   └── BottomNavBar.jsx
-    │
-    ├── profile
-    │   ├── ProfileBadges.jsx
-    │   ├── ProfileHeader.jsx
-    │   ├── activity
-    │   │   ├── Acctivity.jsx
-    │   │   └── RatingContent.jsx
-    │   └── ratings
-    │       ├── HorizontalRatingList.jsx
-    │       ├── RatingForm.jsx
-    │       └── RatingNavigationButtons.jsx
-    │
-    └── Asset.jsx
-    └── Avatar.jsx
-    └── CustomToolTip.jsx
-    └── Spinner.jsx`
-
+![components](src/assets/readme/components.png)
 
 <br>
 
@@ -610,28 +562,7 @@ The folders within the <strong>components</strong> directory serve to establish 
 
 <br>
 
-`pages
-│
-├── auth
-│   ├── SignInForm.jsx
-│   └── SignUpForm.jsx
-│
-├── connections
-│   └── ConnectionsPage.jsx
-│
-├── jobs
-│   ├── JobCreateForm.jsx
-│   ├── JobsHomePage.jsx
-│   ├── JobsPost.jsx
-│   └── JobsPostPage.jsx
-│
-├── notifications
-│   └── NotificationsPage.jsx
-│
-└── profiles
-    ├── ProfileTypeChoiceForm.jsx
-    └── ProfileViewPage.jsx`
-
+![pages](src/assets/readme/pages.png)
 
 <br>
 
