@@ -608,16 +608,7 @@ Coolors was used to create [this color palette](https://coolors.co/f34213-ca417f
 
 <br>
 
-<details>
-  <summary>Holdu Logo</summary>
-
-  <br>
-  
-  ![Coolors Logo](src/assets/readme/coolors.png)
-
-  *Photoshop was used to create this logo.*
-
-</details>
+![Coolors Logo](src/assets/readme/coolors.png)
 
 <hr>
 
@@ -627,7 +618,16 @@ The project incorporates the following colors, with the initial color inspired b
 
 <br>
 
-![logo](src/assets/logo.png)
+<details>
+  <summary>Holdu Logo</summary>
+
+  <br>
+  
+  ![logo](src/assets/logo.png)
+
+  *Photoshop was used to create this logo.*
+
+</details>
 
 <br>
 
