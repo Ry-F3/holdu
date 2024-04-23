@@ -748,6 +748,67 @@ All CSS files have been validated using the W3C CSS Validator. Some files initia
 
 <br>
 
+#### W3C Validator HTML
+
+All HTML files have been validated using the W3C HTML Validator. The following images show the validation results for each file:
+
+<details>
+  <summary>Url: '/' </summary>
+
+  <br>
+  
+  ![url-home](src/assets/readme/url-home.png)
+
+</details>
+<hr>
+<details>
+  <summary>Url: '/connect'</summary>
+
+  <br>
+  
+  ![url-connect](src/assets/readme/url-connect.png)
+
+</details>
+<hr>
+<details>
+  <summary>Url: '/jobs/post'</summary>
+
+  <br>
+  
+  ![url-jobs-post](src/assets/readme/url-jobs-post.png)
+
+</details>
+<hr>
+<details>
+  <summary>Url: '/jobs/post/:id'</summary>
+
+  <br>
+  
+  ![url-jobs-post-id](src/assets/readme/url-jobs-post-125.png)
+
+</details>
+<hr>
+<details>
+  <summary>Url: '/notifications'</summary>
+
+  <br>
+  
+  ![url-notification](src/assets/readme/url-notifications.png)
+
+</details>
+<hr>
+<details>
+  <summary>Url: '/jobs/profiles/:id/user/'</summary>
+
+  <br>
+  
+  ![url-profiles-user](src/assets/readme/url-profiles-2-user.png)
+
+</details>
+<hr>
+
+<br>
+
 ### Automated Testing
 
 <br>
