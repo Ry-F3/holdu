@@ -582,13 +582,15 @@ In retrospect, the power of components is evident, particularly on the user's pe
 <details>
   <summary>ConnectionsPage.jsx</summary>
   
-  [component-1](src/assets/readme/component-1.png)
+  ![component-1](src/assets/readme/component-1.png)
+  
 </details>
 <hr>
 <details>
   <summary>ProfileViewPage.jsx</summary>
   
-  [component-2](src/assets/readme/component-2.png)
+  ![component-2](src/assets/readme/component-2.png)
+
 </details>
 <hr>
 
