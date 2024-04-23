@@ -1003,44 +1003,43 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 <br>
 
 <details>
-
   <summary>Error [1]</summary>
   <br>
   
-  [error](src/assets/readme/error-1.png)
+  ![error](src/assets/readme/error-1.png)
 </details>
 <hr>
 <details>
 
   <summary>Error [2]</summary>
    <br>
-  [error](src/assets/readme/error-2.png)
+
+  ![error](src/assets/readme/error-2.png)
 </details>
 <hr>
 <details>
-
   <summary>Error [3]</summary>
    <br>
-  [error](src/assets/readme/error-3.png)
+
+  ![error](src/assets/readme/error-3.png)
 </details>
 <hr>
 <details>
-
   <summary>Error [4]</summary>
    <br>
-  [error](src/assets/readme/error-4.png)
+
+  ![error](src/assets/readme/error-4.png)
 </details>
 <hr>
 <details>
-
   <summary>Error [5]</summary>
    <br>
-  [error](src/assets/readme/error-5.png)
+
+  ![error](src/assets/readme/error-5.png)
 </details>
 <hr>
 
-
-
+<br>
 
 #### Deployment Steps
 
