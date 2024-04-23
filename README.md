@@ -1022,6 +1022,12 @@ Overall, my testing experience with ESLint involved troubleshooting installation
    <br>
 
   ![error](src/assets/readme/error-2.png)
+
+   <br>
+
+   This issue is related to backend permission classes. Due to the application's structure, it may be causing conflicts. Attempts to change the backend resulted in recursive errors with all employee profiles applying for each job. Further investigation and resolution are required in future developments.
+
+
 </details>
 <hr>
 <details>
@@ -1029,6 +1035,13 @@ Overall, my testing experience with ESLint involved troubleshooting installation
    <br>
 
   ![error](src/assets/readme/error-3.png)
+
+  <br>
+
+  *Failed to load resource: the server responded with a status of 401 (Unauthorized)*
+
+  I believe this error is related to content loading before the current user context is properly established for some reason. Further research will need to be conducted to address this issue.
+
 </details>
 <hr>
 <details>
@@ -1036,6 +1049,13 @@ Overall, my testing experience with ESLint involved troubleshooting installation
    <br>
 
   ![error](src/assets/readme/error-4.png)
+
+  <br>
+
+  This warning suggests that a Chrome extension is attempting to access a resource (index.es.js.map) that is not listed in the web_accessible_resources manifest key. This typically occurs when an extension tries to access resources from a web page outside of its allowed scope.
+
+  *Further investigation will be conducted in future developments to resolve this issue.*
+
 </details>
 <hr>
 <details>
@@ -1043,6 +1063,13 @@ Overall, my testing experience with ESLint involved troubleshooting installation
    <br>
 
   ![error](src/assets/readme/error-5.png)
+
+  <br>
+
+  This error indicates a TypeError caused by attempting to read properties of an undefined value ('0'). It seems to occur within a promise, suggesting an asynchronous operation that failed due to an undefined value.
+
+  *Further investigation will be conducted in future developments to address and resolve this issue.*
+
 </details>
 <hr>
 
