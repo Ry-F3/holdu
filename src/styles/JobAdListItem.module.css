@@ -8,7 +8,7 @@
 }
 
 .Button {
-    border: 1px solid fc7fb6 !important;
+    border: 1px solid #fc7fb6 !important;
     height: 35px;
     width: 35px;
 
@@ -213,9 +213,8 @@
     }
 
     .jobLocation {
-        font-size: 0.rem;
+        font-size: 0.6rem;
         margin-top: 8px;
-
     }
 
     .jobSalary {

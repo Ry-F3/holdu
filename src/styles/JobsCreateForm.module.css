@@ -9,8 +9,7 @@
 /* Increase specificity to override Bootstrap styles */
 .Button {
     border-color: #fc7fb6 !important;
-    background-color: #fc7fb6 !important;
-    box-shadow: none !important;
+    background-color: #f076ab !important;
     color: white !important;
 
 }
@@ -65,7 +64,7 @@ h2 {
     position: relative;
     font-size: 15px;
     font-weight: 800;
-    background-color: none !important;
+    background-color: transparent !important;
     border: none !important;
 
 
