@@ -368,6 +368,13 @@ While the current iteration provides basic functionality, future developments wi
 
 ## Wireframes
 
+### Website Design Planning with Balsamiq
+
+Balsamiq was used to construct a basic plan for the design of the website. Note that it is mostly in line with the walkthrough project as I wanted to concentrate on exploring my jobs and applicant complex model design.
+
+[Learn more about Balsamiq](https://balsamiq.com/)
+
+
 <br>
 
 <details>
@@ -448,6 +455,8 @@ While the current iteration provides basic functionality, future developments wi
 
 #### Section 1
 
+<br>
+
 | #   | User Story                                                                                                      | Completed |
 |-----|-----------------------------------------------------------------------------------------------------------------|-----------|
 | [**#1**](https://github.com/Ry-F3/holdu/issues/1)   | As a new user, I want to be able to sign up for an account by providing my email, username, and password.      |    ✅     |
@@ -527,13 +536,115 @@ While the current iteration provides basic functionality, future developments wi
 
 <br>
 
+### Exploring the Remaining models in Future Development
+
 The unused models, including Chat, Message, Experience, and Comment, will be explored in future development plans to enhance the product and broaden the application's use case. These models represent features such as chat conversations, individual chat messages, user work experiences, and comments on entities within the application. Integrating these features will enrich the user experience and provide additional functionality, ultimately improving engagement and expanding the application's capabilities.
 
 <br>
 
-## Data Models
+## File Tree
 
-<hr>
+<br>
+
+src
+│
+└── components
+    │
+    ├── connections
+    │   ├── ConnectionsTab.jsx
+    │   ├── PendingTab.jsx
+    │   ├── RecentProfiles.jsx
+    │   └── SenttTab.jsx
+    │
+    ├── jobs
+    │   ├── ApplicantFilteredItem.jsx
+    │   ├── ApplicantItem.jsx
+    │   ├── ApprovedApplicantItem.jsx
+    │   ├── JobListItem.jsx
+    │   ├── JobPostHomeItem.jsx
+    │   └── TopJobs.jsx
+    │
+    ├── miscellaneous
+    │   ├── DummyApplicantBox.jsx
+    │   └── DummyBoxes.jsx
+    │
+    ├── navigation
+    │   ├── NavBar.jsx
+    │   ├── LoggedOutLogo.jsx
+    │   ├── LggedOutIcons.jsx
+    │   ├── LoggedInLogo.jsx
+    │   ├── LoggedInEmployerIconsBottom.jsx
+    │   ├── LoggedInEmployeeIcons.jsx
+    │   ├── LoggedInEmployerIcons.jsx
+    │   ├── LoggedInEmployeeIconsBottom.jsx
+    │   └── BottomNavBar.jsx
+    │
+    ├── profile
+    │   ├── ProfileBadges.jsx
+    │   ├── ProfileHeader.jsx
+    │   ├── activity
+    │   │   ├── Acctivity.jsx
+    │   │   └── RatingContent.jsx
+    │   └── ratings
+    │       ├── HorizontalRatingList.jsx
+    │       ├── RatingForm.jsx
+    │       └── RatingNavigationButtons.jsx
+    │
+    └── Asset.jsx
+    └── Avatar.jsx
+    └── CustomToolTip.jsx
+    └── Spinner.jsx
+
+
+<br>
+
+The folders within the <strong>components</strong> directory serve to establish a close relationship with the corresponding pages in the application. Each folder corresponds to a specific section or feature of the application, reflecting the organization of the pages and their functionalities.
+
+* **connections**: Contains components related to interactions and networking functionalities.
+
+* **jobs**: Hosts components essential for job-related functionalities, including job creation, browsing, and posting.
+
+* **profiles**: Contains components related to user profiles, including profile creation and viewing.
+
+* **navigation**: Holds components essential for navigation across the application.
+
+<br>
+
+pages
+│
+├── auth
+│   ├── SignInForm.jsx
+│   └── SignUpForm.jsx
+│
+├── connections
+│   └── ConnectionsPage.jsx
+│
+├── jobs
+│   ├── JobCreateForm.jsx
+│   ├── JobsHomePage.jsx
+│   ├── JobsPost.jsx
+│   └── JobsPostPage.jsx
+│
+├── notifications
+│   └── NotificationsPage.jsx
+│
+└── profiles
+    ├── ProfileTypeChoiceForm.jsx
+    └── ProfileViewPage.jsx
+
+
+<br>
+
+* **auth**: Contains components for user authentication, including sign-in and sign-up forms.
+
+* **notifications**: Contains the NotificationsPage.jsx file. Please note that NotificationsPage.jsx is the only file not broken down into its components and will be developed further in the future.
+
+* **profiles**: Houses files related to user profiles, including profile type choice and profile viewing functionalities.
+
+* **jobs**: Hosts page files related to job functionalities, such as job creation, browsing, and posting.
+
+
+In retrospect, the power of components is evident, particularly on the user's personal profile page where the ConnectionsTab component was reused and hosted on ProfileViewPage.js for the owner's profile. It may also be useful to consider implementing a clickable connections page, allowing users to see their connections' profiles more easily.
 
 
 ### Profile Model
