@@ -579,6 +579,8 @@ In retrospect, the power of components is evident, particularly on the user's pe
 
 #### Re-used components
 
+<br>
+
 <details>
   <summary>ConnectionsPage.jsx</summary>
   
@@ -596,36 +598,6 @@ In retrospect, the power of components is evident, particularly on the user's pe
   ![component-2](src/assets/readme/component-2.png)
 
 </details>
-<hr>
-
-### Profile Model
-
-
-### Rating Model
-
-
-### Notification Model
-
-
-### Like Model
-
-
-### Comment Model
-
-**Not Used**
-
-### WorkExperience Model
-**Not Used**
-
-### Connection Model
-
-
-### Chat Model
-**Not Used**
-
-### Message Model
-**Not Used**
-
 <hr>
 
 ## Agile Methodology
@@ -715,12 +687,6 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 <hr>
 
-
-
-
-
-
-<hr>
 
 ## Technologies Used
 
@@ -850,13 +816,15 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
 </details>
 
+<hr>
+
 <br>
 
 ### Bugs
 
 <br>
 
-| Component               | Known Bug                                                                                                                                         | Investigate | Solution                                                                                                          | Implementation                                                          |
+| File               | Known Bug                                                                                                                                         | Investigate | Solution                                                                                                          | Implementation                                                          |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|-------------|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
 | ProfileViewPage.jsx     | Authentication errors. An ideal solution would be to create a new view for specific profile IDs where authentication is not needed as a list format. |             | Quick fix: Removed the authenticated permission class from the detail view, which seemed to solve the problem temporarily. | Profile view has not crashed again on further testing.                    |
 | JobListItem.jsx         | Error code while fetching applicants. URL permissions are causing conflicts.                                                                        | Needs further investigation  | Trial removal of URL permissions caused recursive errors. Investigate and implement a solution to handle URL permissions effectively. | Error fetching applicants: Request failed with status code 400. Solutions will be found in further developments but seems to be causing no additional harm. Errors are present in the console.         |
