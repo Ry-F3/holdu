@@ -17,10 +17,8 @@ This realization inspired my project. While previously considering self-employme
 
 I envisioned a solution born from real-life experiences, facilitating direct connections between individuals and empowering families to hire support directly. Although the product is currently in its MVP stage, with features yet to be fully realized, this mission statement serves as the guiding principle for the project's completion.
 
-* Related fully realised products:
-  * [Childcare.co.uk](https://www.childcare.co.uk/?gad_source=1&gclid=CjwKCAjwuJ2xBhA3EiwAMVjkVJLap_mlDyBOYIXU_DjqeIY-XD30xb-lTyK4Ne0MSdhidUmqoIg98hoCQn4QAvD_BwE)
+* Related fully realised products: [Childcare.co.uk](https://www.childcare.co.uk/?gad_source=1&gclid=CjwKCAjwuJ2xBhA3EiwAMVjkVJLap_mlDyBOYIXU_DjqeIY-XD30xb-lTyK4Ne0MSdhidUmqoIg98hoCQn4QAvD_BwE)
 
-<br>
 
 ## Key Features:
 
