@@ -717,6 +717,37 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Navigation Search Bar    | Search bar works on all pages and takes user to home page. Clear button sometimes requires two clicks to work.                                                                           | Search bar successfully navigates to home page. Clear button occasionally requires two clicks to work, needing investigation for future developments.                                                                                                                                                                                                                   |
 <br>
 
+#### W3C Validator CSS
+
+All CSS files have been validated using the W3C CSS Validator. Some files initially had mistakes, but they were rectified to ensure compliance with CSS standards.
+
+<br>
+
+
+| File                     | Pass             |
+|--------------------------|------------------|
+| Asset.module.css         | &#10003;         |
+| Avatar.module.css        | &#10003;         |
+| BottomNav.module.css     | &#10003;         |
+| Button.module.css        | &#10003;         |
+| ConnectionsPage.module.css | &#10003;       |
+| CustomTooltip.module.css | &#10003;         |
+| DummyBoxes.module.css    | &#10003;         |
+| JobAdListItem.module.css | &#10003;         |
+| JobPostHomeItem.module.css | &#10003;       |
+| JobsCreateForm.module.css | &#10003;        |
+| JobsPost.module.css      | &#10003;         |
+| NavBar.module.css        | &#10003;         |
+| Notification.module.css  | &#10003;         |
+| Pointer.module.css       | &#10003;         |
+| ProfileView.module.css   | &#10003;         |
+| SignInUpForm.module.css  | &#10003;         |
+| Spinner.module.css       | &#10003;         |
+| TopJobs.module.css       | &#10003;         |
+
+
+<br>
+
 ### Automated Testing
 
 <br>
