@@ -7,7 +7,6 @@
 
 *Backend repository link can be found here: [link](https://github.com/Ry-F3/holdu-drf-api)*
 
-<br>
 
 ## Mission Statement
 
@@ -19,12 +18,13 @@ This realization inspired my project. While previously considering self-employme
 
 I envisioned a solution born from real-life experiences, facilitating direct connections between individuals and empowering families to hire support directly. Although the product is currently in its MVP stage, with features yet to be fully realized, this mission statement serves as the guiding principle for the project's completion.
 
-* Related fully realised products: [Childcare.co.uk](https://www.childcare.co.uk/?gad_source=1&gclid=CjwKCAjwuJ2xBhA3EiwAMVjkVJLap_mlDyBOYIXU_DjqeIY-XD30xb-lTyK4Ne0MSdhidUmqoIg98hoCQn4QAvD_BwE)
+Related fully realised products: [Childcare.co.uk](https://www.childcare.co.uk/?gad_source=1&gclid=CjwKCAjwuJ2xBhA3EiwAMVjkVJLap_mlDyBOYIXU_DjqeIY-XD30xb-lTyK4Ne0MSdhidUmqoIg98hoCQn4QAvD_BwE)
 
 
 ## Key Features:
 
 <br>
+
 #### **Employer Profile Overview:**
 
 The Employer Profile provides a comprehensive set of tools and features tailored to the needs of employers. Below are the key features offered by the Employer Profile experience:
