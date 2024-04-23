@@ -600,6 +600,39 @@ In retrospect, the power of components is evident, particularly on the user's pe
 </details>
 <hr>
 
+<br>
+
+## Colors
+
+Coolors was used to create [this color palette](https://coolors.co/f34213-ca417f-fc7fb6-41ead4-ffffff):
+
+<br>
+
+![coolors](src/assets/readme/coolors.png)
+
+<br>
+
+The project incorporates the following colors, with the initial color inspired by the logo:
+
+<br>
+
+![logo](src/assets/logo.png)
+
+<br>
+
+- **#FC7FB6**: This color serves as the starting point for the project, inspired by the logo. It likely represents a prominent aspect of the project's branding or identity.
+
+- **#41EAD4**: This color adds a vibrant turquoise accent, possibly used to highlight important elements or for contrast.
+
+- **#CA417F**: This shade of pink adds warmth and complements the primary color (#FC7FB6), likely used for accents or to convey a sense of playfulness.
+
+- **#F34213**: This deep orange-red shade adds contrast and energy, possibly used for highlighting important buttons or calls to action.
+
+- **#FFFFFF**: This color represents white, likely used for backgrounds or to create contrast with darker elements.
+
+
+<br>
+
 ## Agile Methodology
 
 <br>
@@ -711,13 +744,15 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Profile Choice Form      | After selecting a profile option (hire or work), user is taken to the home page with appropriate icons for the chosen profile.   | User selects a profile option and is redirected to the home page with icons corresponding to the chosen profile.                                                                                                                                                                                              |
 | Home Page                | Depending on user's profile (employer or employee), different options are available. User can apply for jobs (if employee) or like jobs (if employer or employee). Mobile view hides top jobs, while desktop view shows top jobs.           | User can interact with appropriate options based on profile. Top jobs visibility varies between mobile and desktop views. Clicking on user profile name redirects to their profile page.                                                                                                                                                                             |
 | Connections Page         | User can navigate to connections page using navbar or bottom navigation. Connection requests must be confirmed. Tool to manage connections works dynamically. User can click on connections' names or search bar to view their profile page.   | User successfully navigates to connections page. Connection requests require confirmation. Connection management tool works as expected. Clicking on connections' names or search bar redirects to their profile page.                                                                                                                                              |
-| Jobs Icon                | Employer profile can post job ads, which are fully validated. Employer can manage ads, view applicants, and approve/reject applicants for closed listings.                          | Employer posts job ads successfully. Ads are validated and prevent posting without required fields. Employer can manage ads and view applicants. Approving/rejecting applicants for closed listings functions, but applicant status remains unchanged unexpectedly.                                                                                             |
-| Notifications Icon       | Notifications show incoming notifications appropriately. Employee sees new job listings, while employer and employee see new ratings, connection requests, and connections.            | Notifications display correctly based on user profile. Employee receives new job listings notifications. Employer and employee receive new ratings, connection requests, and connections notifications.                                                                                                                                                             |
+| Jobs Page                | Employer profile can post job ads, which are fully validated. Employer can manage ads, view applicants, and approve/reject applicants for closed listings.                          | Employer posts job ads successfully. Ads are validated and prevent posting without required fields. Employer can manage ads and view applicants. Approving/rejecting applicants for closed listings functions, but applicant status remains unchanged unexpectedly.                                                                                             |
+| Notifications Page      | Notifications show incoming notifications appropriately. Employee sees new job listings, while employer and employee see new ratings, connection requests, and connections.            | Notifications display correctly based on user profile. Employee receives new job listings notifications. Employer and employee receive new ratings, connection requests, and connections notifications.                                                                                                                                                             |
 | Profile Page             | User can see average rating and ratings. Connections are displayed with option to click or delete, updating connection badge. Employer sees job listing activity.                | User can view average rating and ratings. Connections are displayed with click or delete options, updating connection badge. Employer views job listing activity.                                                                                                                                                                                                      |
 | Navigation Search Bar    | Search bar works on all pages and takes user to home page. Clear button sometimes requires two clicks to work.                                                                           | Search bar successfully navigates to home page. Clear button occasionally requires two clicks to work, needing investigation for future developments.                                                                                                                                                                                                                   |
 <br>
 
 #### W3C Validator CSS
+
+<br>
 
 All CSS files have been validated using the W3C CSS Validator. Some files initially had mistakes, but they were rectified to ensure compliance with CSS standards.
 
@@ -749,6 +784,8 @@ All CSS files have been validated using the W3C CSS Validator. Some files initia
 <br>
 
 #### W3C Validator HTML
+
+<br>
 
 All HTML files have been validated using the W3C HTML Validator. The following images show the validation results for each file:
 
