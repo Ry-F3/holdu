@@ -998,10 +998,52 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 | JobListItem.jsx         | Error code while fetching applicants. URL permissions are causing conflicts.                                                                        | Needs further investigation  | Trial removal of URL permissions caused recursive errors. Investigate and implement a solution to handle URL permissions effectively. | Error fetching applicants: Request failed with status code 400. Solutions will be found in further developments but seems to be causing no additional harm. Errors are present in the console.         |
 | ProfileTypeChoiceForm.jsx | Implementation of a pop-up profile choice form on initial sign up was complex. Addition of a login count to prevent posting to a specific URL.    |             | Further solutions needed for a more efficient user experience. If pop-up box doesn't appear on joining, please reload the page.  | Pop-up profile choice form may not appear on initial sign-up. Reload page if necessary. |
 
+#### Errors 
+
+<br>
+
+<details>
+
+  <summary>Error [1]</summary>
+  <br>
+  
+  [error](src/assets/readme/error-1.png)
+</details>
+<hr>
+<details>
+
+  <summary>Error [2]</summary>
+   <br>
+  [error](src/assets/readme/error-2.png)
+</details>
+<hr>
+<details>
+
+  <summary>Error [3]</summary>
+   <br>
+  [error](src/assets/readme/error-3.png)
+</details>
+<hr>
+<details>
+
+  <summary>Error [4]</summary>
+   <br>
+  [error](src/assets/readme/error-4.png)
+</details>
+<hr>
+<details>
+
+  <summary>Error [5]</summary>
+   <br>
+  [error](src/assets/readme/error-5.png)
+</details>
+<hr>
+
+
+
 
 #### Deployment Steps
 
-<br>
 
 1. Set up your own instance of Holdu.
 
