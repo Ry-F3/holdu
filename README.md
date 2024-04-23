@@ -577,6 +577,20 @@ The folders within the <strong>components</strong> directory serve to establish 
 
 In retrospect, the power of components is evident, particularly on the user's personal profile page where the ConnectionsTab component was reused and hosted on ProfileViewPage.js for the owner's profile. It may also be useful to consider implementing a clickable connections page, allowing users to see their connections' profiles more easily.
 
+#### Re-used components
+
+<details>
+  <summary>ConnectionsPage.jsx</summary>
+  
+  [component-1](src/assets/readme/component-1.png)
+</details>
+<hr>
+<details>
+  <summary>ProfileViewPage.jsx</summary>
+  
+  [component-2](src/assets/readme/component-2.png)
+</details>
+<hr>
 
 ### Profile Model
 
