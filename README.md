@@ -7,6 +7,21 @@
 
 *Backend repository link can be found here: [link](https://github.com/Ry-F3/holdu-drf-api)*
 
+## Mission Statement
+
+<br>
+
+Since 2016, I have been immersed in the health and social sector, collaborating with agencies and private organizations. Through conversations with clients served by these agencies, I discovered a recurring sentiment: the absence of a personal touch due to the overwhelming caseloads managed by these entities.
+
+This realization inspired my project. While previously considering self-employment, the challenge lay in finding a support worker to fill in during my absence and vice versa. While platforms like LinkedIn cater well to professionals, they may seem daunting for the health and social use cases. I aimed to develop a product with a less intimidating interface, characterized by soothing colors.
+
+I envisioned a solution born from real-life experiences, facilitating direct connections between individuals and empowering families to hire support directly. Although the product is currently in its MVP stage, with features yet to be fully realized, this mission statement serves as the guiding principle for the project's completion.
+
+* Related fully realised products:
+  * [Childcare.co.uk](https://www.childcare.co.uk/?gad_source=1&gclid=CjwKCAjwuJ2xBhA3EiwAMVjkVJLap_mlDyBOYIXU_DjqeIY-XD30xb-lTyK4Ne0MSdhidUmqoIg98hoCQn4QAvD_BwE)
+
+<br>
+
 ## Key Features:
 
 <br>
@@ -536,7 +551,7 @@ Balsamiq was used to construct a basic plan for the design of the website. Note 
 
 <br>
 
-### Exploring the Remaining models in Future Development
+### Remaining models to be Explored in Future Development
 
 The unused models, including Chat, Message, Experience, and Comment, will be explored in future development plans to enhance the product and broaden the application's use case. These models represent features such as chat conversations, individual chat messages, user work experiences, and comments on entities within the application. Integrating these features will enrich the user experience and provide additional functionality, ultimately improving engagement and expanding the application's capabilities.
 
