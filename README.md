@@ -546,7 +546,7 @@ The unused models, including Chat, Message, Experience, and Comment, will be exp
 
 <br>
 
-src
+`src
 │
 └── components
     │
@@ -593,7 +593,7 @@ src
     └── Asset.jsx
     └── Avatar.jsx
     └── CustomToolTip.jsx
-    └── Spinner.jsx
+    └── Spinner.jsx`
 
 
 <br>
@@ -610,7 +610,7 @@ The folders within the <strong>components</strong> directory serve to establish 
 
 <br>
 
-pages
+`pages
 │
 ├── auth
 │   ├── SignInForm.jsx
@@ -630,7 +630,7 @@ pages
 │
 └── profiles
     ├── ProfileTypeChoiceForm.jsx
-    └── ProfileViewPage.jsx
+    └── ProfileViewPage.jsx`
 
 
 <br>
