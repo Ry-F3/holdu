@@ -68,7 +68,7 @@ function JobsHomePage({ searchQuery }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoadingPage(false);
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);

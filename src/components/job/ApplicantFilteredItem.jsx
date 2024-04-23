@@ -2,15 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 // Bootstrap
 import Button from "react-bootstrap/Button";
-
+// Styles
+import styles from "../../styles/ApplicantItem.module.css";
 
 const ApplicantFilteredItem = ({ applicantData, handleApplicantStatus }) => {
   return (
     <div
       key={applicantData.id}
-      className="mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center"
-      style={{ minWidth: "150px" }}
-    >
+    className={` ${styles.Profile} mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center`}
+      >
       <img
         src={applicantData.applicant.image}
         alt={applicantData.applicant.owner_username}
@@ -21,9 +21,17 @@ const ApplicantFilteredItem = ({ applicantData, handleApplicantStatus }) => {
       <div className="d-flex align-items-center">
         {applicantData.applicant.average_rating ? (
           <>
-            <span className="mr-1">Rating:</span>
             <span className="badge bg-secondary text-white">
-              {applicantData.applicant.average_rating}
+           
+                {[
+                  ...Array(parseInt(applicantData.applicant.average_rating)),
+                ].map((_, index) => (
+                  <i
+                    key={index}
+                    className="fas fa-star"
+                  />
+                ))}
+          
             </span>
           </>
         ) : (
@@ -37,15 +45,13 @@ const ApplicantFilteredItem = ({ applicantData, handleApplicantStatus }) => {
           className="mr-3"
           onClick={() =>
             handleApplicantStatus(applicantData.applicant.id, "accepted")
-          }
-        >
+          }>
           <i className="fas fa-check"></i>
         </Button>
         <Button
           onClick={() =>
             handleApplicantStatus(applicantData.applicant.id, "binned")
-          }
-        >
+          }>
           <i className="fas fa-times"></i>
         </Button>
       </div>

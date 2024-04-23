@@ -1,15 +1,19 @@
 import React from "react";
+// Components
+import Avatar from "../Avatar";
+// Styles
+import styles from "../../styles/ApplicantItem.module.css"
 
 const ApprovedApplicantItem = ({ applicant }) => {
   return (
     <div
-      className="mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center"
-      style={{ minWidth: "150px" }}>
-      <img
+      className={` ${styles.Profiles} mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center`}
+      >
+      <Avatar
         src={applicant.applicant.image}
         alt={applicant.applicant.owner_username}
         className="rounded-circle mb-2"
-        style={{ width: "100px", height: "100px" }}
+        height={85}
       />
       <p className="mb-1">{applicant.applicant.owner_username}</p>
 

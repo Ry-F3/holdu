@@ -1,25 +1,34 @@
 import React from "react";
+import Avatar from "../Avatar";
+// Styles
+import styles from "../../styles/ApplicantItem.module.css";
 
 const ApplicantItem = ({ applicant }) => {
   
   return (
     <div
-      className="mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center"
-      style={{ minWidth: "150px" }}
+      className={`${styles.Profile} mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center`}
     >
-      <img
+      <Avatar
         src={applicant.image}
         alt={applicant.owner_username}
-        className="rounded-circle mb-2"
-        style={{ width: "100px", height: "100px" }}
+        className="rounded-circle mb-3"
+        height={85}
+
       />
-      <p className="mb-1">{applicant.owner_username}</p>
+      <p className="mb-1 mt-2">{applicant.owner_username}</p>
       <div className="d-flex align-items-center">
         {applicant.average_rating ? (
           <>
-            <span className="mr-1">Rating:</span>
             <span className="badge bg-secondary text-white">
-              {applicant.average_rating}
+              {[
+                  ...Array(parseInt(applicant.average_rating)),
+                ].map((_, index) => (
+                  <i
+                    key={index}
+                    className="fas fa-star"
+                  />
+                ))}
             </span>
           </>
         ) : (
