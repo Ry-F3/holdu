@@ -366,6 +366,84 @@ While the current iteration provides basic functionality, future developments wi
 
 <br>
 
+## Wireframes
+
+<br>
+
+<details>
+<summary>Wireframe 1</summary>
+<br>
+
+![wireframe-1](src/assets/readme/wireframes/wireframe-1.png)
+
+</details>
+<hr>
+<details>
+<summary>Wireframe 2</summary>
+<br>
+
+![wireframe-2](src/assets/readme/wireframes/wireframe-2.png)
+
+</details>
+<hr>
+<details>
+<summary>Wireframe 3</summary>
+<br>
+
+![wireframe-3](src/assets/readme/wireframes/wireframe-3.png)
+
+</details>
+<hr>
+<details>
+<summary>Wireframe 4</summary>
+<br>
+
+![wireframe-4](src/assets/readme/wireframes/wireframe-4.png)
+
+</details>
+<hr>
+<details>
+<summary>Wireframe 5</summary>
+<br>
+
+![wireframe-5](src/assets/readme/wireframes/wireframe-5.png)
+
+</details>
+<hr>
+<details>
+<summary>Wireframe 6</summary>
+<br>
+
+![wireframe-6](src/assets/readme/wireframes/wireframe-6.png)
+
+</details>
+<hr>
+<details>
+<summary>Wireframe 7</summary>
+<br>
+
+![wireframe-7](src/assets/readme/wireframes/wireframe-7.png)
+
+</details>
+<hr>
+<details>
+<summary>Wireframe 8</summary>
+<br>
+
+![wireframe-8](src/assets/readme/wireframes/wireframe-8.png)
+
+</details>
+<hr>
+<details>
+<summary>Wireframe 9</summary>
+<br>
+
+![wireframe-9](src/assets/readme/wireframes/wireframe-9.png)
+
+</details>
+<hr>
+<br>
+
 ## User Stories 
 
 #### Section 1
