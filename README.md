@@ -1007,6 +1007,13 @@ Overall, my testing experience with ESLint involved troubleshooting installation
   <br>
   
   ![error](src/assets/readme/error-1.png)
+
+  <br>
+
+  This warning indicates the usage of the deprecated `findDOMNode` function within a component wrapped in React's `StrictMode`. This function is being called on an instance of `RefHolder`, which is inside `StrictMode`. React advises against using `findDOMNode` due to potential performance issues and unexpected behavior, especially in concurrent mode. Refactoring the code to use refs directly on elements is recommended to address this warning.
+
+  *This issue will be researched further and addressed in future developments.*
+
 </details>
 <hr>
 <details>
