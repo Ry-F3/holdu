@@ -52,7 +52,7 @@ function JobsHomePage({ searchQuery }) {
     } finally {
       setTimeout(() => {
         setLoadingPage(false);
-      }, 2500);
+      }, 1000);
     }
   };
 
@@ -68,7 +68,7 @@ function JobsHomePage({ searchQuery }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoadingPage(false);
-    }, 2500);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
