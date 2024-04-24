@@ -721,7 +721,6 @@ Overall, while backend work followed a more structured and predictable path faci
 #### MoSCoW labeling [link](https://github.com/Ry-F3/holdu/labels)
 
 - **CRUD: Tag**: Implementation of basic CRUD operations for managing tags.
-- **Something isn't working**: Issue or task related to debugging or fixing a problem.
 - **EPIC: Jobs**: Large-scale feature development related to job-related functionalities.
 - **EPIC: Likes and Comments**: Development of features related to liking and commenting on content.
 - **EPIC: Network**: Development of functionalities related to user networks.
