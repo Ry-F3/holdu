@@ -563,6 +563,8 @@ Balsamiq was used to construct a basic plan for the design of the website. Note 
 
 The unused models, including Chat, Message, Experience, and Comment, will be explored in future development plans to enhance the product and broaden the application's use case. These models represent features such as chat conversations, individual chat messages, user work experiences, and comments on entities within the application. Integrating these features will enrich the user experience and provide additional functionality, ultimately improving engagement and expanding the application's capabilities.
 
+The addition of a `profile_type` specifically designed for administrators is another missing feature that warrants attention in future development. This profile type would grant administrators greater control and oversight of user capabilities and functionalities. Although stipulated in the backend, its implementation requires further exploration in future iterations. At present, logging in with the super user does not offer any additional functionalities compared to other user profiles. Integrating an admin profile type would provide enhanced administrative tools and capabilities, contributing to more efficient management of the application.
+
 <br>
 
 ## File Tree
@@ -715,8 +717,6 @@ The backend development proceeded smoothly, with a more concise approach and wel
 In contrast, frontend development presented more challenges, requiring a more fluid approach to address evolving requirements and complexities. The dynamic nature of frontend tasks necessitated frequent adjustments and iterations, making it challenging to adhere strictly to predefined sprint plans. As a result, the frontend sprint boards often saw more frequent updates and adaptations to accommodate changing needs and overcome hurdles encountered during development.
 
 Overall, while backend work followed a more structured and predictable path facilitated by the sprint boards, frontend development demanded greater flexibility and adaptability to navigate the complexities inherent in building the user interface and ensuring a seamless user experience.
-
-<br>
 
 #### MoSCoW labeling [link](https://github.com/Ry-F3/holdu/labels)
 
