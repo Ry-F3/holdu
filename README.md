@@ -602,7 +602,7 @@ In retrospect, the power of components is evident, particularly on the user's pe
 
 #### Re-used components
 
-*Please refer below to see how ConneectionsTab.jsx component, is used within two distinct pages.*
+*Please refer below to see how ConnectionsTab.jsx component, is used within two distinct pages.*
 
 <br>
 
@@ -668,6 +668,25 @@ The project incorporates the following colors, with the initial color inspired b
 
 
 <br>
+
+## Form Validation
+
+<br>
+
+#### Prop required
+
+![validation-1](src/assets/readme/validation-2.png)
+
+#### Boootstrap Alerts
+
+![validation-2](src/assets/readme/validation-1.png)
+
+<detail>
+<summary>Further evidence</summary>
+<br>
+
+![validation-3](src/assets/readme/validation-3.png)
+</detail>
 
 ## Agile Methodology
 
