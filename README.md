@@ -681,12 +681,12 @@ The project incorporates the following colors, with the initial color inspired b
 
 ![validation-2](src/assets/readme/validation-1.png)
 
-<detail>
+<details>
 <summary>Further evidence</summary>
 <br>
 
 ![validation-3](src/assets/readme/validation-3.png)
-</detail>
+</details>
 
 ## Agile Methodology
 
