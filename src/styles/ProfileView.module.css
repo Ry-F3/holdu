@@ -58,7 +58,7 @@ h3 {
     border: 1px solid #fc7fb6 !important;
     color: #ffff !important;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 20px;
 
 
 }
@@ -113,5 +113,16 @@ h3 {
 @media (max-width: 986px) {
     .showButton {
         display: block !important;
+    }
+}
+
+@media (max-width: 306px) {
+
+    Button {
+
+        font-size: 16px !important;
+        margin-left: -8px !important;
+
+
     }
 }
