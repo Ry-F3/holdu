@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-
+import { axiosReq } from "../../api/axiosDefaults";
+// Bootstrap
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+// Styles
+import formStyles from "../../styles/JobsCreateForm.module.css";
+// Image
 import dataImage from "../../assets/dataImage.png";
-
+// Components
 import appStyles from "../../App.module.css";
 import spinnerStyle from "../../styles/Spinner.module.css";
-import formStyles from "../../styles/JobsCreateForm.module.css";
-
-import { axiosReq } from "../../api/axiosDefaults";
-
 import JobsPost from "./JobsPost";
 import Asset from "../../components/Asset";
-
 import Spinner from "../../components/Spinner";
 import TopJobs from "../../components/job/TopJobs";
 
@@ -104,8 +103,7 @@ function JobsHomePage({ searchQuery }) {
       <Col className="py-2 p-0 p-lg-4" lg={8}>
         {loadingPage ? (
           <Container
-            style={{ backgroundColor: "transparent", border: "none" }}
-            className={`${appStyles.Content} ${formStyles.minHeightContent} d-flex flex-column justify-content-center position-relative`}>
+            className={`${appStyles.Content} ${appStyles.contentNone} ${formStyles.minHeightContent}  d-flex flex-column justify-content-center position-relative`}>
             <div
               className={`${spinnerStyle.spinnerContain} align-items-center`}>
               <Spinner size="50px" />

@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
+
+import { Link } from "react-router-dom";
+import { axiosRes } from "../../api/axiosDefaults";
+// Contexts
+import { useProfileData } from "../../contexts/ProfileContext";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+// Bootstrap
 import { Button, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
-import { Link } from "react-router-dom";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { axiosRes } from "../../api/axiosDefaults";
+// Styles
 import styles from "../../styles/JobsPost.module.css";
-import { useProfileData } from "../../contexts/ProfileContext";
+import pointerStyle from "../../styles/Pointer.module.css"
+// Components
 import JobPostHomeItem from "../../components/job/JobPostHomeItem";
 
 import axios from "axios";
@@ -162,7 +168,7 @@ const JobsPost = ({
           <span>{created_at}</span>
         </div>
       </Card.Body>
-      <Card.Body style={{ position: "relative" }}>
+      <Card.Body >
         <ul className="list-unstyled rounded">
           <JobPostHomeItem
             key={job_listing_id}
@@ -198,7 +204,7 @@ const JobsPost = ({
               </div>
             </form>
           ) : null}
-          <div className="d-flex align-items-center">
+          <div className={`${pointerStyle.Pointer} d-flex align-items-center`}>
             {currentUser ? (
               !is_owner ? (
                 <span onClick={handleLikeUnlike}>

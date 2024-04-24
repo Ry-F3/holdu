@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import { Nav } from "react-bootstrap";
 // Styles
 import styles from "../../App.module.css";
+import connectStyles from "../../styles/ConnectionsPage.module.css"
 // Components
 import RecentProfiles from "../../components/connections/RecentProfiles";
 import ConnectionsTab from "../../components/connections/ConnectionsTab";
@@ -48,7 +49,6 @@ const ConnectionsPage = () => {
       setConnections(response.data.results);
     } catch (error) {
       console.error(error);
-  
     }
     delay(100).then(() => setIsLoading(false));
     setInitialLoad(true);
@@ -57,7 +57,7 @@ const ConnectionsPage = () => {
   useEffect(() => {
     const fetchProfiles = async () => {
       setIsLoading(true);
-  
+
       try {
         setTimeout(async () => {
           const response = await axios.get(`/profiles/`);
@@ -69,17 +69,15 @@ const ConnectionsPage = () => {
             results: filteredProfiles,
           }));
           setProfiles(filteredProfiles);
-          fetchConnections(); 
+          fetchConnections();
         });
       } catch (error) {
         console.error(error);
       }
     };
-  
-    fetchProfiles();
-  }, [setProfileData, fetchConnections]); 
-  
 
+    fetchProfiles();
+  }, [setProfileData, fetchConnections]);
 
   // Function to fetch pending connections
   const fetchPendingConnections = async () => {
@@ -92,7 +90,6 @@ const ConnectionsPage = () => {
 
       // Handle error, show error message, etc.
     }
-   
   };
 
   // useEffect to fetch pending connections on component mount
@@ -146,7 +143,6 @@ const ConnectionsPage = () => {
   };
 
   const handleDeleteConnection = async (connectionId) => {
-   
     try {
       await axios.delete(`/connections/${connectionId}/`);
       fetchConnections();
@@ -167,14 +163,6 @@ const ConnectionsPage = () => {
     <Row>
       <>
         <Col className="py-2 p-0 p-lg-4" lg={8}>
-          <Container
-            className={`bg-transparent border-none border-bottom-none`}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}></Container>
-
           <Container
             className={`${styles.Content} bg-white border-bottom-none mb-3 d-block d-lg-none`}>
             <Container className={`bg-white border-none`}>
@@ -216,13 +204,7 @@ const ConnectionsPage = () => {
 
           {isLoading && !initialLoad ? (
             <Container
-              className={`bg-transparent border-none border-bottom-none`}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                minHeight: "430px",
-              }}>
+              className={`${connectStyles.Height} bg-transparent border-none border-bottom-none d-flex justify-content-center align-items-center`}>
               <Spinner size={60} />
             </Container>
           ) : (

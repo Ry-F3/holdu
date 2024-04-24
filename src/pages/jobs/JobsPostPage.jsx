@@ -52,7 +52,7 @@ function JobsPostPage() {
           applicants={jobsPost.applicants}
           postJob
         />
-        {/* <Container className={appStyles.Content}>Comments</Container> */}
+
       </Col>
       
     </Row>

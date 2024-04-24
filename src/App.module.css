@@ -18,6 +18,11 @@
     color: #ffffff;
 }
 
+.contentNone {
+    background-color: transparent;
+    border: none;
+}
+
 .Button {
     text-decoration: none !important;
 }

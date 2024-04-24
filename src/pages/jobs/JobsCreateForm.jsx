@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { axiosReq } from "../../api/axiosDefaults";
+import { useLocation, useHistory } from "react-router-dom";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useProfileData } from "../../contexts/ProfileContext";
-
+// Bootstrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-
+// Styles
 import appStyles from "../../App.module.css";
 import formStyles from "../../styles/JobsCreateForm.module.css";
 import spinnerStyle from "../../styles/Spinner.module.css";
-
-import { axiosReq } from "../../api/axiosDefaults";
-
+// Image
 import dataImage from "../../assets/dataImage.png";
+// Components
 import Asset from "../../components/Asset";
 import Spinner from "../../components/Spinner";
 import JobAdListItem from "../../components/job/JobAdListItem";
 import DummyBoxes from "../../components/miscellaneous/DummyBoxes";
-import { useLocation, useHistory } from "react-router-dom";
+import Avatar from "../../components/Avatar";
 
 function JobsCreateForm({ searchQuery, fetchApplicants }) {
   const [error, setErrors] = useState("");
@@ -445,7 +447,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
             <Form.Group className="align-items-center`">
               {loading ? (
                 <Container className={`${spinnerStyle.spinnerContain}`}>
-                  <Spinner size="50px" />
+                  <Spinner height={50} />
                 </Container>
               ) : (
                 <Container className={formStyles.Container}>
@@ -454,15 +456,11 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
                       <div className="d-flex justify-content-between bg-white p-3 rounded border align-items-center mb-3">
                         <div className="d-flex align-items-center">
                           {/* Add user's image */}
-                          <img
+                          <Avatar
                             src={profileData.image}
                             alt="User"
                             className="mr-2"
-                            style={{
-                              width: "50px",
-                              height: "50px",
-                              borderRadius: "50%",
-                            }}
+                            size={"17"}
                           />
                           {/* Heading */}
                           <h2 className="mb-0 mr-2 ">
@@ -514,8 +512,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
                       {showPostAdForm && (
                         <>
                           <div
-                            style={{ maxWidth: "380px", margin: "0 auto" }}
-                            className={`${appStyles.Content} ${formStyles.triangleGradient} mb-2 d-lg-none d-flex flex-column justify-content-center`}>
+                            className={`${appStyles.Content} ${formStyles.Form} ${formStyles.triangleGradient} mb-2 d-lg-none d-flex flex-column justify-content-center`}>
                             <Container className="p-4">{textFields}</Container>
                           </div>
                           <div className="text-center mb-3 d-lg-none">
@@ -577,8 +574,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
                       {showPostAdForm && (
                         <div className="text-center">
                           <div
-                            style={{ maxWidth: "350px", margin: "0 auto" }}
-                            className={`${appStyles.Content} ${formStyles.triangleGradient} mb-2 d-lg-none d-flex`}>
+                            className={`${appStyles.Content} ${formStyles.Form} ${formStyles.triangleGradient} mb-2 d-lg-none d-flex`}>
                             <Container className="p-4">{textFields}</Container>
                           </div>
                         </div>

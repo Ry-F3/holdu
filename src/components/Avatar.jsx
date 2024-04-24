@@ -3,7 +3,7 @@ import classNames from 'classnames';
 // Styles
 import styles from '../styles/Avatar.module.css';
 
-function Avatar({ src, height = 30, border }) {
+function Avatar({ src, height = 50, border }) {
   const avatarClasses = classNames(styles.Avatar, {
     [styles.Border]: border, // Apply border class conditionally based on the prop
   });

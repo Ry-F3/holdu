@@ -13,3 +13,7 @@
     color: #ca417f !important;
     transition: color 3s ease-in-out;
 }
+
+.Height {
+    min-height: 430px;
+}

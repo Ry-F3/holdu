@@ -2,6 +2,7 @@ import React from "react";
 import { Alert } from "react-bootstrap";
 // styles
 import profileStyles from "../../../styles/ProfileView.module.css"
+import  pointerStyle from "../../../styles/Pointer.module.css"
 
 const RatingForm = ({
   rating,
@@ -18,13 +19,13 @@ const RatingForm = ({
       <form onSubmit={handleSubmit}>
         <div className="form-group p-3">
           <label className="d-none">Rating:</label>
-          <div className={profileStyles.Stars}>
+          <div className={`${profileStyles.Stars} ${pointerStyle.Pointer}`}>
             {[1, 2, 3, 4, 5].map((index) => (
               <i
                 key={index}
                 className={index <= rating ? "fas fa-star" : "far fa-star"}
                 onClick={() => handleStarClick(index)}
-                style={{ cursor: "pointer", marginRight: "5px" }}
+              
               />
             ))}
           </div>
