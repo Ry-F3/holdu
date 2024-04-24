@@ -1137,6 +1137,32 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
 </details>
 <hr>
+<details>
+  <summary>Error [6]</summary>
+   <br>
+
+  ![error](src/assets/readme/error-6.png)
+
+  <br>
+
+ *Please note that `eslint-disable-next-line` was used on a few occasions. This was necessary because data was destructured and stored, even though it was not needed directly but for the data flow. In future developments, I will explore additional ways to solve this issue.*
+
+
+</details>
+<hr>
+<details>
+  <summary>Error [7]</summary>
+   <br>
+
+  ![error](src/assets/readme/error-7.png)
+
+  <br>
+
+ *An invisible form control with a non-focusable error was encountered. While I addressed this in the UI by hiding it with `d-none`, I retained the labeling to maintain convention.*
+
+
+</details>
+<hr>
 
 
 #### Deployment Steps
