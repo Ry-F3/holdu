@@ -1195,5 +1195,16 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
 ## Bibliography
 
+Special thanks to my mentor, Mo Shami, for their invaluable guidance and support throughout this project. I am also grateful to the tutors at Code Institute for their assistance and expertise.
+
+- Images used from [Storyset](https://storyset.com/illustration/no-data/rafiki)
+- [React Bootstrap](https://react-bootstrap.netlify.app/)
+- [React Tutorial for Beginners - Programming with Mosh](https://www.youtube.com/watch?v=SqcY0GlETPk)
+- [Web Dev Simplified - YouTube](https://www.youtube.com/watch?v=Rh3tobg7hEo&t=315s)
+- [Stack Overflow - Navbar disappears after scrollIntoView](https://stackoverflow.com/questions/71014670/navbar-disappears-after-scrollintoview-use-on-mobile-view)
+- [React Documentation - Hooks/State](https://legacy.reactjs.org/docs/hooks-state.html)
+- [Font Awesome](https://fontawesome.com/)
+- [Adobe Photoshop](https://www.adobe.com/uk/products/photoshop/landpa.html?gclid=CjwKCAjw26KxBhBDEiwAu6KXtycXRaL-1bAqsIeQmvWDAhtkQJ5WJJvHcHOWs5Hz7KczvLAMYJoGoRoCKlUQAvD_BwE&mv=search&mv=search&mv2=paidsearch&sdid=2SLRC12G&ef_id=CjwKCAjw26KxBhBDEiwAu6KXtycXRaL-1bAqsIeQmvWDAhtkQJ5WJJvHcHOWs5Hz7KczvLAMYJoGoRoCKlUQAvD_BwE:G:s&s_kwcid=AL!3085!3!594208275240!e!!g!!photoshop!17011954550!138864783347&gad_source=1)
+- Code Institute React Walkthrough Project
 
 
