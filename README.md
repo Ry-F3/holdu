@@ -12,9 +12,9 @@
 
 <br>
 
-Since 2016, I have been immersed in the health and social sector, collaborating with agencies and private organizations. Through conversations with clients served by these agencies, I discovered a recurring sentiment: the absence of a personal touch due to the overwhelming caseloads managed by these entities.
+Since 2016, I have been working in the health and social sector, collaborating with agencies and private organizations. Through conversations with clients, served by these agencies, I discovered a recurring problem: the absence of a personal touch.
 
-This realization inspired my project. While previously considering self-employment, the challenge lay in finding a support worker to fill in during my absence and vice versa. While platforms like LinkedIn cater well to professionals, they may seem daunting for the health and social use cases. I aimed to develop a product with a less intimidating interface, characterized by soothing colors.
+My realization inspired this project. While previously considering self-employment, the challenge lay in finding a support worker to fill in during my absence and vice versa. While platforms like LinkedIn cater well to professionals, they may seem daunting for the health and social use cases. I aimed to develop a product with a less intimidating interface, characterized by soothing colors.
 
 I envisioned a solution born from real-life experiences, facilitating direct connections between individuals and empowering families to hire support directly. Although the product is currently in its MVP stage, with features yet to be fully realized, this mission statement serves as the guiding principle for the project's completion.
 
@@ -396,7 +396,8 @@ Balsamiq was used to construct a basic plan for the design of the website. Note 
 <br>
 
 ![wireframe-1](src/assets/readme/wireframes/wireframe-1.png)
-
+<br>
+*Initial landing page (Unauthenticated)*
 </details>
 <hr>
 <details>
@@ -404,7 +405,8 @@ Balsamiq was used to construct a basic plan for the design of the website. Note 
 <br>
 
 ![wireframe-2](src/assets/readme/wireframes/wireframe-2.png)
-
+<br>
+*Join now page with image*
 </details>
 <hr>
 <details>
@@ -412,7 +414,8 @@ Balsamiq was used to construct a basic plan for the design of the website. Note 
 <br>
 
 ![wireframe-3](src/assets/readme/wireframes/wireframe-3.png)
-
+<br>
+*Signin page with image*
 </details>
 <hr>
 <details>
@@ -420,7 +423,8 @@ Balsamiq was used to construct a basic plan for the design of the website. Note 
 <br>
 
 ![wireframe-4](src/assets/readme/wireframes/wireframe-4.png)
-
+<br>
+*Profile information and profile_type choice pop up on initial login*
 </details>
 <hr>
 <details>
@@ -428,7 +432,8 @@ Balsamiq was used to construct a basic plan for the design of the website. Note 
 <br>
 
 ![wireframe-5](src/assets/readme/wireframes/wireframe-5.png)
-
+<br>
+*Home page with top jobs sidebar*
 </details>
 <hr>
 <details>
@@ -436,7 +441,8 @@ Balsamiq was used to construct a basic plan for the design of the website. Note 
 <br>
 
 ![wireframe-6](src/assets/readme/wireframes/wireframe-6.png)
-
+<br>
+*Connections page with profile list sidebar*
 </details>
 <hr>
 <details>
@@ -444,7 +450,8 @@ Balsamiq was used to construct a basic plan for the design of the website. Note 
 <br>
 
 ![wireframe-7](src/assets/readme/wireframes/wireframe-7.png)
-
+<br>
+*Jobs page, post jobs listings with CRUD funtionalities*
 </details>
 <hr>
 <details>
@@ -452,7 +459,8 @@ Balsamiq was used to construct a basic plan for the design of the website. Note 
 <br>
 
 ![wireframe-8](src/assets/readme/wireframes/wireframe-8.png)
-
+<br>
+*Alerts page with CRUD functionalities*
 </details>
 <hr>
 <details>
@@ -460,7 +468,8 @@ Balsamiq was used to construct a basic plan for the design of the website. Note 
 <br>
 
 ![wireframe-9](src/assets/readme/wireframes/wireframe-9.png)
-
+<br>
+*Profile page with user information including reviews*
 </details>
 <hr>
 <br>
@@ -589,9 +598,11 @@ The folders within the <strong>components</strong> directory serve to establish 
 * **jobs**: Hosts page files related to job functionalities, such as job creation, browsing, and posting.
 
 
-In retrospect, the power of components is evident, particularly on the user's personal profile page where the ConnectionsTab component was reused and hosted on ProfileViewPage.js for the owner's profile. It may also be useful to consider implementing a clickable connections page, allowing users to see their connections' profiles more easily.
+In retrospect, the power of components is evident, particularly on the user's personal profile page where the ConnectionsTab component was reused and hosted on ProfileViewPage.js for the owner's profile. It may also be useful to consider implementing a clickable connections badges, allowing users to see their connections' profiles more easily.
 
 #### Re-used components
+
+*Please refer below to see how ConneectionsTab.jsx component, is used within two distinct pages.*
 
 <br>
 
@@ -1072,7 +1083,6 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 </details>
 <hr>
 
-<br>
 
 #### Deployment Steps
 
