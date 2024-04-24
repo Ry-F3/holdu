@@ -673,20 +673,36 @@ The project incorporates the following colors, with the initial color inspired b
 
 <br>
 
-#### Prop required
+In my form validation process, I've chosen to use Bootstrap Alerts to effectively communicate errors to the user. This ensures that any issues with my form submissions are clearly highlighted. Additionally, withinform controls, I've implemented the `required` prop to indicate to the user that certain fields must be filled out before they can successfully post. This combination of Bootstrap Alerts and the `required` prop enhances user experience by guiding them through the form submission process and reducing potential errors.
+
+<br>
+
+<details>
+<summary>Prop required</summary>
+<br>
 
 ![validation-1](src/assets/readme/validation-2.png)
 
-#### Boootstrap Alerts
+</details>
+<hr>
+<details>
+<summary>Boootstrap Alerts</summary>
+<br>
 
 ![validation-2](src/assets/readme/validation-1.png)
 
+</details>
+<hr>
 <details>
-<summary>Further evidence</summary>
+<summary>Boootstrap Alerts</summary>
 <br>
 
 ![validation-3](src/assets/readme/validation-3.png)
+
 </details>
+<hr>
+
+<br>
 
 ## Agile Methodology
 

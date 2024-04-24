@@ -36,6 +36,7 @@ const RatingForm = ({
             id="comment"
             name="comment"
             rows="3"
+            placeholder="Leave a comment..."
             value={comment}
             onChange={handleCommentChange}
           ></textarea>
