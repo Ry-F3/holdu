@@ -109,27 +109,23 @@ function JobsHomePage({ searchQuery }) {
               <Spinner size="50px" />
             </div>
           </Container>
+        ) : jobsPost.results.length ? (
+          [...jobsPost.results]
+            .reverse()
+            .map((jobPost) => (
+              <JobsPost
+                key={jobPost.job_listing_id}
+                {...jobPost}
+                postJob
+                setJobsPost={setJobsPost}
+                like_id={jobPost.like_id}
+                refetchJobsData={refetchJobsData}
+              />
+            ))
         ) : (
-          <>
-            {jobsPost.results.length ? (
-              [...jobsPost.results]
-                .reverse()
-                .map((jobPost) => (
-                  <JobsPost
-                    key={jobPost.job_listing_id}
-                    {...jobPost}
-                    postJob
-                    setJobsPost={setJobsPost}
-                    like_id={jobPost.like_id}
-                    refetchJobsData={refetchJobsData}
-                  />
-                ))
-            ) : (
-              <Container>
-                <Asset src={dataImage} message="No results found." />
-              </Container>
-            )}
-          </>
+          <Container>
+            <Asset src={dataImage} message="No results found." />
+          </Container>
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
