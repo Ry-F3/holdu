@@ -716,6 +716,24 @@ In contrast, frontend development presented more challenges, requiring a more fl
 
 Overall, while backend work followed a more structured and predictable path facilitated by the sprint boards, frontend development demanded greater flexibility and adaptability to navigate the complexities inherent in building the user interface and ensuring a seamless user experience.
 
+<br>
+
+### MoSCoW labeling [link](https://github.com/Ry-F3/holdu/labels)
+
+- **CRUD: Tag**: Implementation of basic CRUD operations for managing tags.
+- **Something isn't working**: Issue or task related to debugging or fixing a problem.
+- **EPIC: Jobs**: Large-scale feature development related to job-related functionalities.
+- **EPIC: Likes and Comments**: Development of features related to liking and commenting on content.
+- **EPIC: Network**: Development of functionalities related to user networks.
+- **EPIC: Notification**: Development of notification system features.
+- **EPIC: Ratings**: Implementation of features related to user ratings.
+- **EPIC: Skills**: Development of features related to user skills management.
+- **EPIC: User Profiles Types**: Development of features related to different types of user profiles.
+- **PRIORITY: Could-Have**: Features or tasks that are optional but desirable.
+- **PRIORITY: Must-Have**: Features or tasks that are essential for the project's success.
+- **PRIORITY: Should-Have**: Features or tasks that are important but not critical.
+- **PRIORITY: Wont-Have**: Features or tasks that will not be included in the project scope.
+- **wontfix**: Indicates that a reported issue will not be addressed or fixed.
 
 <hr>
 
