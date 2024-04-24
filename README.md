@@ -686,7 +686,7 @@ In my form validation process, I've chosen to use Bootstrap Alerts to effectivel
 </details>
 <hr>
 <details>
-<summary>Boootstrap Alerts</summary>
+<summary>Bootstrap Alerts</summary>
 <br>
 
 ![validation-2](src/assets/readme/validation-1.png)
@@ -694,7 +694,7 @@ In my form validation process, I've chosen to use Bootstrap Alerts to effectivel
 </details>
 <hr>
 <details>
-<summary>Boootstrap Alerts</summary>
+<summary>Bootstrap Alerts</summary>
 <br>
 
 ![validation-3](src/assets/readme/validation-3.png)

@@ -383,10 +383,12 @@ const NotificationPage = () => {
                         </div>
                         <div className="d-flex justify-content-center">
                           {deleteClickedWithoutSelection && (
-                            <div
-                              className="alert alert-warning mt-3"
-                              role="alert">
-                              Please select at least one alert.
+                            <div className="d-flex justify-content-center d-lg-none">
+                              <div
+                                className="alert alert-warning mt-3"
+                                role="alert">
+                                Please select at least one alert.
+                              </div>
                             </div>
                           )}
                         </div>
