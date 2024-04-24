@@ -718,7 +718,7 @@ Overall, while backend work followed a more structured and predictable path faci
 
 <br>
 
-### MoSCoW labeling [link](https://github.com/Ry-F3/holdu/labels)
+#### MoSCoW labeling [link](https://github.com/Ry-F3/holdu/labels)
 
 - **CRUD: Tag**: Implementation of basic CRUD operations for managing tags.
 - **Something isn't working**: Issue or task related to debugging or fixing a problem.
@@ -734,6 +734,8 @@ Overall, while backend work followed a more structured and predictable path faci
 - **PRIORITY: Should-Have**: Features or tasks that are important but not critical.
 - **PRIORITY: Wont-Have**: Features or tasks that will not be included in the project scope.
 - **wontfix**: Indicates that a reported issue will not be addressed or fixed.
+
+<br>
 
 <hr>
 
