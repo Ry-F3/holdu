@@ -883,7 +883,7 @@ All CSS files have been validated using the W3C CSS Validator. Some files initia
 | SignInUpForm.module.css  | &#10003;         |
 | Spinner.module.css       | &#10003;         |
 | TopJobs.module.css       | &#10003;         |
-
+| ApplicantItem.module.css | &#10003;         |
 
 <br>
 
