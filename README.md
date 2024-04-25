@@ -1023,6 +1023,73 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 <br>
 
+#### User Story 21: As a user, I want to have control over the connections I establish on the platform.
+| Step                                                 | Expected Result                                       | Actual Result                                         |
+|------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Send connection requests                            | Ability to send connection requests                    | Ability to send connection requests                    |
+| View pending connection requests                    | Pending connection requests are displayed             | Pending connection requests are displayed             |
+| View sent connection requests                       | Sent connection requests are displayed                | Sent connection requests are displayed                |
+| Manage connections                                  | Ability to control connections established on the platform, including the ability to delete connections | Ability to control connections established on the platform, including the ability to delete connections |
+| Receive alerts for connection updates               | Alerts are sent to the user's alerts page for updates | Alerts are sent to the user's alerts page for updates |
+
+<br>
+
+#### User Story 22: I should be able to view pending connection requests and manage them accordingly.
+| Step                                                 | Expected Result                                       | Actual Result                                         |
+|------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| View pending connection requests                     | Pending connection requests are displayed              | Pending connection requests are displayed              |
+
+<br>
+
+#### User Story 23: As a user, I want to be able to view the connection requests I've sent to other users.
+| Step                                                 | Expected Result                                       | Actual Result                                         |
+|------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| View sent connection requests                        | Sent connection requests are displayed                | Sent connection requests are displayed                |
+
+<br>
+
+#### User Story 24: As a user, I want a centralized dashboard to manage all my connections.
+| Step                                                 | Expected Result                                       | Actual Result                                         |
+|------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Access centralized dashboard for connections         | Dashboard displays options to manage connections      | Dashboard displays options to manage connections      |
+
+<br>
+
+#### User Story 25: As a user, I want to receive notifications for connection requests, job alerts, accepted applications, message alerts, and new ratings.
+| Step                                                 | Expected Result                                       | Actual Result                                         |
+|------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Receive notifications for connection requests, job alerts, ~~accepted applications~~, message alerts, and new ratings | Notifications are received accordingly               | Notifications are received accordingly               |
+
+<br>
+
+#### User Story 26: I should be able to mark notifications as read or delete them.
+| Step                                                 | Expected Result                                                                          | Actual Result                                         |
+|------------------------------------------------------|------------------------------------------------------------------------------------------|-------------------------------------------------------|
+| Mark notifications as read or delete them            | Ability to delete notifications by checking a tick box. Note: The "mark as read" function is not implemented in the front end yet. (❌) | Feature not available yet. The "mark as read" function is not implemented in the front end yet (❌) |
+
+<br>
+
+#### User Story 27: 	As a user, I want to be able to leave reviews on users' profile pages that contribute to their average rating.
+| Step                                                 | Expected Result                                       | Actual Result                                         |
+|------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Leave reviews on users' profile pages                | Ability to leave reviews that contribute to their average rating | Ability to leave reviews that contribute to their average rating |
+
+#### User Story 28: As a user, I want to be able to see the employer's activity on their profile page.
+| Step                                                 | Expected Result                                       | Actual Result                                         |
+|------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| View employer's activity on their profile page       | Ability to see the employer's activity                | Ability to see the employer's activity                |
+
+#### User Story 29: As a user, I want to be able to see the number of connections on a profile page.
+| Step                                                 | Expected Result                                       | Actual Result                                         |
+|------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| View number of connections on a profile page         | Number of connections is displayed                    | Number of connections is displayed                    |
+
+#### User Story 30: As a user, I want to see a defining badge to know if a user is looking to work or looking to hire.
+| Step                                                 | Expected Result                                       | Actual Result                                         |
+|------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| View defining badge indicating user's intention      | Badge indicating if user is looking to work or looking to hire is displayed | Badge indicating user's intention is displayed         |
+
+
 ### W3C Validator CSS
 
 <br>
