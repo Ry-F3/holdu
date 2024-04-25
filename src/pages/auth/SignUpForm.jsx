@@ -44,7 +44,7 @@ const SignUpForm = () => {
       history.push("/signin");
     } catch (err) {
     setErrors(err.response?.data || {});
-      console.log(errors); 
+      // Do nothing
     }
       // Check if profile_type is empty and set error accordingly
       if (signUpData.profile_type === "") {

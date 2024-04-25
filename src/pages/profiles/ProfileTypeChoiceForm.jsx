@@ -61,7 +61,7 @@ const ProfileTypeChoiceForm = () => {
             });
           }
         } catch (err) {
-          console.log(err);
+          setErrors(err);
           history.push("/");
         }
       } else {
@@ -126,11 +126,7 @@ const ProfileTypeChoiceForm = () => {
       setProfileData(data);
       history.push("/");
     } catch (err) {
-      if (err.response && err.response.data) {
-        setErrors(err.response.data);
-      } else {
-        setErrors({ general: "An error occurred while submitting the form" });
-      }
+      setErrors(err);
     }
   };
 

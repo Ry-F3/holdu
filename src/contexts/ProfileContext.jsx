@@ -26,7 +26,7 @@ export const ProfileProvider = ({ children }) => {
           setProfileData(data);
           
         } catch (error) {
-          console.error("Error fetching profile data:", error);
+          // Do nothing
         }
       }
     };

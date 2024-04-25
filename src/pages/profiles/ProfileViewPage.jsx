@@ -75,7 +75,7 @@ const ProfileViewPage = () => {
         }
       } catch (error) {
         if (isMounted.current) {
-          setError("Failed to fetch profile data.");
+          setError(error);
           setIsLoading(false);
         }
       }
@@ -104,8 +104,8 @@ const ProfileViewPage = () => {
         );
         setAcceptedConnections(accepted);
       }
-    } catch (err) {
-      console.error("Error fetching data:", err);
+    } catch (error) {
+      setError(error);
     } finally {
       if (isMounted.current) {
         setTimeout(() => {
@@ -117,12 +117,11 @@ const ProfileViewPage = () => {
 
   // Function to handle deleting a connection
   const handleDeleteConnection = async (connectionId) => {
-    console.log("Deleting connection:", connectionId);
     try {
       await axios.delete(`/connections/${connectionId}/`);
       fetchData();
     } catch (error) {
-      console.error("Error deleting connection:", error);
+      setError(error);
     }
   };
 
@@ -169,12 +168,10 @@ const ProfileViewPage = () => {
         comment,
       });
 
-      console.log("Rating submitted successfully");
       window.location.reload();
     } catch (error) {
       // Handle error
-      console.error("Error submitting rating:", error);
-      setError("Failed to submit rating. Please try again later.");
+      setError(error);
     }
   };
 

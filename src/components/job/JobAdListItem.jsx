@@ -66,7 +66,7 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
       setApprovedApplicants(approvedApplicants);
       setFilteredApplicants(pendingApplicants);
     } catch (error) {
-      console.error("Error fetching applicants:", error);
+      // Do nothing
     }
   }, [ad.job_listing_id]); // Dependency added here
 
@@ -103,7 +103,7 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
 
   const handleApplicantStatus = async (applicantId, status) => {
     if (!ad || !ad.job_listing_id) {
-      console.error("Error: Job listing ID is undefined.");
+      // Do nothing
       return;
     }
 
@@ -153,7 +153,7 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
         }
       }
     } catch (error) {
-      console.error(error);
+      // Do nothing
     }
   };
 

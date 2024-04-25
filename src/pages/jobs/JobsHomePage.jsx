@@ -47,7 +47,7 @@ function JobsHomePage({ searchQuery }) {
       });
       setFilteredJobsPost(data.results.filter((job) => !job.is_listing_closed));
     } catch (err) {
-      console.log(err);
+      // Do nothing
     } finally {
       setTimeout(() => {
         setLoadingPage(false);

@@ -57,7 +57,7 @@ export const CurrentUserProvider = ({ children }) => {
         setLoginCount(0);
       }
     } catch (err) {
-      console.log(err);
+      // Do nothing
     }
   };
 
@@ -94,7 +94,7 @@ export const CurrentUserProvider = ({ children }) => {
           }
         }
       } catch (err) {
-        console.log(err);
+        // Do nothing
       }
     };
 

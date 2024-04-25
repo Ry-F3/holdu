@@ -10,7 +10,7 @@ import { Button, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 // Styles
 import styles from "../../styles/JobsPost.module.css";
-import pointerStyle from "../../styles/Pointer.module.css"
+import pointerStyle from "../../styles/Pointer.module.css";
 // Components
 import JobPostHomeItem from "../../components/job/JobPostHomeItem";
 
@@ -67,7 +67,7 @@ const JobsPost = ({
         ),
       }));
     } catch (err) {
-      console.error(err);
+      // Do nothing
     }
   };
 
@@ -90,7 +90,7 @@ const JobsPost = ({
         ),
       }));
     } catch (err) {
-      console.error(err);
+      // Do nothing
     }
   };
 
@@ -137,8 +137,7 @@ const JobsPost = ({
       setApplicantsCount((prevCount) => prevCount - 1);
       refetchJobsData();
     } catch (err) {
-      console.error(err);
-     
+      // Do nothing
     }
   };
 
@@ -168,7 +167,7 @@ const JobsPost = ({
           <span>{created_at}</span>
         </div>
       </Card.Body>
-      <Card.Body >
+      <Card.Body>
         <ul className="list-unstyled rounded">
           <JobPostHomeItem
             key={job_listing_id}

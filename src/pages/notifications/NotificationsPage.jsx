@@ -26,6 +26,8 @@ import Asset from "../../components/Asset";
 const NotificationPage = () => {
   const [notifications, setNotifications] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+  // eslint-disable-next-line
+  const [error, setError] = useState(null);
   const [sendersProfileData, setSendersProfileData] = useState({});
   const [selectedNotifications, setSelectedNotifications] = useState([]);
   const currentUser = useCurrentUser();
@@ -40,8 +42,7 @@ const NotificationPage = () => {
         const { data } = await axiosReq.get("/notifications/");
         setNotifications(data);
       } catch (error) {
-        // Handle error
-        console.error("Error fetching notifications:", error);
+        setError(error);
       } finally {
         delay(1000).then(() => setHasLoaded(true));
       }
@@ -94,7 +95,7 @@ const NotificationPage = () => {
         setSendersProfileData(senderProfileData);
       } catch (error) {
         // Handle error
-        console.error("Error fetching sender profiles:", error);
+        setError(error);
       }
     };
 
@@ -199,7 +200,7 @@ const NotificationPage = () => {
       // Clear the selected notifications
       setSelectedNotifications([]);
     } catch (error) {
-      console.error("Error deleting notifications:", error);
+      setError(error);
     }
   };
 
@@ -231,11 +232,11 @@ const NotificationPage = () => {
           className={`border-bottom border-top-0 border-right-0 border-left-0 rounded-0 ${notifyStyles.Background}`}>
           <Card.Body className="border-0">
             <div
-              className="border-0"
-              style={{ display: "flex", alignItems: "center", opacity: 0.5 }}>
+              className="border-0 d-flex align-items-center"
+              style={{ opacity: 0.5 }}>
               <div className="mr-3">
                 <div
-                // Please note I could only get this to work with inline CSS react.
+                  // Please note I could only get this to work with inline CSS react.
                   className="rounded-circle"
                   style={{
                     width: 60,
@@ -263,9 +264,7 @@ const NotificationPage = () => {
         key={notification.id}
         className={`border-bottom border-top-0 border-right-0 border-left-0 rounded-0 ${notifyStyles.Background}`}>
         <Card.Body className="border-0">
-          <div
-            className="border-0"
-            style={{ display: "flex", alignItems: "center" }}>
+          <div className="border-0 d-flex align-items-center">
             <Form.Check
               type="checkbox"
               id={`checkbox-${notification.id}`}

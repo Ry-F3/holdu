@@ -107,7 +107,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
           }
         }
       } catch (error) {
-        console.error("Error fetching job ads:", error);
+        // Do nothing
       } finally {
         if (isMounted) {
           setLoading(false);
@@ -166,7 +166,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
   const handleToggleFilter = () => {
     // Ensure sortedCurrentUserAds is an array before using some method
     if (!Array.isArray(sortedCurrentUserAds)) {
-      console.error("sortedCurrentUserAds is not an array");
+      // Do nothing
       return;
     }
 
@@ -278,7 +278,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
       }
       window.location.reload();
     } catch (err) {
-      console.log(err);
+      // Do nothing
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -300,7 +300,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
       setIsListingClosed(null);
       setToggleState(null);
     } catch (error) {
-      console.error("Error deleting job listing:", error);
+      // Do nothing
     }
   };
 
@@ -432,8 +432,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
       // Hide the "Close a job listing" option after it's clicked
       setShowPostAdForm(false);
     } catch (error) {
-      console.error("Error closing job listing:", error);
-      // Handle errors appropriately, such as displaying an error message to the user
+      // Do nothing
     }
   };
 

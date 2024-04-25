@@ -48,7 +48,7 @@ const ConnectionsPage = () => {
       const response = await axios.get("/connections/");
       setConnections(response.data.results);
     } catch (error) {
-      console.error(error);
+      // Do nothing
     }
     delay(100).then(() => setIsLoading(false));
     setInitialLoad(true);
@@ -72,7 +72,7 @@ const ConnectionsPage = () => {
           fetchConnections();
         });
       } catch (error) {
-        console.error(error);
+        // Do nothing
       }
     };
 
@@ -86,9 +86,8 @@ const ConnectionsPage = () => {
       const response = await axios.get("/pending-connections/");
       setPendingConnections(response.data.results);
     } catch (error) {
-      console.error(error);
+      // Do nothing
 
-      // Handle error, show error message, etc.
     }
   };
 
@@ -104,8 +103,7 @@ const ConnectionsPage = () => {
       // Fetch connections after the POST request is successful
       fetchConnections();
     } catch (error) {
-      console.error(error);
-      // Handle error, show error message, etc.
+      // Do nothing
     }
   };
 
@@ -115,8 +113,7 @@ const ConnectionsPage = () => {
       fetchPendingConnections(); // Refresh pending connections after accepting
       fetchConnections();
     } catch (error) {
-      console.error(error);
-      // Handle error, show error message, etc.
+      // Do nothing
     }
   };
 
@@ -126,8 +123,7 @@ const ConnectionsPage = () => {
       fetchPendingConnections(); // Refresh pending connections after declining
       fetchConnections();
     } catch (error) {
-      console.error(error);
-      // Handle error, show error message, etc.
+      // Do nothing
     }
   };
 
@@ -137,8 +133,7 @@ const ConnectionsPage = () => {
       // Refresh connections after successful deletion
       fetchConnections();
     } catch (error) {
-      console.error(error);
-      // Handle error, show error message, etc.
+      // Do nothing
     }
   };
 
@@ -147,7 +142,7 @@ const ConnectionsPage = () => {
       await axios.delete(`/connections/${connectionId}/`);
       fetchConnections();
     } catch (error) {
-      console.error(error);
+      // Do nothing
     }
   };
 
