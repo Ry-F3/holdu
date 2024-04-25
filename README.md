@@ -1168,6 +1168,25 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 </details>
 <hr>
 
+<br>
+
+### Warning
+
+<br>
+
+<details>
+  <summary>Warning [1]</summary>
+   <br>
+
+  ![warning](src/assets/readme/error-7.png)
+
+  <br>
+
+*Please note that when editing job posts, a warning occurs, highlighting that the date formatting is incorrect for pulling the data into the form. I couldn't seem to find the correct date format to get this to work correctly. This issue will be investigated in future development.*
+
+</details>
+<hr>
+
 
 #### Deployment Steps
 
