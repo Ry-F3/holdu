@@ -1652,9 +1652,13 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 | ProfileTypeChoiceForm.jsx | Implementation of a pop-up profile choice form on initial sign up was complex. Addition of a login count to prevent posting to a specific URL.    |             | Further solutions needed for a more efficient user experience. If pop-up box doesn't appear on joining, please reload the page.  | Pop-up profile choice form may not appear on initial sign-up. Reload page if necessary. |
 | ProfileTypeChoiceForm.jsx | Due to the setup to post the ProfileTypeChoice form to the user, sometimes there is unexpected behavior after posting other application forms, and the user is redirected to the home page after submission, i.e., posting a job post. | Needs further investigation | Investigate and implement a solution to handle redirection after form submission. | Redirect to the home page after form submission to be investigated and resolved. |
 
+<br>
+
 | Third Party Provider  | Issue  (25th April 2024)                                                                                                                                              | Investigate | Solution                                                                                                                    | Implementation                                                                                                       |
 |----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | Font Awesome         | Networking error when accessing the Font Awesome script.                                                                                             | Investigate | Investigate why the Font Awesome script is being blocked by CORS policy and implement a solution to allow access.          | Investigation required into why the Font Awesome script is being blocked by CORS policy. Solution to be implemented to allow access. |
+
+<br>
 
 <details>
   <summary>Fontawesome screenshot</summary>
