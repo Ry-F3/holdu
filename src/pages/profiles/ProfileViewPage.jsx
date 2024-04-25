@@ -229,8 +229,7 @@ const ProfileViewPage = () => {
     <>
       {isLoading ? (
         <Container
-          className={`${profileStyles.loadingContainer} bg-none border-none border-bottom-none`}
-          >
+          className={`${profileStyles.loadingContainer} bg-none border-none border-bottom-none`}>
           <Spinner size={60} />
         </Container>
       ) : (
@@ -257,8 +256,7 @@ const ProfileViewPage = () => {
                       <div className="row">
                         <div className="col-md-12">
                           <div
-                            className={`${profileStyles.profileContainer} bg-light rounded mb-1 p-4 mt-1`}
-                            >
+                            className={`${profileStyles.profileContainer} bg-light rounded mb-1 p-4 mt-1`}>
                             <h2>About</h2>
                             <span className="text-muted small">
                               {profile.content}
@@ -267,10 +265,11 @@ const ProfileViewPage = () => {
                         </div>
                         <div className="col-md-12 ">
                           <>
-                            {ratings && ratings.results && ratings.results.length > 0 ? (
+                            {ratings &&
+                            ratings.results &&
+                            ratings.results.length > 0 ? (
                               <div
-                                className={`${profileStyles.profileContainer} rounded border text-muted p-3 mt-1 d-flex flex-column align-items-center`}
-                              >
+                                className={`${profileStyles.profileContainer} rounded border text-muted p-3 mt-1 d-flex flex-column align-items-center`}>
                                 {/* Ratings Container */}
                                 <div className="flex-grow-1 p-3 mt-0">
                                   {/* Ratings */}
@@ -280,12 +279,14 @@ const ProfileViewPage = () => {
                                   />
                                 </div>
                                 {/* Navigation buttons */}
-                                <div className="mt-2">
-                                  <RatingNavigationButtons
-                                    prevRating={prevRating}
-                                    nextRating={nextRating}
-                                  />
-                                </div>
+                                {ratings.results.length > 1 && (
+                                  <div className="mt-2">
+                                    <RatingNavigationButtons
+                                      prevRating={prevRating}
+                                      nextRating={nextRating}
+                                    />
+                                  </div>
+                                )}
                               </div>
                             ) : (
                               <div className="p-1 mt-1 mb-0 border text-left rounded justify-content-start">

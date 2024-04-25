@@ -235,6 +235,7 @@ const NotificationPage = () => {
               style={{ display: "flex", alignItems: "center", opacity: 0.5 }}>
               <div className="mr-3">
                 <div
+                // Please note I could only get this to work with inline CSS react.
                   className="rounded-circle"
                   style={{
                     width: 60,
