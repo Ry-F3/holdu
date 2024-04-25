@@ -84,7 +84,7 @@ const NavBar = ({ handleSearch }) => {
     <>
       <NavLink
         className="text-muted mr-2"
-        to={`/profiles/${currentUser?.profile_id}/user/`}>
+        to={`/profiles/${currentUser?.profile_id}/user`}>
         <div className="d-flex align-items-center">
           <Avatar src={currentUser?.profile_image} height={40} border={false} />
           <span className="d-none d-lg-flex align-items-center">

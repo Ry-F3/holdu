@@ -53,7 +53,7 @@ function App() {
           />
            <Route
             exact
-            path="/profiles/:id/user/"
+            path="/profiles/:id/user"
             render={() => <ProfileViewPage/>}
           />
           <Route exact path="/connect" render={() => <ConnectionsPage/>} />

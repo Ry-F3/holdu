@@ -16,7 +16,7 @@ const SentTab = ({ connections, handleUnsend }) => {
           return (
             <li key={connection.id} className="list-group-item">
               <div className="d-flex justify-content-between align-items-center">
-              <Link to={`/profiles/${connection.connection}/user/`}>
+              <Link to={`/profiles/${connection.connection}/user`}>
                 <div className="ml-2">
                   <h5 className="mt-0 mb-0 small">
                     {" "}
