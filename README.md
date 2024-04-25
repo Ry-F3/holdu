@@ -886,6 +886,11 @@ All CSS files have been validated using the W3C CSS Validator. Some files initia
 
 <br>
 
+
+*Please note that any remaining styling inline could not be changed.*
+
+<br>
+
 #### W3C Validator HTML
 
 <br>
