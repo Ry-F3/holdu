@@ -1066,6 +1066,7 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 | ProfileViewPage.jsx     | Authentication errors. An ideal solution would be to create a new view for specific profile IDs where authentication is not needed as a list format. |             | Quick fix: Removed the authenticated permission class from the detail view, which seemed to solve the problem temporarily. | Profile view has not crashed again on further testing.                    |
 | JobListItem.jsx         | Error code while fetching applicants. URL permissions are causing conflicts.                                                                        | Needs further investigation  | Trial removal of URL permissions caused recursive errors. Investigate and implement a solution to handle URL permissions effectively. | Error fetching applicants: Request failed with status code 400. Solutions will be found in further developments but seems to be causing no additional harm. Errors are present in the console.         |
 | ProfileTypeChoiceForm.jsx | Implementation of a pop-up profile choice form on initial sign up was complex. Addition of a login count to prevent posting to a specific URL.    |             | Further solutions needed for a more efficient user experience. If pop-up box doesn't appear on joining, please reload the page.  | Pop-up profile choice form may not appear on initial sign-up. Reload page if necessary. |
+| ProfileTypeChoiceForm.jsx | Due to the setup to post the ProfileTypeChoice form to the user, sometimes there is unexpected behavior after posting other application forms, and the user is redirected to the home page after submission, i.e., posting a job post. | Needs further investigation | Investigate and implement a solution to handle redirection after form submission. | Redirect to the home page after form submission to be investigated and resolved. |
 
 ### Errors 
 
@@ -1170,7 +1171,7 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
 <br>
 
-### Warning
+### Warnings
 
 <br>
 
