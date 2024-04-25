@@ -1850,6 +1850,6 @@ Special thanks to my mentor, Mo Shami, for their invaluable guidance and support
 - [React Documentation - Hooks/State](https://legacy.reactjs.org/docs/hooks-state.html)
 - [Font Awesome](https://fontawesome.com/)
 - [Adobe Photoshop](https://www.adobe.com/uk/products/photoshop/landpa.html?gclid=CjwKCAjw26KxBhBDEiwAu6KXtycXRaL-1bAqsIeQmvWDAhtkQJ5WJJvHcHOWs5Hz7KczvLAMYJoGoRoCKlUQAvD_BwE&mv=search&mv=search&mv2=paidsearch&sdid=2SLRC12G&ef_id=CjwKCAjw26KxBhBDEiwAu6KXtycXRaL-1bAqsIeQmvWDAhtkQJ5WJJvHcHOWs5Hz7KczvLAMYJoGoRoCKlUQAvD_BwE:G:s&s_kwcid=AL!3085!3!594208275240!e!!g!!photoshop!17011954550!138864783347&gad_source=1)
-- Code Institute React Walkthrough Project
+- Code Institute React Walkthrough Project (Please note that templates were frequently utilized as the initial foundation for the layout design for this project.)
 
 
