@@ -41,7 +41,7 @@ function JobsPostPage() {
           salary={jobsPost.salary}
           closing_date={jobsPost.closing_date}
           created_at={jobsPost.created_at}
-          likes_count={jobsPost.likes_count}
+          likesCount={jobsPost.likes_count}
           applicants={jobsPost.applicants}
           postJob
         />

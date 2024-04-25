@@ -7,14 +7,14 @@ const JobPostHomeItem = ({
   description,
   location,
   salary,
-  closing_date,
+  closingDate,
   numApplicants,
 }) => {
   return (
     <li className="py-3 mb-3 rounded p-3 position-relative">
       <div className="d-flex justify-content-between align-items-center">
         <div>
-          <h3 className="mb-1"><strong>{title} </strong></h3>
+          <h3 className="mb-1"><strong>{title}</strong></h3>
 
           <div className="d-flex align-items-center mb-2">
             <p className="mb-0 mr-3 small">
@@ -33,12 +33,11 @@ const JobPostHomeItem = ({
         <p className="mb-1 mb-2 small">Job Description: {description}</p>
         <div className="d-flex align-items-center">
           <p className={`${styles.ClosingBox} mb-0 mt-1 small`}>
-            Closing Date: {closing_date}
+            Closing Date: {closingDate}
           </p>
 
           <span className="mr-1 ml-3">Applicants:</span>
           <span className="badge bg-secondary text-white">
-            {" "}
             {numApplicants !== undefined ? numApplicants : 0}
           </span>
         </div>
@@ -46,5 +45,6 @@ const JobPostHomeItem = ({
     </li>
   );
 };
+
 
 export default JobPostHomeItem;

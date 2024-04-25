@@ -35,7 +35,7 @@ const JobsPost = ({
   const currentUser = useCurrentUser();
   const profileData = useProfileData();
   const [isApplying, setIsApplying] = useState(false);
-  const [has_applied, setHasApplied] = useState(is_applied);
+  const [hasApplied, setHasApplied] = useState(is_applied);
   const [applicantsCount, setApplicantsCount] = useState(
     applicants ? applicants.length : 0
   );
@@ -175,7 +175,7 @@ const JobsPost = ({
             description={description}
             location={location}
             salary={salary}
-            closing_date={closing_date}
+            closingDate={closing_date}
             numApplicants={applicantsCount}
           />
         </ul>
@@ -183,7 +183,7 @@ const JobsPost = ({
       <Card.Body className="border-top m-1">
         <div className="d-flex justify-content-between">
           {isEmployee && currentUser ? (
-            <form onSubmit={has_applied ? handleUnapply : handleApply}>
+            <form onSubmit={hasApplied ? handleUnapply : handleApply}>
               <div>
                 {/* Hidden input field with default value "applied" */}
                 <input
@@ -193,10 +193,10 @@ const JobsPost = ({
                 />
                 <Button aria-label="apply and unapply" disabled={isApplying} type="submit">
                   {isApplying
-                    ? has_applied
+                    ? hasApplied
                       ? "Unapplying..."
                       : "Applying..."
-                    : has_applied
+                    : hasApplied
                     ? "Unapply"
                     : "Easy Apply"}
                 </Button>
