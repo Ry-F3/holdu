@@ -13,12 +13,9 @@ const PendingTab = ({ pendingConnections, handleAccept, handleDecline }) => {
         <li
           key={pendingConnection.id}
           className="list-group-item d-flex align-items-center justify-content-between">
-          {/* <span>{pendingConnection.owner}</span> */}
-          <Link to={`/profiles/${pendingConnection.owner}/user`}>
             <div className="ml-2">
               <h5 className="mt-0 mb-0 small"> {pendingConnection.owner}</h5>
             </div>
-          </Link>
           <div>
             <Button
               variant="sm"
