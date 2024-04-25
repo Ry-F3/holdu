@@ -1275,10 +1275,23 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 <br>
 
-#### User Story 25: As a user, I want to receive notifications for connection requests, job alerts, accepted applications, message alerts, and new ratings.
+#### User Story 25: As a user, I want to receive notifications for connection requests, job alerts, ~~accepted applications~~, message alerts, and new ratings.
 | Step                                                 | Expected Result                                       | Actual Result                                         |
 |------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Receive notifications for connection requests, job alerts, ~~accepted applications~~, message alerts, and new ratings | Notifications are received accordingly               | Notifications are received accordingly               |
+
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-25.png)
+
+
+
+</details> 
 
 <br>
 
@@ -1294,21 +1307,80 @@ Description: Mostly focused on building the profile pages. This is in its most b
 |------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Leave reviews on users' profile pages                | Ability to leave reviews that contribute to their average rating | Ability to leave reviews that contribute to their average rating |
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-27.png)
+
+
+
+</details> 
+
+<br>
+
 #### User Story 28: As a user, I want to be able to see the employer's activity on their profile page.
 | Step                                                 | Expected Result                                       | Actual Result                                         |
 |------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | View employer's activity on their profile page       | Ability to see the employer's activity                | Ability to see the employer's activity                |
+
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-28.png)
+
+
+
+</details> 
+
+<br>
 
 #### User Story 29: As a user, I want to be able to see the number of connections on a profile page.
 | Step                                                 | Expected Result                                       | Actual Result                                         |
 |------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | View number of connections on a profile page         | Number of connections is displayed                    | Number of connections is displayed                    |
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-29.png)
+
+
+
+</details> 
+
+<br>
+
 #### User Story 30: As a user, I want to see a defining badge to know if a user is looking to work or looking to hire.
 | Step                                                 | Expected Result                                       | Actual Result                                         |
 |------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | View defining badge indicating user's intention      | Badge indicating if user is looking to work or looking to hire is displayed | Badge indicating user's intention is displayed         |
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-30.png)
+
+
+
+</details> 
+
+<br>
 
 ### W3C Validator CSS
 
