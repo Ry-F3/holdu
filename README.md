@@ -1055,6 +1055,36 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
 <hr>
 
+<details>
+
+<hr>
+
+  <summary>Lighthouse</summary>
+
+  <br>
+
+  <p><strong>Dropdown Selection:</strong> "Desktop"</p>
+
+   ![lighthouse](src/assets/readme/lighthouse-desktop.png)
+
+   <br>
+
+  <p><strong>Dropdown Selection:</strong> "Mobile"</p>
+
+  ![lighthouse](src/assets/readme/lighthouse-desktop.png)
+
+ <br>
+  
+  <p><strong>Issue Encountered:</strong> Lighthouse results across our web pages exhibit inconsistency, necessitating fixes to elevate scores uniformly.</p>
+
+  *Commited to ongoing development efforts aimed at further enhancing Lighthouse scores. As part of our development lifecycle, fixes and optimizations will continue to be made to maintain consistency and improve overall performance.*
+
+
+
+</details>
+
+<hr>
+
 <br>
 
 ### Bugs
