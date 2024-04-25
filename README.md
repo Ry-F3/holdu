@@ -858,6 +858,91 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Navigation Search Bar    | Search bar works on all pages and takes user to home page. Clear button sometimes requires two clicks to work.                                                                           | Search bar successfully navigates to home page. Clear button occasionally requires two clicks to work, needing investigation for future developments.                                                                                                                                                                                                                   |
 <br>
 
+#### Testing User Stories
+
+#### User Story #1: As a new user, I want to be able to sign up for an account by providing my ~~email~~, username, and password.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Navigate to the sign-up page (renamed join now)    | Page loads with a form for completion                | Page loads with the form for completion               |
+| Complete the form providing email, username, pass. | Form submits successfully                            | Form submitted successfully                           |
+
+<br>
+
+#### User Story #2: If I already have an account, I should be notified that the chosen username or ~~email~~ is already in use.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Click submit on the sign-up form                   | Validation responds with bootstrap alerts            | Validation responds with bootstrap alerts             |
+| Enter username that is already in use        | Error message displays indicating in use             | Error message displays indicating in use              |
+
+<br>
+
+#### User Story #3: As a registered user, I want to log in to my account using my username/~~email~~ and password.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Enter username and password and click login  | Redirected to the dashboard                          | Redirected to the dashboard                           |
+
+<br>
+
+#### User Story #4: As a user I would like to pick my profile type when registering.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Complete the sign-up form and select profile type   | Initial login redirects users to the ProfileChoiceForm. Details must be completed to continue | Initial login redirects users to the ProfileChoiceForm. Details must be completed to continue. Note: Sometimes there is unexpected behavior sending the user to the home page. Fixes will be implemented in future development. |
+
+<br>
+
+#### User Story #5: If my credentials are incorrect, I should receive an error message prompting me to try again.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Enter incorrect username/email or password          | Error message prompts to try again                    | Error message prompts to try again                     |
+
+<br>
+
+#### User Story #6: Upon successful login, I should be redirected to the dashboard.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Successfully log in                                 | Redirected to the dashboard                          | Redirected to the dashboard                           |
+
+<br>
+
+#### User Story #7: As a user, I want a top navigation bar with links to different sections of the application such as Home, Profile, Notifications, Messages, etc.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Navigate to any page                               | Top navigation bar displays with relevant links. Note: Depending on profile choice, appropriate icons are shown. For employers: Home, Connect, Jobs, Alerts. For employees: Home, Connect, and Alerts. | Top navigation bar displays with relevant links. Note: Depending on profile choice, appropriate icons are shown. For employers: Home, Connect, Jobs, Alerts. For employees: Home, Connect, and Alerts. |
+
+<br>
+
+#### User Story #8: The navigation bar should also include options for logging out and accessing settings.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Navigate to any page                               | Top navigation bar includes logout and settings      | Top navigation bar includes logout and settings       |
+
+<br>
+
+#### User Story #9: As a user on mobile devices, I want a bottom navigation bar for easy access to different sections of the application.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Access the application on a mobile device           | Bottom navigation bar displays for easy access. Note: On mobile, the navbar disappears when scrolling to ensure easy access to the UI. | Bottom navigation bar displays for easy access. Note: On mobile, the navbar disappears when scrolling to ensure easy access to the UI. |
+
+<br>
+
+#### User Story #10: The bottom navigation should include icons or labels for Home, Profile, Notifications, ~~Messages~~, etc.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Access the application on a mobile device           | Bottom navigation bar includes icons or labels       | Bottom navigation bar includes icons or labels        |
+
+
+<br>
+
 #### W3C Validator CSS
 
 <br>
