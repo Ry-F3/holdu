@@ -863,7 +863,20 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Step                                                | Expected Result                                       | Actual Result                                         |
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Navigate to the sign-up page (renamed join now)    | Page loads with a form for completion                | Page loads with the form for completion               |
-| Complete the form providing email, username, pass. | Form submits successfully                            | Form submitted successfully                           |
+| Complete the form providing email, username, pass. | Form submits successfully                            | Form submitted successfully  
+
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-1.png)
+
+
+
+</details>                         |
 
 <br>
 
@@ -874,6 +887,19 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Click submit on the sign-up form                   | Validation responds with bootstrap alerts            | Validation responds with bootstrap alerts             |
 | Enter username that is already in use        | Error message displays indicating in use             | Error message displays indicating in use              |
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-2.png)
+
+
+
+</details>  
+
 <br>
 
 #### User Story #3: As a registered user, I want to log in to my account using my username/~~email~~ and password.
@@ -881,6 +907,19 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Step                                                | Expected Result                                       | Actual Result                                         |
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Enter username and password and click login  | Redirected to the homepage                          | Redirected to the homepage                           |
+
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-3.png)
+
+
+
+</details>  
 
 <br>
 
@@ -890,6 +929,19 @@ Description: Mostly focused on building the profile pages. This is in its most b
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Complete the sign-up form and select profile type   | Initial login redirects users to the ProfileChoiceForm. Details must be completed to continue | Initial login redirects users to the ProfileChoiceForm. Details must be completed to continue. Note: Sometimes there is unexpected behavior sending the user to the home page Fixes will be implemented in future development. |
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-4.png)
+
+
+
+</details>  
+
 <br>
 
 #### User Story #5: If my credentials are incorrect, I should receive an error message prompting me to try again.
@@ -897,6 +949,19 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Step                                                | Expected Result                                       | Actual Result                                         |
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Enter incorrect username/email or password          | Error message prompts to try again                    | Error message prompts to try again                     |
+
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-5.png)
+
+
+
+</details>  
 
 <br>
 
@@ -906,6 +971,19 @@ Description: Mostly focused on building the profile pages. This is in its most b
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Successfully log in                                 | Redirected to the home page                          | Redirected to the home page                           |
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-6.png)
+
+
+
+</details>  
+
 <br>
 
 #### User Story #7: As a user, I want a top navigation bar with links to different sections of the application such as Home, Profile, Notifications, Messages, etc.
@@ -913,6 +991,19 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Step                                                | Expected Result                                       | Actual Result                                         |
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Navigate to any page                               | Top navigation bar displays with relevant links. Note: Depending on profile choice, appropriate icons are shown. For employers: Home, Connect, Jobs, Alerts. For employees: Home, Connect, and Alerts. | Top navigation bar displays with relevant links. Note: Depending on profile choice, appropriate icons are shown. For employers: Home, Connect, Jobs, Alerts. For employees: Home, Connect, and Alerts. |
+
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-7.png)
+
+
+
+</details>  
 
 <br>
 
@@ -922,6 +1013,19 @@ Description: Mostly focused on building the profile pages. This is in its most b
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Navigate to any page                               | Top navigation bar includes logout and settings      | Top navigation bar includes logout and settings       |
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-8.png)
+
+
+
+</details>  
+
 <br>
 
 #### User Story #9: As a user on mobile devices, I want a bottom navigation bar for easy access to different sections of the application.
@@ -929,6 +1033,19 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Step                                                | Expected Result                                       | Actual Result                                         |
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Access the application on a mobile device           | Bottom navigation bar displays for easy access. Note: On mobile, the navbar disappears when scrolling to ensure easy access to the UI. | Bottom navigation bar displays for easy access. Note: On mobile, the navbar disappears when scrolling to ensure easy access to the UI. |
+
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-9.png)
+
+
+
+</details>  
 
 <br>
 
@@ -949,6 +1066,18 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Apply for jobs that interest me                     | Successful submission of job applications             | Successful submission of job applications             |
 | Optionally, unapply for a job                       | Ability to retract a job application                  | Ability to retract a job application                  |
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-12.png)
+
+
+
+</details>  
 
 <br>
 
@@ -958,6 +1087,19 @@ Description: Mostly focused on building the profile pages. This is in its most b
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Post adverts with job details                       | Adverts are successfully posted with all details      | Adverts are successfully posted with all details      |
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-13.png)
+
+
+
+</details>  
+
 <br>
 
 #### User Story #14: As an Employer user, I want to be able to manage my job listings.
@@ -966,6 +1108,18 @@ Description: Mostly focused on building the profile pages. This is in its most b
 |-----------------------------------------------------|------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
 | Manage job listings                                 | Ability to manage job listings is available. As an employer, I can edit and delete job listings. I can filter between closed and open listings. Note: Sometimes unexpected behavior occurs, where the correct applicants for the correct job are not being shown when filtered. | Ability to manage job listings is available. As an employer, I can edit and delete job listings. I can filter between closed and open listings. Note: Sometimes unexpected behavior occurs, where the correct applicants for the correct job are not being shown when filtered. |
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-14.png)
+
+
+
+</details>  
 
 <br>
 
@@ -976,6 +1130,7 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Use the search bar to look for jobs in my location and type of job | Relevant job listings are displayed based on search criteria | Relevant job listings are displayed based on search criteria |
 | Apply for jobs that interest me                     | Successful submission of job applications             | Successful submission of job applications             |
 | Optionally, unapply for a job                       | Ability to retract a job application                  | Ability to retract a job application                  |
+
 
 <br>
 
@@ -1005,6 +1160,19 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 **On Mobile:** Navigate to the profile icon in the bottom navigation bar.
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-18.png)
+
+
+
+</details>  
+
 <br>
 
 #### User Story #19: If I'm an employee, I should be able to add/edit my work experiences.
@@ -1012,6 +1180,19 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Step                                                | Expected Result                                       | Actual Result                                         |
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Add/edit work experiences                          | Ability to add/edit work experiences is available     | Feature not available yet (❌)                        |
+
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-19.png)
+
+
+
+</details>  
 
 <br>
 
@@ -1032,6 +1213,19 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Manage connections                                  | Ability to control connections established on the platform, including the ability to delete connections | Ability to control connections established on the platform, including the ability to delete connections |
 | Receive alerts for connection updates               | Alerts are sent to the user's alerts page for updates | Alerts are sent to the user's alerts page for updates |
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-21.png)
+
+
+
+</details>  
+
 <br>
 
 #### User Story 22: I should be able to view pending connection requests and manage them accordingly.
@@ -1039,12 +1233,38 @@ Description: Mostly focused on building the profile pages. This is in its most b
 |------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | View pending connection requests                     | Pending connection requests are displayed              | Pending connection requests are displayed              |
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-22.png)
+
+
+
+</details>  
+
 <br>
 
 #### User Story 23: As a user, I want to be able to view the connection requests I've sent to other users.
 | Step                                                 | Expected Result                                       | Actual Result                                         |
 |------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | View sent connection requests                        | Sent connection requests are displayed                | Sent connection requests are displayed                |
+
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-23.png)
+
+
+
+</details>  
 
 <br>
 
