@@ -1131,6 +1131,18 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Apply for jobs that interest me                     | Successful submission of job applications             | Successful submission of job applications             |
 | Optionally, unapply for a job                       | Ability to retract a job application                  | Ability to retract a job application                  |
 
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-15.png)
+
+
+
+</details> 
 
 <br>
 
@@ -1147,6 +1159,19 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Step                                                | Expected Result                                       | Actual Result                                         |
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Respond to job applications                        | Ability to respond to job applications. When a listing is closed, the employer has the ability to accept and reject applicants, who get filtered into an approved folder. | Ability to respond to job applications. When a listing is closed, the employer has the ability to accept and reject applicants, who get filtered into an approved folder. |
+
+<details>
+
+<summary>screenshot</summary>
+
+<br>
+
+
+![screenshot](src/assets/readme/test-17.png)
+
+
+
+</details> 
 
 <br>
 
