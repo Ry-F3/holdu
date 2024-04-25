@@ -841,8 +841,6 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 ## Testing
 
-<br>
-
 ### Manual Testing
 
 | Test Case                | Expected Outcome                                                                                                                    | Actual Outcome                                                                                                                                                                                                                                                                                                   |
@@ -902,11 +900,11 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 <br>
 
-#### User Story #6: Upon successful login, I should be redirected to the dashboard.
+#### User Story #6: Upon successful login, I should be redirected to the ~~dashboard~~ home.
 
 | Step                                                | Expected Result                                       | Actual Result                                         |
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
-| Successfully log in                                 | Redirected to the dashboard                          | Redirected to the dashboard                           |
+| Successfully log in                                 | Redirected to the home page                          | Redirected to the home page                           |
 
 <br>
 
@@ -947,7 +945,10 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 | Step                                                | Expected Result                                       | Actual Result                                         |
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
-| Browse through available job listings on the home page              | Job listings are displayed for browsing               | Job listings are displayed for browsing               |
+| Use the search bar to look for jobs in my location and type of job | Relevant job listings are displayed based on search criteria | Relevant job listings are displayed based on search criteria |
+| Apply for jobs that interest me                     | Successful submission of job applications             | Successful submission of job applications             |
+| Optionally, unapply for a job                       | Ability to retract a job application                  | Ability to retract a job application                  |
+
 
 <br>
 
