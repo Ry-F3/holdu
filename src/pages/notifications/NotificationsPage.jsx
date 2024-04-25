@@ -359,6 +359,7 @@ const NotificationPage = () => {
                           </div>
                           <div className="d-lg-flex">
                             <Button
+                              aria-label="cancel"
                               onClick={
                                 selectedNotifications.length ===
                                 notifications.results.length
@@ -375,6 +376,7 @@ const NotificationPage = () => {
                               )}
                             </Button>
                             <Button
+                              aria-label="bin"
                               className={`${notifyStyles.buttonSize} mb-0 d-lg-none`}
                               onClick={handleDeleteSelected}>
                               <i className="fa-solid fa-trash-can"></i>
@@ -426,6 +428,7 @@ const NotificationPage = () => {
               <div
                 className={`mb-0 border bg-white p-2 d-flex ${notifyStyles.Transition} ${alignClass}`}>
                 <Button
+                  aria-label="select all"
                   onClick={
                     selectedNotifications.length ===
                     notifications.results.length
@@ -441,7 +444,10 @@ const NotificationPage = () => {
                     <i className="fa-solid fa-check"></i>
                   )}
                 </Button>
-                <Button aria-label="bin" className="mb-0" onClick={handleDeleteSelected}>
+                <Button
+                  aria-label="bin"
+                  className="mb-0"
+                  onClick={handleDeleteSelected}>
                   <i className="fa-solid fa-trash-can"></i>
                 </Button>
               </div>

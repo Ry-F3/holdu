@@ -45,7 +45,7 @@ const ProfileHeader = ({
         currentUser.username === profile.owner_username && (
           <div className="ml-auto">
             <Link to={`/profiles/${currentUser?.profile_id}/`}>
-              <Button className={profileStyles.Button}>
+              <Button aria-label="edit profile" className={profileStyles.Button}>
                 <i className=" text-white fas fa-ellipsis-v" ></i>
               </Button>
             </Link>
