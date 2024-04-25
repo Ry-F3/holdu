@@ -876,7 +876,7 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 
 
-</details>                         |
+</details>                        
 
 <br>
 
