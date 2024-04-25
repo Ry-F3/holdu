@@ -841,7 +841,7 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 ## Testing
 
-<hr>
+<br>
 
 ### Manual Testing
 
@@ -882,7 +882,7 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 | Step                                                | Expected Result                                       | Actual Result                                         |
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
-| Enter username and password and click login  | Redirected to the dashboard                          | Redirected to the dashboard                           |
+| Enter username and password and click login  | Redirected to the homepage                          | Redirected to the homepage                           |
 
 <br>
 
@@ -890,7 +890,7 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 | Step                                                | Expected Result                                       | Actual Result                                         |
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
-| Complete the sign-up form and select profile type   | Initial login redirects users to the ProfileChoiceForm. Details must be completed to continue | Initial login redirects users to the ProfileChoiceForm. Details must be completed to continue. Note: Sometimes there is unexpected behavior sending the user to the home page. Fixes will be implemented in future development. |
+| Complete the sign-up form and select profile type   | Initial login redirects users to the ProfileChoiceForm. Details must be completed to continue | Initial login redirects users to the ProfileChoiceForm. Details must be completed to continue. Note: Sometimes there is unexpected behavior sending the user to the home page Fixes will be implemented in future development. |
 
 <br>
 
@@ -940,6 +940,85 @@ Description: Mostly focused on building the profile pages. This is in its most b
 |-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
 | Access the application on a mobile device           | Bottom navigation bar includes icons or labels       | Bottom navigation bar includes icons or labels        |
 
+
+<br>
+
+#### User Story #12: As a user, I want to browse through available job listings.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Browse through available job listings on the home page              | Job listings are displayed for browsing               | Job listings are displayed for browsing               |
+
+<br>
+
+#### User Story #13: 	As an Employer user I should be able to post adverts with details such as job title, company name, location, and a brief description.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Post adverts with job details                       | Adverts are successfully posted with all details      | Adverts are successfully posted with all details      |
+
+<br>
+
+#### User Story #14: As an Employer user, I want to be able to manage my job listings.
+
+| Step                                                | Expected Result                                                                                      | Actual Result                                                                                                         |
+|-----------------------------------------------------|------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| Manage job listings                                 | Ability to manage job listings is available. As an employer, I can edit and delete job listings. I can filter between closed and open listings. Note: Sometimes unexpected behavior occurs, where the correct applicants for the correct job are not being shown when filtered. | Ability to manage job listings is available. As an employer, I can edit and delete job listings. I can filter between closed and open listings. Note: Sometimes unexpected behavior occurs, where the correct applicants for the correct job are not being shown when filtered. |
+
+
+<br>
+
+#### User Story #15: As an Employee user, I want to be able to apply for jobs that interest me.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Use the search bar to look for jobs in my location and type of job | Relevant job listings are displayed based on search criteria | Relevant job listings are displayed based on search criteria |
+| Apply for jobs that interest me                     | Successful submission of job applications             | Successful submission of job applications             |
+| Optionally, unapply for a job                       | Ability to retract a job application                  | Ability to retract a job application                  |
+
+<br>
+
+#### User Story #16: As an Employee user, I want to be able to track the status of my job applications.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Track the status of job applications                | Ability to track the status of job applications       | Feature not available yet (❌)                        |
+
+<br>
+
+#### User Story #17: As an employer, I want to be able to respond to job applications.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Respond to job applications                        | Ability to respond to job applications. When a listing is closed, the employer has the ability to accept and reject applicants, who get filtered into an approved folder. | Ability to respond to job applications. When a listing is closed, the employer has the ability to accept and reject applicants, who get filtered into an approved folder. |
+
+<br>
+
+#### User Story #18: As a user, I want to view my profile information including name, profile type, content, image.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Navigate to profile information                    | Profile information is displayed properly             | Profile information is displayed properly             |
+
+**On Desktop:** Navigate to the user icon on the top navigation bar.
+
+**On Mobile:** Navigate to the profile icon in the bottom navigation bar.
+
+<br>
+
+#### User Story #19: If I'm an employee, I should be able to add/edit my work experiences.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Add/edit work experiences                          | Ability to add/edit work experiences is available     | Feature not available yet (❌)                        |
+
+<br>
+
+#### User Story #20: As a user I want to be able to rate other users and view their ratings.
+
+| Step                                                | Expected Result                                       | Actual Result                                         |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------|
+| Rate other users and view their ratings            | Ability to rate other users and view their ratings    | Ability to rate other users and view their ratings    |
 
 <br>
 
