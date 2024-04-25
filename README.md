@@ -1178,7 +1178,7 @@ Overall, my testing experience with ESLint involved troubleshooting installation
   <summary>Warning [1]</summary>
    <br>
 
-  ![warning](src/assets/readme/error-7.png)
+  ![warning](src/assets/readme/warning.png)
 
   <br>
 
