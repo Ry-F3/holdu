@@ -15,7 +15,6 @@ const RecentProfiles = ({
   profileData,
   handleConnect,
   limit,
- 
 }) => {
   return (
     <>
@@ -60,13 +59,14 @@ const RecentProfiles = ({
                       border={true}
                     />
                     <Link to={`/profiles/${profile.id}/user`}>
-                    <div className="ml-0">
-                      <h5 className="mt-0 mb-0 small">{profile.name}</h5>
-                    </div>
+                      <div className="ml-0">
+                        <h5 className="mt-0 mb-0 small">{profile.name}</h5>
+                      </div>
                     </Link>
                   </div>
                   {pendingConnection ? (
                     <Button
+                      aria-label="pending"
                       className={`rounded `}
                       size="sm"
                       disabled>
@@ -76,6 +76,7 @@ const RecentProfiles = ({
                     <Button
                       className={`rounded `}
                       size="sm"
+                      aria-label="connect"
                       onClick={() => handleConnect(profile.id)}>
                       Connect
                     </Button>

@@ -191,7 +191,7 @@ const JobsPost = ({
                   name="employee_status"
                   defaultValue="applied"
                 />
-                <Button disabled={isApplying} type="submit">
+                <Button aria-label="apply and unapply" disabled={isApplying} type="submit">
                   {isApplying
                     ? has_applied
                       ? "Unapplying..."

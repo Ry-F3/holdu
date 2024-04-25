@@ -7,7 +7,6 @@ import connectStyles from "../../styles/ConnectionsPage.module.css";
 import styles from "../../App.module.css";
 
 const ConnectionsTab = ({ connections, handleDeleteConnection }) => {
-
   return (
     <ul className="list-group">
       {/* Render connections */}
@@ -27,6 +26,7 @@ const ConnectionsTab = ({ connections, handleDeleteConnection }) => {
               </Link>
               <div>
                 <Button
+                  aria-label="delete"
                   className={` ${connectStyles.Button}`}
                   onClick={() => handleDeleteConnection(connection.id)}>
                   &#10006;

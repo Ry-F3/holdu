@@ -21,7 +21,10 @@ function TopJobs({
         className={`${appStyles.Background} list-group-item rounded d-flex justify-content-center align-items-center mb-2`}>
         <h3 className={`${topJobs.H3} p-3 mb-0`}>Top Jobs</h3>
         {showClearButton && (
-          <button className="btn btn-danger" onClick={handleClearClick}>
+          <button
+            aria-label="clear"
+            className="btn btn-danger"
+            onClick={handleClearClick}>
             <i className="fa-solid fa-broom"></i> Clear
           </button>
         )}

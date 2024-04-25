@@ -18,12 +18,15 @@ const PendingTab = ({ pendingConnections, handleAccept, handleDecline }) => {
           <div>
             <Button
               variant="sm"
+              aria-label="accept connection"
               className={`rounded mr-2 ${styles.AcceptButton}`}
               onClick={() => handleAccept(pendingConnection.id)}>
+                
               Accept
             </Button>
             <Button
               variant="sm"
+              aria-label="decline connection"
               className={`rounded ${styles.DeclineButton}`}
               onClick={() => handleDecline(pendingConnection.id)}>
               Decline

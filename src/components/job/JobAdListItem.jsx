@@ -176,6 +176,7 @@ const JobListItem = ({ ad, handleEdit, handleDelete }) => {
 
           <div className={`${appStyles.myPointer}`}>
             <Button
+              aria-label="delete"
               className={`${appStyles.Button} mb-0 d-flex align-items-center justify-content-center`}
               onClick={() => handleDelete(ad.job_listing_id)}>
               <i className="fa fa-trash"></i>

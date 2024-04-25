@@ -11,8 +11,7 @@ const ApplicantFilteredItem = ({ applicantData, handleApplicantStatus }) => {
   return (
     <div
       key={applicantData.id}
-    className={` ${styles.Profile} mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center`}
-      >
+      className={` ${styles.Profile} mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center`}>
       <Avatar
         src={applicantData.applicant.image}
         alt={applicantData.applicant.owner_username}
@@ -24,16 +23,11 @@ const ApplicantFilteredItem = ({ applicantData, handleApplicantStatus }) => {
         {applicantData.applicant.average_rating ? (
           <>
             <span className="badge bg-secondary text-white">
-           
-                {[
-                  ...Array(parseInt(applicantData.applicant.average_rating)),
-                ].map((_, index) => (
-                  <i
-                    key={index}
-                    className="fas fa-star"
-                  />
-                ))}
-          
+              {[...Array(parseInt(applicantData.applicant.average_rating))].map(
+                (_, index) => (
+                  <i key={index} className="fas fa-star" />
+                )
+              )}
             </span>
           </>
         ) : (
@@ -44,6 +38,7 @@ const ApplicantFilteredItem = ({ applicantData, handleApplicantStatus }) => {
       {/* Employer applicant decision */}
       <div className="d-flex justify-content-center mt-3">
         <Button
+          aria-label="accept"
           className="mr-3"
           onClick={() =>
             handleApplicantStatus(applicantData.applicant.id, "accepted")
@@ -51,6 +46,7 @@ const ApplicantFilteredItem = ({ applicantData, handleApplicantStatus }) => {
           <i className="fas fa-check"></i>
         </Button>
         <Button
+          aria-label="reject"
           onClick={() =>
             handleApplicantStatus(applicantData.applicant.id, "binned")
           }>

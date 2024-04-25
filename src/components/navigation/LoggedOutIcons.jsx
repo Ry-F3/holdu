@@ -14,7 +14,7 @@ const LoggedOutIcons = () => {
       </NavLink>
       <NavLink to="/signin">
         <div className="mr-1 d-flex flex-column align-items-center rounded">
-          <Button>Sign In</Button>
+          <Button aria-label="sign in">Sign In</Button>
         </div>
       </NavLink>
     </>

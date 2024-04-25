@@ -16,19 +16,19 @@ const SentTab = ({ connections, handleUnsend }) => {
           return (
             <li key={connection.id} className="list-group-item">
               <div className="d-flex justify-content-between align-items-center">
-              <Link to={`/profiles/${connection.connection}/user`}>
-                <div className="ml-2">
-                  <h5 className="mt-0 mb-0 small">
-                    {" "}
-                    {connection.connection_name}
-                  </h5>
-                </div>
-              </Link>
+                <Link to={`/profiles/${connection.connection}/user`}>
+                  <div className="ml-2">
+                    <h5 className="mt-0 mb-0 small">
+                      {" "}
+                      {connection.connection_name}
+                    </h5>
+                  </div>
+                </Link>
                 <Button
+                  aria-label="unsend"
                   size="sm"
                   className={` ${connectStyles.Button}`}
-                  onClick={() => handleUnsend(connection.id)}
-                >
+                  onClick={() => handleUnsend(connection.id)}>
                   &#10006;
                 </Button>
               </div>
@@ -39,7 +39,10 @@ const SentTab = ({ connections, handleUnsend }) => {
       })}
       {/* Render dummy items */}
       {Array.from({
-        length: Math.max(5 - connections.filter((conn) => !conn.accepted).length, 0),
+        length: Math.max(
+          5 - connections.filter((conn) => !conn.accepted).length,
+          0
+        ),
       }).map((_, index) => (
         <li key={`dummy-${index}`} className="list-group-item">
           <div className="bg-light p-3 rounded"></div>
@@ -47,13 +50,12 @@ const SentTab = ({ connections, handleUnsend }) => {
       ))}
       {/* Render message if no sent connections are found */}
       {connections.filter((conn) => !conn.accepted).length === 0 && (
-      
         <div className="list-group-item">
-        <p
-          className={` ${appStyles.Background} text-white  p-2 rounded small mb-0`}>
-          No sent connections found.
-        </p>
-      </div>
+          <p
+            className={` ${appStyles.Background} text-white  p-2 rounded small mb-0`}>
+            No sent connections found.
+          </p>
+        </div>
       )}
     </ul>
   );

@@ -411,11 +411,11 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
         />
       </Form.Group>
 
-      <Button className={`${appStyles.Button}`} type="submit">
+      <Button aria-label="submit" className={`${appStyles.Button}`} type="submit">
         {editMode ? "Edit Ad" : "Post Ad"}
       </Button>
       {editMode && (
-        <Button className={`${appStyles.Button} ml-2`} onClick={handleCancel}>
+        <Button aria-label="cancel" className={`${appStyles.Button} ml-2`} onClick={handleCancel}>
           Cancel
         </Button>
       )}
@@ -489,7 +489,9 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
                         {/* Dropdown or arrows */}
                         {showDropdown ? (
                           <>
-                            <Button className={formStyles.Button}>
+                            <Button
+                              aria-label="post"
+                              className={formStyles.Button}>
                               <i
                                 onClick={
                                   showDropdown
@@ -501,6 +503,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
                           </>
                         ) : (
                           <Button
+                            aria-label="filter"
                             className={formStyles.Button}
                             onClick={handleToggleFilter}>
                             <i className="fa-solid fa-arrow-down-wide-short"></i>
@@ -562,6 +565,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
                           />
                           <div>
                             <Button
+                              aria-label="post"
                               className="d-lg-none"
                               onClick={handlePostAdClick}>
                               List Job Ad Now

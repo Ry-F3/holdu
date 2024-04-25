@@ -38,20 +38,20 @@ const SignUpForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       history.push("/signin");
     } catch (err) {
-    setErrors(err.response?.data || {});
+      setErrors(err.response?.data || {});
       // Do nothing
     }
-      // Check if profile_type is empty and set error accordingly
-      if (signUpData.profile_type === "") {
-        setErrors((prevErrors) => ({
-            ...prevErrors,
-            profile_type: ["Answer is required"],
-        }));
+    // Check if profile_type is empty and set error accordingly
+    if (signUpData.profile_type === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        profile_type: ["Answer is required"],
+      }));
     }
   };
 
@@ -117,8 +117,7 @@ const SignUpForm = () => {
               <Form.Control
                 as="select"
                 className={styles.Input}
-               
-                name="profile_type" 
+                name="profile_type"
                 value={profile_type}
                 onChange={handleChange}>
                 <option value="" disabled hidden>
@@ -135,6 +134,7 @@ const SignUpForm = () => {
             ))}
 
             <Button
+              aria-label="submit"
               className={`${btnStyles.customButton} ${btnStyles.Wide} ${btnStyles.Bright}`}
               type="submit">
               Join now

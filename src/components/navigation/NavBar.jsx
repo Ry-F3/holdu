@@ -180,6 +180,7 @@ const NavBar = ({ handleSearch }) => {
               <div className="d-none d-lg-flex align-items-center">
                 {" "}
                 <Button
+                  aria-label="search"
                   type={searchValue.trim() !== "" ? "submit" : "button"}
                   className="btn-transparent"
                   style={{ display: isButtonVisible ? "block" : "none" }}>
@@ -190,6 +191,7 @@ const NavBar = ({ handleSearch }) => {
                   )}
                 </Button>
                 <Button
+                  aria-label="clear"
                   type="button"
                   className="btn-transparent"
                   style={{ display: isClearButtonVisible ? "block" : "none" }}
@@ -240,12 +242,12 @@ const NavBar = ({ handleSearch }) => {
                 )
               ) : (
                 // If currentUser doesn't exist or signup is not completed, render nothing
-                // Please note quick fix to use state variable isSearchActive. It was unused. 
+                // Please note quick fix to use state variable isSearchActive. It was unused.
                 // If deleted code for toggling the clear and search failed to function.
                 <>
                   {!isSearchActive && (
                     <div className="mr-4">
-                      <Spinner size={20}/>
+                      <Spinner size={20} />
                     </div>
                   )}
                 </>

@@ -27,7 +27,6 @@ function SignInForm() {
     password: "",
   });
 
-  
   const { username, password } = signInData;
 
   const [errors, setErrors] = useState({});
@@ -93,9 +92,9 @@ function SignInForm() {
               </Alert>
             ))}
             <Button
+              aria-label="submit"
               className={`${btnStyles.customButton} ${btnStyles.Wide} ${btnStyles.Bright}`}
-              type="submit"
-            >
+              type="submit">
               Sign in
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
@@ -113,11 +112,12 @@ function SignInForm() {
       </Col>
       <Col
         md={6}
-        className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}
-      >
+        className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}>
         <Image
           className={`${appStyles.FillerImage}`}
-          src={"https://res.cloudinary.com/dwkn0vexk/image/upload/v1711532082/signin_2x_uu9slv.png"}
+          src={
+            "https://res.cloudinary.com/dwkn0vexk/image/upload/v1711532082/signin_2x_uu9slv.png"
+          }
         />
       </Col>
     </Row>

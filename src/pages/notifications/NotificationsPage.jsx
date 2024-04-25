@@ -441,7 +441,7 @@ const NotificationPage = () => {
                     <i className="fa-solid fa-check"></i>
                   )}
                 </Button>
-                <Button className="mb-0" onClick={handleDeleteSelected}>
+                <Button aria-label="bin" className="mb-0" onClick={handleDeleteSelected}>
                   <i className="fa-solid fa-trash-can"></i>
                 </Button>
               </div>

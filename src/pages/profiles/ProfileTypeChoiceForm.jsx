@@ -173,7 +173,6 @@ const ProfileTypeChoiceForm = () => {
 
       {!is_signup_completed && (
         <Form.Group>
-          {/* <Form.Label>Profile Type</Form.Label> */}
           <Form.Control
             as="select"
             value={profile_type}

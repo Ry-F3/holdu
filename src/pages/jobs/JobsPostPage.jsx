@@ -10,31 +10,23 @@ import JobsPost from "./JobsPost";
 function JobsPostPage() {
   const { id } = useParams();
   const [jobsPost, setJobsPost] = useState({ results: [] });
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axiosReq.get(`/jobs/post/${id}/`);
         setJobsPost(response.data);
-        setLoading(false);
       } catch (err) {
-        setLoading(false);
+        // Do nothing
       }
     };
 
     fetchData();
   }, [id]);
 
-  // Render loading state while fetching data
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-       
         {/* Pass necessary data as props to JobsPost component */}
         <JobsPost
           key={jobsPost.id}
@@ -51,9 +43,7 @@ function JobsPostPage() {
           applicants={jobsPost.applicants}
           postJob
         />
-
       </Col>
-      
     </Row>
   );
 }
