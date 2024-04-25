@@ -25,7 +25,7 @@ const ProfileHeader = ({
       <div className="text-left">
         <h1 className="mb-0">{profile && profile.name}</h1>
       </div>
-      <div className={`${profileStyles.showButton} ml-5 d-md-none `}>
+      <div className={`${profileStyles.showButton} ${profileStyles.reviewUser} ml-3 d-md-none `}>
         {currentUser &&
           profile &&
           currentUser.username !== profile.owner_username && (
