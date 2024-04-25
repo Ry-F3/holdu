@@ -869,7 +869,6 @@ All CSS files have been validated using the W3C CSS Validator. Some files initia
 | BottomNav.module.css     | &#10003;         |
 | Button.module.css        | &#10003;         |
 | ConnectionsPage.module.css | &#10003;       |
-| CustomTooltip.module.css | &#10003;         |
 | DummyBoxes.module.css    | &#10003;         |
 | JobAdListItem.module.css | &#10003;         |
 | JobPostHomeItem.module.css | &#10003;       |
@@ -1074,7 +1073,7 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
   <br>
 
-  This warning indicates the usage of the deprecated `findDOMNode` function within a component wrapped in React's `StrictMode`. This function is being called on an instance of `RefHolder`, which is inside `StrictMode`. React advises against using `findDOMNode` due to potential performance issues and unexpected behavior, especially in concurrent mode. Refactoring the code to use refs directly on elements is recommended to address this warning.
+  *This warning indicates the usage of the deprecated `findDOMNode` function within a component wrapped in React's `StrictMode`. This function is being called on an instance of `RefHolder`, which is inside `StrictMode`. React advises against using `findDOMNode` due to potential performance issues and unexpected behavior, especially in concurrent mode. Refactoring the code to use refs directly on elements is recommended to address this warning.*
 
   *This issue will be researched further and addressed in future developments.*
 
@@ -1089,7 +1088,7 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
    <br>
 
-   This issue is related to backend permission classes. Due to the application's structure, it may be causing conflicts. Attempts to change the backend resulted in recursive errors with all employee profiles applying for each job. Further investigation and resolution are required in future developments.
+   *This issue is related to backend permission classes. Due to the application's structure, it may be causing conflicts. Attempts to change the backend resulted in recursive errors with all employee profiles applying for each job. Further investigation and resolution are required in future developments.*
 
 
 </details>
@@ -1104,7 +1103,7 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
   *Failed to load resource: the server responded with a status of 401 (Unauthorized)*
 
-  I believe this error is related to content loading before the current user context is properly established for some reason. Further research will need to be conducted to address this issue.
+  *I believe this error is related to content loading before the current user context is properly established for some reason. Further research will need to be conducted to address this issue.*
 
 </details>
 <hr>
@@ -1116,7 +1115,7 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
   <br>
 
-  This warning suggests that a Chrome extension is attempting to access a resource (index.es.js.map) that is not listed in the web_accessible_resources manifest key. This typically occurs when an extension tries to access resources from a web page outside of its allowed scope.
+  *This warning suggests that a Chrome extension is attempting to access a resource (index.es.js.map) that is not listed in the web_accessible_resources manifest key. This typically occurs when an extension tries to access resources from a web page outside of its allowed scope.*
 
   *Further investigation will be conducted in future developments to resolve this issue.*
 
@@ -1130,7 +1129,7 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
   <br>
 
-  This error indicates a TypeError caused by attempting to read properties of an undefined value ('0'). It seems to occur within a promise, suggesting an asynchronous operation that failed due to an undefined value.
+  *This error indicates a TypeError caused by attempting to read properties of an undefined value ('0'). It seems to occur within a promise, suggesting an asynchronous operation that failed due to an undefined value.*
 
   *Further investigation will be conducted in future developments to address and resolve this issue.*
 
@@ -1157,7 +1156,7 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
   <br>
 
- *An invisible form control with a non-focusable error was encountered. While I addressed this in the UI by hiding it with `d-none`, I retained the labeling to maintain convention.*
+ *An invisible form control with a non-focusable error was encountered. While I addressed this in the UI by hiding it with `d-none`, I retained the labeling to maintain HTML convention.*
 
 
 </details>

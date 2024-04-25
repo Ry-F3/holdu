@@ -25,7 +25,7 @@ const ProfileViewPage = () => {
   const [profile, setProfile] = useState(null);
   const [error, setError] = useState(null);
   const [rating, setRating] = useState(0);
-  const [ratings, setRatings] = useState([]);
+  const [ratings, setRatings] = useState({ results: [] });
   const [comment, setComment] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentIndexClick, setCurrentIndexClick] = useState(0);
@@ -229,13 +229,8 @@ const ProfileViewPage = () => {
     <>
       {isLoading ? (
         <Container
-          className={`bg-none border-none border-bottom-none`}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "430px",
-          }}>
+          className={`${profileStyles.loadingContainer} bg-none border-none border-bottom-none`}
+          >
           <Spinner size={60} />
         </Container>
       ) : (
@@ -262,12 +257,8 @@ const ProfileViewPage = () => {
                       <div className="row">
                         <div className="col-md-12">
                           <div
-                            className="bg-light rounded mb-1 p-4 mt-1"
-                            style={{
-                              maxHeight: "220px",
-                              minHeight: "185px",
-                              overflowY: "auto",
-                            }}>
+                            className={`${profileStyles.profileContainer} bg-light rounded mb-1 p-4 mt-1`}
+                            >
                             <h2>About</h2>
                             <span className="text-muted small">
                               {profile.content}
@@ -276,14 +267,10 @@ const ProfileViewPage = () => {
                         </div>
                         <div className="col-md-12 ">
                           <>
-                            {ratings.results.length > 0 ? (
+                            {ratings && ratings.results && ratings.results.length > 0 ? (
                               <div
-                                className="rounded border text-muted p-3 mt-1 d-flex flex-column align-items-center"
-                                style={{
-                                  maxHeight: "220px",
-                                  minHeight: "185px",
-                                  overflowY: "auto",
-                                }}>
+                                className={`${profileStyles.profileContainer} rounded border text-muted p-3 mt-1 d-flex flex-column align-items-center`}
+                              >
                                 {/* Ratings Container */}
                                 <div className="flex-grow-1 p-3 mt-0">
                                   {/* Ratings */}

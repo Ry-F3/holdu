@@ -10,43 +10,17 @@ h3 {
     font-size: 18px !important;
 }
 
-.profileTimeline {
+.profileContainer {
+    max-height: 220px;
+    min-height: 185px;
+    overflow-y: auto;
+}
+
+.loadingContainer {
     display: flex;
-    flex-direction: column;
-}
-
-.profileTimelineItem {
-    display: flex;
-    align-items: flex-start;
-}
-
-.profileTimelineItemContent {
-    background-color: #f8f9fa;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.profileTimelineItemLabel {
-    background-color: #f8f9fa;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    margin-right: 1rem;
-    width: 80px;
-    /* Adjust margin to create space between label and connector */
-}
-
-.profileTimelineItemConnector {
-    width: 20px;
-    /* Set the width of the horizontal line */
-    height: 3px;
-    /* Set the height of the horizontal line */
-    background-color: #ced4da;
-    margin-top: 18px;
-    margin-right: 12px;
+    justify-content: center;
+    align-items: center;
+    min-height: 430px;
 }
 
 .Stars {

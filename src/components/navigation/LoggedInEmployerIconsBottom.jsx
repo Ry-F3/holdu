@@ -4,6 +4,7 @@ import { NavLink} from "react-router-dom";
 // Styles
 import navStyles from "../../styles/NavBar.module.css";
 import styles from "../../styles/BottomNav.module.css";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const LoggedInEmployerIconsBottom = () => {
