@@ -68,6 +68,11 @@ While the current iteration provides basic functionality, future developments wi
 
 <br>
 
+
+Please note that the main functionalities of this product are accessible through the "employer" profile type. The "employee" profile type currently enables the user to apply for job applications for positions posted by employers, aiding in efficient user management within the job management tool for employers. Additionally, further enhancements will be introduced to the employee profile type in future developments.
+
+<br>
+
 ### **Mobile Design <code>profile_type="employer"</code>:** 
 
 *Refer below to view the details and screenshots for the employer profiles mobile design experience.*
