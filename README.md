@@ -858,7 +858,7 @@ Description: Mostly focused on building the profile pages. This is in its most b
 | Navigation Search Bar    | Search bar works on all pages and takes user to home page. Clear button sometimes requires two clicks to work.                                                                           | Search bar successfully navigates to home page. Clear button occasionally requires two clicks to work, needing investigation for future developments.                                                                                                                                                                                                                   |
 <br>
 
-#### Testing User Stories
+### Testing User Stories
 
 #### User Story #1: As a new user, I want to be able to sign up for an account by providing my ~~email~~, username, and password.
 
@@ -943,7 +943,7 @@ Description: Mostly focused on building the profile pages. This is in its most b
 
 <br>
 
-#### W3C Validator CSS
+### W3C Validator CSS
 
 <br>
 
@@ -981,7 +981,7 @@ All CSS files have been validated using the W3C CSS Validator. Some files initia
 
 <br>
 
-#### W3C Validator HTML
+### W3C Validator HTML
 
 <br>
 
