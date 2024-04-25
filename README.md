@@ -1678,6 +1678,24 @@ Overall, my testing experience with ESLint involved troubleshooting installation
 
 </details>
 
+<details>
+  <summary>Fontawesome screenshot</summary>
+  <br>
+  
+  ![fontawesome](src/assets/readme/font-awesome.png)
+
+
+</details>
+
+<details>
+  <summary>Fontawesome twitter screenshot [3]</summary>
+  <br>
+  
+  ![fontawesome](src/assets/readme/fontawesome-3.png)
+
+
+</details>
+
 <br>
 
 ### Errors 
