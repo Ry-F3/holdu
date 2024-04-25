@@ -43,6 +43,7 @@ const JobsPost = ({
   const isOwner = currentUser?.username === employer_profile?.owner_username;
   const isEmployee = currentUser && profileData?.profile_type === "employee";
 
+
   useEffect(() => {
     setApplicantsCount(applicants ? applicants.length : 0);
   }, [applicants]);
@@ -149,16 +150,19 @@ const JobsPost = ({
           {employer_profile && (
             <div className="d-flex align-items-center">
               {employer_profile.owner_username && (
-                <Link
-                  className="text-white font-weight-bold"
-                  to={`/profiles/${employer_profile.owner_id}/user`}>
-                  <Avatar
-                    src={employer_profile.image}
-                    height={35}
-                    border={true}
-                  />
-                  {employer_profile.name}
-                </Link>
+                  <>
+                  {currentUser ? (
+                    <Link className="text-white font-weight-bold" to={`/profiles/${employer_profile.owner_id}/user`}>
+                      <Avatar src={employer_profile.image} height={35} border={true} />
+                      {employer_profile.name}
+                    </Link>
+                  ) : (
+                    <span className="text-white font-weight-bold">
+                      <Avatar src={employer_profile.image} height={35} border={true} />
+                      {employer_profile.name}
+                    </span>
+                  )}
+                </>
               )}
             </div>
           )}
