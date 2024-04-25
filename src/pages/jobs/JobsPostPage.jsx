@@ -24,9 +24,11 @@ function JobsPostPage() {
     fetchData();
   }, [id]);
 
+
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
+       
         {/* Pass necessary data as props to JobsPost component */}
         <JobsPost
           key={jobsPost.id}
@@ -43,7 +45,9 @@ function JobsPostPage() {
           applicants={jobsPost.applicants}
           postJob
         />
+
       </Col>
+      
     </Row>
   );
 }

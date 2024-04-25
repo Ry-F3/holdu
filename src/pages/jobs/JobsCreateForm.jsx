@@ -42,9 +42,9 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
     description: "",
     location: "",
     salary: "",
-    closing_date: "",
+    closingDate: "",
   });
-  const { title, description, location, salary, closing_date } = editFormData;
+  const { title, description, location, salary, closingDate } = editFormData;
 
   const [recentAds, setRecentAds] = useState([]);
   const [currentUserAds, setCurrentUserAds] = useState([]);
@@ -57,7 +57,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
     description: "",
     location: "",
     salary: "",
-    closing_date: "",
+    closingDate: "",
     created_at: "",
   });
   const {
@@ -65,7 +65,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
     description: newDescription,
     location: newLocation,
     salary: newSalary,
-    closing_date: newClosingDate,
+    closingDate: newClosingDate,
   } = formData;
 
   const currentUser = useCurrentUser();
@@ -150,14 +150,12 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
       // Sort by closing date in descending order
       return currentUserAds
         .slice()
-        .sort((b, a) => new Date(b.closing_date) - new Date(a.closing_date))
+        .sort((b, a) => new Date(b.closingDate) - new Date(a.closingDate))
         .map((job) => ({
           ...job,
           applicants: job.applicants
             .slice()
-            .sort(
-              (a, b) => new Date(b.closing_date) - new Date(a.closing_date)
-            ),
+            .sort((a, b) => new Date(b.closingDate) - new Date(a.closingDate)),
         }));
     }
   };
@@ -239,7 +237,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
         description: listingToEdit.description,
         location: listingToEdit.location,
         salary: listingToEdit.salary,
-        closing_date: listingToEdit.closing_date,
+        closingDate: listingToEdit.closingDate,
       });
 
       // Check if the device is a mobile
@@ -264,7 +262,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
     data.append("salary", editMode ? editFormData.salary : newSalary);
     data.append(
       "closing_date",
-      editMode ? editFormData.closing_date : newClosingDate
+      editMode ? editFormData.closingDate : newClosingDate
     );
     data.append("applicants", null);
 
@@ -314,7 +312,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
       description: "",
       location: "",
       salary: "",
-      closing_date: "",
+      closingDate: "",
     });
   };
 
@@ -404,18 +402,24 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
         <Form.Label className="">Closing Date:</Form.Label>
         <Form.Control
           type="datetime-local"
-          value={editMode ? closing_date : newClosingDate}
+          value={editMode ? closingDate : newClosingDate}
           onChange={handleChange}
-          name="closing_date"
+          name="closingDate"
           required
         />
       </Form.Group>
 
-      <Button aria-label="submit" className={`${appStyles.Button}`} type="submit">
+      <Button
+        aria-label="submit"
+        className={`${appStyles.Button}`}
+        type="submit">
         {editMode ? "Edit Ad" : "Post Ad"}
       </Button>
       {editMode && (
-        <Button aria-label="cancel" className={`${appStyles.Button} ml-2`} onClick={handleCancel}>
+        <Button
+          aria-label="accept connection"
+          className={`${appStyles.Button} ml-2`}
+          onClick={handleCancel}>
           Cancel
         </Button>
       )}

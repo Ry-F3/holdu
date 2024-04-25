@@ -40,7 +40,7 @@ const JobsPost = ({
     applicants ? applicants.length : 0
   );
 
-  const is_owner = currentUser?.username === employer_profile?.owner_username;
+  const isOwner = currentUser?.username === employer_profile?.owner_username;
   const isEmployee = currentUser && profileData?.profile_type === "employee";
 
   useEffect(() => {
@@ -205,7 +205,7 @@ const JobsPost = ({
           ) : null}
           <div className={`${pointerStyle.Pointer} d-flex align-items-center`}>
             {currentUser ? (
-              !is_owner ? (
+              !isOwner ? (
                 <span onClick={handleLikeUnlike}>
                   <i
                     className={`${styles.HeartSize} ${
