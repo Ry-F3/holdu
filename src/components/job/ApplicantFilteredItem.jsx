@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 // Styles
 import styles from "../../styles/ApplicantItem.module.css";
+// Components
+import Avatar from "../Avatar";
 
 const ApplicantFilteredItem = ({ applicantData, handleApplicantStatus }) => {
   return (
@@ -11,11 +13,11 @@ const ApplicantFilteredItem = ({ applicantData, handleApplicantStatus }) => {
       key={applicantData.id}
     className={` ${styles.Profile} mr-3 bg-light p-4 rounded d-flex flex-column justify-content-center align-items-center`}
       >
-      <img
+      <Avatar
         src={applicantData.applicant.image}
         alt={applicantData.applicant.owner_username}
         className="rounded-circle mb-2"
-        style={{ width: "100px", height: "100px" }}
+        height={80}
       />
       <p className="mb-1">{applicantData.applicant.owner_username}</p>
       <div className="d-flex align-items-center">

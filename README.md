@@ -882,6 +882,7 @@ All CSS files have been validated using the W3C CSS Validator. Some files initia
 | Spinner.module.css       | &#10003;         |
 | TopJobs.module.css       | &#10003;         |
 | ApplicantItem.module.css | &#10003;         |
+| HorizontalRatingList.module.css | &#10003;         |
 
 <br>
 

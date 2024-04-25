@@ -1,0 +1,16 @@
+.horizontalContainer {
+    width: 150px;
+    max-height: 250px;
+    flex-shrink: 0;
+}
+
+.Transform {
+    display: flex;
+    flex-wrap: nowrap;
+    transition: transform 0.5s;
+}
+
+.overflowHidden {
+    max-width: 100%;
+    overflow-x: hidden;
+}
