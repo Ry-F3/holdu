@@ -447,7 +447,7 @@ function JobsCreateForm({ searchQuery, fetchApplicants }) {
             <Form.Group className="align-items-center`">
               {loading ? (
                 <Container className={`${spinnerStyle.spinnerContain}`}>
-                  <Spinner height={50} />
+                  <Spinner size={50} />
                 </Container>
               ) : (
                 <Container className={formStyles.Container}>
